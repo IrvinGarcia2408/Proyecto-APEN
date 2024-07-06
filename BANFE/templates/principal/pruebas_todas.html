@@ -1,0 +1,145 @@
+{% extends "principal/base.html" %} {% load static %} {% block content %}
+<h1 class="title_test">Todas las cortezas cerebrales</h1>
+{% include "banfe-2/modal.html" %}
+<!---->
+{% include "principal/barra_menu_pruebas.html" %}
+
+<div
+  id="carouselExampleControls"
+  class="carousel banfe-carousel slide"
+  data-bs-ride="carousel"
+>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <div class="pruebas_banfe">
+        <div class="pruebas_banfe__laberintos">
+          <span>Laberintos</span>
+          <img
+            src="{% static 'images/laberintos-logo.png' %}"
+            alt="logo-laberintos"
+          />
+        </div>
+        <div class="pruebas_banfe__senalamiento">
+          <span>Señalamiento autodirigido</span>
+          <img src="{% static 'images/senalamiento-logo.png' %}" alt="cpfdl" />
+        </div>
+        <div class="pruebas_banfe__ordenamiento">
+          <span>Ordenamiento alfabético de palabras</span>
+          <img
+            src="{% static 'images/ordenamiento-logo.png' %}"
+            alt="logo-ordenamiento"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="pruebas_banfe">
+        <div class="pruebas_banfe__resta">
+          <span>Resta consecutiva</span>
+          <img src="{% static 'images/resta-logo.png' %}" alt="logo-resta" />
+        </div>
+        <div class="pruebas_banfe__suma">
+          <span>Suma consecutiva</span>
+          <img src="{% static 'images/suma-logo.png' %}" alt="logo-suma" />
+        </div>
+        <div class="pruebas_banfe__clasif-cartas">
+          <span>Clasificación de cartas</span>
+          <img
+            src="{% static 'images/clasif_cartas-logo.png' %}"
+            alt="logo-clasif_cartas"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="pruebas_banfe">
+        <div class="pruebas_banfe__clasif-sem">
+          <span>Clasificaciones semánticas</span>
+          <img
+            src="{% static 'images/clasif_sem-logo.png' %}"
+            alt="logo-clasif_sem"
+          />
+        </div>
+        <div class="pruebas_banfe__stroopA">
+          <span>Efecto Stroop A</span>
+          <img
+            src="{% static 'images/stroopA-logo.png' %}"
+            alt="logo-stroopA"
+          />
+        </div>
+        <div class="pruebas_banfe__fluidez">
+          <span>Fluidez verbal</span>
+          <img
+            src="{% static 'images/fluidez-logo.png' %}"
+            alt="logo-fluidez"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="pruebas_banfe">
+        <div class="pruebas_banfe__cartas">
+          <span>Juego de cartas</span>
+          <img src="{% static 'images/cartas-logo.png' %}" alt="logo-cartas" />
+        </div>
+        <div class="pruebas_banfe__refranes">
+          <span>Selección de refranes</span>
+          <img
+            src="{% static 'images/refranes-logo.png' %}"
+            alt="logo-refranes"
+          />
+        </div>
+        <div class="pruebas_banfe__torres">
+          <span>Torres de Hanoi</span>
+          <img src="{% static 'images/torres-logo.png' %}" alt="logo-torres" />
+        </div>
+      </div>
+    </div>
+
+    <div class="carousel-item">
+      <div class="pruebas_banfe">
+        <div class="pruebas_banfe__metamemoria">
+          <span>Metamemoria</span>
+          <img
+            src="{% static 'images/metamemoria-logo.png' %}"
+            alt="logo-metamemoria"
+          />
+        </div>
+        <div class="pruebas_banfe__memoria">
+          <span>Memoria de trabajo visoespacial</span>
+          <img
+            src="{% static 'images/memoria-logo.png' %}"
+            alt="logo-memoria"
+          />
+        </div>
+        <div class="pruebas_banfe_stroopB">
+          <span>Efecto Stroop B</span>
+          <img
+            src="{% static 'images/stroopB-logo.png' %}"
+            alt="logo-stroopB"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <button
+    class="carousel-control-prev"
+    type="button"
+    data-bs-target="#carouselExampleControls"
+    data-bs-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button
+    class="carousel-control-next"
+    type="button"
+    data-bs-target="#carouselExampleControls"
+    data-bs-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+{% include "principal/footer_menu_pruebas.html" %} {% endblock %}

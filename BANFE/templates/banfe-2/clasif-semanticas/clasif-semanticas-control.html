@@ -1,0 +1,478 @@
+{% extends "banfe-2/base.html" %} {% load static %} {% block content %}
+
+<audio
+  class="alarma_sound"
+  src="{% static 'audios/tiempo_acabado.mp3' %}"
+></audio>
+<audio class="figure-sound" src="{% static 'audios/click.wav' %}"></audio>
+{% include "banfe-2/modal.html" %}
+<div id="semanticas" class="panel-prueba">
+  <div class="row info-prueba">
+    <div class="col-sm-3 col-md-3 bg-light">
+      <div class="sujeto-info">{% include "banfe-2/info-sujeto.html" %}</div>
+      <div class="tips-prueba">
+        <span>Tips:</span>
+        {% include "banfe-2/tips.html" %}
+      </div>
+    </div>
+    <div class="col-sm-9 col-md-9 control">
+      <div class="progress">{% include "banfe-2/progress.html" %}</div>
+      <div class="video-semanticas">{% include "banfe-2/ventana.html" %}</div>
+      <div class="cinta-opciones">
+        <div class="cinta-opciones__mostrar">
+          <a class="btn" href="{% url 'semanticas' %}" target="_Blank">
+            <i class="fa-solid fa-folder-open"></i>
+            Abrir prueba
+          </a>
+        </div>
+        <div class="cinta-opciones__iniciar">
+          <button id="inicio_semanticas" class="btn"
+            onclick="start(300,'segundos_semanticas','inicio_semanticas','parar_semanticas','reiniciar_semanticas');">
+            <i class="fa-solid fa-flag-checkered"></i>
+            Iniciar Prueba
+          </button>
+        </div>
+        <div class="cinta-opciones__adicional">
+          <button class="first_child invisible">
+          </button>
+          <button id="parar_semanticas" class="invisible">
+          </button>
+          <button id="reiniciar_semanticas" class="btn" onclick="restart();" disabled>
+            <i class="fa-solid fa-arrow-rotate-left"></i>
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="time">
+          <div class="time__title">
+            <p>Tiempo(s)</p>
+          </div>
+          <div class="time__reloj">
+            <b id="segundos_semanticas">0</b>
+          </div>
+        </div>
+      </div>
+      <div class="lista-semanticas">
+        <div class="semanticas">
+          <div>
+            <span>Grupo</span>
+          </div>
+          <div>
+            <span>Concreta</span>
+          </div>
+          <div>
+            <span>Funcional</span>
+          </div>
+          <div>
+            <span>Abstracta</span>
+          </div>
+          <div>
+            <span>Total</span>
+          </div>
+          <div>
+            <span>1</span>
+          </div>
+          <div class="valores">
+            <input type="radio" id="conc_1" name="sem_1" value="C" onclick="handleRadioChange(1, 'C', 'conc_1')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="func_1" name="sem_1" value="F" onclick="handleRadioChange(1, 'F', 'func_1')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="abs_1" name="sem_1" value="A" onclick="handleRadioChange(1, 'A', 'abs_1')">
+          </div>
+          <div class="txt-valores">
+            <input type="number" id="total_1" min="1" name="total_1"
+              onkeypress="checkCategorySelection(1,'total_1'); return onlyNumbers(event);">
+          </div>
+          <div>
+            <span>2</span>
+          </div>
+          <div class="valores">
+            <input type="radio" id="conc_2" name="sem_2" value="C" onclick="handleRadioChange(2, 'C', 'conc_2')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="func_2" name="sem_2" value="F" onclick="handleRadioChange(2, 'F', 'func_2')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="abs_2" name="sem_2" value="A" onclick="handleRadioChange(2, 'A', 'abs_2')">
+          </div>
+          <div class="txt-valores">
+            <input type="number" id="total_2" min="1" name="total_2"
+              onkeypress="checkCategorySelection(2,'total_2'); return onlyNumbers(event)">
+          </div>
+          <div>
+            <span>3</span>
+          </div>
+          <div class="valores">
+            <input type="radio" id="conc_3" name="sem_3" value="C" onclick="handleRadioChange(3, 'C', 'conc_3')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="func_3" name="sem_3" value="F" onclick="handleRadioChange(3, 'F', 'func_3')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="abs_3" name="sem_3" value="A" onclick="handleRadioChange(3, 'A', 'abs_3')">
+          </div>
+          <div class="txt-valores">
+            <input type="number" id="total_3" min="1" name="total_3"
+              onkeypress="checkCategorySelection(3,'total_3'); return onlyNumbers(event)" >
+          </div>
+          <div>
+            <span>4</span>
+          </div>
+          <div class="valores">
+            <input type="radio" id="conc_4" name="sem_4" value="C" onclick="handleRadioChange(4, 'C', 'conc_4')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="func_4" name="sem_4" value="F" onclick="handleRadioChange(4, 'F', 'func_4')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="abs_4" name="sem_4" value="A" onclick="handleRadioChange(4, 'A', 'abs_4')">
+          </div>
+          <div class="txt-valores">
+            <input type="number" id="total_4" min="1" name="total_4"
+              onkeypress="checkCategorySelection(4,'total_4'); return onlyNumbers(event)">
+          </div>
+          <div>
+            <span>5</span>
+          </div>
+          <div class="valores">
+            <input type="radio" id="conc_5" name="sem_5" value="C" onclick="handleRadioChange(5, 'C', 'conc_5')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="func_5" name="sem_5" value="F" onclick="handleRadioChange(5, 'F', 'func_5')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="abs_5" name="sem_5" value="A" onclick="handleRadioChange(5, 'A', 'abs_5')">
+          </div>
+          <div class="txt-valores">
+            <input type="number" id="total_5" min="1" name="total_5"
+              onkeypress="checkCategorySelection(5,'total_5'); return onlyNumbers(event)">
+          </div>
+          <div>
+            <span>6</span>
+          </div>
+          <div class="valores">
+            <input type="radio" id="conc_6" name="sem_6" value="C" onclick="handleRadioChange(6, 'C', 'conc_6')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="func_6" name="sem_6" value="F" onclick="handleRadioChange(6, 'F', 'func_6')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="abs_6" name="sem_6" value="A" onclick="handleRadioChange(6, 'A', 'abs_6')">
+          </div>
+          <div class="txt-valores">
+            <input type="number" id="total_6" min="1" name="total_6"
+              onkeypress="checkCategorySelection(6,'total_6'); return onlyNumbers(event)">
+          </div>
+          <div>
+            <span>7</span>
+          </div>
+          <div class="valores">
+            <input type="radio" id="conc_7" name="sem_7" value="C" onclick="handleRadioChange(7, 'C', 'conc_7')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="func_7" name="sem_7" value="F" onclick="handleRadioChange(7, 'F', 'func_7')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="abs_7" name="sem_7" value="A" onclick="handleRadioChange(7, 'A', 'abs_7')">
+          </div>
+          <div class="txt-valores">
+            <input type="number" id="total_7" min="1" name="total_7"
+              onkeypress="checkCategorySelection(7,'total_7'); return onlyNumbers(event)">
+          </div>
+          <div>
+            <span>8</span>
+          </div>
+          <div class="valores">
+            <input type="radio" id="conc_8" name="sem_8" value="C" onclick="handleRadioChange(8, 'C', 'conc_8')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="func_8" name="sem_8" value="F" onclick="handleRadioChange(8, 'F', 'func_8')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="abs_8" name="sem_8" value="A" onclick="handleRadioChange(8, 'A', 'abs_8')">
+          </div>
+          <div class="txt-valores">
+            <input type="number" id="total_8" min="1" name="total_8"
+              onkeypress="checkCategorySelection(8,'total_8'); return onlyNumbers(event)">
+          </div>
+          <div>
+            <span>9</span>
+          </div>
+          <div class="valores">
+            <input type="radio" id="conc_9" name="sem_9" value="C" onclick="handleRadioChange(9, 'C', 'conc_9')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="func_9" name="sem_9" value="F" onclick="handleRadioChange(9, 'F', 'func_9')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="abs_9" name="sem_9" value="A" onclick="handleRadioChange(9, 'A', 'abs_9')">
+          </div>
+          <div class="txt-valores">
+            <input type="number" id="total_9" min="1" name="total_9"
+              onkeypress="checkCategorySelection(9,'total_9'); return onlyNumbers(event)">
+          </div>
+          <div>
+            <span>10</span>
+          </div>
+          <div class="valores">
+            <input type="radio" id="conc_10" name="sem_10" value="C" onclick="handleRadioChange(10, 'C', 'conc_10')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="func_10" name="sem_10" value="F" onclick="handleRadioChange(10, 'F', 'func_10')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="abs_10" name="sem_10" value="A" onclick="handleRadioChange(10, 'A', 'abs_10')">
+          </div>
+          <div class="txt-valores">
+            <input type="number" id="total_10" min="1" name="total_10"
+              onkeypress="checkCategorySelection(10,'total_10'); return onlyNumbers(event)">
+          </div>
+        </div>
+        <div class="semanticas">
+          <div>
+            <span>Grupo</span>
+          </div>
+          <div>
+            <span>Concreta</span>
+          </div>
+          <div>
+            <span>Funcional</span>
+          </div>
+          <div>
+            <span>Abstracta</span>
+          </div>
+          <div>
+            <span>Total</span>
+          </div>
+          <div>
+            <span>11</span>
+          </div>
+          <div class="valores">
+            <input type="radio" id="conc_11" name="sem_11" value="C" onclick="handleRadioChange(11, 'C', 'conc_11')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="func_11" name="sem_11" value="F" onclick="handleRadioChange(11, 'F', 'func_11')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="abs_11" name="sem_11" value="A" onclick="handleRadioChange(11, 'A', 'abs_11')">
+          </div>
+          <div class="txt-valores">
+            <input type="number" id="total_11" min="1" name="total_11"
+              onkeypress="checkCategorySelection(11,'total_11'); return onlyNumbers(event)">
+          </div>
+          <div>
+            <span>12</span>
+          </div>
+          <div class="valores">
+            <input type="radio" id="conc_12" name="sem_12" value="C" onclick="handleRadioChange(12, 'C', 'conc_12')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="func_12" name="sem_12" value="F" onclick="handleRadioChange(12, 'F', 'func_12')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="abs_12" name="sem_12" value="A" onclick="handleRadioChange(12, 'A', 'abs_12')">
+          </div>
+          <div class="txt-valores">
+            <input type="number" id="total_12" min="1" name="total_12"
+              onkeypress="checkCategorySelection(12,'total_12'); return onlyNumbers(event)">
+          </div>
+          <div>
+            <span>13</span>
+          </div>
+          <div class="valores">
+            <input type="radio" id="conc_13" name="sem_13" value="C" onclick="handleRadioChange(13, 'C', 'conc_13')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="func_13" name="sem_13" value="F" onclick="handleRadioChange(13, 'F', 'func_13')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="abs_13" name="sem_13" value="A" onclick="handleRadioChange(13, 'A', 'abs_13')">
+          </div>
+          <div class="txt-valores">
+            <input type="number" id="total_13" min="1" name="total_13"
+              onkeypress="checkCategorySelection(13,'total_13'); return onlyNumbers(event)">
+          </div>
+          <div>
+            <span>14</span>
+          </div>
+          <div class="valores">
+            <input type="radio" id="conc_14" name="sem_14" value="C" onclick="handleRadioChange(14, 'C', 'conc_14')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="func_14" name="sem_14" value="F" onclick="handleRadioChange(14, 'F', 'func_14')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="abs_14" name="sem_14" value="A" onclick="handleRadioChange(14, 'A', 'abs_14')">
+          </div>
+          <div class="txt-valores">
+            <input type="number" id="total_14" min="1" name="total_14"
+              onkeypress="checkCategorySelection(14,'total_14'); return onlyNumbers(event)">
+          </div>
+          <div>
+            <span>15</span>
+          </div>
+          <div class="valores">
+            <input type="radio" id="conc_15" name="sem_15" value="C" onclick="handleRadioChange(15, 'C', 'conc_15')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="func_15" name="sem_15" value="F" onclick="handleRadioChange(15, 'F', 'func_15')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="abs_15" name="sem_15" value="A" onclick="handleRadioChange(15, 'A', 'abs_15')">
+          </div>
+          <div class="txt-valores">
+            <input type="number" id="total_15" min="1" name="total_15"
+              onkeypress="checkCategorySelection(15,'total_15'); return onlyNumbers(event)">
+          </div>
+          <div>
+            <span>16</span>
+          </div>
+          <div class="valores">
+            <input type="radio" id="conc_16" name="sem_16" value="C" onclick="handleRadioChange(16, 'C', 'conc_16')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="func_16" name="sem_16" value="F" onclick="handleRadioChange(16, 'F', 'func_16')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="abs_16" name="sem_16" value="A" onclick="handleRadioChange(16, 'A', 'abs_16')">
+          </div>
+          <div class="txt-valores">
+            <input type="number" id="total_16" min="1" name="total_16"
+              onkeypress="checkCategorySelection(16,'total_16'); return onlyNumbers(event)">
+          </div>
+          <div>
+            <span>17</span>
+          </div>
+          <div class="valores">
+            <input type="radio" id="conc_17" name="sem_17" value="C" onclick="handleRadioChange(17, 'C', 'conc_17')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="func_17" name="sem_17" value="F" onclick="handleRadioChange(17, 'F', 'func_17')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="abs_17" name="sem_17" value="A" onclick="handleRadioChange(17, 'A', 'abs_17')">
+          </div>
+          <div class="txt-valores">
+            <input type="number" id="total_17" min="1" name="total_17"
+              onkeypress="checkCategorySelection(17,'total_17'); return onlyNumbers(event)">
+          </div>
+          <div>
+            <span>18</span>
+          </div>
+          <div class="valores">
+            <input type="radio" id="conc_18" name="sem_18" value="C" onclick="handleRadioChange(18, 'C', 'conc_18')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="func_18" name="sem_18" value="F" onclick="handleRadioChange(18, 'F', 'func_18')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="abs_18" name="sem_18" value="A" onclick="handleRadioChange(18, 'A', 'abs_18')">
+          </div>
+          <div class="txt-valores">
+            <input type="number" id="total_18" min="1" name="total_18"
+              onkeypress="checkCategorySelection(18,'total_18'); return onlyNumbers(event)">
+          </div>
+          <div>
+            <span>19</span>
+          </div>
+          <div class="valores">
+            <input type="radio" id="conc_19" name="sem_19" value="C" onclick="handleRadioChange(19, 'C', 'conc_19')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="func_19" name="sem_19" value="F" onclick="handleRadioChange(19, 'F', 'func_19')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="abs_19" name="sem_19" value="A" onclick="handleRadioChange(19, 'A', 'abs_19')">
+          </div>
+          <div class="txt-valores">
+            <input type="number" id="total_19" min="1" name="total_19"
+              onkeypress="checkCategorySelection(19,'total_19'); return onlyNumbers(event)">
+          </div>
+          <div>
+            <span>20</span>
+          </div>
+          <div class="valores">
+            <input type="radio" id="conc_20" name="sem_20" value="C" onclick="handleRadioChange(15, 'C', 'conc_15')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="func_20" name="sem_20" value="F" onclick="handleRadioChange(15, 'C', 'conc_15')">
+          </div>
+          <div class="valores">
+            <input type="radio" id="abs_20" name="sem_20" value="A" onclick="handleRadioChange(15, 'C', 'conc_15')">
+          </div>
+          <div class="txt-valores">
+            <input type="number" id="total_20" min="1" name="total_20"
+              onkeypress="checkCategorySelection(20,'total_20'); return onlyNumbers(event);">
+          </div>
+        </div>
+      </div>
+      <div class="panel-semanticas">
+        <div id="resultados-semanticas" class="row semanticas-resultados">
+          <div class="row">
+            <div class="score-cat">
+              <span>Categorías concretas:</span>
+              <div>
+                <span id="total-concretas">0</span>
+              </div>
+            </div>
+            <div class="score-cat">
+              <span>Categorías funcionales:</span>
+              <div>
+                <span id="total-funcionales">0</span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="score-final">
+              <span>Categorías abstractas:</span>
+              <div>
+                <span id="total-abstractas">0</span>
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="score-cat">
+              <span>Total de categorías:</span>
+              <div>
+                <span id="total-cat">0</span>
+              </div>
+            </div>
+            <div class="score-cat">
+              <span>Promedio total de animales:</span>
+              <div>
+                <span id="total-prom">0</span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="score-final">
+              <span>Puntuación total:</span>
+              <div>
+                <span id="puntos-finales">0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row footer-menu">
+        {% include "banfe-2/menu-footer.html" %}
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $(document).ready(function () {
+      console.log("Accediendo...");
+      setInterval(function () {
+        mostrarSemanticas();
+      }, 1000);
+    });
+  </script>
+
+  {% endblock %}
+</div>
+</div>
+</div>

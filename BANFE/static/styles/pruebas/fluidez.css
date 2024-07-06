@@ -1,0 +1,154 @@
+@import url("https://fonts.googleapis.com/css?family=Monserrat|Monserrat+Alternates|Poppins&display=swap");
+
+.btn-audio {
+  margin-top: 1vh;
+  margin-left: 40%;
+  width: 20%;
+}
+
+.btn-audio button {
+  font-weight: bolder;
+  color: #006414;
+  font-size: 2.2vh;
+  background: #64c27b;
+}
+
+.btn-audio button:hover {
+  background: #008259;
+  color: rgb(255, 255, 200);
+}
+
+.btn-audio button:hover > i {
+  color: rgb(255, 255, 200);
+}
+
+.lista-fluidez {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: #009929;
+  margin: 2vh auto;
+  padding: 1%;
+}
+
+.lista-fluidez > div {
+  flex: 1 0 20%; /* grow, shrink, basis */
+  margin: 8px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.fluidez {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #000;
+}
+
+.fluidez > div {
+  border-radius: 10px;
+  width: 8%;
+  margin: 0.5vw;
+  margin-left: 0.2vw;
+  text-align: center;
+  line-height: 4vh;
+  margin-top: 0.8vh;
+}
+
+.fluidez > input {
+  width: 48%;
+  height: 3.5vh;
+  font-size: 2vh;
+  margin: 0.8vh 0.2vw;
+}
+
+.fluidez button {
+  width: 1.85vw;
+  margin: 0.8vh 0.1vw;
+  border-radius: 5px;
+  font-size: 2vh;
+  color: rgb(250, 250, 180);
+  text-align: center;
+  font-weight: bold;
+  border: none;
+}
+
+.btn-fluidez-acierto {
+  background: #77cc64;
+}
+
+.btn-fluidez-intrusion {
+  background: #e75959;
+}
+
+.btn-fluidez-perseveracion {
+  background: #fcc769;
+}
+
+.btn-fluidez-acierto:hover {
+  background: #48af00;
+  color: rgb(250, 250, 180);
+}
+
+.btn-fluidez-intrusion:hover {
+  background: #ff0f00;
+  color: rgb(250, 250, 180);
+}
+
+.btn-fluidez-perseveracion:hover {
+  background: #ffaa13;
+  color: rgb(250, 250, 180);
+}
+
+.fluidez-resultados {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  padding: 1rem;
+}
+
+.fluidez-resultados span {
+  width: fit-content;
+}
+
+.fluidez-resultados input {
+  width: 45%;
+}
+
+.panel-fluidez > div {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  height: fit-content;
+  flex-grow: 2;
+  background: #fff;
+  border-radius: 30px;
+  margin: 0.8rem 0.6rem;
+}
+
+.box-fluidez {
+  margin: 0.8rem;
+  padding: 0.8% 4%;
+  width: fit-content;
+}
+
+.box-fluidez span {
+  font-weight: bold;
+  font-size: 2vh;
+}
+
+.box-fluidez input {
+  margin-left: 2%;
+  font-size: 2vh;
+}
+
+@media only screen and (min-width: 1700px) {
+  .btn-audio {
+    margin-top: 2vh;
+    margin-left: 42%;
+    width: 20%;
+  }
+}

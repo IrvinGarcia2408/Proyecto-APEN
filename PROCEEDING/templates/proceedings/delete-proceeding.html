@@ -1,0 +1,39 @@
+{% extends "principal/base.html" %} {% block content %}
+<div class="container-fluid mt-5 pt-5">
+  <div class="row">
+    <div class="col-md-6 mx-auto p-2">
+      <div class="card shadow shadow-lg">
+        <div class="card-body">
+          <h3 class="text-danger">
+            ¿Estás seguro que quiere eliminar el expediente?
+          </h3>
+          <h4>
+            <b>Sujeto de prueba:</b>
+            {{proceeding.name}} {{proceeding.first_last_name}}
+            {{proceeding.second_last_name}}
+          </h4>
+          <div class="mt-4 row justify-content-center">
+            <a
+              href="{% url 'delete_proceeding' %}?pid={{proceeding.id}}&&action=confirm"
+              class="btn btn-danger col-2"
+              >Confirmar</a
+            >
+            <p class="col-1"></p>
+              <a
+                href="{% url 'show_proceedings' %}"
+                class="btn btn-warning col-2"
+                >Cancelar</a
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% if status %}
+<script>
+  alert("{{status}}");
+  window.location = "/expedientes/";
+</script>
+{% endif %} {% endblock %}

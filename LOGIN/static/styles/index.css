@@ -1,0 +1,254 @@
+@import url('https://fonts.googleapis.com/css?family=Monserrat|Monserrat+Alternates|Poppins&display=swap');
+
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    background: #ccc;
+    height: 100vh;
+}
+
+.header {
+    background: #a9e159;
+    height: 10.5vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+}
+
+.navbar__logo {
+    display: flex;
+    margin: 10px 2vw;
+    align-items: center;
+    width: 38vw;
+    height: 30vw;
+    flex-grow: 4;
+}
+
+.navbar__logo img {
+    height: 45px;
+}
+
+.navbar__logo span {
+    margin: 15px 4px 15px 0;
+    color: #009929;
+    font-size: 18px;
+    font-weight: bolder;
+}
+ 
+.navbar__opciones {
+    display: flex;
+    flex-direction: column;
+    background-color: #a9e159;
+    position: fixed;
+    right: 100%;
+    top: 10vh;
+    width: 40%;
+    transition: right 0.3s;
+}
+
+.navbar__btn_menu {
+    display: flex;
+    width: 52vw;
+    margin: 2vw;
+    flex-grow: 8;
+}
+
+.navbar__btn_menu button {
+    font-size: 40px;
+    box-sizing: border-box;
+    background: none;
+    border: none;
+    color: #a9e159;
+    margin-left: auto;
+}
+
+.navbar__toogle i {
+    color: #fff;
+}
+
+.navbar__opciones-login a {
+    width: 100%;
+    border: none;
+    background: #2a8c4a;
+}
+
+.navbar__opciones-login a:hover {
+    background: #008259;
+    color: rgb(255, 255, 200);
+}
+
+.navbar__opciones-idioma select {
+    width: 100%;
+    background: #2a8c4a;
+    border: none;
+}
+
+.navbar__opciones-idioma select:hover {
+    background: #008259;
+    color: rgb(255, 255, 200);
+}
+
+.navbar_visible {
+    right: 0;
+}
+
+.main img {
+    height: 65vh;
+    width: 100vw;
+    display: flex;
+}
+
+.footer {
+    background: #a9e159;
+    height: 35vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.footer__apen,
+.footer__us,
+.footer__contact,
+.footer__help {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin: 1.4rem;
+}
+
+.footer a {
+    text-decoration: none;
+    color: #009929;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.footer a:hover, .footer a:hover > i { /*Pintar iconos y enlaces al mismo tiempo*/
+    color: rgb(255, 255, 200); 
+} 
+
+i {
+    margin: 0.8vh 0.5vw 0 0;
+    color: #009929;;
+    width: 25px;
+    height: 25px;
+}
+
+@media only screen and (min-width: 700px) {
+    .main img {
+        height: 78vh;
+    }
+
+    .footer {
+        height: 12vh;
+        width: 100vw;
+        align-items: center;
+        flex-direction: row;
+    }
+
+    .footer__apen,
+    .footer__us,
+    .footer__contact,
+    .footer__help {
+        margin: 1rem;
+    }
+
+    .footer a {
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 16px;
+    }
+}
+
+@media only screen and (min-width: 800px) {
+    .navbar__logo span {
+        font-size: 24px;
+        margin: 22px 4px 22px 4px;
+    }
+
+    .navbar__btn_menu {
+        display: none;
+    }
+
+    .navbar__opciones {
+        flex-direction: row;
+        width: 52vw;
+        margin: 2vw;
+        flex-grow: 8;
+        position: relative;
+        top: 0;
+        right: 0;
+    }
+
+    .navbar__opciones-login {
+        margin: 1vw 2vw 1vw 15vw;
+        width: 18vw;
+    }
+
+    .navbar__opciones-idioma {
+        margin: 1vw 1vw 1vw 3vw;
+        width: 14vw;
+    }
+
+    .navbar__opciones-login a {
+        width: 16vw;
+        height: 6vh;
+        font-size: 16px;
+        font-weight: bold;
+        margin-left: 9vw;
+        padding: 0.5vw 0;
+    }
+
+    .navbar__opciones-idioma select {
+        width: 12vw;
+        height: 6vh;
+        font-size: 16px;
+        font-weight: bolder;
+        margin-left: 3vw;
+    }
+
+    .main img {
+        height: 78vh;
+        width: 100vw;
+        display: flex;
+    }
+}
+
+@media only screen and (min-width: 1700px) {
+    .header {
+        height: 10vh;
+    }
+
+    .header img {
+        height: 70px;
+    }
+
+    .header span {
+        font-size: 30px;
+    }
+
+    .navbar__opciones-login a {
+        font-size: 22px;
+        padding: 1.2vh 0;
+    }
+
+    .navbar__opciones-idioma select {
+        font-size: 22px;
+        padding: 0.6vh 0;
+    }
+
+    .main img {
+        height: 80vh;
+    }
+
+    .footer {
+        height: 10vh;
+    }
+
+    .footer a {
+        font-size: 22px;
+    }
+
+}

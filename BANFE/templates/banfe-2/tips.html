@@ -1,0 +1,880 @@
+{% load static %} {% if num_prueba == 1 %}
+<div class="general-tips">
+  <span>Generales</span>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img
+          src="{% static 'images/tips/reiniciar.png' %}"
+          alt="btn-reiniciar"
+        />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        Este botón reinicia la prueba, como lo son los datos y el tiempo de la
+        prueba.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img
+          src="{% static 'images/tips/iniciar_laberinto.png' %}"
+          alt="btn-iniciar_laberinto"
+        />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        Este botón inicia el tiempo de cada laberinto que se realiza, para
+        iniciar el laberinto presione dicho botón.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img
+          src="{% static 'images/tips/detener_laberinto.png' %}"
+          alt="btn-stop_laberinto"
+        />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        Este botón detiene el tiempo del laberinto que el sujeto este realizando
+        y coloca el tiempo usado en la columna "tiempo".
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img src="{% static 'images/tips/resta.png' %}" alt="btn-resta" />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        Este botón va restando una unidad al valor escrito en la respectiva
+        celda.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img src="{% static 'images/tips/suma.png' %}" alt="btn-suma" />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        Este botón va sumando una unidad al valor escrito en la respectiva
+        celda.
+      </p>
+    </div>
+  </div>
+</div>
+
+{% elif num_prueba == 2 %}
+<div class="general-tips">
+  <span>Generales</span>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img src="{% static 'images/tips/abrir.png' %}" alt="btn-abrir" />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        El botón "Abrir Prueba" muestra en otra pestaña del navegador la prueba
+        para el sujeto. Tome en cuenta que deberá mover esa pestaña a una nueva
+        ventana del navegador para su uso correcto.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img src="{% static 'images/tips/iniciar.png' %}" alt="btn-iniciar" />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        El botón "Iniciar Prueba" comenzará el tiempo de la prueba a aplicar.
+        Espere a que el sujeto haya leído las instrucciones que le aparecerán en
+        la ventana de la prueba abierta previamente.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img
+          src="{% static 'images/tips/reiniciar.png' %}"
+          alt="btn-reiniciar"
+        />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        Este botón reinicia solo el tiempo de la prueba, no la prueba completa.
+        En caso de querer reiniciar la prueba debe también cerrar la ventana del
+        sujeto y abrir una nueva.
+      </p>
+    </div>
+  </div>
+</div>
+
+{% elif num_prueba == 3 %}
+<div class="general-tips">
+  <span>Generales</span>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img
+          src="{% static 'images/tips/reiniciar.png' %}"
+          alt="btn-reiniciar"
+        />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        Este botón reinicia la prueba, para que esta pueda comenzar de nuevo a
+        aplicarse.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="extra-tips">
+      <p>
+        En los botones de palabras al dar click aparecerá el orden alfabético en
+        que fue presionado el botón la primera vez, posteriormente, aunque se
+        seguirá contabilizando ya no pondrá el orden elegido de nuevo.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="extra-tips">
+      <p>
+        En la caja de texto que dice "Intrusión" deberá colocar las palabras que
+        no pertenezcan a la lista y presionar la tecla "Enter" para que se
+        contabilice, esto se hará sin importar si la palabra ya fue ingresada
+        antes.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="extra-tips">
+      <p>
+        El botón de "Siguiente Ensayo" se debe presionar solo cuando haya
+        terminado el sujeto de dar su lista o que haya pedido que se le
+        repitieran las palabras nuevamente.
+      </p>
+    </div>
+  </div>
+</div>
+
+{% elif num_prueba == 4 %}
+<div class="general-tips">
+  <span>Generales</span>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img src="{% static 'images/tips/iniciar.png' %}" alt="btn-iniciar" />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        El botón "Iniciar Prueba" comenzará el tiempo de la prueba a aplicar. En
+        esta prueba hay dos restas así que este será presionada en dos ocasiones
+        distintas.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img
+          src="{% static 'images/tips/siguiente.png' %}"
+          alt="btn-siguiente"
+        />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        Este botón se activa solo cuando se ha terminado de llenar los campos o
+        se ha terminado el tiempo, le daremos click para pasar a la siguiente
+        resta o terminar la última tarea.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img
+          src="{% static 'images/tips/reiniciar.png' %}"
+          alt="btn-reiniciar"
+        />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        Este botón reinicia la prueba, para que esta pueda comenzar de nuevo a
+        aplicarse.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="extra-tips">
+      <p>
+        En las cajas de texto nos aparecerán los números correctos de la prueba.
+        En caso de que la opción que el sujeto le da sea la que aparece en la
+        caja de texto solo debe presionar "Enter". Sin embargo, si no es la
+        misma, ingrese el valor dado por el sujeto en la caja de texto y
+        presione "Enter".
+      </p>
+    </div>
+  </div>
+</div>
+
+{% elif num_prueba == 5 %}
+<div class="general-tips">
+  <span>Generales</span>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img src="{% static 'images/tips/iniciar.png' %}" alt="btn-iniciar" />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        El botón "Iniciar Prueba" comenzará el tiempo de la prueba a aplicar.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img
+          src="{% static 'images/tips/reiniciar.png' %}"
+          alt="btn-reiniciar"
+        />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        Este botón reinicia la prueba, para que esta pueda comenzar de nuevo a
+        aplicarse.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="extra-tips">
+      <p>
+        En las cajas de texto nos aparecerán los números correctos de la prueba.
+        En caso de que la opción que el sujeto le da sea la que aparece en la
+        caja de texto solo debe presionar "Enter". Sin embargo, si no es la
+        misma, ingrese el valor dado por el sujeto en la caja de texto y
+        presione "Enter".
+      </p>
+    </div>
+  </div>
+</div>
+{% elif num_prueba == 6 %}
+<div class="general-tips">
+  <span>Generales</span>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img src="{% static 'images/tips/abrir.png' %}" alt="btn-abrir" />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        El botón "Abrir Prueba" muestra en otra pestaña del navegador la prueba
+        para el sujeto. Tome en cuenta que deberá mover esa pestaña a una nueva
+        ventana del navegador para su uso correcto.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img src="{% static 'images/tips/iniciar.png' %}" alt="btn-iniciar" />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        El botón "Iniciar Prueba" comenzará el tiempo de la prueba a aplicar.
+        Espere a que el sujeto haya leído las instrucciones que le aparecerán en
+        la ventana de la prueba abierta previamente.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img
+          src="{% static 'images/tips/reiniciar.png' %}"
+          alt="btn-reiniciar"
+        />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        Este botón reinicia solo el tiempo de la prueba, no la prueba completa.
+        En caso de querer reiniciar la prueba debe también cerrar la ventana del
+        sujeto y abrir una nueva.
+      </p>
+    </div>
+  </div>
+</div>
+{% elif num_prueba == 7 %}
+<div class="general-tips">
+  <span>Generales</span>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img src="{% static 'images/tips/abrir.png' %}" alt="btn-abrir" />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        El botón "Abrir Prueba" muestra en otra pestaña del navegador la prueba
+        para el sujeto. Tome en cuenta que deberá mover esa pestaña a una nueva
+        ventana del navegador para su uso correcto.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img src="{% static 'images/tips/iniciar.png' %}" alt="btn-iniciar" />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        El botón "Iniciar Prueba" comenzará el tiempo de la prueba a aplicar.
+        Espere a que el sujeto haya leído las instrucciones que le aparecerán en
+        la ventana de la prueba abierta previamente.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img
+          src="{% static 'images/tips/reiniciar.png' %}"
+          alt="btn-reiniciar"
+        />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        Este botón reinicia el tiempo de la prueba. En caso de querer reiniciar
+        la ventana sujeto debe también cerrar esa ventana y abrir una nueva.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="extra-tips">
+      <p>
+        Cuando se vacien los datos a la lista de categorías. Primero debemos
+        seleccionar el tipo de categoría que corresponde, después ingrese el
+        total de animales en dicha categoría y presione "Enter".
+      </p>
+    </div>
+  </div>
+</div>
+{% elif num_prueba == 8 %}
+<div class="general-tips">
+  <span>Generales</span>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img src="{% static 'images/tips/abrir.png' %}" alt="btn-abrir" />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        El botón "Abrir Prueba" muestra en otra pestaña del navegador la prueba
+        para el sujeto. Tome en cuenta que deberá mover esa pestaña a una nueva
+        ventana del navegador para su uso correcto.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img src="{% static 'images/tips/iniciar.png' %}" alt="btn-iniciar" />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        El botón "Iniciar Prueba" comenzará el tiempo de la prueba a aplicar.
+        Espere a que el sujeto haya leído las instrucciones que le aparecerán en
+        la ventana de la prueba abierta previamente.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img src="{% static 'images/tips/parar.png' %}" alt="btn-parar" />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        Este botón detiene la prueba cuando el usuario haya terminado de leer
+        todas las palabras de la lámina presentada.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img
+          src="{% static 'images/tips/reiniciar.png' %}"
+          alt="btn-reiniciar"
+        />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        Este botón reinicia la prueba. En caso de querer reiniciar la ventana
+        sujeto debe también cerrar esa ventana y abrir una nueva.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="extra-tips">
+      <p>
+        Cuando el sujeto diga la palabra de forma correcta presione click en el
+        botón correcto que se encuentre a lado de la respectiva palabra, en caso
+        de que sea incorrecto deberá dar click en el botón incorrecto.
+      </p>
+    </div>
+  </div>
+</div>
+<div class="general-tips">
+  <span>Específicas</span>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <p class="stroop">Verde</p>
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <b>Error Stroop:</b>
+      <p>En lugar de decir el color de la palabra, dice lo que está escrito.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <p class="nostroop">Verde</p>
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <b>Error no Stroop:</b>
+      <p>En lugar de decir lo que está escrito, dice el color de la palabra.</p>
+    </div>
+  </div>
+</div>
+{% elif num_prueba == 9 %}
+<div class="general-tips">
+  <span>Generales</span>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img src="{% static 'images/tips/iniciar.png' %}" alt="btn-iniciar" />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        El botón "Iniciar Prueba" comenzará el tiempo de la prueba a aplicar.
+        Espere a que el sujeto haya leído las instrucciones que le aparecerán en
+        la ventana de la prueba abierta previamente.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img
+          src="{% static 'images/tips/reiniciar.png' %}"
+          alt="btn-reiniciar"
+        />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        Este botón reinicia el tiempo de la prueba. En caso de querer reiniciar
+        la ventana sujeto debe también cerrar esa ventana y abrir una nueva.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="extra-tips">
+      <p>
+        En la lista de verbos que aparece anotamos en cada campo de texto los
+        verbos que nos dijo nuestro sujeto de prueba. Posteriormente, le damos
+        click en "A" si es acierto, "I" si no es ningún verbo o "P" si el verbo
+        ya se había dicho antes.
+      </p>
+    </div>
+  </div>
+</div>
+{% elif num_prueba == 10 %}
+<div class="general-tips">
+  <span>Generales</span>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img src="{% static 'images/tips/abrir.png' %}" alt="btn-abrir" />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        El botón "Abrir Prueba" muestra en otra pestaña del navegador la prueba
+        para el sujeto. Tome en cuenta que deberá mover esa pestaña a una nueva
+        ventana del navegador para su uso correcto.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img src="{% static 'images/tips/iniciar.png' %}" alt="btn-iniciar" />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        El botón "Iniciar Prueba" comenzará el tiempo de la prueba a aplicar.
+        Espere a que el sujeto haya leído las instrucciones que le aparecerán en
+        la ventana de la prueba abierta previamente.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img
+          src="{% static 'images/tips/reiniciar.png' %}"
+          alt="btn-reiniciar"
+        />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        Este botón reinicia el tiempo de la prueba. En caso de querer reiniciar
+        la ventana sujeto debe también cerrar esa ventana y abrir una nueva.
+      </p>
+    </div>
+  </div>
+</div>
+{% elif num_prueba == 11 %}
+<div class="general-tips">
+  <span>Generales</span>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img src="{% static 'images/tips/abrir.png' %}" alt="btn-abrir" />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        El botón "Abrir Prueba" muestra en otra pestaña del navegador la prueba
+        para el sujeto. Tome en cuenta que deberá mover esa pestaña a una nueva
+        ventana del navegador para su uso correcto.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img src="{% static 'images/tips/iniciar.png' %}" alt="btn-iniciar" />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        El botón "Iniciar Prueba" comenzará el tiempo de la prueba a aplicar.
+        Espere a que el sujeto haya leído las instrucciones que le aparecerán en
+        la ventana de la prueba abierta previamente.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img
+          src="{% static 'images/tips/reiniciar.png' %}"
+          alt="btn-reiniciar"
+        />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        Este botón reinicia el tiempo de la prueba. En caso de querer reiniciar
+        la ventana sujeto debe también cerrar esa ventana y abrir una nueva.
+      </p>
+    </div>
+  </div>
+</div>
+{% elif num_prueba == 12 %}
+<div class="general-tips">
+  <span>Generales</span>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img src="{% static 'images/tips/iniciar.png' %}" alt="btn-iniciar" />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        El botón "Iniciar Prueba" comenzará el tiempo de la prueba a aplicar. En
+        esta prueba puede haber dos torres así que este podría ser presionada en
+        dos ocasiones distintas.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img src="{% static 'images/tips/parar.png' %}" alt="btn-parar" />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        Este botón detiene la prueba cuando el usuario haya terminado de
+        realizar todos sus movimientos con los discos.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img
+          src="{% static 'images/tips/siguiente.png' %}"
+          alt="btn-siguiente"
+        />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        Este botón se activa solo cuando se ha detenido la prueba, para ahora
+        pasar a la siguiente torre por resolver.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img
+          src="{% static 'images/tips/reiniciar.png' %}"
+          alt="btn-reiniciar"
+        />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        Este botón reinicia la prueba, para que esta pueda comenzar de nuevo a
+        aplicarse.
+      </p>
+    </div>
+  </div>
+</div>
+<div class="general-tips">
+  <span>Específicas</span>
+  <div class="row error-torres">
+    <div class="card col-md-3 col-lg-3">
+      <img src="{% static 'images/tips/error_t1.png' %}" alt="btn-reiniciar" />
+      <div class="card-body">
+        <p class="card-text">Error tipo 1</p>
+      </div>
+    </div>
+    <div class="card col-md-3 col-lg-3">
+      <img src="{% static 'images/tips/error_t2.png' %}" alt="btn-reiniciar" />
+      <div class="card-body">
+        <p class="card-text">Error tipo 2</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% elif num_prueba == 13 %}
+<div class="general-tips">
+  <span>Generales</span>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img
+          src="{% static 'images/tips/reiniciar.png' %}"
+          alt="btn-reiniciar"
+        />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        Este botón reinicia la prueba, para que esta pueda comenzar de nuevo a
+        aplicarse.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="extra-tips">
+      <p>
+        En la caja de texto que dice "Predicción" deberá colocar el número de
+        palabras que el sujeto piensa que memorizará en cada ensayo que se
+        realiza y después debe presionar la tecla "Enter" para que se
+        contabilice.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="extra-tips">
+      <p>
+        En los botones de palabras al dar click aparecerá el orden alfabético en
+        que fue presionado el botón la primera vez, posteriormente, aunque se
+        seguirá contabilizando ya no pondrá el orden elegido de nuevo.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="extra-tips">
+      <p>
+        En la caja de texto que dice "Intrusión" deberá colocar las palabras que
+        no pertenezcan a la lista y presionar la tecla "Enter" para que se
+        contabilice, esto se hará sin importar si la palabra ya fue ingresada
+        antes.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="extra-tips">
+      <p>
+        El botón de "Siguiente Ensayo" se debe presionar solo cuando haya
+        terminado el sujeto de dar su lista o que haya pedido que se le
+        repitieran las palabras nuevamente.
+      </p>
+    </div>
+  </div>
+</div>
+
+{% elif num_prueba == 14 %}
+<div class="general-tips">
+  <span>Generales</span>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img src="{% static 'images/tips/abrir.png' %}" alt="btn-abrir" />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        El botón "Abrir Prueba" muestra en otra pestaña del navegador la prueba
+        para el sujeto. Tome en cuenta que deberá mover esa pestaña a una nueva
+        ventana del navegador para su uso correcto. En caso de querer reiniciar
+        la prueba, debe dar click para abrir otra ventana nueva para el sujeto.
+      </p>
+    </div>
+  </div>
+</div>
+{% elif num_prueba == 15 %}
+<div class="general-tips">
+  <span>Generales</span>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img src="{% static 'images/tips/abrir.png' %}" alt="btn-abrir" />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        El botón "Abrir Prueba" muestra en otra pestaña del navegador la prueba
+        para el sujeto. Tome en cuenta que deberá mover esa pestaña a una nueva
+        ventana del navegador para su uso correcto.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img src="{% static 'images/tips/iniciar.png' %}" alt="btn-iniciar" />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        El botón "Iniciar Prueba" comenzará el tiempo de la prueba a aplicar.
+        Espere a que el sujeto haya leído las instrucciones que le aparecerán en
+        la ventana de la prueba abierta previamente.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img src="{% static 'images/tips/parar.png' %}" alt="btn-parar" />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        Este botón detiene la prueba cuando el usuario haya terminado de leer
+        todas las palabras de la lámina presentada.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <img
+          src="{% static 'images/tips/reiniciar.png' %}"
+          alt="btn-reiniciar"
+        />
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <p>
+        Este botón reinicia la prueba. En caso de querer reiniciar la ventana
+        sujeto debe también cerrar esa ventana y abrir una nueva.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="extra-tips">
+      <p>
+        Cuando el sujeto diga la palabra de forma correcta presione click en el
+        botón correcto que se encuentre a lado de la respectiva palabra, en caso
+        de que sea incorrecto deberá dar click en el botón incorrecto.
+      </p>
+    </div>
+  </div>
+</div>
+<div class="general-tips">
+  <span>Específicas</span>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <p class="stroop">Verde</p>
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <b>Error Stroop:</b>
+      <p>En lugar de decir el color de la palabra, dice lo que está escrito.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 container-images">
+      <div class="tips-images">
+        <p class="nostroop">Verde</p>
+      </div>
+    </div>
+    <div class="col-md-8 description-images">
+      <b>Error no Stroop:</b>
+      <p>En lugar de decir lo que está escrito, dice el color de la palabra.</p>
+    </div>
+  </div>
+</div>
+{% endif %}

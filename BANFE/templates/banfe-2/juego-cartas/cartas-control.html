@@ -1,0 +1,214 @@
+{% extends "banfe-2/base.html" %} {% load static %} {% block content %}
+
+<audio
+  class="alarma_sound"
+  src="{% static 'audios/tiempo_acabado.mp3' %}"
+></audio>
+<audio class="figure-sound" src="{% static 'audios/click.wav' %}"/></audio>
+
+{% include "banfe-2/modal.html" %}
+<div id="cartas" class="panel-prueba">
+  <div class="row info-prueba">
+    <div class="col-sm-3 col-md-3 bg-light">
+      <div class="sujeto-info">{% include "banfe-2/info-sujeto.html" %}</div>
+      <div class="tips-prueba">
+        <span>Tips:</span>
+        {% include "banfe-2/tips.html" %}
+      </div>
+    </div>
+    <div class="col-sm-9 col-md-9 control">
+      <div class="progress">{% include "banfe-2/progress.html" %}</div>
+      <div class="video-cartas">{% include "banfe-2/ventana.html" %}</div>
+      <div class="cinta-opciones">
+        <div class="cinta-opciones__mostrar">
+          <a class="btn" href="{% url 'cartas' %}" target="_Blank">
+            <i class="fa-solid fa-folder-open"></i>
+            Abrir prueba
+          </a>
+        </div>
+        <div class="cinta-opciones__iniciar">
+          <button
+            id="inicio_cartas"
+            class="btn"
+            onclick="start(300,'segundos_cartas','inicio_cartas','parar_cartas','reiniciar_cartas');"
+          >
+            <i class="fa-solid fa-flag-checkered"></i>
+            Iniciar Prueba
+          </button>
+        </div>
+        <div class="cinta-opciones__adicional">
+          <button class="first_child btn invisible"></button>
+          <button id="parar_cartas" onclick="stoped()" class="btn invisible" disabled></button>
+          <button
+            id="reiniciar_cartas"
+            class="btn"
+            onclick="restart();"
+            disabled
+          >
+            <i class="fa-solid fa-arrow-rotate-left"></i>
+          </button>
+        </div>
+      </div>
+      <div class="row overflow-x">
+        <div class="time">
+          <div class="time__title">
+            <p>Tiempo(s)</p>
+          </div>
+          <div class="time__reloj">
+            <b id="segundos_cartas">0</b>
+          </div>
+        </div>
+      </div>
+      <div class="panel-juego_cartas">
+        <div class="puntos-cartas">
+          <div id="puntos-carta">
+            <span class="puntos-cartas__titulo">Número de cartas:</span>
+            <div>
+              <span class="numero-carta">1</span>
+              <span class="cant-cartas">{{carta_1}}</span>
+              <span>=</span>
+              <span class="cant-cartas">{{punto_1}}</span>
+            </div>
+            <div>
+              <span class="numero-carta">2</span>
+              <span class="cant-cartas">{{carta_2}}</span>
+              <span>=</span>
+              <span class="cant-cartas">{{punto_2}}</span>
+            </div>
+            <div>
+              <span class="numero-carta">3</span>
+              <span class="cant-cartas">{{carta_3}}</span>
+              <span>=</span>
+              <span class="cant-cartas">{{punto_3}}</span>
+            </div>
+            <div>
+              <span class="numero-carta">4</span>
+              <span class="cant-cartas">{{carta_4}}</span>
+              <span>=</span>
+              <span class="cant-cartas">{{punto_4}}</span>
+            </div>
+            <div>
+              <span class="numero-carta">5</span>
+              <span class="cant-cartas">{{carta_5}}</span>
+              <span>=</span>
+              <span class="cant-cartas">{{punto_5}}</span>
+            </div>
+            <div>
+              <span class="puntuacion-cartas">Total cartas:</span>
+              <span class="cant-cartas puntos">{{cartas_puntos}}</span>
+              <span class="puntuacion-cartas">Puntos:</span>
+              <span class="cant-cartas puntos">{{total_puntos}}</span>
+            </div>
+          </div>
+          <div id="castigos-carta">
+            <span class="puntos-cartas__titulo">Número de castigos:</span>
+            <div>
+              <span class="numero-carta">1</span>
+              <span class="cant-cartas">{{castigop_1}}</span>
+              <span>=</span>
+              <span class="cant-cartas">{{castigo_1}}</span>
+            </div>
+            <div>
+              <span class="numero-carta">2</span>
+              <span class="cant-cartas">{{castigop_2}}</span>
+              <span>=</span>
+              <span class="cant-cartas">{{castigo_2}}</span>
+            </div>
+            <div>
+              <span class="numero-carta">3</span>
+              <span class="cant-cartas">{{castigop_3}}</span>
+              <span>=</span>
+              <span class="cant-cartas">{{castigo_3}}</span>
+            </div>
+            <div>
+              <span class="numero-carta">4</span>
+              <span class="cant-cartas">{{castigop_4}}</span>
+              <span>=</span>
+              <span class="cant-cartas">{{castigo_4}}</span>
+            </div>
+            <div>
+              <span class="numero-carta">5</span>
+              <span class="cant-cartas">{{castigop_5}}</span>
+              <span>=</span>
+              <span class="cant-cartas">{{castigo_5}}</span>
+            </div>
+            <div>
+              <span class="puntuacion-cartas">Total cartas:</span>
+              <span class="cant-cartas puntos">{{cartas_castigos}}</span>
+              <span class="puntuacion-cartas castigos">Castigos:</span>
+              <span class="cant-cartas puntos">{{total_castigos}}</span>
+            </div>
+          </div>
+        </div>
+        <div id="resultados-cartas" class="row lista-resultados score-2">
+          <div>
+            <span>Puntuación total</span>
+            <div class="score__valor">
+              <p id="total_score_cards">{{puntuacion}}</p>
+            </div>
+          </div>
+          <div>
+            <span>Porcentaje de cartas de riesgo</span>
+            <div class="score__valor">
+              <p id="percentege_risk">{{porcentaje}}%</p>
+            </div>
+          </div>
+          <b id="fin_cartas">{{fin_cartas}}</b>
+        </div>
+        <div class="preguntas-cartas">
+          <div>
+            <span
+              >1. ¿Cuáles grupos de cuartos eran los que más puntos le
+              daban?</span
+            >
+            <input id="question_one" type="text" name="pregunta_1" />
+          </div>
+          <div>
+            <span
+              >2. ¿Con cuál grupo de cartas se quedaban con menos puntos?</span
+            >
+            <input id="question_two" type="text" name="pregunta_2" />
+          </div>
+          <div>
+            <span
+              >3. ¿Cuáles grupos de cartas le quitaban puntos con más
+              frecuencia?</span
+            >
+            <input id="question_three" type="text" name="pregunta_3" />
+          </div>
+          <div>
+            <span>4. ¿Cree que ganó o que perdió?</span>
+            <input id="question_four" type="text" name="pregunta_4" />
+          </div>
+        </div>
+      </div>
+
+      <div class="row footer-menu">
+        {% include "banfe-2/menu-footer.html" %}
+      </div>
+
+      <script>
+        $(document).ready(function () {
+          console.log("Accediendo...");
+          setInterval(function () {
+            $("#puntos-carta").load(" #puntos-carta");
+            $("#castigos-carta").load(" #castigos-carta");
+            $("#resultados-cartas").load(" #resultados-cartas");
+            if (document.getElementById("fin_cartas").textContent == "1") {
+              if (!mensaje) {
+                if(!parada){
+                  stoped();
+                  parada = true;
+                }
+                document.getElementById("reiniciar_cartas").disabled = true;
+                imprimirMensaje();
+              }
+            }
+          }, 1000);
+        });
+      </script>
+
+      {% endblock %}
+    </div>
+  </div>
+</div>

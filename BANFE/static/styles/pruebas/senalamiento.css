@@ -1,0 +1,124 @@
+@import url("https://fonts.googleapis.com/css?family=Monserrat|Monserrat+Alternates|Poppins&display=swap");
+
+/*  Vista Prueba  */
+.senalamiento-prueba {
+  margin: 0 auto;
+}
+
+.grid-container {
+  display: grid;
+  height: 88vh;
+  width: 90vw;
+  grid-template-columns: auto auto auto auto auto;
+  background-color: #fff;
+  margin: 1.4% auto;
+  opacity: 0.9;
+}
+
+.grid-item {
+  background-color: #fff;
+  width: 6rem;
+  height: 4rem;
+  margin: 13% auto;
+}
+
+.grid-item:hover {
+  cursor: pointer;
+  opacity: 0.4;
+  outline-color: #333;
+}
+
+.btn-terminar {
+  margin: 0 auto;
+  width: fit-content;
+  font-size: 12px;
+}
+
+.btn-terminar a {
+  width: 100%;
+  background: #a9e159;
+  color: #009929;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 1.6em;
+  padding: 0 3vw;
+}
+
+.btn-terminar a:hover {
+  background: #009929;
+  color: rgb(255, 255, 200);
+}
+
+#fin {
+  display: none;
+}
+
+@media only screen and (min-width: 1400px) {
+  .score-3 span {
+    font-size: 18px;
+  }
+
+  .aciertos__score-3 p,
+  .persev__score-3 p,
+  .omisiones__score-3 p {
+    font-size: 18px;
+  }
+
+  .grid-item {
+    width: 7rem;
+    height: 5rem;
+  }
+
+  .btn-terminar a {
+    font-size: 2em;
+  }
+}
+
+@media only screen and (min-width: 1500px) {
+  .score-3 span {
+    font-size: 19px;
+  }
+
+  .aciertos__score-3 p,
+  .persev__score-3 p,
+  .omisiones__score-3 p {
+    font-size: 19px;
+  }
+
+  .aciertos__score-3,
+  .persev__score-3,
+  .omisiones__score-3 {
+    height: 4rem;
+    padding-top: 1rem;
+  }
+
+  .grid-item {
+    width: 7.5rem;
+    height: 5.5rem;
+    margin: 11% auto;
+  }
+}
+
+@media only screen and (min-width: 1700px) {
+  .score-3 {
+    margin: 1rem auto;
+  }
+  .score-3 span {
+    font-size: 2.2vh;
+  }
+
+  .aciertos__score-3 p,
+  .persev__score-3 p,
+  .omisiones__score-3 p {
+    font-size: 2.2vh;
+  }
+
+  .grid-item {
+    width: 8.5vw;
+    height: 9.5vh;
+  }
+
+  .btn-terminar a {
+    font-size: 2.5vh;
+  }
+}

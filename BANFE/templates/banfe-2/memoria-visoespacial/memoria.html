@@ -1,0 +1,231 @@
+{% extends "banfe-2/pruebas.html" %} {% load static %} {% block content %}
+
+<audio
+  class="alarma_sound"
+  src="{% static 'audios/tiempo_acabado.mp3' %}"
+></audio>
+<audio class="figure-sound" src="{% static 'audios/click.wav' %}"></audio>
+<audio class="turno_sound" src="{% static 'audios/turno.ogg' %}"></audio>
+
+{% include "banfe-2/modal.html" %}
+<div class="memoria-prueba">
+  <div class="grid-container">
+    {% csrf_token %}
+    <div class="grid-item">
+      <img
+        id="ardilla"
+        onclick="chooseFigure(this);"
+        src="{% static 'images/señalamiento/ardilla.png' %}"
+        alt="ardilla-memoria"
+        disabled
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="avion"
+        onclick="chooseFigure(this);"
+        src="{% static 'images/señalamiento/avion.png' %}"
+        alt="avion-memoria"
+        disabled
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="bicicleta"
+        onclick="chooseFigure(this);"
+        src="{% static 'images/señalamiento/bicicleta.png' %}"
+        alt="bicicleta-memoria"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="pluma"
+        onclick="chooseFigure(this);"
+        src="{% static 'images/señalamiento/pluma.png' %}"
+        alt="pluma-memoria"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="caballo"
+        onclick="chooseFigure(this);"
+        src="{% static 'images/señalamiento/caballo.png' %}"
+        alt="caballo-memoria"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="calceta"
+        onclick="chooseFigure(this);"
+        src="{% static 'images/señalamiento/calceta.png' %}"
+        alt="calceta-memoria"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="casa"
+        onclick="chooseFigure(this);"
+        src="{% static 'images/señalamiento/casa.png' %}"
+        alt="casa-memoria"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="cepillo"
+        onclick="chooseFigure(this);"
+        src="{% static 'images/señalamiento/cepillo.png' %}"
+        alt="cepillo-memoria"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="cinturon"
+        class="figura"
+        onclick="chooseFigure(this);"
+        src="{% static 'images/señalamiento/cinturon.png' %}"
+        alt="cinturon-memoria"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="foco"
+        onclick="chooseFigure(this);"
+        src="{% static 'images/señalamiento/foco.png' %}"
+        alt="foco-memoria"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="guitarra"
+        onclick="chooseFigure(this);"
+        src="{% static 'images/señalamiento/guitarra.png' %}"
+        alt="guitarra-memoria"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="hacha"
+        onclick="chooseFigure(this);"
+        src="{% static 'images/señalamiento/hacha.png' %}"
+        alt="hacha-memoria"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="hormiga"
+        onclick="chooseFigure(this);"
+        src="{% static 'images/señalamiento/hormiga.png' %}"
+        alt="hormiga-memoria"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="mano"
+        onclick="chooseFigure(this);"
+        src="{% static 'images/señalamiento/mano.png' %}"
+        alt="meno-memoria"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="manzana"
+        onclick="chooseFigure(this);"
+        src="{% static 'images/señalamiento/manzana.png' %}"
+        alt="manzana-memoria"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="martillo"
+        onclick="chooseFigure(this);"
+        src="{% static 'images/señalamiento/martillo.png' %}"
+        alt="martillo-memoria"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="mesa"
+        onclick="chooseFigure(this);"
+        src="{% static 'images/señalamiento/mesa.png' %}"
+        alt="mesa-memoria"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="pantalon"
+        onclick="chooseFigure(this);"
+        src="{% static 'images/señalamiento/pantalon.png' %}"
+        alt="pantalon-memoria"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="pez"
+        onclick="chooseFigure(this);"
+        src="{% static 'images/señalamiento/pez.png' %}"
+        alt="pez-memoria"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="platano"
+        onclick="chooseFigure(this);"
+        src="{% static 'images/señalamiento/platano.png' %}"
+        alt="platano-memoria"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="saco"
+        onclick="chooseFigure(this);"
+        src="{% static 'images/señalamiento/saco.png' %}"
+        alt="saco-memoria"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="gato"
+        onclick="chooseFigure(this);"
+        src="{% static 'images/señalamiento/gato.png' %}"
+        alt="gato-memoria"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="jarra"
+        onclick="chooseFigure(this);"
+        src="{% static 'images/señalamiento/jarra.png' %}"
+        alt="jarra-memoria"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="carro"
+        onclick="chooseFigure(this);    "
+        src="{% static 'images/señalamiento/carro.png' %}"
+        alt="carro-memoria"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="estufa"
+        onclick="chooseFigure(this);    "
+        src="{% static 'images/señalamiento/estufa.png' %}"
+        alt="estufa-memoria"
+      />
+    </div>
+  </div>
+  <div class="btn-terminar">
+    <button id="boton" class="btn" onclick="terminarSecuencia();" disabled>
+      Listo
+    </button>
+  </div>
+</div>
+
+<script>
+  window.setTimeout(function () {
+    iniciarMemoria();
+  }, 5000);
+</script>
+
+{% endblock %}

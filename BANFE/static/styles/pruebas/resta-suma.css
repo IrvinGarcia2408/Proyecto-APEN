@@ -1,0 +1,186 @@
+@import url("https://fonts.googleapis.com/css?family=Monserrat|Monserrat+Alternates|Poppins&display=swap");
+
+.suma {
+  margin: 0.5rem auto;
+}
+
+.suma > div,
+.resta > div {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: fit-content;
+  flex-grow: 2;
+  background: #fff;
+}
+
+.suma-valores,
+.resta-valores {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
+
+.suma-valores > * {
+  flex: 9%;
+  margin: 0.5rem 0 0 1.5px;
+  padding-left: 8px;
+  align-content: space-between;
+}
+
+.resta-valores > * {
+  flex: 2%;
+  margin: 0.5rem 0 0 1.5px;
+  padding-left: 8px;
+  align-content: space-between;
+}
+
+.resta-valores input,
+.suma-valores input {
+  font-size: 14px;
+  color: #999;
+}
+
+.resta-valores > * {
+  flex: 14%;
+}
+
+.suma-valores input:nth-child(2) {
+  width: 60%;
+  text-align: center;
+}
+
+.resta-valores input:nth-child(2) {
+  width: 45%;
+  text-align: center;
+}
+
+.suma-resultados,
+.resta-resultados {
+  margin: 0 auto;
+  padding-bottom: 1rem;
+  width: 20%;
+}
+
+.resta-resultados {
+  margin: 0 auto;
+  padding-bottom: 1rem;
+  width: 1%;
+}
+
+.suma-resultados > div,
+.resta-resultados > div {
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  flex-grow: 2;
+  margin: 0 4%;
+  padding: 0 12%;
+}
+
+.score-suma,
+.score-resta {
+  margin: 0 10%;
+}
+
+.score-suma > span,
+.score-resta > span {
+  background: #a9e159;
+  padding: 3%;
+  border-radius: 20px 0 0 20px;
+  color: #006414;
+  font-size: 14px;
+  font-weight: bold;
+  border: #000 1px solid;
+}
+
+.score-suma > div,
+.score-resta > div {
+  width: 3.5rem;
+  padding: 5% 0;
+  text-align: center;
+  border-radius: 0 20px 20px 0;
+  color: #006414;
+  font-size: 14px;
+  font-weight: bold;
+  border: #000 0.2px solid;
+}
+
+.apagado {
+  display: none;
+}
+
+.titulo-resta {
+  font-size: 16px;
+  color: #006414;
+  font-weight: bolder;
+  background: #fff;
+  padding: 10px;
+}
+
+#progreso-resta {
+  font-size: 2.5vh;
+  font-weight: bold;
+  position: relative;
+  top: 2.5vh;
+}
+
+@media only screen and (min-width: 1400px) {
+  .score-suma > span,
+  .score-resta > span {
+    padding: 5%;
+    font-size: 16px;
+  }
+
+  .score-suma > div,
+  .score-resta > div {
+    padding: 5% 0;
+    font-size: 16px;
+  }
+
+  .resta-valores input,
+  .suma-valores input {
+    font-size: 16px;
+  }
+
+  .titulo-resta {
+    font-size: 18px;
+  }
+
+  #progreso-resta {
+    top: 2vh;
+  }
+}
+
+@media only screen and (min-width: 1700px) {
+  .suma,
+  .resta {
+    margin: 2vh auto;
+  }
+
+  .score-suma > span,
+  .score-resta > span {
+    padding: 5%;
+    font-size: 2vh;
+  }
+
+  .score-suma > div,
+  .score-resta > div {
+    padding: 5% 0;
+    font-size: 2vh;
+  }
+
+  .resta-valores input,
+  .suma-valores input {
+    font-size: 2vh;
+  }
+
+  .titulo-resta {
+    font-size: 2.2vh;
+  }
+
+  #progreso-resta {
+    top: 1.5vh;
+  }
+}

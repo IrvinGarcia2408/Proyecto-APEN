@@ -1,0 +1,1821 @@
+{% extends "banfe-2/base.html" %} {% load static %} {% block content %}
+
+<audio
+  class="alarma_sound"
+  src="{% static 'audios/tiempo_acabado.mp3' %}"
+></audio>
+<audio class="figure-sound" src="{% static 'audios/click.wav' %}"></audio>
+{% include "banfe-2/modal.html" %}
+<div id="stroop-A" class="panel-prueba">
+  <div class="row info-prueba">
+    <div class="col-sm-3 col-md-3 bg-light">
+      <div class="sujeto-info">{% include "banfe-2/info-sujeto.html" %}</div>
+      <div class="tips-prueba">
+        <span>Tips:</span>
+        {% include "banfe-2/tips.html" %}
+      </div>
+    </div>
+    <div class="col-sm-9 col-md-9 control">
+      <div class="progress">{% include "banfe-2/progress.html" %}</div>
+      <div class="video-stroop_A">{% include "banfe-2/ventana.html" %}</div>
+      <div class="cinta-opciones">
+        <div class="cinta-opciones__mostrar">
+          <a class="btn" href="{% url 'stroopA' %}" target="_Blank">
+            <i class="fa-solid fa-folder-open"></i>
+            Abrir prueba
+          </a>
+        </div>
+        <div class="cinta-opciones__iniciar">
+          <button
+            id="inicio_stroop"
+            class="btn"
+            onclick="start(300,'segundos_stroop','inicio_stroop','parar_stroop','reiniciar_stroop'); habilitarTabla('A',false);"
+          >
+            <i class="fa-solid fa-flag-checkered"></i>
+            Iniciar Prueba
+          </button>
+        </div>
+        <div class="cinta-opciones__adicional">
+          <button class="first_child btn invisible" disabled>
+            <i class="fa-solid fa-play"></i>
+          </button>
+          <button
+            id="parar_stroop"
+            class="btn"
+            onclick="stoped(); habilitarTabla('A',true);"
+            disabled
+          >
+            <i class="fa-solid fa-stop"></i>
+          </button>
+          <button
+            id="reiniciar_stroop"
+            class="btn"
+            onclick="restart(); limpiarStroop();"
+            disabled
+          >
+            <i class="fa-solid fa-arrow-rotate-left"></i>
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="time">
+          <div class="time__title">
+            <p>Tiempo(s)</p>
+          </div>
+          <div class="time__reloj">
+            <b id="segundos_stroop">0</b>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <table class="table-stroop">
+          <tr>
+            <th class="first-column">Columna</th>
+            <th class="other-columns" rowspan="2" colspan="2">1</th>
+            <th class="other-columns" rowspan="2" colspan="2">2</th>
+            <th class="other-columns" rowspan="2" colspan="2">3</th>
+            <th class="other-columns" rowspan="2" colspan="2">4</th>
+            <th class="other-columns" rowspan="2" colspan="2">5</th>
+            <th class="other-columns" rowspan="2" colspan="2">6</th>
+            <th class="other-columns" rowspan="2" colspan="2">7</th>
+          </tr>
+          <tr>
+            <th>Fila</th>
+          </tr>
+          <tr>
+            <th>1</th>
+            <td>Rojo</td>
+            <td>
+              <button
+                id="btn-acierto-1"
+                onclick="contarAciertos(1)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-1"
+                onclick="contarErrores('nostroop', 1)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Café</td>
+            <td>
+              <button
+                id="btn-acierto-7"
+                onclick="contarAciertos(7)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-7"
+                onclick="contarErrores('nostroop', 7)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Azul</td>
+            <td>
+              <button
+                id="btn-acierto-13"
+                onclick="contarAciertos(13)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-13"
+                onclick="contarErrores('nostroop', 13)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>
+              <span class="stroop-subrayado">Café</span>
+            </td>
+            <td>
+              <button
+                id="btn-acierto-19"
+                onclick="contarAciertos(19)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-stroop-19"
+                onclick="contarErrores('stroop', 19)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Negro</td>
+            <td>
+              <button
+                id="btn-acierto-25"
+                onclick="contarAciertos(25)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-25"
+                onclick="contarErrores('nostroop', 25)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Rosa</td>
+            <td>
+              <button
+                id="btn-acierto-31"
+                onclick="contarAciertos(31)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-31"
+                onclick="contarErrores('nostroop', 31)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>
+              <span class="stroop-subrayado">Café</span>
+            </td>
+            <td>
+              <button
+                id="btn-acierto-37"
+                onclick="contarAciertos(37)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-stroop-37"
+                onclick="contarErrores('stroop', 37)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <th>2</th>
+            <td>Café</td>
+            <td>
+              <button
+                id="btn-acierto-2"
+                onclick="contarAciertos(2)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-2"
+                onclick="contarErrores('nostroop', 2)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>
+              <span class="stroop-subrayado">Azul</span>
+            </td>
+            <td>
+              <button
+                id="btn-acierto-8"
+                onclick="contarAciertos(8)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-stroop-8"
+                onclick="contarErrores('stroop', 8)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Café</td>
+            <td>
+              <button
+                id="btn-acierto-14"
+                onclick="contarAciertos(14)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-14"
+                onclick="contarErrores('nostroop', 14)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Rojo</td>
+            <td>
+              <button
+                id="btn-acierto-20"
+                onclick="contarAciertos(20)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-20"
+                onclick="contarErrores('nostroop', 20)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>
+              <span class="stroop-subrayado">Rosa</span>
+            </td>
+            <td>
+              <button
+                id="btn-acierto-26"
+                onclick="contarAciertos(26)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-stroop-26"
+                onclick="contarErrores('stroop', 26)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Negro</td>
+            <td>
+              <button
+                id="btn-acierto-32"
+                onclick="contarAciertos(32)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-32"
+                onclick="contarErrores('nostroop', 32)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>
+              <span class="stroop-subrayado">Azul</span>
+            </td>
+            <td>
+              <button
+                id="btn-acierto-38"
+                onclick="contarAciertos(38)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-stroop-38"
+                onclick="contarErrores('stroop', 38)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <th>3</th>
+            <td>
+              <span class="stroop-subrayado">Rojo</span>
+            </td>
+            <td>
+              <button
+                id="btn-acierto-3"
+                onclick="contarAciertos(3)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-stroop-3"
+                onclick="contarErrores('stroop', 3)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Rosa</td>
+            <td>
+              <button
+                id="btn-acierto-9"
+                onclick="contarAciertos(9)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-9"
+                onclick="contarErrores('nostroop', 9)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Rojo</td>
+            <td>
+              <button
+                id="btn-acierto-15"
+                onclick="contarAciertos(15)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-15"
+                onclick="contarErrores('nostroop', 15)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>
+              <span class="stroop-subrayado">Verde</span>
+            </td>
+            <td>
+              <button
+                id="btn-acierto-21"
+                onclick="contarAciertos(21)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-stroop-21"
+                onclick="contarErrores('stroop', 21)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Verde</td>
+            <td>
+              <button
+                id="btn-acierto-27"
+                onclick="contarAciertos(27)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-27"
+                onclick="contarErrores('nostroop', 27)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Café</td>
+            <td>
+              <button
+                id="btn-acierto-33"
+                onclick="contarAciertos(33)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-33"
+                onclick="contarErrores('stroop', 33)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Verde</td>
+            <td>
+              <button
+                id="btn-acierto-39"
+                onclick="contarAciertos(39)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-39"
+                onclick="contarErrores('nostroop', 39)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <th>4</th>
+            <td>Azul</td>
+            <td>
+              <button
+                id="btn-acierto-4"
+                onclick="contarAciertos(4)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-4"
+                onclick="contarErrores('nostroop', 4)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>
+              <span class="stroop-subrayado">Verde</span>
+            </td>
+            <td>
+              <button
+                id="btn-acierto-10"
+                onclick="contarAciertos(10)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-stroop-10"
+                onclick="contarErrores('stroop', 10)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Verde</td>
+            <td>
+              <button
+                id="btn-acierto-16"
+                onclick="contarAciertos(16)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-16"
+                onclick="contarErrores('nostroop', 16)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Rosa</td>
+            <td>
+              <button
+                id="btn-acierto-22"
+                onclick="contarAciertos(22)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-22"
+                onclick="contarErrores('nostroop', 22)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>
+              <span class="stroop-subrayado">Café</span>
+            </td>
+            <td>
+              <button
+                id="btn-acierto-28"
+                onclick="contarAciertos(28)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-stroop-28"
+                onclick="contarErrores('stroop', 28)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Azul</td>
+            <td>
+              <button
+                id="btn-acierto-34"
+                onclick="contarAciertos(34)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-34"
+                onclick="contarErrores('nostroop', 34)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>
+              <span class="stroop-subrayado">Negro</span>
+            </td>
+            <td>
+              <button
+                id="btn-acierto-40"
+                onclick="contarAciertos(40)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-stroop-40"
+                onclick="contarErrores('stroop', 40)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <th>5</th>
+            <td>Negro</td>
+            <td>
+              <button
+                id="btn-acierto-5"
+                onclick="contarAciertos(5)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-5"
+                onclick="contarErrores('nostroop', 5)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Rojo</td>
+            <td>
+              <button
+                id="btn-acierto-11"
+                onclick="contarAciertos(11)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-11"
+                onclick="contarErrores('nostroop', 11)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Rosa</td>
+            <td>
+              <button
+                id="btn-acierto-17"
+                onclick="contarAciertos(17)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-17"
+                onclick="contarErrores('nostroop', 17)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>
+              <span class="stroop-subrayado">Rosa</span>
+            </td>
+            <td>
+              <button
+                id="btn-acierto-23"
+                onclick="contarAciertos(23)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-stroop-23"
+                onclick="contarErrores('stroop', 23)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Azul</td>
+            <td>
+              <button
+                id="btn-acierto-29"
+                onclick="contarAciertos(29)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-29"
+                onclick="contarErrores('nostroop', 29)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Rojo</td>
+            <td>
+              <button
+                id="btn-acierto-35"
+                onclick="contarAciertos(35)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-35"
+                onclick="contarErrores('nostroop', 35)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Rosa</td>
+            <td>
+              <button
+                id="btn-acierto-41"
+                onclick="contarAciertos(41)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-41"
+                onclick="contarErrores('nostroop', 41)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <th>6</th>
+            <td>
+              <span class="stroop-subrayado">Negro</span>
+            </td>
+            <td>
+              <button
+                id="btn-acierto-6"
+                onclick="contarAciertos(6)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-stroop-6"
+                onclick="contarErrores('stroop', 6)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>
+              <span class="stroop-subrayado">Rosa</span>
+            </td>
+            <td>
+              <button
+                id="btn-acierto-12"
+                onclick="contarAciertos(12)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-stroop-12"
+                onclick="contarErrores('stroop', 12)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Negro</td>
+            <td>
+              <button
+                id="btn-acierto-18"
+                onclick="contarAciertos(18)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-18"
+                onclick="contarErrores('nostroop', 18)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Café</td>
+            <td>
+              <button
+                id="btn-acierto-24"
+                onclick="contarAciertos(18)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-24"
+                onclick="contarErrores('nostroop', 24)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>
+              <span class="stroop-subrayado">Negro</span>
+            </td>
+            <td>
+              <button
+                id="btn-acierto-30"
+                onclick="contarAciertos(30)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-stroop-30"
+                onclick="contarErrores('stroop', 30)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Verde</td>
+            <td>
+              <button
+                id="btn-acierto-36"
+                onclick="contarAciertos(36)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-36"
+                onclick="contarErrores('nostroop', 36)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>
+              <span class="stroop-subrayado">Rosa</span>
+            </td>
+            <td>
+              <button
+                id="btn-acierto-42"
+                onclick="contarAciertos(42)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-stroop-42"
+                onclick="contarErrores('stroop', 42)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="15" class="separador"></td>
+          </tr>
+          <tr>
+            <th>1</th>
+            <td>
+              <span class="stroop-subrayado">Verde</span>
+            </td>
+            <td>
+              <button
+                id="btn-acierto-43"
+                onclick="contarAciertos(43)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-stroop-43"
+                onclick="contarErrores('stroop', 43)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Café</td>
+            <td>
+              <button
+                id="btn-acierto-49"
+                onclick="contarAciertos(49)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-49"
+                onclick="contarErrores('nostroop', 49)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>
+              <span class="stroop-subrayado">Azul</span>
+            </td>
+            <td>
+              <button
+                id="btn-acierto-55"
+                onclick="contarAciertos(55)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-stroop-55"
+                onclick="contarErrores('stroop', 55)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Negro</td>
+            <td>
+              <button
+                id="btn-acierto-61"
+                onclick="contarAciertos(61)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-61"
+                onclick="contarErrores('nostroop', 61)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>
+              <span class="stroop-subrayado">Verde</span>
+            </td>
+            <td>
+              <button
+                id="btn-acierto-67"
+                onclick="contarAciertos(67)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-stroop-67"
+                onclick="contarErrores('stroop', 67)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Azul</td>
+            <td>
+              <button
+                id="btn-acierto-73"
+                onclick="contarAciertos(73)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-73"
+                onclick="contarErrores('nostroop', 73)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>
+              <span class="stroop-subrayado">Rosa</span>
+            </td>
+            <td>
+              <button
+                id="btn-acierto-79"
+                onclick="contarAciertos(79)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-stroop-79"
+                onclick="contarErrores('stroop', 79)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <th>2</th>
+            <td>Café</td>
+            <td>
+              <button
+                id="btn-acierto-44"
+                onclick="contarAciertos(44)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-44"
+                onclick="contarErrores('nostroop', 44)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>
+              <span class="stroop-subrayado">Negro</span>
+            </td>
+            <td>
+              <button
+                id="btn-acierto-50"
+                onclick="contarAciertos(50)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-stroop-50"
+                onclick="contarErrores('stroop', 50)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Café</td>
+            <td>
+              <button
+                id="btn-acierto-56"
+                onclick="contarAciertos(56)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-56"
+                onclick="contarErrores('nostroop', 56)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Rosa</td>
+            <td>
+              <button
+                id="btn-acierto-62"
+                onclick="contarAciertos(62)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-62"
+                onclick="contarErrores('nostroop', 62)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Negro</td>
+            <td>
+              <button
+                id="btn-acierto-68"
+                onclick="contarAciertos(68)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-68"
+                onclick="contarErrores('nostroop', 68)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Café</td>
+            <td>
+              <button
+                id="btn-acierto-74"
+                onclick="contarAciertos(74)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-74"
+                onclick="contarErrores('nostroop', 74)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Verde</td>
+            <td>
+              <button
+                id="btn-acierto-80"
+                onclick="contarAciertos(80)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-80"
+                onclick="contarErrores('nostroop', 80)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <th>3</th>
+            <td>
+              <span class="stroop-subrayado">Azul</span>
+            </td>
+            <td>
+              <button
+                id="btn-acierto-45"
+                onclick="contarAciertos(45)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-stroop-45"
+                onclick="contarErrores('stroop', 45)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Rosa</td>
+            <td>
+              <button
+                id="btn-acierto-51"
+                onclick="contarAciertos(51)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-51"
+                onclick="contarErrores('nostroop', 51)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>
+              <span class="stroop-subrayado">Negro</span>
+            </td>
+            <td>
+              <button
+                id="btn-acierto-57"
+                onclick="contarAciertos(57)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-stroop-57"
+                onclick="contarErrores('stroop', 57)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Café</td>
+            <td>
+              <button
+                id="btn-acierto-63"
+                onclick="contarAciertos(63)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-63"
+                onclick="contarErrores('nostroop', 63)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Azul</td>
+            <td>
+              <button
+                id="btn-acierto-69"
+                onclick="contarAciertos(69)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-69"
+                onclick="contarErrores('nostroop', 69)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Rojo</td>
+            <td>
+              <button
+                id="btn-acierto-75"
+                onclick="contarAciertos(75)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-75"
+                onclick="contarErrores('nostroop', 75)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>
+              <span class="stroop-subrayado">Azul</span>
+            </td>
+            <td>
+              <button
+                id="btn-acierto-81"
+                onclick="contarAciertos(81)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-stroop-81"
+                onclick="contarErrores('stroop', 81)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <th>4</th>
+            <td>Verde</td>
+            <td>
+              <button
+                id="btn-acierto-46"
+                onclick="contarAciertos(46)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-46"
+                onclick="contarErrores('nostroop', 46)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>
+              <span class="stroop-subrayado">Café</span>
+            </td>
+            <td>
+              <button
+                id="btn-acierto-52"
+                onclick="contarAciertos(52)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-stroop-52"
+                onclick="contarErrores('stroop', 52)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Azul</td>
+            <td>
+              <button
+                id="btn-acierto-58"
+                onclick="contarAciertos(58)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-58"
+                onclick="contarErrores('nostroop', 58)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Rojo</td>
+            <td>
+              <button
+                id="btn-acierto-64"
+                onclick="contarAciertos(64)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-64"
+                onclick="contarErrores('nostroop', 64)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>
+              <span class="stroop-subrayado">Rosa</span>
+            </td>
+            <td>
+              <button
+                id="btn-acierto-70"
+                onclick="contarAciertos(70)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-stroop-70"
+                onclick="contarErrores('stroop', 70)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Verde</td>
+            <td>
+              <button
+                id="btn-acierto-76"
+                onclick="contarAciertos(76)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-76"
+                onclick="contarErrores('nostroop', 76)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Negro</td>
+            <td>
+              <button
+                id="btn-acierto-82"
+                onclick="contarAciertos(82)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-82"
+                onclick="contarErrores('nostroop', 82)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <th>5</th>
+            <td>Rosa</td>
+            <td>
+              <button
+                id="btn-acierto-47"
+                onclick="contarAciertos(47)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-47"
+                onclick="contarErrores('nostroop', 47)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>
+              <span class="stroop-subrayado">Verde</span>
+            </td>
+            <td>
+              <button
+                id="btn-acierto-53"
+                onclick="contarAciertos(53)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-stroop-53"
+                onclick="contarErrores('stroop', 53)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>
+              <span class="stroop-subrayado">Rojo</span>
+            </td>
+            <td>
+              <button
+                id="btn-acierto-59"
+                onclick="contarAciertos(59)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-stroop-59"
+                onclick="contarErrores('stroop', 59)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Azul</td>
+            <td>
+              <button
+                id="btn-acierto-65"
+                onclick="contarAciertos(65)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-65"
+                onclick="contarErrores('nostroop', 65)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Verde</td>
+            <td>
+              <button
+                id="btn-acierto-71"
+                onclick="contarAciertos(71)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-71"
+                onclick="contarErrores('nostroop', 71)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Rosa</td>
+            <td>
+              <button
+                id="btn-acierto-77"
+                onclick="contarAciertos(77)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-77"
+                onclick="contarErrores('nostroop', 77)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>
+              <span class="stroop-subrayado">Verde</span>
+            </td>
+            <td>
+              <button
+                id="btn-acierto-83"
+                onclick="contarAciertos(83)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-stroop-83"
+                onclick="contarErrores('stroop', 83)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <th>6</th>
+            <td>
+              <span class="stroop-subrayado">Café</span>
+            </td>
+            <td>
+              <button
+                id="btn-acierto-48"
+                onclick="contarAciertos(48)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-stroop-48"
+                onclick="contarErrores('stroop', 48)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Azul</td>
+            <td>
+              <button
+                id="btn-acierto-54"
+                onclick="contarAciertos(54)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-54"
+                onclick="contarErrores('nostroop', 54)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Rosa</td>
+            <td>
+              <button
+                id="btn-acierto-60"
+                onclick="contarAciertos(60)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-60"
+                onclick="contarErrores('nostroop', 60)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Verde</td>
+            <td>
+              <button
+                id="btn-acierto-66"
+                onclick="contarAciertos(66)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-66"
+                onclick="contarErrores('nostroop', 66)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>
+              <span class="stroop-subrayado">Negro</span>
+            </td>
+            <td>
+              <button
+                id="btn-acierto-72"
+                onclick="contarAciertos(72)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-stroop-72"
+                onclick="contarErrores('stroop', 72)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>Negro</td>
+            <td>
+              <button
+                id="btn-acierto-78"
+                onclick="contarAciertos(78)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-nostroop-78"
+                onclick="contarErrores('nostroop', 78)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+            <td>
+              <span class="stroop-subrayado">Rojo</span>
+            </td>
+            <td>
+              <button
+                id="btn-acierto-84"
+                onclick="contarAciertos(84)"
+                class="stroop-correcto"
+                disabled
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button
+                id="btn-stroop-84"
+                onclick="contarErrores('stroop', 84)"
+                class="stroop-incorrecto"
+                disabled
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </td>
+          </tr>
+        </table>
+        <div id="resultados-stroop" class="row score-3">
+          <div>
+            <span>Aciertos</span>
+            <div class="score__valor">
+              <p id="aciertos_stroop">0</p>
+            </div>
+          </div>
+          <div>
+            <span>Errores Stroop</span>
+            <div class="score__valor">
+              <p id="err_stroop">0</p>
+            </div>
+          </div>
+          <div>
+            <span>Errores no Stroop</span>
+            <div class="score__valor">
+              <p id="errno_stroop">0</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row footer-menu">
+        {% include "banfe-2/menu-footer.html" %}
+      </div>
+
+      <script>
+        $(document).ready(function () {
+          console.log("Accediendo...");
+          setInterval(function () {
+            mostrarStroop("A");
+          }, 1000);
+        });
+      </script>
+
+      {% endblock %}
+    </div>
+  </div>
+</div>

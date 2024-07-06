@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css?family=Monserrat|Monserrat+Alternates|Poppins&display=swap");
+
+body {
+  background: #a9e159;
+}
+
+.row a,
+.row button {
+  background: #2a8c4a;
+  color: #fff;
+}
+
+.row a:hover,
+.row button:hover {
+  background: #008259;
+  color: rgb(255, 255, 200);
+}
+
+.hoja {
+  background: #9bfab0;
+  width: 30rem;
+}
+
+.login-icon {
+  height: 9rem;
+}
+
+.titulo {
+  color: #009929;
+}
+
+.input-group-text {
+  background: #64c27b;
+}
+
+i {
+  width: 1rem;
+}
+
+.link-forgot,
+.link-up {
+  text-decoration: none;
+}
+
+.link-forgot:hover,
+.link-up:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,60 @@
+{% load static %}
+<script src="{% static 'js/pruebas.js' %}"></script>
+
+<html>
+  <body>
+    <div class="tablero">
+      <div class="bus_ind">
+        <div class="bus_ind__input_sujeto">
+          <span>Sujeto:</span>
+          <select id="name_subject">
+            <option value="-1">Seleccione expediente</option>
+            <!--Caso donde no hay un expediente en especifico-->
+            {% for proceeding in proceedings %}
+            <option value="{{ proceeding.id }}">
+              {{ proceeding.name }} {{proceeding.first_last_name}}
+              {{proceeding.second_last_name}}
+            </option>
+            {% endfor %}
+          </select>
+          <input hidden type="text" id="proceeding_id" value="{{pid}}" />
+        </div>
+        <div class="bus_ind__input_edad">
+          <span>Edad:</span>
+          <input class="text-center" type="text" id="age_subject" value="" />
+          <input
+            hidden
+            type="text"
+            id="date_subject"
+            value="{{dateBirth|date:'Y-m-d'}}"
+          />
+        </div>
+      </div>
+      <div class="bus_gen">
+        <div class="bus_gen__input_filtro">
+          <span>Buscar por:</span>
+          <select id="search_criteria">
+            <option value="">Seleccione criterio</option>
+            <option value="scholarship">Escolaridad</option>
+            <option value="gender">Género</option>
+            <option selected value="todos">Todos</option>
+          </select>
+        </div>
+        <div class="row">
+          <div class="col-md-8 bus_gen__input_sujeto">
+            <span>Buscar a:</span>
+            <select id="search_option">
+              <option selected value="">Seleccione opción</option>
+            </select>
+          </div>
+          <div class="col-md-4 btn-search">
+            <button class="btn" onclick="filterProceedings();">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              Buscar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

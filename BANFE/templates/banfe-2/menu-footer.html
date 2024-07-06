@@ -1,0 +1,25 @@
+{% load static %}
+<script src="{% static 'js/base.js' %}"></script>
+
+<div class="opciones">
+  <div class="opciones__salir">
+    <a href="{% url 'pruebas' %}?pid={{proceeding.id | default:"-1"}}">
+      <i class="fa-solid fa-arrow-rotate-left"></i>
+      Salir
+    </a>
+  </div>
+  <div class="opciones__siguiente">
+    <a id="siguiente_prueba" onclick="nextTest();" href="">
+      <i class="fa-solid fa-arrow-right"></i>
+      Siguiente
+    </a>
+  </div>
+</div>
+
+<script>
+  var lista = cleanList("{{lista}}");
+  var pid = "{{proceeding.id}}"; 
+  var age = "{{age}}";
+  var banfe = "{{banfe}}"
+</script>
+

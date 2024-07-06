@@ -1,0 +1,96 @@
+{% extends "banfe-2/pruebas.html" %} {% load static %} {% block content %}
+
+<audio class="carta_sound" src="{% static 'audios/sonido_carta.mp3' %}"></audio>
+<audio
+  class="incorrecto_sound"
+  src="{% static 'audios/sonido_incorrecto.mp3' %}"
+></audio>
+<audio class="figure-sound" src="{% static 'audios/click.wav' %}"></audio>
+
+{% include "banfe-2/modal.html" %}
+<div class="panel-torre">
+  <div class="panel-torre__cartas" disabled>
+    {% csrf_token %}|
+    <img
+      id="torre"
+      onclick="takeCard();"
+      src="{% static 'images/clasif-cartas/1.jpeg' %}"
+      alt=""
+      disabled
+    />
+  </div>
+</div>
+<div class="panel-cartas">
+  <div class="panel-cartas__clasif">
+    {% csrf_token %}
+    <div class="panel-cartas__clasif-1">
+      <img src="{% static 'images/clasif-cartas/mesa_1.jpeg' %}" alt="" />
+    </div>
+    <div class="panel-cartas__clasif-2">
+      <img src="{% static 'images/clasif-cartas/mesa_2.jpeg' %}" alt="" />
+    </div>
+    <div class="panel-cartas__clasif-3">
+      <img src="{% static 'images/clasif-cartas/mesa_3.jpeg' %}" alt="" />
+    </div>
+    <div class="panel-cartas__clasif-4">
+      <img src="{% static 'images/clasif-cartas/mesa_4.jpeg' %}" alt="" />
+    </div>
+  </div>
+  <div class="panel-cartas__vacio">
+    <div
+      class="panel-cartas__vacio-1"
+      id="espacio1"
+      onclick="putCard('A')"
+      disabled
+    >
+      <img
+        id="espacioA"
+        src="{% static 'images/clasif-cartas/0.jpeg' %}"
+        disabled
+      />
+    </div>
+    <div
+      class="panel-cartas__vacio-2"
+      id="espacio2"
+      onclick="putCard('B')"
+      disabled
+    >
+      <img
+        id="espacioB"
+        src="{% static 'images/clasif-cartas/0.jpeg' %}"
+        disabled
+      />
+    </div>
+    <div
+      class="panel-cartas__vacio-3"
+      id="espacio3"
+      onclick="putCard('C')"
+      disabled
+    >
+      <img
+        id="espacioC"
+        src="{% static 'images/clasif-cartas/0.jpeg' %}"
+        disabled
+      />
+    </div>
+    <div
+      class="panel-cartas__vacio-4"
+      id="espacio4"
+      onclick="putCard('D')"
+      disabled
+    >
+      <img
+        id="espacioD"
+        src="{% static 'images/clasif-cartas/0.jpeg' %}"
+        disabled
+      />
+    </div>
+  </div>
+</div>
+<script>
+  window.setTimeout(function () {
+    iniciarClasificacion();
+  }, 5000);
+</script>
+
+{% endblock %}

@@ -1,0 +1,982 @@
+{% extends "banfe-2/base.html" %} {% load static %} {% block content %}
+
+<audio
+  class="alarma_sound"
+  src="{% static 'audios/tiempo_acabado.mp3' %}"
+></audio>
+<audio class="figure-sound" src="{% static 'audios/click.wav' %}"></audio>
+
+{% include "banfe-2/modal.html" %}
+<div id="clasif-cartas" class="panel-prueba">
+  <div class="row info-prueba">
+    <div class="col-sm-3 col-md-3 bg-light">
+      <div class="sujeto-info">{% include "banfe-2/info-sujeto.html" %}</div>
+      <div class="tips-prueba">
+        <span>Tips:</span>
+        {% include "banfe-2/tips.html" %}
+      </div>
+    </div>
+    <div class="col-sm-9 col-md-9 control">
+      <div class="progress">{% include "banfe-2/progress.html" %}</div>
+      <div class="video-fluidez">{% include "banfe-2/ventana.html" %}</div>
+      <div class="cinta-opciones">
+        <div class="cinta-opciones__iniciar btn-iniciar">
+          <button
+            id="inicio_fluidez"
+            class="btn"
+            onclick="start(60,'segundos_fluidez','inicio_fluidez','parar_fluidez','reiniciar_fluidez');"
+          >
+            <i class="fa-solid fa-flag-checkered"></i>
+            Iniciar Prueba
+          </button>
+        </div>
+        <div class="cinta-opciones__adicional">
+          <button class="first_child invisible"></button>
+          <button id="parar_fluidez" class="invisible"></button>
+          <button
+            id="reiniciar_fluidez"
+            class="btn"
+            onclick="restart();"
+            disabled
+          >
+            <i class="fa-solid fa-arrow-rotate-left"></i>
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="time">
+          <div class="time__title">
+            <p>Tiempo(s)</p>
+          </div>
+          <div class="time__reloj">
+            <b id="segundos_fluidez">0</b>
+          </div>
+        </div>
+      </div>
+      <div class="lista-fluidez">
+        <div class="fluidez">
+          <div>
+            <span>1.</span>
+          </div>
+          <input type="text" id="verbo_1" name="verbo_1" />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 1)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 1)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 1)"
+          >
+            P
+          </button>
+          <div>
+            <span>2.</span>
+          </div>
+          <input type="text" id="verbo_2" name="verbo_2 " />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 2)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 2)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 2)"
+          >
+            P
+          </button>
+          <div>
+            <span>3.</span>
+          </div>
+          <input type="text" id="verbo_3" name="verbo_3" />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 3)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 3)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 3)"
+          >
+            P
+          </button>
+          <div>
+            <span>4.</span>
+          </div>
+          <input type="text" id="verbo_4" name="verbo_4" />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 4)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 4)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 4)"
+          >
+            P
+          </button>
+          <div>
+            <span>5.</span>
+          </div>
+          <input type="text" id="verbo_5" name="verbo_5" />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 5)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 5)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 5)"
+          >
+            P
+          </button>
+          <div>
+            <span>6.</span>
+          </div>
+          <input type="text" id="verbo_6" name="verbo_6" />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 6)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 6)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 6)"
+          >
+            P
+          </button>
+          <div>
+            <span>7.</span>
+          </div>
+          <input type="text" id="verbo_7" name="verbo_7" />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 7)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 7)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 7)"
+          >
+            P
+          </button>
+          <div>
+            <span>8.</span>
+          </div>
+          <input type="text" id="verbo_8" name="verbo_8" />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 8)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 8)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 8)"
+          >
+            P
+          </button>
+          <div>
+            <span>9.</span>
+          </div>
+          <input type="text" id="verbo_9" name="verbo_9" />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 9)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 9)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 9)"
+          >
+            P
+          </button>
+          <div>
+            <span>10.</span>
+          </div>
+          <input type="text" id="verbo_10" name="verbo_10" />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 10)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 10)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 10)"
+          >
+            P
+          </button>
+        </div>
+        <div class="fluidez">
+          <div>
+            <span>11.</span>
+          </div>
+          <input type="text" id="verbo_11" name="verbo_11" />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 11)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 11)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 11)"
+          >
+            P
+          </button>
+          <div>
+            <span>12.</span>
+          </div>
+          <input type="text" id="verbo_12" name="verbo_12 " />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 12)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 12)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 12)"
+          >
+            P
+          </button>
+          <div>
+            <span>13.</span>
+          </div>
+          <input type="text" id="verbo_13" name="verbo_13" />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 13)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 13)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 13)"
+          >
+            P
+          </button>
+          <div>
+            <span>14.</span>
+          </div>
+          <input type="text" id="verbo_14" name="verbo_14" />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 14)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 14)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 14)"
+          >
+            P
+          </button>
+          <div>
+            <span>15.</span>
+          </div>
+          <input type="text" id="verbo_15" name="verbo_15" />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 15)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 15)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 15)"
+          >
+            P
+          </button>
+          <div>
+            <span>16.</span>
+          </div>
+          <input type="text" id="verbo_16" name="verbo_16" />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 16)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 16)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 16)"
+          >
+            P
+          </button>
+          <div>
+            <span>17.</span>
+          </div>
+          <input type="text" id="verbo_17" name="verbo_17" />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 17)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 17)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 17)"
+          >
+            P
+          </button>
+          <div>
+            <span>18.</span>
+          </div>
+          <input type="text" id="verbo_18" name="verbo_18" />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 18)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 18)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 18)"
+          >
+            P
+          </button>
+          <div>
+            <span>19.</span>
+          </div>
+          <input type="text" id="verbo_19" name="verbo_19" />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 19)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 19)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 19)"
+          >
+            P
+          </button>
+          <div>
+            <span>20.</span>
+          </div>
+          <input type="text" id="verbo_20" name="verbo_20" />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 20)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 20)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 20)"
+          >
+            P
+          </button>
+        </div>
+        <div class="fluidez">
+          <div>
+            <span>21.</span>
+          </div>
+          <input type="text" id="verbo_21" name="verbo_21" />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 21)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 21)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 21)"
+          >
+            P
+          </button>
+          <div>
+            <span>22.</span>
+          </div>
+          <input type="text" id="verbo_22" name="verbo_22 " />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 22)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 22)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 22)"
+          >
+            P
+          </button>
+          <div>
+            <span>23.</span>
+          </div>
+          <input type="text" id="verbo_23" name="verbo_23" />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 23)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 23)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 23)"
+          >
+            P
+          </button>
+          <div>
+            <span>24.</span>
+          </div>
+          <input type="text" id="verbo_24" name="verbo_24" />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 24)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 24)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 24)"
+          >
+            P
+          </button>
+          <div>
+            <span>25.</span>
+          </div>
+          <input type="text" id="verbo_25" name="verbo_25" />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 25)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 25)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 25)"
+          >
+            P
+          </button>
+          <div>
+            <span>26.</span>
+          </div>
+          <input type="text" id="verbo_26" name="verbo_26" />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 26)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 26)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 26)"
+          >
+            P
+          </button>
+          <div>
+            <span>27.</span>
+          </div>
+          <input type="text" id="verbo_27" name="verbo_27" />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 27)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 27)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 27)"
+          >
+            P
+          </button>
+          <div>
+            <span>28.</span>
+          </div>
+          <input type="text" id="verbo_28" name="verbo_28" />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 28)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 28)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 28)"
+          >
+            P
+          </button>
+          <div>
+            <span>29.</span>
+          </div>
+          <input type="text" id="verbo_29" name="verbo_29" />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 29)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 29)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 29)"
+          >
+            P
+          </button>
+          <div>
+            <span>30.</span>
+          </div>
+          <input type="text" id="verbo_30" name="verbo_30" />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 30)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 30)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 30)"
+          >
+            P
+          </button>
+        </div>
+        <div class="fluidez">
+          <div>
+            <span>31.</span>
+          </div>
+          <input type="text" id="verbo_31" name="verbo_31" />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 31)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 31)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 31)"
+          >
+            P
+          </button>
+          <div>
+            <span>32.</span>
+          </div>
+          <input type="text" id="verbo_32" name="verbo_32 " />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 32)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 32)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 32)"
+          >
+            P
+          </button>
+          <div>
+            <span>33.</span>
+          </div>
+          <input type="text" id="verbo_33" name="verbo_33" />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 33)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 33)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 33)"
+          >
+            P
+          </button>
+          <div>
+            <span>34.</span>
+          </div>
+          <input type="text" id="verbo_34" name="verbo_34" />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 34)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 34)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 34)"
+          >
+            P
+          </button>
+          <div>
+            <span>35.</span>
+          </div>
+          <input type="text" id="verbo_35" name="verbo_35" />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 35)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 35)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 35)"
+          >
+            P
+          </button>
+          <div>
+            <span>36.</span>
+          </div>
+          <input type="text" id="verbo_36" name="verbo_36" />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 36)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 36)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 36)"
+          >
+            P
+          </button>
+          <div>
+            <span>37.</span>
+          </div>
+          <input type="text" id="verbo_37" name="verbo_37" />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 37)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 37)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 37)"
+          >
+            P
+          </button>
+          <div>
+            <span>38.</span>
+          </div>
+          <input type="text" id="verbo_38" name="verbo_38" />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 38)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 38)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 38)"
+          >
+            P
+          </button>
+          <div>
+            <span>39.</span>
+          </div>
+          <input type="text" id="verbo_39" name="verbo_39" />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 39)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 39)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 39)"
+          >
+            P
+          </button>
+          <div>
+            <span>40.</span>
+          </div>
+          <input type="text" id="verbo_40" name="verbo_40" />
+          <button
+            class="btn-fluidez-acierto"
+            onclick="contarFluidez('acierto', 40)"
+          >
+            A
+          </button>
+          <button
+            class="btn-fluidez-intrusion"
+            onclick="contarFluidez('intrusion', 40)"
+          >
+            I
+          </button>
+          <button
+            class="btn-fluidez-perseveracion"
+            onclick="contarFluidez('perseveracion', 40)"
+          >
+            P
+          </button>
+        </div>
+      </div>
+      <div id="resultados-fluidez" class="row score-3">
+        <div>
+          <span>Aciertos:</span>
+          <div class="score__valor">
+            <p id="aciertos_fluidez">0</p>
+          </div>
+        </div>
+        <div>
+          <span>Intrusiones:</span>
+          <div class="score__valor">
+            <p id="intrusiones_fluidez">0</p>
+          </div>
+        </div>
+        <div>
+          <span>Perseveraciones:</span>
+          <div class="score__valor">
+            <p id="perseveraciones_fluidez">0</p>
+          </div>
+        </div>
+      </div>
+      <div class="row footer-menu">
+        {% include "banfe-2/menu-footer.html" %}
+      </div>
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        console.log("Accediendo...");
+        setInterval(function () {
+          $("#resultados-fluidez").load(mostrarFluidez());
+        }, 1000);
+      });
+    </script>
+
+    {% endblock %}
+  </div>
+</div>

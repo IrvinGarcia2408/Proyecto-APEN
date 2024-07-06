@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css?family=Monserrat|Monserrat+Alternates|Poppins&display=swap");
+
+.refranes-prueba {
+  margin: 0 auto;
+}
+
+.hoja-refranes {
+  height: 90vh;
+  width: 50vw;
+  background-color: #fff;
+  margin: 2.5% auto;
+  opacity: 0.9;
+}
+
+.hoja-refranes:first-child {
+  padding-top: 1%;
+}
+
+.box-refran {
+  width: 100%;
+  height: fit-content;
+  margin-top: 4.4%;
+}
+
+.box-refran span {
+  font-size: 2vh;
+  font-weight: bolder;
+  margin-left: 5%;
+}
+
+.box-opciones {
+  width: 90%;
+  margin-left: 7%;
+}
+
+.box-opciones label {
+  font-size: 2vh;
+}
+
+.cinta-refranes {
+  margin-bottom: 1rem;
+}
+
+.panel-refranes {
+  margin: 0.8rem auto;
+}
+
+.panel-refranes > div {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: fit-content;
+  flex-grow: 2;
+}
+
+@media only screen and (min-width: 1400px) {
+  .box-refran {
+    margin-top: 5.5%;
+  }
+
+  .box-refran span {
+    margin-left: 8%;
+  }
+
+  .box-opciones {
+    width: 90%;
+    margin-left: 10%;
+  }
+}
+
+@media only screen and (min-width: 1700px) {
+  .box-refran {
+    margin-top: 5%;
+  }
+}

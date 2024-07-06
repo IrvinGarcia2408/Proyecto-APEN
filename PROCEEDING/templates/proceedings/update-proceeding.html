@@ -1,0 +1,1031 @@
+{% extends "principal/base.html" %} {% load static %} {% block content %}
+<link rel="stylesheet" href="{% static 'styles/expediente.css' %}" />
+
+<form
+  class="form-create-expediente"
+  action="{% url 'update_proceeding' proceeding_id=proceeding.id %}"
+  id="update-proceeding"
+  method="post"
+>
+  {% csrf_token %} {{error}}
+  <div class="header-create-expediente">
+    <h2>DATOS GENERALES</h2>
+  </div>
+
+  <div class="form-create__questions row inputs-name">
+    <div class="input-group input-group-sm mb-3 w-35" id="group__name">
+      <span class="input-group-text">Nombre(s)</span>
+      <input
+        type="text"
+        class="form-control"
+        aria-label="firstName"
+        name="name"
+        id="name"
+        aria-describedby="firstName"
+        value="{{proceeding.name}}"
+        required
+      />
+      <p class="form__input-error">
+        El nombre solo puede contener letras y espacios
+      </p>
+    </div>
+    <div class="input-group input-group-sm mb-3 w-30" id="group__flastName">
+      <span class="input-group-text">Apellido Paterno</span>
+      <input
+        type="text"
+        class="form-control"
+        aria-label="flastName"
+        name="first_last_name"
+        id="first_last_name"
+        aria-describedby="flastName"
+        value="{{proceeding.first_last_name}}"
+        required
+      />
+      <p class="form__input-error">El apellido solo puede contener letras</p>
+    </div>
+    <div class="input-group input-group-sm mb-3 w-30" id="group__slastName">
+      <span class="input-group-text">Apellido Materno</span>
+      <input
+        type="text"
+        class="form-control"
+        aria-label="slastName"
+        name="second_last_name"
+        id="second_last_name"
+        aria-describedby="slastName"
+        value="{{proceeding.second_last_name}}"
+        required
+      />
+      <p class="form__input-error">El apellido solo puede contener letras</p>
+    </div>
+
+    <div class="input-group input-group-sm mb-3 w-40" id="group__dateEval">
+      <span class="input-group-text">Fecha de Evaluación</span>
+      <input
+        type="date"
+        class="form-control"
+        aria-label="dateEval"
+        name="dateEval"
+        id="dateEval"
+        aria-describedby="dateEval"
+        min="2024-01-01"
+        max="3000-12-31"
+        value="{{proceeding.dateEval|date:'Y-m-d'}}"
+        required
+      />
+      <p class="form__input-error">La fecha ingresada no es válida</p>
+    </div>
+    <div class="input-group input-group-sm mb-3 w-40" id="group__dateNac">
+      <span class="input-group-text">Fecha de Nacimiento</span>
+      <input
+        type="date"
+        class="form-control"
+        aria-label="dateNac"
+        name="dateNac"
+        id="dateNac"
+        aria-describedby="dateNac"
+        min="1900-01-01"
+        max="3000-12-31"
+        value="{{proceeding.dateNac|date:'Y-m-d'}}"
+        required
+      />
+      <p class="form__input-error">
+        La fecha ingresada no es válida o la edad del sujeto no es la adecuada
+      </p>
+    </div>
+
+    <div class="input-group input-group-sm mb-3" id="group__placeNac">
+      <span class="input-group-text">Lugar de Nacimiento</span>
+      <select
+        class="form-select form-select-sm w-25"
+        id="country"
+        name="country"
+        aria-label="paisNac"
+        required
+      >
+        <option value="" selected>Seleccione país</option>
+        {% for country in countries %}
+        <br type="hidden" />
+        {% if country.id == proceeding.country_id %}
+        <option value="{{ country.id }}" selected>{{ country.name }}</option>
+        {% else %}
+        <option value="{{ country.id }}">{{ country.name }}</option>
+        {% endif %} {% endfor %}
+      </select>
+      <select
+        class="form-select form-select-sm w-25"
+        id="state"
+        name="state"
+        aria-label="estadoNac"
+        disabled
+      >
+        <input type="hidden" id="stateDB" value="{{ proceeding.state_id }}" />
+      </select>
+      <select
+        class="form-select form-select-sm w-75"
+        id="municipality"
+        name="municipality"
+        aria-label="municipioNac"
+        disabled
+      >
+        <input
+          type="hidden"
+          id="municipalityDB"
+          value="{{ proceeding.municipality_id }}"
+        />
+      </select>
+    </div>
+
+    <div class="input-group input-group-sm mb-3 w-30" id="group__language">
+      <span class="input-group-text">Idioma</span>
+      <input
+        type="text"
+        class="form-control"
+        aria-label="idioma"
+        id="language"
+        name="language"
+        aria-describedby="idioma"
+        value="{{proceeding.language}}"
+        required
+      />
+      <p class="form__input-error">El idioma solo puede contener letras</p>
+    </div>
+    <div
+      class="input-group input-group-sm mb-3 w-40"
+      id="group__indigenous_language"
+    >
+      <span class="input-group-text">Lengua indígena</span>
+      <input
+        type="text"
+        class="form-control"
+        aria-label="lengua"
+        placeholder="Ingrese 'Ninguna' si no aplica"
+        id="indigenous_language"
+        name="indigenous_language"
+        aria-describedby="lengua"
+        value="{{proceeding.indigenous_language}}"
+        required
+      />
+      <p class="form__input-error">La lengua solo puede contener letras</p>
+    </div>
+    <div
+      class="input-group input-group-sm mb-3 w-30"
+      id="group__talk_other_language"
+    >
+      <div class="input-group-text">
+        <input
+          class="form-check-input mt-0"
+          id="talk_other_language"
+          name="talk_other_language"
+          type="checkbox"
+          value="Si"
+          aria-label="otra-habla"
+        />
+        <input
+          type="hidden"
+          id="talk_other_languageDB"
+          value="{{ proceeding.talk_other_language }}"
+        />
+      </div>
+      <input
+        type="text"
+        class="form-control"
+        id="other_languages"
+        name="other_languages"
+        placeholder="Otro idioma o lengua"
+        aria-label="otra-habla"
+        disabled
+      />
+      <p class="form__input-error">
+        Solo letras, en caso de ser más de uno separelos por comas
+      </p>
+      <input
+        type="hidden"
+        id="other_languagesDB"
+        value="{{ proceeding.other_languages }}"
+      />
+    </div>
+
+    <div class="input-group input-group-sm mb-3 w-15" id="group__edad">
+      <span class="input-group-text">Edad</span>
+      <input
+        type="text"
+        class="form-control"
+        aria-label="edad"
+        id="edad"
+        aria-describedby="edad"
+        disabled
+      />
+    </div>
+    <div class="input-group input-group-sm mb-3 w-35" id="group__gender">
+      <span class="input-group-text">Género</span>
+      <select
+        class="form-select form-select-sm"
+        aria-label="genero"
+        id="gender"
+        name="gender"
+        required
+      >
+        <option value="">Seleccione opción</option>
+        <option value="Femenino">Femenino</option>
+        <option value="Masculino">Masculino</option>
+      </select>
+      <p class="form__input-error">Debes seleccionar un género</p>
+      <input type="hidden" id="genderDB" value="{{ proceeding.gender }}" />
+    </div>
+    <div class="input-group input-group-sm mb-3 w-45" id="group__scholarship">
+      <span class="input-group-text">Escolaridad</span>
+      <input
+        type="text"
+        class="form-control"
+        aria-label="nivEscolaridad"
+        id="scholarship"
+        name="scholarship"
+        aria-describedby="nivEscolaridad"
+        value="{{proceeding.scholarship}}"
+        required
+      />
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Años de estudio"
+        aria-label="aniosEscolaridad"
+        id="years_study"
+        name="years_study"
+        aria-describedby="aniosEscolaridad"
+        value="{{proceeding.years_study}}"
+        required
+      />
+      <p class="form__input-error">
+        El primer campo solo permite letras y el segundo números
+      </p>
+    </div>
+
+    <div class="input-group input-group-sm mb-3 w-40" id="group__laterality">
+      <span class="input-group-text">Lateralidad</span>
+      <select
+        class="form-select form-select-sm"
+        aria-label="lateralidad"
+        id="laterality"
+        name="laterality"
+        required
+      >
+        <option value="">Seleccione opción</option>
+        <option value="Diestro">Diestro</option>
+        <option value="Zurdo">Zurdo</option>
+        <option value="Ambidiestro">Ambidiestro</option>
+      </select>
+      <p class="form__input-error">Debes seleccionar una lateralidad</p>
+      <input
+        type="hidden"
+        id="lateralityDB"
+        value="{{ proceeding.laterality }}"
+      />
+    </div>
+    <div class="input-group input-group-sm mb-3 w-50" id="group__occupation">
+      <span class="input-group-text">Ocupación</span>
+      <input
+        type="text"
+        class="form-control"
+        aria-label="ocupacion"
+        id="occupation"
+        name="occupation"
+        aria-describedby="ocupacion"
+        value="{{proceeding.occupation}}"
+        required
+      />
+      <p class="form__input-error">La ocupación solo acepta letras</p>
+    </div>
+
+    <div class="input-group input-group-sm mb-3 w-40" id="group__instrument">
+      <span class="input-group-text">Instrumento musical</span>
+      <select
+        class="form-select form-select-sm"
+        aria-label="instrumento"
+        id="instrument"
+        name="instrument"
+        required
+      >
+        <option value="">Seleccione opción</option>
+        <option value="Viento">Viento</option>
+        <option value="Cuerda">Cuerda</option>
+        <option value="Percusión">Percusión</option>
+        <option value="Ninguno">Ninguno</option>
+      </select>
+      <p class="form__input-error">Debes seleccionar una opción válida</p>
+      <input
+        type="hidden"
+        id="instrumentDB"
+        value="{{ proceeding.instrument }}"
+      />
+    </div>
+    <div
+      class="input-group input-group-sm mb-3 w-50"
+      id="group__time_instrument"
+    >
+      <span class="input-group-text">Periodo de tiempo practicando</span>
+      <select
+        class="form-select form-select-sm"
+        aria-label="tiempo_instrumento"
+        id="time_instrument"
+        name="time_instrument"
+        disabled
+      >
+        <option value="">Seleccione opción</option>
+        <option value="Menor a 1 año">Menor a 1 año</option>
+        <option value="De 1 a 5 años">De 1 a 5 años</option>
+        <option value="De 5 a 10 años">De 5 a 10 años</option>
+        <option value="De 10 a 15 años">De 10 a 15 años</option>
+        <option value="Más de 15 años">Más de 15 años</option>
+      </select>
+      <p class="form__input-error">Debes seleccionar un periodo de tiempo</p>
+      <input
+        type="hidden"
+        id="time_instrumentDB"
+        value="{{ proceeding.time_instrument }}"
+      />
+    </div>
+
+    <div class="input-group input-group-sm mb-3 w-40" id="group__hobbies">
+      <span class="input-group-text">Pasatiempos</span>
+      <select
+        class="form-select form-select-sm"
+        aria-label="pasatiempos"
+        id="hobbies"
+        name="hobbies"
+        required
+      >
+        <option value="">Seleccione opción</option>
+        <option value="Crucigramas">Crucigramas</option>
+        <option value="Sopa de letras">Sopa de letras</option>
+        <option value="Serpientes y escaleras">Serpientes y escaleras</option>
+        <option value="Domino">Domino</option>
+        <option value="Ajedrez">Ajedrez</option>
+        <option value="Ninguno">Ninguno</option>
+      </select>
+      <p class="form__input-error">Debes seleccionar una opción válida</p>
+      <input type="hidden" id="hobbiesDB" value="{{ proceeding.hobbies }}" />
+    </div>
+    <div class="input-group input-group-sm mb-3 w-50" id="group__time_hobbies">
+      <span class="input-group-text">Frecuencia con la que lo hace</span>
+      <select
+        class="form-select form-select-sm"
+        aria-label="tiempo_hobbies"
+        id="time_hobbies"
+        name="time_hobbies"
+        disabled
+      >
+        <option value="">Seleccione opción</option>
+        <option value="Diario">Diario</option>
+        <option value="Una vez a la semana">Una vez a la semana</option>
+        <option value="Dos veces a la semana">Dos veces a la semana</option>
+        <option value="Una vez al mes">Una vez al mes</option>
+      </select>
+      <p class="form__input-error">Debes seleccionar un periodo de tiempo</p>
+      <input
+        type="hidden"
+        id="time_hobbiesDB"
+        value="{{ proceeding.time_hobbies }}"
+      />
+    </div>
+
+    <div class="input-group input-group-sm mb-3 w-40" id="group__civil_status">
+      <span class="input-group-text">Estado Civil</span>
+      <select
+        class="form-select form-select-sm"
+        aria-label="estadoCivil"
+        id="civil_status"
+        name="civil_status"
+        required
+      >
+        <option value="">Seleccione opción</option>
+        <option value="Soltero">Soltero(a)</option>
+        <option value="Casado">Casado(a)</option>
+        <option value="Divorciado">Divorciado(a)</option>
+        <option value="Viudo">Viudo(a)</option>
+      </select>
+      <p class="form__input-error">Debes seleccionar un estado civil</p>
+      <input
+        type="hidden"
+        id="civil_statusDB"
+        value="{{ proceeding.civil_status }}"
+      />
+    </div>
+    <div class="input-group input-group-sm mb-3 w-50" id="group__religion">
+      <span class="input-group-text">Religión</span>
+      <select
+        class="form-select form-select-sm"
+        aria-label="religion"
+        id="religion"
+        name="religion"
+        required
+      >
+        <option value="">Seleccione opción</option>
+        <option value="Católica">Católica</option>
+        <option value="Protestante">Protestante</option>
+        <option value="Testigo de Jehová">Testigo de Jehová</option>
+        <option value="Mormón">Mormón</option>
+        <option value="Adventista">Adventista</option>
+        <option value="Judaísmo">Judaísmo</option>
+        <option value="Islámico">Islámico</option>
+        <option value="Budaísmo">Budaísmo</option>
+        <option value="Otra">Otra</option>
+        <option value="Ninguna">Ninguna</option>
+      </select>
+      <p class="form__input-error">Debes seleccionar una opción válida</p>
+      <input type="hidden" id="religionDB" value="{{ proceeding.religion }}" />
+    </div>
+
+    <div
+      class="input-group input-group-sm mb-3 w-50"
+      id="group__mother_scholarship"
+    >
+      <span class="input-group-text">Escolaridad Madre</span>
+      <input
+        type="text"
+        class="form-control"
+        aria-label="esc_madre"
+        id="mother_scholarship"
+        name="mother_scholarship"
+        aria-describedby="esc_madre"
+        value="{{proceeding.mother_scholarship}}"
+        required
+      />
+      <p class="form__input-error">La escolaridad es solo con letras</p>
+    </div>
+    <div
+      class="input-group input-group-sm mb-3 w-50"
+      id="group__father_scholarship"
+    >
+      <span class="input-group-text">Escolaridad Padre</span>
+      <input
+        type="text"
+        class="form-control"
+        aria-label="esc_padre"
+        id="father_scholarship"
+        name="father_scholarship"
+        aria-describedby="esc_padre"
+        value="{{proceeding.father_scholarship}}"
+        required
+      />
+      <p class="form__input-error">La escolaridad es solo con letras</p>
+    </div>
+
+    <div class="input-group input-group-sm mb-3 w-50" id="group__referred_by">
+      <span class="input-group-text">Referido por</span>
+      <input
+        type="text"
+        class="form-control"
+        aria-label="referencia"
+        id="referred_by"
+        name="referred_by"
+        aria-describedby="referencia"
+        value="{{proceeding.referred_by}}"
+        required
+      />
+      <p class="form__input-error">
+        En este campo puede poner uno o más referencias separadas por coma
+      </p>
+    </div>
+    <div class="input-group input-group-sm mb-3 w-40" id="group__phone_number">
+      <span class="input-group-text">Teléfono</span>
+      <input
+        type="text"
+        class="form-control"
+        aria-label="telefono"
+        id="phone_number"
+        name="phone_number"
+        aria-describedby="telefono"
+        value="{{proceeding.phone_number}}"
+        required
+      />
+      <p class="form__input-error">
+        El teléfono válido debe contener al menos 7 números
+      </p>
+    </div>
+
+    <div
+      class="input-group input-group-sm mb-3 w-75"
+      id="group__reason_consultation"
+    >
+      <span class="input-group-text">Motivo de Consulta</span>
+      <input
+        type="text"
+        class="form-control"
+        aria-label="motivo"
+        id="reason_consultation"
+        name="reason_consultation"
+        aria-describedby="motivo"
+        value="{{proceeding.reason_consultation}}"
+        required
+      />
+      <p class="form__input-error">
+        Debe colocar obligatoriamente el motivo de la evaluación
+      </p>
+    </div>
+  </div>
+  <div class="header-create-expediente">
+    <h2>OBSERVACIONES MÉDICAS Y NEUROLÓGICAS</h2>
+  </div>
+  <div class="form-create__questions row">
+    <div class="input-group input-group-sm mb-3" id="group__alert_status">
+      <span class="input-group-text">Estado de alerta</span>
+      <input
+        type="text"
+        class="form-control"
+        id="alert_status"
+        name="alert_status"
+        placeholder="Ejemplo: conciente, somnoliento, estuporoso, comatoso, etc."
+        aria-label="estado_alerta"
+        aria-describedby="estado_alerta"
+        value="{{proceeding.alert_status}}"
+        required
+      />
+      <p class="form__input-error">
+        Debe colocar obligatoriamente el estado del sujeto
+      </p>
+    </div>
+    <div class="input-group input-group-sm mb-3" id="group__medicine">
+      <span class="input-group-text">Toma algún medicamento</span>
+      <input
+        type="text"
+        class="form-control"
+        id="medicine"
+        name="medicine"
+        placeholder="Escriba cuál es, qué dosis toma y la duración del tratamiento o coloque 'Ninguno'"
+        aria-label="medicamento"
+        aria-describedby="medicamento"
+        value="{{proceeding.medicine}}"
+        required
+      />
+      <p class="form__input-error">
+        Debe obligatoriamente llenar el campo según sea el caso
+      </p>
+    </div>
+    <div class="input-group input-group-sm mb-3" id="group__other_exams">
+      <span class="input-group-text">Otros examenes</span>
+      <input
+        type="text"
+        class="form-control"
+        id="other_exams"
+        name="other_exams"
+        placeholder="Escriba si se ha realizado algún exámen: angiografía, electroencefalografía u otros, o coloque 'Ninguno'"
+        aria-label="exams"
+        aria-describedby="exams"
+        value="{{proceeding.other_exams}}"
+        required
+      />
+      <p class="form__input-error">
+        Debe obligatoriamente llenar el campo según sea el caso
+      </p>
+    </div>
+    <div class="form-group" id="group__medical_history">
+      <label for="medical_history">Antecedentes médicos:</label>
+      <textarea
+        class="form-control"
+        id="medical_history"
+        name="medical_history"
+        maxlength="400"
+        placeholder="Ingresar antecedentes a lo largo de su vida de ser necesario"
+      >
+{{proceeding.medical_history|safe}}</textarea
+      >
+    </div>
+    <div>
+      <span class="title-section">Antecedentes médicos:</span>
+      <span class="instruction-checks"
+        >Marque la casilla en caso de que tenga o haya tenido alguna de las
+        siguientes enfermedades:</span
+      >
+      <div>
+        <div class="input-group mb-3 w-50" id="group__hypertension">
+          <div class="input-group-text">
+            <input
+              class="form-check-input mt-0"
+              type="checkbox"
+              value="Si"
+              id="hyperthension"
+              name="hyperthension"
+              aria-label="hipertension"
+            />
+            <input
+              type="hidden"
+              id="hyperthensionDB"
+              value="{{ proceeding.hyperthension }}"
+            />
+          </div>
+          <span class="input-group-text">Hipertensión Arterial</span>
+          <select
+            class="form-select form-select-sm"
+            id="time_hyperthension"
+            name="time_hyperthension"
+            aria-label="tiempo_hipertension"
+            disabled
+          >
+            <option value="">Seleccione opción</option>
+            <option value="Menor a 1 año">Menor a 1 año</option>
+            <option value="De 1 a 5 años">De 1 a 5 años</option>
+            <option value="De 5 a 10 años">De 5 a 10 años</option>
+            <option value="De 10 a 15 años">De 10 a 15 años</option>
+            <option value="Más de 15 años">Más de 15 años</option>
+          </select>
+          <p class="form__input-error">
+            Debe seleccionar obligatoriamente el tiempo que ha padecido
+            hipertensión
+          </p>
+          <input
+            type="hidden"
+            id="time_hyperthensionDB"
+            value="{{ proceeding.time_hyperthension }}"
+          />
+        </div>
+        <div class="input-group mb-3 w-60" id="group__pulmonary_diseases">
+          <div class="input-group-text">
+            <input
+              class="form-check-input mt-0"
+              type="checkbox"
+              value="Si"
+              id="pulmonary_diseases"
+              name="pulmonary_diseases"
+              aria-label="enfermedadPulmonar"
+            />
+            <input
+              type="hidden"
+              id="pulmonary_diseasesDB"
+              value="{{ proceeding.pulmonary_diseases }}"
+            />
+          </div>
+          <span class="input-group-text">Enfermedades pulmonares</span>
+          <select
+            class="form-select form-select-sm"
+            id="time_pulmonary_diseases"
+            name="time_pulmonary_diseases"
+            aria-label="tiempo_pulmonar"
+            disabled
+          >
+            <option value="">Seleccione opción</option>
+            <option value="Menor a 1 año">Menor a 1 año</option>
+            <option value="De 1 a 5 años">De 1 a 5 años</option>
+            <option value="De 5 a 10 años">De 5 a 10 años</option>
+            <option value="De 10 a 15 años">De 10 a 15 años</option>
+            <option value="Más de 15 años">Más de 15 años</option>
+          </select>
+          <p class="form__input-error">
+            Debe seleccionar obligatoriamente el tiempo que ha padecido
+            enfermedades pulmonares
+          </p>
+          <input
+            type="hidden"
+            id="time_pulmonary_diseasesDB"
+            value="{{ proceeding.time_pulmonary_diseases }}"
+          />
+        </div>
+
+        <div class="input-group mb-3 w-50" id="group__alcoholism">
+          <div class="input-group-text">
+            <input
+              class="form-check-input mt-0"
+              type="checkbox"
+              value="Si"
+              id="alcoholism"
+              name="alcoholism"
+              aria-label="alcoholismo"
+            />
+            <input
+              type="hidden"
+              id="alcoholismDB"
+              value="{{ proceeding.alcoholism }}"
+            />
+          </div>
+          <span class="input-group-text">Alcoholismo</span>
+          <select
+            class="form-select form-select-sm"
+            id="time_alcoholism"
+            name="time_alcoholism"
+            aria-label="tiempo_alcoholismo"
+            disabled
+          >
+            <option value="">Seleccione opción</option>
+            <option value="Menor a 1 año">Menor a 1 año</option>
+            <option value="De 1 a 5 años">De 1 a 5 años</option>
+            <option value="De 5 a 10 años">De 5 a 10 años</option>
+            <option value="De 10 a 15 años">De 10 a 15 años</option>
+            <option value="Más de 15 años">Más de 15 años</option>
+          </select>
+          <p class="form__input-error">
+            Debe seleccionar obligatoriamente el tiempo que ha padecido
+            alcoholismo
+          </p>
+          <input
+            type="hidden"
+            id="time_alcoholismDB"
+            value="{{ proceeding.time_alcoholism }}"
+          />
+        </div>
+
+        <div class="input-group mb-3 w-50" id="group__drugs">
+          <div class="input-group-text">
+            <input
+              class="form-check-input mt-0"
+              type="checkbox"
+              value="Si"
+              id="drugs"
+              name="drugs"
+              aria-label="farmacos"
+            />
+            <input type="hidden" id="drugsDB" value="{{ proceeding.drugs }}" />
+          </div>
+          <span class="input-group-text">Farmacodependencia</span>
+          <select
+            class="form-select form-select-sm"
+            id="time_drugs"
+            name="time_drugs"
+            aria-label="tiempo_drogas"
+            disabled
+          >
+            <option value="">Seleccione opción</option>
+            <option value="Menor a 1 año">Menor a 1 año</option>
+            <option value="De 1 a 5 años">De 1 a 5 años</option>
+            <option value="De 5 a 10 años">De 5 a 10 años</option>
+            <option value="De 10 a 15 años">De 10 a 15 años</option>
+            <option value="Más de 15 años">Más de 15 años</option>
+          </select>
+          <p class="form__input-error">
+            Debe seleccionar obligatoriamente el tiempo que ha padecido de
+            farmacodependencia
+          </p>
+          <input
+            type="hidden"
+            id="time_drugsDB"
+            value="{{ proceeding.time_drugs }}"
+          />
+        </div>
+
+        <div class="input-group mb-3 w-75" id="group__decrease_senses">
+          <div class="input-group-text">
+            <input
+              class="form-check-input mt-0"
+              type="checkbox"
+              value="Si"
+              id="decrease_senses"
+              name="decrease_senses"
+              aria-label="disminucion"
+            />
+            <input
+              type="hidden"
+              id="decrease_sensesDB"
+              value="{{ proceeding.decrease_senses }}"
+            />
+          </div>
+          <span class="input-group-text"
+            >Disminución de agudeza visual o auditiva</span
+          >
+          <select
+            class="form-select form-select-sm"
+            id="time_decrease_senses"
+            name="time_decrease_senses"
+            aria-label="tiempo_disminucion"
+            disabled
+          >
+            <option value="">Seleccione opción</option>
+            <option value="Menor a 1 año">Menor a 1 año</option>
+            <option value="De 1 a 5 años">De 1 a 5 años</option>
+            <option value="De 5 a 10 años">De 5 a 10 años</option>
+            <option value="De 10 a 15 años">De 10 a 15 años</option>
+            <option value="Más de 15 años">Más de 15 años</option>
+          </select>
+          <p class="form__input-error">
+            Debe seleccionar obligatoriamente el tiempo que ha padecido de
+            disminución de agudeza visual o auditiva
+          </p>
+          <input
+            type="hidden"
+            id="time_decrease_sensesDB"
+            value="{{ proceeding.time_decrease_senses }}"
+          />
+        </div>
+
+        <div class="input-group mb-3 w-75" id="group__craniocerebral_trauma">
+          <div class="input-group-text">
+            <input
+              class="form-check-input mt-0"
+              type="checkbox"
+              value="Si"
+              id="craniocerebral_trauma"
+              name="craniocerebral_trauma"
+              aria-label="traumatismos"
+            />
+            <input
+              type="hidden"
+              id="craniocerebral_traumaDB"
+              value="{{ proceeding.craniocerebral_trauma }}"
+            />
+          </div>
+          <span class="input-group-text">Traumatismos Craneoencefálicos</span>
+          <select
+            class="form-select form-select-sm"
+            id="time_craniocerebral_trauma"
+            name="time_craniocerebral_trauma"
+            aria-label="tiempo_traumatismos"
+            disabled
+          >
+            <option value="">Seleccione opción</option>
+            <option value="Menor a 1 año">Menor a 1 año</option>
+            <option value="De 1 a 5 años">De 1 a 5 años</option>
+            <option value="De 5 a 10 años">De 5 a 10 años</option>
+            <option value="De 10 a 15 años">De 10 a 15 años</option>
+            <option value="Más de 15 años">Más de 15 años</option>
+          </select>
+          <p class="form__input-error">
+            Debe seleccionar obligatoriamente el tiempo que ha padecido de
+            traumatismos cranocencefálicos
+          </p>
+          <input
+            type="hidden"
+            id="time_craniocerebral_traumaDB"
+            value="{{ proceeding.time_craniocerebral_trauma }}"
+          />
+        </div>
+
+        <div class="input-group mb-3 w-50" id="group__diabetes">
+          <div class="input-group-text">
+            <input
+              class="form-check-input mt-0"
+              type="checkbox"
+              value="Si"
+              id="diabetes"
+              name="diabetes"
+              aria-label="diabetes"
+            />
+            <input
+              type="hidden"
+              id="diabetesDB"
+              value="{{ proceeding.diabetes }}"
+            />
+          </div>
+          <span class="input-group-text">Diabetes</span>
+          <select
+            class="form-select form-select-sm"
+            id="time_diabetes"
+            name="time_diabetes"
+            aria-label="tiempo_diabetes"
+            disabled
+          >
+            <option value="">Seleccione opción</option>
+            <option value="Menor a 1 año">Menor a 1 año</option>
+            <option value="De 1 a 5 años">De 1 a 5 años</option>
+            <option value="De 5 a 10 años">De 5 a 10 años</option>
+            <option value="De 10 a 15 años">De 10 a 15 años</option>
+            <option value="Más de 15 años">Más de 15 años</option>
+          </select>
+          <p class="form__input-error">
+            Debe seleccionar obligatoriamente el tiempo que ha padecido de
+            diabetes
+          </p>
+          <input
+            type="hidden"
+            id="time_diabetesDB"
+            value="{{ proceeding.time_diabetes }}"
+          />
+        </div>
+
+        <div class="input-group mb-3 w-50" id="group__hypothyroidism">
+          <div class="input-group-text">
+            <input
+              class="form-check-input mt-0"
+              type="checkbox"
+              value="Si"
+              id="hypothyroidism"
+              name="hypothyroidism"
+              aria-label="tiroidismo"
+            />
+            <input
+              type="hidden"
+              id="hypothyroidismDB"
+              value="{{ proceeding.hypothyroidism }}"
+            />
+          </div>
+          <span class="input-group-text">Tiroidismo</span>
+          <select
+            class="form-select form-select-sm"
+            id="time_hypothyroidism"
+            name="time_hypothyroidism"
+            aria-label="tiempo_tiroidismo"
+            disabled
+          >
+            <option value="">Seleccione opción</option>
+            <option value="Menor a 1 año">Menor a 1 año</option>
+            <option value="De 1 a 5 años">De 1 a 5 años</option>
+            <option value="De 5 a 10 años">De 5 a 10 años</option>
+            <option value="De 10 a 15 años">De 10 a 15 años</option>
+            <option value="Más de 15 años">Más de 15 años</option>
+          </select>
+          <p class="form__input-error">
+            Debe seleccionar obligatoriamente el tiempo que ha padecido de
+            tiroidismo
+          </p>
+          <input
+            type="hidden"
+            id="time_hypothyroidismDB"
+            value="{{ proceeding.time_hypothyroidism }}"
+          />
+        </div>
+
+        <div class="input-group mb-3 w-60" id="group__strokes">
+          <div class="input-group-text">
+            <input
+              class="form-check-input mt-0"
+              type="checkbox"
+              value="Si"
+              id="strokes"
+              name="strokes"
+              aria-label="accidentes"
+            />
+            <input
+              type="hidden"
+              id="strokesDB"
+              value="{{ proceeding.strokes }}"
+            />
+          </div>
+          <span class="input-group-text">Accidentes Cerebrovasculares</span>
+          <select
+            class="form-select form-select-sm"
+            id="time_strokes"
+            name="time_strokes"
+            aria-label="tiempo_accidentes"
+            disabled
+          >
+            <option value="">Seleccione opción</option>
+            <option value="Menor a 1 año">Menor a 1 año</option>
+            <option value="De 1 a 5 años">De 1 a 5 años</option>
+            <option value="De 5 a 10 años">De 5 a 10 años</option>
+            <option value="De 10 a 15 años">De 10 a 15 años</option>
+            <option value="Más de 15 años">Más de 15 años</option>
+          </select>
+          <p class="form__input-error">
+            Debe seleccionar obligatoriamente el tiempo que ha padecido de
+            accidentes cerebrovaculares
+          </p>
+          <input
+            type="hidden"
+            id="time_strokesDB"
+            value="{{ proceeding.time_strokes }}"
+          />
+        </div>
+
+        <div class="input-group mb-3" id="group__others_diseases">
+          <div class="input-group-text">
+            <input
+              class="form-check-input mt-0"
+              type="checkbox"
+              value="Si"
+              id="others_diseases"
+              name="others_diseases"
+              aria-label="check_otras-enfermedades"
+            />
+            <input
+              type="hidden"
+              id="others_diseasesDB"
+              value="{{ proceeding.others_diseases }}"
+            />
+          </div>
+          <span class="input-group-text">Otros</span>
+          <input
+            type="text"
+            class="form-control"
+            id="details_others_diseases"
+            name="details_others_diseases"
+            aria-label="otras-enfermedades"
+            placeholder='Formato: "enfermedad-tiempo" separe por comas despues de cada tiempo'
+            disabled
+          />
+          <p class="form__input-error">
+            Debe llenar el campo de acuerdo al formato que se solicita
+          </p>
+          <input
+            type="hidden"
+            id="details_others_diseasesDB"
+            value="{{ proceeding.details_others_diseases }}"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex flex-row">
+    <div class="create-proceeding">
+      <input type="submit" class="btn btn-save" value="Actualizar" />
+    </div>
+    <div class="cancel-proceeding">
+      <a href="{% url 'show_proceedings' %}" class="btn btn-cancel">Cancelar</a>
+    </div>
+  </div>
+</form>
+<script
+  type="text/javascript"
+  src="{% static 'scripts/expediente.js' %}"
+></script>
+<script
+  type="text/javascript"
+  src="{% static 'scripts/edit-proceeding.js' %}"
+></script>
+
+{% endblock %}

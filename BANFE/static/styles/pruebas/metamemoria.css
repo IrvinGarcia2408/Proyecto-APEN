@@ -1,0 +1,64 @@
+.predictor {
+  background: #d6f0dc;
+  font-size: 2.2vh;
+  font-weight: bolder;
+  color: #006414;
+  text-align: center;
+  margin: 1rem 0;
+  border: none;
+  border-radius: 20px;
+  padding: 0.4vh 0;
+}
+
+.btn-palabras {
+  background: #64c27b;
+  font-size: 2.2vh;
+  font-weight: bolder;
+  color: #0e9329;
+  text-align: center;
+  border: none;
+  border-radius: 20px;
+  padding: 1vh 0;
+}
+
+.line-separator-one {
+  margin-top: 6vh;
+}
+
+.line-separator {
+  margin-top: 3.6vh;
+}
+
+.line-ensayo-one {
+  margin-top: 5.55vh;
+}
+
+.line-ensayo {
+  margin-top: 3.2vh;
+}
+
+.titulo-resultados {
+  background: #a9e159;
+  color: #006414;
+  font-size: 2vh;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 1.6vh;
+  padding: 1vh;
+  border-radius: 20px 0 0 20px;
+  border: solid 1px #006414;
+}
+
+@media only screen and (min-width: 1700px) {
+  .btn-intr {
+    margin-top: 13vh;
+  }
+
+  .line-separator {
+    margin-top: 4vh;
+  }
+
+  .line-separator-one {
+    margin-top: 6.8vh;
+  }
+}

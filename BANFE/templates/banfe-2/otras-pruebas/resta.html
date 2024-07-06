@@ -1,0 +1,301 @@
+{% extends "banfe-2/base.html" %} {% load static %} {% block content %}
+
+<audio
+  class="alarma_sound"
+  src="{% static 'audios/tiempo_acabado.mp3' %}"
+></audio>
+<audio class="figure-sound" src="{% static 'audios/click.wav' %}"></audio>
+
+{% include "banfe-2/modal.html" %}
+<div id="resta" class="panel-prueba">
+  <div class="row info-prueba">
+    <div class="col-sm-3 col-md-3 bg-light">
+      <div class="sujeto-info">{% include "banfe-2/info-sujeto.html" %}</div>
+      <div class="tips-prueba">
+        <span>Tips:</span>
+        {% include "banfe-2/tips.html" %}
+      </div>
+    </div>
+    <div class="col-sm-9 col-md-9 control">
+      <div class="progress">{% include "banfe-2/progress.html" %}</div>
+      <div class="video-ordenamiento">{% include "banfe-2/ventana.html" %}</div>
+      <div class="cinta-opciones">
+        <div class="cinta-opciones__mostrar">
+          <span id="progreso-resta"></span>
+        </div>
+        <div class="cinta-opciones__iniciar">
+          <button
+            id="inicio_resta"
+            class="btn"
+            onclick="iniciarResta();"
+          >
+            <i class="fa-solid fa-flag-checkered"></i>
+            Iniciar Prueba
+          </button>
+        </div>
+        <div class="cinta-opciones__adicional">
+          <button class="first_child invisible btn"></button>
+          <button
+            id="siguiente_resta"
+            class="btn"
+            onclick="siguienteResta()"
+            disabled
+          >
+            <i class="fa-solid fa-forward"></i>
+          </button>
+          <button
+            id="reiniciar_resta"
+            class="btn"
+            onclick="reiniciarResta();"
+            disabled
+          >
+            <i class="fa-solid fa-arrow-rotate-left"></i>
+          </button>
+        </div>
+      </div>
+      <div class="row overflow-x">
+        <div id="reloj-resta-1" class="time">
+          <div class="time__title">
+            <p>Tiempo(s)</p>
+          </div>
+          <div class="time__reloj">
+            <b id="segundos_resta_1">0</b>
+          </div>
+        </div>
+        <div id="resta-panel-1" class="resta">
+          <span class="titulo-resta">Resta A (40-3)</span>
+          <div class="resta-valores">
+            <div>
+              <input id="check-resta_1-37" type="checkbox" name="cb-resta-37" disabled />
+              <input
+                type="text"
+                id="resta_1-37"
+                name="resta_1-37"
+                placeholder="37"
+                onkeypress="presionarTecla_Resta('check-resta_1-37','resta_1-37','resta-34');"
+                disabled
+              />
+            </div>
+            <div>
+              <input id="check-resta-34" type="checkbox" name="cb-resta-34" disabled />
+              <input
+                class="resta-input"
+                type="text"
+                id="resta-34"
+                name="resta-34"
+                placeholder="34"
+                onkeypress="presionarTecla_Resta('check-resta-34','resta-34','resta-31');"
+                disabled
+              />
+            </div>
+            <div>
+              <input id="check-resta-31" type="checkbox" name="cb-resta-31" disabled />
+              <input
+                class="resta-input"
+                type="text"
+                id="resta-31"
+                name="resta-31"
+                placeholder="31"
+                onkeypress="presionarTecla_Resta('check-resta-31','resta-31','resta-28');"
+                disabled
+              />
+            </div>
+            <div>
+              <input id="check-resta-28" type="checkbox" name="cb-resta-28" disabled />
+              <input
+                class="resta-input"
+                type="text"
+                id="resta-28"
+                name="resta-28"
+                placeholder="28"
+                onkeypress="presionarTecla_Resta('check-resta-28','resta-28','resta-25');"
+                disabled
+              />
+            </div>
+            <div>
+              <input id="check-resta-25" type="checkbox" name="cb-resta-25" disabled />
+              <input
+                type="text"
+                id="resta-25"
+                name="resta-25"
+                placeholder="25"
+                onkeypress="presionarTecla_Resta('check-resta-25','resta-25','resta-22');"
+                disabled
+              />
+            </div>
+            <div>
+              <input id="check-resta-22" type="checkbox" name="cb-resta-22" disabled />
+              <input
+                type="text"
+                id="resta-22"
+                name="resta-22"
+                placeholder="22"
+                onkeypress="presionarTecla_Resta('check-resta-22','resta-22','resta-19');"
+                disabled
+              />
+            </div>
+            <div>
+              <input id="check-resta-19" type="checkbox" name="cb-resta-19" disabled />
+              <input
+                type="text"
+                id="resta-19"
+                name="resta-19"
+                placeholder="19"
+                onkeypress="presionarTecla_Resta('check-resta-19','resta-19','resta_1-16');"
+                disabled
+              />
+            </div>
+            <div>
+              <input id="check-resta_1-16" type="checkbox" name="cb-resta_1-16" disabled />
+              <input
+                type="text"
+                id="resta_1-16"
+                name="resta_1-16"
+                placeholder="16"
+                onkeypress="presionarTecla_Resta('check-resta_1-16','resta_1-16','resta-13');"
+                disabled
+              />
+            </div>
+            <div>
+              <input id="check-resta-13" type="checkbox" name="cb-resta-13" disabled />
+              <input
+                type="text"
+                id="resta-13"
+                name="resta-13"
+                placeholder="13"
+                onkeypress="presionarTecla_Resta('check-resta-13','resta-13','resta-10');"
+                disabled
+              />
+            </div>
+            <div>
+              <input id="check-resta-10" type="checkbox" name="cb-resta-10" disabled />
+              <input
+                type="text"
+                id="resta-10"
+                name="resta-10"
+                placeholder="10"
+                onkeypress="presionarTecla_Resta('check-resta-10','resta-10','resta-7');"
+                disabled
+              />
+            </div>
+            <div>
+              <input id="check-resta-7" type="checkbox" name="cb-resta-7" disabled />
+              <input type="text" id="resta-7" name="resta-7" placeholder="7" onkeypress="presionarTecla_Resta('check-resta-7','resta-7','resta-4');" disabled/>
+            </div>
+            <div>
+              <input id="check-resta-4" type="checkbox" name="cb-resta-4" disabled />
+              <input type="text" id="resta-4" name="resta-4" placeholder="4" onkeypress="presionarTecla_Resta('check-resta-4','resta-4','resta-1');" disabled/>
+            </div>
+            <div>
+              <input id="check-resta-1" type="checkbox" name="cb-resta-1" disabled />
+              <input type="text" id="resta-1" name="resta-1" placeholder="1" onkeypress="presionarTecla_Resta('check-resta-1','resta-1');" disabled/>
+            </div>
+            <div></div>
+          </div>
+          <div id="resultados-resta-1" class="row resta-resultados">
+            <div class="score-resta">
+              <span>Aciertos:</span>
+              <div class=-"score-resta__valor">
+                <span id="aciertos-resta-1">0</span>
+              </div>
+            </div>
+            <div class="score-resta">
+              <span>Errores:</span>
+              <div class=-"score-resta__valor">
+                <span id="errores-resta-1">0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="reloj-resta-2" class="time apagado">
+          <div class="time__title">
+            <p>Tiempo(s)</p>
+          </div>
+          <div class="time__reloj">
+            <b id="segundos_resta_2">0</b>
+          </div>
+        </div>
+        <div id="resta-panel-2" class="resta apagado">
+          <span class="titulo-resta">Resta B (100-7)</span>
+          <div class="resta-valores">
+              <div>
+                <input id="check-resta-93" type="checkbox" name="cb-resta-93" disabled/>
+                <input type="text" id="resta-93" name="resta-93" placeholder="93" onkeypress="presionarTecla_Resta('check-resta-93','resta-93','resta-86');" disabled/>
+              </div>
+              <div>
+                <input id="check-resta-86" type="checkbox" name="cb-resta-86" disabled/>
+                <input type="text" id="resta-86" name="resta-86" placeholder="86" onkeypress="presionarTecla_Resta('check-resta-86','resta-86','resta-79');" disabled/>
+              </div>
+              <div>
+                <input id="check-resta-79" type="checkbox" name="cb-resta-79" disabled/>
+                <input type="text" id="resta-79" name="resta-79" placeholder="79" onkeypress="presionarTecla_Resta('check-resta-79','resta-79','resta-72');" disabled/>
+              </div>
+              <div>
+                <input id="check-resta-72" type="checkbox" name="cb-resta-72" disabled/>
+                <input type="text" id="resta-72" name="resta-72" placeholder="72" onkeypress="presionarTecla_Resta('check-resta-72','resta-72','resta-65');" disabled>
+              </div>
+              <div>
+                <input id="check-resta-65" type="checkbox" name="cb-resta-65" disabled/>
+                <input type="text" id="resta-65" name="resta-65" placeholder="65" onkeypress="presionarTecla_Resta('check-resta-65','resta-65','resta-58');" disabled/>
+              </div>
+              <div>
+                <input id="check-resta-58" type="checkbox" name="cb-resta-58" disabled/>
+                <input type="text" id="resta-58" name="resta-58" placeholder="58" onkeypress="presionarTecla_Resta('check-resta-58','resta-58','resta-51');" disabled/>
+              </div>
+              <div>
+                <input id="check-resta-51" type="checkbox" name="cb-resta-51" disabled/>
+                <input type="text" id="resta-51" name="resta-51" placeholder="51" onkeypress="presionarTecla_Resta('check-resta-51','resta-51','resta-44');" disabled/>
+              </div>
+              <div>
+                <input id="check-resta-44" type="checkbox" name="cb-resta-44" disabled/>
+                <input type="text" id="resta-44" name="resta-44" placeholder="44" onkeypress="presionarTecla_Resta('check-resta-44','resta-44','resta_2-37');" disabled/>
+              </div>
+              <div>
+                <input id="check-resta_2-37" type="checkbox" name="cb-resta-2-37" disabled/>
+                <input type="text" id="resta_2-37" name="resta_2-37" placeholder="37" onkeypress="presionarTecla_Resta('check-resta_2-37','resta_2-37','resta-30');" disabled/>
+              </div>
+              <div>
+                <input id="check-resta-30" type="checkbox" name="cb-resta-30" disabled/>
+                <input type="text" id="resta-30" name="resta-30" placeholder="30" onkeypress="presionarTecla_Resta('check-resta-30','resta-30','resta-23');" disabled/>
+              </div>
+              <div>
+                <input id="check-resta-23" type="checkbox" name="cb-resta-23" disabled/>
+                <input type="text" id="resta-23" name="resta-23" placeholder="23" onkeypress="presionarTecla_Resta('check-resta-23','resta-23','resta_2-16');" disabled/>
+              </div>
+              <div>
+                <input id="check-resta_2-16" type="checkbox" name="cb-resta_2-16" disabled/>
+                <input type="text" id="resta_2-16" name="resta_2-16" placeholder="16" onkeypress="presionarTecla_Resta('check-resta_2-16','resta_2-16','resta-9');" disabled/>
+              </div>
+              <div>
+                <input id="check-resta-9" type="checkbox" name="cb-resta-9" disabled/>
+                <input type="text" id="resta-9" name="resta-9" placeholder="9" onkeypress="presionarTecla_Resta('check-resta-9','resta-9','resta-2');" disabled/>
+              </div>
+              <div>
+                <input id="check-resta-2" type="checkbox" name="cb-resta-2" disabled/>
+                <input type="text" id="resta-2" name="resta-2" placeholder="2" onkeypress="presionarTecla_Resta('check-resta-2','resta-2');" disabled/>
+              </div> 
+            </div>
+              <div id="resultados-resta" class="row resta-resultados">
+                <div class="score-resta">
+                  <span>Aciertos:</span>
+                  <div class=-"score-resta__valor">
+                    <span id="aciertos-resta-2">0</span>
+                  </div>
+                </div>
+                <div class="score-resta">
+                  <span>Errores:</span>
+                  <div class=-"score-resta__valor">
+                    <span id="errores-resta-2">0</span>
+                  </div>
+                </div>
+              </div>
+            </div>            
+        </div>
+        <div class="row footer-menu">
+          {% include "banfe-2/menu-footer.html" %}
+        </div>
+      </div>
+      {% endblock %}
+    </div>
+  </div>
+</div>

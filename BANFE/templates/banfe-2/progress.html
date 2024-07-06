@@ -1,0 +1,15 @@
+<div class="progress-bar-container">
+  <div
+    class="progress-bar bg-success"
+    role="progressbar"
+    style="width: {{ longitud_barra }}%;"
+    aria-valuenow="{{ longitud_barra }}"
+    aria-valuemin="0"
+    aria-valuemax="100"
+  >
+    <span class="progress-text">{{prueba_actual}}/{{total_pruebas}}</span>
+  </div>
+</div>
+<script>
+  var test = "{{prueba_actual}}";
+</script>

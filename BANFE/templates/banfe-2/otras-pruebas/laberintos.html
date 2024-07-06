@@ -1,0 +1,301 @@
+{% extends "banfe-2/base.html" %} {% load static %} {% block content %}
+
+<audio
+  class="alarma_sound"
+  src="{% static 'audios/tiempo_acabado.mp3' %}"
+></audio>
+<audio class="figure-sound" src="{% static 'audios/click.wav' %}"></audio>
+{% include "banfe-2/modal.html" %}
+<div class="panel-prueba">
+  <div class="row info-prueba">
+    <div class="col-sm-3 col-md-3 col-lg-3 bg-light">
+      <div class="sujeto-info">{% include "banfe-2/info-sujeto.html" %}</div>
+      <div class="tips-prueba">
+        <span>Tips:</span>
+        {% include "banfe-2/tips.html" %}
+      </div>
+    </div>
+    <div class="col-sm-9 col-md-9 control">
+      <div class="progress">{% include "banfe-2/progress.html" %}</div>
+      <div class="video-laberintos">{% include "banfe-2/ventana.html" %}</div>
+      <div class="cinta-opciones">
+        <div class="cinta-opciones__iniciar btn-iniciar">
+          <button class="btn invisible"></button>
+        </div>
+        <div class="cinta-opciones__adicional">
+          <button class="first_child btn invisible">
+            <i class="fa-solid fa-play"></i>
+          </button>
+          <button class="btn invisible">
+            <i class="fa-solid fa-pause"></i>
+          </button>
+          <button
+            id="reiniciar_laberintos"
+            class="btn"
+            onclick="reiniciarLaberintos();"
+            disabled
+          >
+            <i class="fa-solid fa-arrow-rotate-left"></i>
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8">
+          <table class="table-laberintos">
+            <tr>
+              <th>Laberinto</th>
+              <th>Toca</th>
+              <th>Atraviesa</th>
+              <th>Sin salida</th>
+              <th>Tiempo</th>
+              <th></th>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>
+                <button id="res-toc-1" onclick="restar(1,'toca')" disabled>
+                  -
+                </button>
+                <b id="toca-1">0</b>
+                <button id="sum-toc-1" onclick="sumar(1,'toca')" disabled>
+                  +
+                </button>
+              </td>
+              <td>
+                <button id="res-atr-1" onclick="restar(1,'atraviesa')" disabled>
+                  -
+                </button>
+                <b id="atraviesa-1">0</b>
+                <button id="sum-atr-1" onclick="sumar(1,'atraviesa')" disabled>
+                  +
+                </button>
+              </td>
+              <td>
+                <button id="res-enc-1" onclick="restar(1,'atrapado')" disabled>
+                  -
+                </button>
+                <b id="atrapado-1">0</b>
+                <button id="sum-enc-1" onclick="sumar(1,'atrapado')" disabled>
+                  +
+                </button>
+              </td>
+              <td>
+                <b id="tiempo-1">0</b>
+              </td>
+              <td>
+                <button id="inicio_1" onclick="iniciarLaberintos()">
+                  <i class="fa-solid fa-play"></i>
+                </button>
+                <button id="final-1" onclick="pararLaberintos()" disabled>
+                  <i class="fa-solid fa-stop"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>
+                <button id="res-toc-2" onclick="restar(2,'toca')" disabled>
+                  -
+                </button>
+                <b id="toca-2">0</b>
+                <button id="sum-toc-2" onclick="sumar(2,'toca')" disabled>
+                  +
+                </button>
+              </td>
+              <td>
+                <button id="res-atr-2" onclick="restar(2,'atraviesa')" disabled>
+                  -
+                </button>
+                <b id="atraviesa-2">0</b>
+                <button id="sum-atr-2" onclick="sumar(2,'atraviesa')" disabled>
+                  +
+                </button>
+              </td>
+              <td>
+                <button id="res-enc-2" onclick="restar(2,'atrapado')" disabled>
+                  -
+                </button>
+                <b id="atrapado-2">0</b>
+                <button id="sum-enc-2" onclick="sumar(2,'atrapado')" disabled>
+                  +
+                </button>
+              </td>
+              <td>
+                <b id="tiempo-2">0</b>
+              </td>
+              <td>
+                <button id="inicio_2" onclick="iniciarLaberintos()" disabled>
+                  <i class="fa-solid fa-play"></i>
+                </button>
+                <button id="final-2" onclick="pararLaberintos()" disabled>
+                  <i class="fa-solid fa-stop"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>
+                <button id="res-toc-3" onclick="restar(3,'toca')" disabled>
+                  -
+                </button>
+                <b id="toca-3">0</b>
+                <button id="sum-toc-3" onclick="sumar(3,'toca')" disabled>
+                  +
+                </button>
+              </td>
+              <td>
+                <button id="res-atr-3" onclick="restar(3,'atraviesa')" disabled>
+                  -
+                </button>
+                <b id="atraviesa-3">0</b>
+                <button id="sum-atr-3" onclick="sumar(3,'atraviesa')" disabled>
+                  +
+                </button>
+              </td>
+              <td>
+                <button id="res-enc-3" onclick="restar(3,'atrapado')" disabled>
+                  -
+                </button>
+                <b id="atrapado-3">0</b>
+                <button id="sum-enc-3" onclick="sumar(3,'atrapado')" disabled>
+                  +
+                </button>
+              </td>
+              <td>
+                <b id="tiempo-3">0</b>
+              </td>
+              <td>
+                <button id="inicio_3" onclick="iniciarLaberintos()" disabled>
+                  <i class="fa-solid fa-play"></i>
+                </button>
+                <button id="final-3" onclick="pararLaberintos()" disabled>
+                  <i class="fa-solid fa-stop"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>
+                <button id="res-toc-4" onclick="restar(4,'toca')" disabled>
+                  -
+                </button>
+                <b id="toca-4">0</b>
+                <button id="sum-toc-4" onclick="sumar(4,'toca')" disabled>
+                  +
+                </button>
+              </td>
+              <td>
+                <button id="res-atr-4" onclick="restar(4,'atraviesa')" disabled>
+                  -
+                </button>
+                <b id="atraviesa-4">0</b>
+                <button id="sum-atr-4" onclick="sumar(4,'atraviesa')" disabled>
+                  +
+                </button>
+              </td>
+              <td>
+                <button id="res-enc-4" onclick="restar(4,'atrapado')" disabled>
+                  -
+                </button>
+                <b id="atrapado-4">0</b>
+                <button id="sum-enc-4" onclick="sumar(4,'atrapado')" disabled>
+                  +
+                </button>
+              </td>
+              <td>
+                <b id="tiempo-4">0</b>
+              </td>
+              <td>
+                <button id="inicio_4" onclick="iniciarLaberintos()" disabled>
+                  <i class="fa-solid fa-play"></i>
+                </button>
+                <button id="final-4" onclick="pararLaberintos()" disabled>
+                  <i class="fa-solid fa-stop"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>
+                <button id="res-toc-5" onclick="restar(5,'toca')" disabled>
+                  -
+                </button>
+                <b id="toca-5">0</b>
+                <button id="sum-toc-5" onclick="sumar(5,'toca')" disabled>
+                  +
+                </button>
+              </td>
+              <td>
+                <button id="res-atr-5" onclick="restar(5,'atraviesa')" disabled>
+                  -
+                </button>
+                <b id="atraviesa-5">0</b>
+                <button id="sum-atr-5" onclick="sumar(5,'atraviesa')" disabled>
+                  +
+                </button>
+              </td>
+              <td>
+                <button id="res-enc-5" onclick="restar(5,'atrapado')" disabled>
+                  -
+                </button>
+                <b id="atrapado-5">0</b>
+                <button id="sum-enc-5" onclick="sumar(5,'atrapado')" disabled>
+                  +
+                </button>
+              </td>
+              <td>
+                <b id="tiempo-5">0</b>
+              </td>
+              <td>
+                <button id="inicio_5" onclick="iniciarLaberintos()" disabled>
+                  <i class="fa-solid fa-play"></i>
+                </button>
+                <button id="final-5" onclick="pararLaberintos()" disabled>
+                  <i class="fa-solid fa-stop"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>Total</td>
+              <td id="total-toca">0</td>
+              <td id="total-atraviesa">0</td>
+              <td id="total-atrapado">0</td>
+            </tr>
+          </table>
+        </div>
+        <div class="col-md-4 opciones-time">
+          <div class="time-laberinto">
+            <div class="time__title">
+              <p>Tiempo(s)</p>
+            </div>
+            <div class="time__reloj">
+              <b id="segundosP1">0</b>
+            </div>
+          </div>
+          <div class="tiempo-promedio">
+            <div class="tiempo-promedio__title">
+              <p>Promedio(s)</p>
+            </div>
+            <div class="tiempo-promedio__valor">
+              <b id="promedio">0</b>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row footer-menu">
+        {% include "banfe-2/menu-footer.html" %}
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $(document).ready(function () {
+      console.log("Accediendo...");
+      setInterval(function () {
+        $("#score").load(" #score");
+      }, 1000);
+    });
+  </script>
+
+  {% endblock %}
+</div>

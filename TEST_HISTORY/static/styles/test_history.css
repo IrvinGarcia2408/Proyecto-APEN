@@ -1,0 +1,117 @@
+/*  List Proceedings Styles  */
+.title-list-expediente {
+  text-align: center;
+  font-size: 3.5vh;
+  color: #009929;
+  font-weight: 600;
+}
+
+.header-table-expediente {
+  background-color: #78c98c;
+}
+
+.header-table-expediente th {
+  color: #006414;
+}
+
+.body-page {
+  display: flex;
+  flex-direction: column;
+  height: 160vh;
+}
+
+.centered {
+  text-align: center;
+  padding: 10px;
+  vertical-align: middle;
+}
+
+.thead-tests {
+  background: #54cf75;
+}
+
+.options-btn {
+  text-align: center;
+  padding: 10px;
+}
+
+.options-btn button {
+  margin: 0 0.4vw;
+}
+
+.dt-icons {
+  margin: 0 auto;
+  color: #333;
+  width: 0.8vw;
+  height: fit-content;
+  font-size: 1.6vh;
+  padding-top: 0.3vh;
+}
+
+.box-btn_export-tests {
+  text-align: right;
+}
+
+.export-tests button {
+  background: #009929;
+  width: 16vw;
+  margin-bottom: 10px;
+  padding: 0.5rem;
+}
+
+.export-tests button,
+i {
+  color: rgb(247, 255, 204);
+  text-decoration: none;
+  font-weight: bolder;
+  font-size: 2.2vh;
+  border: none;
+}
+
+.export-tests:hover > button,
+.export-tests:hover > button > i {
+  color: rgb(220, 253, 38);
+}
+
+.export-tests button:hover {
+  background: #187230;
+}
+
+.green-text {
+  color: green; /* Verde oscuro */
+}
+
+.blue-text {
+  color: #0566ff; /* Verde */
+}
+
+.orange-text {
+  color: orange; /* Amarillo */
+}
+
+.red-text {
+  color: red; /* Rojo oscuro */
+}
+@media (min-height: 720px) {
+  .body-page {
+    height: 120vh;
+  }
+}
+
+@media (min-height: 820px) {
+  .body-page {
+    height: 100vh;
+  }
+}
+
+@media (min-height: 920px) {
+  .body-page {
+    height: 90vh;
+  }
+}
+
+@media (min-width: 1500px) {
+  .body-page {
+    height: 95vh;
+  }
+}

@@ -1,0 +1,230 @@
+{% extends "banfe-2/pruebas.html" %} {% load static %} {% block content %}
+
+<audio class="figure-sound" src="{% static 'audios/click.wav' %}"></audio>
+
+{% include "banfe-2/modal.html" %}
+<div class="senalamiento-prueba">
+  <div class="grid-container">
+    {% csrf_token %}
+    <div class="grid-item">
+      <img
+        id="ardilla"
+        onclick="selectFigure(this);"
+        src="{% static 'images/señalamiento/ardilla.png' %}"
+        alt="ardilla-senalamiento"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="avion"
+        onclick="selectFigure(this);"
+        src="{% static 'images/señalamiento/avion.png' %}"
+        alt="avion-senalamiento"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="bicicleta"
+        onclick="selectFigure(this); "
+        src="{% static 'images/señalamiento/bicicleta.png' %}"
+        alt="bicicleta-senalamiento"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="pluma"
+        onclick="selectFigure(this);"
+        src="{% static 'images/señalamiento/pluma.png' %}"
+        alt="pluma-senalamiento"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="caballo"
+        onclick="selectFigure(this);"
+        src="{% static 'images/señalamiento/caballo.png' %}"
+        alt="caballo-senalamiento"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="calceta"
+        onclick="selectFigure(this);"
+        src="{% static 'images/señalamiento/calceta.png' %}"
+        alt="calceta-senalamiento"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="casa"
+        onclick="selectFigure(this); "
+        src="{% static 'images/señalamiento/casa.png' %}"
+        alt="casa-senalamiento"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="cepillo"
+        onclick="selectFigure(this);"
+        src="{% static 'images/señalamiento/cepillo.png' %}"
+        alt="cepillo-senalamiento"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="cinturon"
+        class="figura"
+        onclick="selectFigure(this);"
+        src="{% static 'images/señalamiento/cinturon.png' %}"
+        alt="cinturon-senalamiento"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="foco"
+        onclick="selectFigure(this);"
+        src="{% static 'images/señalamiento/foco.png' %}"
+        alt="foco-senalamiento"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="guitarra"
+        onclick="selectFigure(this);"
+        src="{% static 'images/señalamiento/guitarra.png' %}"
+        alt="guitarra-senalamiento"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="hacha"
+        onclick="selectFigure(this);"
+        src="{% static 'images/señalamiento/hacha.png' %}"
+        alt="hacha-senalamiento"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="hormiga"
+        onclick="selectFigure(this);"
+        src="{% static 'images/señalamiento/hormiga.png' %}"
+        alt="hormiga-senalamiento"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="mano"
+        onclick="selectFigure(this);"
+        src="{% static 'images/señalamiento/mano.png' %}"
+        alt="mano-senalamiento"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="manzana"
+        onclick="selectFigure(this);"
+        src="{% static 'images/señalamiento/manzana.png' %}"
+        alt="manzana-senalamiento"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="martillo"
+        onclick="selectFigure(this); "
+        src="{% static 'images/señalamiento/martillo.png' %}"
+        alt="martillo-senalamiento"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="mesa"
+        onclick="selectFigure(this);"
+        src="{% static 'images/señalamiento/mesa.png' %}"
+        alt="mesa-senalamiento"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="pantalon"
+        onclick="selectFigure(this);"
+        src="{% static 'images/señalamiento/pantalon.png' %}"
+        alt="pantalon-senalamiento"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="pez"
+        onclick="selectFigure(this);"
+        src="{% static 'images/señalamiento/pez.png' %}"
+        alt="pez-senalamiento"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="platano"
+        onclick="selectFigure(this);"
+        src="{% static 'images/señalamiento/platano.png' %}"
+        alt="platano-senalamiento"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="saco"
+        onclick="selectFigure(this);"
+        src="{% static 'images/señalamiento/saco.png' %}"
+        alt="saco-senalamiento"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="gato"
+        onclick="selectFigure(this); "
+        src="{% static 'images/señalamiento/gato.png' %}"
+        alt="gato-senalamiento"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="jarra"
+        onclick="selectFigure(this);"
+        src="{% static 'images/señalamiento/jarra.png' %}"
+        alt="jarra-senalamiento"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="carro"
+        onclick="selectFigure(this);"
+        src="{% static 'images/señalamiento/carro.png' %}"
+        alt="carro-senalamiento"
+      />
+    </div>
+    <div class="grid-item">
+      <img
+        id="estufa"
+        onclick="selectFigure(this);"
+        src="{% static 'images/señalamiento/estufa.png' %}"
+        alt="estufa-senalamiento"
+      />
+    </div>
+  </div>
+
+  <div class="btn-terminar">
+    <button
+      id="btn-terminar_senalamiento"
+      class="btn"
+      onclick="terminarSenalamiento()"
+      disabled
+    >
+      Listo
+    </button>
+  </div>
+</div>
+
+<script>
+  window.setTimeout(function () {
+    iniciarSenalamiento();
+  }, 5000);
+</script>
+
+{% endblock %}

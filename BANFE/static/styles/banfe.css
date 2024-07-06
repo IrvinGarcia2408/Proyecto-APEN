@@ -1,0 +1,875 @@
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 35vh; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 2vh;
+  border: 1px solid #888;
+  width: 20%;
+  text-align: center;
+  height: fit-content;
+  border-radius: 30px;
+  font-size: 2.2vh;
+  font-weight: 600;
+}
+
+.btnModal {
+  width: 40%;
+  height: 2rem;
+  margin: 0 auto;
+  background: #64c27b;
+  font-size: 2vh;
+  font-weight: bold;
+  color: #006414;
+  border: none;
+  border-radius: 20px;
+}
+
+.btnModal:hover {
+  background: #008259;
+  color: rgb(255, 255, 200);
+}
+
+.panel-prueba {
+  width: 99vw;
+  height: 102vh;
+  background: #ddd;
+}
+
+.info-prueba {
+  height: 80%;
+}
+
+.control {
+  background: #ddd;
+}
+
+.progress {
+  margin-top: 1vh;
+  height: 3vh;
+}
+.progress-bar-container {
+  position: relative;
+  width: 100%;
+  height: 30px; /* Ajusta la altura según tus necesidades */
+}
+
+.progress-bar {
+  height: 100%;
+}
+
+.progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black; /* Color del texto */
+  font-size: 2.2vh; /* Tamaño de la fuente del texto */
+  font-weight: bold; /* Peso de la fuente del texto */
+}
+
+.sujeto-info {
+  background: #333;
+  width: 100%;
+  height: fit-content;
+  margin: 0.2rem 0.4rem;
+  padding: 0 0.6rem;
+  color: #fff;
+  opacity: 0.8;
+  font-weight: 0;
+  font-size: 15px;
+  border-radius: 15px;
+}
+
+.sujeto-info__nombre b:first-child,
+.sujeto-info__edad b:first-child,
+.sujeto-info__escolaridad b:first-child {
+  color: #64c27b;
+  font-size: 17px;
+}
+
+.general-tips {
+  background: rgb(235, 235, 137);
+  margin: 1vh 0 0 0.8vw;
+  padding: 1vh;
+  border-radius: 10%;
+}
+
+.general-tips span {
+  font-size: 1.6vh;
+  display: block;
+  margin: 0 auto;
+}
+
+.tips-images {
+  margin: 5% auto;
+  width: 2.5vw;
+}
+
+.container-images {
+  margin: 3vh 0.3vw;
+}
+
+.description-images {
+  background: #eee;
+  width: 15vw;
+  font-size: 1.5vh;
+  text-align: left;
+  margin: 1vh 0;
+  padding-top: 5%;
+  border-radius: 5%;
+}
+
+.extra-tips {
+  background: #eee;
+  width: 90%;
+  border-radius: 5%;
+  margin: 1vh auto;
+  padding-top: 4%;
+  font-size: 1.5vh;
+}
+
+.img .progress span {
+  font-size: 18px;
+  font-weight: bolder;
+}
+
+.video-prueba {
+  width: 100%;
+  height: fit-content;
+  margin-top: 1rem;
+  padding: 1.4% 2%;
+  background: #333;
+  opacity: 0.8;
+}
+
+.video-ordenamiento,
+.video-suma,
+.video-resta,
+.video-semanticas,
+.video-laberintos,
+.video-stroop_A,
+.video-fluidez,
+.video-cartas,
+.video-refranes,
+.video-torres,
+.video-metamemoria,
+.video-stroop_B {
+  width: 100%;
+  height: fit-content;
+  margin-top: 0.5rem;
+  padding: 1.5% 4%;
+  background: #333;
+  opacity: 0.8;
+}
+
+.prueba-nombre {
+  background: #009929;
+  border-radius: 30px;
+  opacity: 0.9;
+  margin: 0 auto;
+  width: fit-content;
+}
+
+.prueba-nombre span {
+  padding: 20px;
+  font-weight: bolder;
+  font-size: 1.4rem;
+  color: #fff;
+}
+
+.instruct-cartas,
+.instruct-laberintos,
+.instruct-memoria,
+.instruct-senalamiento,
+.instruct-ordenamiento,
+.instruct-resta,
+.instruct-suma,
+.instruct-semanticas,
+.instruct-stroop_A,
+.instruct-fluidez,
+.instruct-juego_cartas,
+.instruct-refranes,
+.instruct-torres,
+.instruct-metamemoria,
+.instruct-stroop_B {
+  background: #fff;
+  width: 90%;
+  height: fit-content;
+  opacity: 0.9;
+  font-size: 2vh;
+  text-align: justify;
+}
+
+.instruct-cartas {
+  margin: 2.4% 2%;
+  font-size: 2vh;
+  padding: 0.8rem;
+  border-radius: 20px;
+}
+
+.instruct-laberintos {
+  margin: 3% 2%;
+  padding: 0.8rem;
+  border-radius: 20px;
+}
+
+.instruct-senalamiento {
+  margin: 3% auto;
+  padding: 1.2rem 0.8rem;
+  border-radius: 40px;
+}
+
+.instruct-memoria {
+  margin: 12% auto;
+  padding: 0.8rem;
+  border-radius: 20px;
+}
+
+.instruct-ordenamiento {
+  width: 85%;
+  height: fit-content;
+  margin: 10% 5%;
+  font-size: 2vh;
+  padding: 0.8rem 0.8rem;
+  border-radius: 20px;
+}
+
+.instruct-resta,
+.instruct-suma {
+  width: 85%;
+  height: fit-content;
+  margin: 5% 5%;
+  font-size: 2vh;
+  padding: 0.8rem;
+  border-radius: 20px;
+}
+
+.instruct-semanticas,
+.instruct-stroop_A,
+.instruct-fluidez,
+.instruct-juego_cartas,
+.instruct-refranes,
+.instruct-torres,
+.instruct-metamemoria,
+.instruct-stroop_B {
+  width: 85%;
+  height: fit-content;
+  margin: 5% 5%;
+  font-size: 2vh;
+  padding: 0.8rem;
+  border-radius: 20px;
+}
+
+.instruct-fluidez {
+  margin: 8% 5%;
+}
+
+.instruct-laberintos span,
+.instruct-cartas span,
+.instruct-senalamiento span,
+.instruct-ordenamiento span,
+.instruct-resta span,
+.instruct-semanticas span,
+.instruct-stroop_A span,
+.instruct-fluidez span,
+.instruct-juego_cartas span,
+.instruct-torres span,
+.instruct-metamemoria span,
+.instruct-stroop_B span {
+  font-weight: bold;
+}
+
+.img-clasif-cartas,
+.img-senalamiento,
+.img-torres,
+.img-memoria {
+  width: 90%;
+  height: 75%;
+  margin: 8% 1%;
+}
+
+.img-laberintos {
+  border-radius: 20px;
+  background: #ccc;
+  width: 65%;
+  height: 75%;
+  margin: 5.5% 2% 0 2%;
+}
+
+.img-ordenamiento {
+  width: 78%;
+  height: 78%;
+  margin: 6% 2%;
+  padding: 0.8rem;
+}
+
+.img-resta,
+.img-suma {
+  width: 70%;
+  height: 75%;
+  margin: 6% 1%;
+}
+
+.img-semanticas,
+.img-stroop_A,
+.img-cartas,
+.img-refranes,
+.img-metamemoria,
+.img-stroop_B {
+  width: 100%;
+  margin: 5% 1%;
+}
+
+.img-stroop_A {
+  margin-top: 4vh;
+  background: #ccc;
+  border-radius: 10px;
+}
+
+.img-fluidez {
+  width: 75%;
+  height: 75%;
+  margin: 2% 1%;
+  background: #ccc;
+  border-radius: 20px;
+}
+
+.img-cartas {
+  margin: 25% 1%;
+}
+.img-refranes {
+  margin-top: 3.5vh;
+  background: #ccc;
+  border-radius: 20px;
+}
+
+.img-torres {
+  width: 100%;
+  margin: 12% 1%;
+}
+
+.img-metamemoria {
+  margin: 10% 0;
+}
+
+.img-stroop_B {
+  margin: 5vh 1%;
+  background: #ccc;
+  border-radius: 20px;
+}
+
+.cinta-opciones {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 2;
+  background: #fff;
+  margin-bottom: 1vh;
+}
+
+.cinta-opciones__mostrar {
+  height: 100%;
+  width: 25%;
+  margin-left: 2%;
+}
+
+.cinta-opciones__abrir {
+  height: 100%;
+  width: 25%;
+  margin: 0 auto;
+}
+
+.cinta-opciones__mostrar a,
+.cinta-opciones__abrir a {
+  background: #64c27b;
+  font-size: 15px;
+  width: 100%;
+  height: 95%;
+  font-weight: bolder;
+  color: #006414;
+  margin-top: 0.3rem;
+  margin-bottom: 0.7rem;
+}
+
+.cinta-opciones__iniciar {
+  height: 100%;
+  width: 25%;
+  margin-left: 12%;
+}
+
+.cinta-opciones__iniciar button {
+  background: #64c27b;
+  font-size: 15px;
+  width: 100%;
+  height: 95%;
+  font-weight: bolder;
+  color: #006414;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.cinta-opciones__iniciar button > i {
+  margin-right: 0.5vw;
+}
+.cinta-opciones__adicional {
+  width: 30%;
+  margin-left: 4rem;
+  padding-top: 0;
+}
+
+.cinta-opciones__adicional button {
+  width: 18%;
+  height: 60%;
+  background: #64c27b;
+  font-size: 18px;
+  font-weight: bolder;
+  color: #006414;
+  border: none;
+}
+
+.first_child {
+  margin-left: 30%;
+}
+
+.cinta-opciones__adicional i {
+  text-align: center;
+  margin: 1% 1%;
+}
+
+.cinta-opciones__adicional #reiniciar_ordenamiento {
+  margin-top: 0.2rem;
+  height: 85%;
+}
+
+.cinta-opciones__adicional #reiniciar_laberintos,
+.cinta-opciones__adicional #reinicio,
+.cinta-opciones__adicional #siguiente_resta,
+.cinta-opciones__adicional #reiniciar_resta,
+.cinta-opciones__adicional #reiniciar_suma,
+.cinta-opciones__adicional #parar_stroop,
+.cinta-opciones__adicional #reiniciar_stroop,
+.cinta-opciones__adicional #reiniciar_cartas,
+.cinta-opciones__adicional #reiniciar_refranes,
+.cinta-opciones__adicional #parar_torre,
+.cinta-opciones__adicional #siguiente_torre,
+.cinta-opciones__adicional #reiniciar_torre,
+.cinta-opciones__adicional #reiniciar_metamemoria,
+.cinta-opciones__adicional #parar_stroop_b,
+.cinta-opciones__adicional #reiniciar_stroop_b {
+  margin-top: 0.6rem;
+}
+
+.cinta-opciones__adicional #reiniciar_fluidez {
+  margin-top: -0.5rem;
+}
+
+.cinta-opciones__mostrar a:hover,
+.cinta-opciones__abrir a:hover,
+.cinta-opciones__iniciar button:hover,
+.cinta-opciones__adicional button:hover {
+  background: #008259;
+  color: rgb(255, 255, 200);
+}
+
+.cinta-opciones__mostrar a:hover > i,
+.cinta-opciones__abrir a:hover > i,
+.cinta-opciones__iniciar button:hover > i,
+.cinta-opciones__adicional button:hover > i {
+  color: rgb(255, 255, 200);
+}
+
+.btn-iniciar {
+  margin-left: 36%;
+}
+
+.time {
+  width: 30%;
+  height: 3.8rem;
+  margin: 0.5rem auto 2rem;
+}
+
+.time__title,
+.tiempo-promedio__title {
+  width: 40%;
+  margin: 0 auto;
+  background: #a9e159;
+  border-radius: 10px 10px 0 0;
+}
+
+.time__title p,
+.tiempo-promedio__title p {
+  font-size: 15px;
+  font-weight: bold;
+  color: #009929;
+  text-align: center;
+}
+
+.time__reloj,
+.tiempo-promedio__valor {
+  width: 40%;
+  margin: -0.8rem auto;
+  background: #fff;
+  text-align: center;
+  border-radius: 0 0 10px 10px;
+}
+
+.time__reloj b,
+.tiempo-promedio__valor b {
+  font-size: 15px;
+  font-weight: bold;
+  color: #333;
+}
+
+.opciones {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 2;
+  height: 10rem;
+  width: 85%;
+  margin: 2.5vh 1.1rem;
+  background: #ddd;
+}
+
+.opciones__salir,
+.opciones__siguiente {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.opciones__salir a,
+.opciones__siguiente a {
+  text-align: center;
+  text-decoration: none;
+  font-size: 15px;
+  color: #006414;
+  margin-top: 1.5rem;
+  font-weight: bolder;
+}
+
+.opciones__salir i,
+.opciones__siguiente i {
+  display: block;
+  margin: -0.4rem auto;
+  margin-bottom: 0.8rem;
+  width: fit-content;
+  font-size: 40px;
+}
+
+.opciones__salir a:hover,
+.opciones__siguiente a:hover,
+.opciones__salir a:hover > i,
+.opciones__siguiente a:hover > i {
+  color: rgb(255, 255, 200);
+}
+
+.tips-prueba {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+}
+
+.tips-prueba span {
+  font-size: 26px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.score-1,
+.score-2,
+.score-3,
+.score-4 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin: 0;
+}
+
+.score-1 > div,
+.score-2 > div,
+.score-3 > div,
+.score-4 > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 25%;
+  flex-grow: 2;
+  margin: 0.3rem 0;
+}
+
+.score-1 div > span,
+.score-2 div > span,
+.score-3 div > span,
+.score-4 div > span {
+  width: fit-content;
+  background: #a9e159;
+  padding: 0.82rem;
+  padding-top: 1.6vh;
+  color: #009929;
+  font-size: 2vh;
+  font-weight: bolder;
+  border-radius: 10px 0 0 10px;
+}
+
+.score__valor {
+  width: 3vw;
+  font-size: 2vh;
+  padding-top: 1.8vh;
+  background: #fff;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  border-radius: 0 10px 10px 0;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+@media only screen and (min-width: 1400px) {
+  .progress span {
+    font-size: 20px;
+  }
+
+  .prueba-nombre span {
+    font-size: 1.6rem;
+  }
+
+  .instruct-cartas {
+    margin: 4% auto;
+  }
+
+  .instruct-senalamiento {
+    margin: 5% auto;
+  }
+
+  .instruct-laberintos {
+    margin: 3% auto;
+  }
+
+  .img-clasif-cartas {
+    margin: 10% 2%;
+  }
+
+  .img-senalamiento {
+    margin: 6% 2%;
+  }
+
+  .tips-prueba span {
+    font-size: 28px;
+  }
+
+  .sujeto-info {
+    font-size: 18px;
+  }
+
+  .sujeto-info__nombre b:first-child,
+  .sujeto-info__edad b:first-child,
+  .sujeto-info__escolaridad b:first-child {
+    font-size: 20px;
+  }
+
+  .cinta-opciones__mostrar a,
+  .cinta-opciones__abrir a,
+  .cinta-opciones__iniciar button,
+  .cinta-opciones__adicional i {
+    font-size: 17px;
+  }
+
+  .time__title p,
+  .tiempo-promedio__title p {
+    font-size: 18px;
+  }
+
+  .time__reloj b,
+  .tiempo-promedio__valor b {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (min-width: 1500px) {
+  .instruct-cartas {
+    margin: 6% auto;
+  }
+
+  .instruct-memoria {
+    padding: 0;
+    height: fit-content;
+  }
+
+  .instruct-laberintos {
+    margin: 5.5% 2%;
+  }
+
+  .instruct-memoria {
+    padding: 0.8rem;
+  }
+
+  .progress span {
+    font-size: 17px;
+    font-weight: bolder;
+  }
+
+  .tips-prueba span {
+    font-size: 30px;
+  }
+
+  .opciones__salir a,
+  .opciones__siguiente a {
+    font-size: 18px;
+    margin-top: 0.8rem;
+  }
+
+  .opciones__salir i,
+  .opciones__siguiente i {
+    font-size: 42px;
+  }
+
+  .cinta-opciones__mostrar a,
+  .cinta-opciones__abrir a {
+    font-size: 18px;
+  }
+
+  .cinta-opciones__iniciar button {
+    font-size: 18px;
+  }
+
+  .cinta-opciones__adicional button {
+    font-size: 20px;
+    height: 65%;
+  }
+}
+
+@media only screen and (min-width: 1700px) {
+  .prueba-nombre span {
+    font-size: 2rem;
+  }
+
+  .instruct-cartas {
+    margin: 4% auto;
+    font-size: 2.2vh;
+  }
+
+  .instruct-senalamiento {
+    font-size: 2.2vh;
+  }
+
+  .instruct-memoria {
+    font-size: 2.2vh;
+  }
+
+  .instruct-laberintos {
+    margin-top: 2.8rem;
+    font-size: 2.2vh;
+  }
+
+  .instruct-ordenamiento {
+    font-size: 2.2vh;
+    padding: 1rem 0.8rem;
+  }
+
+  .instruct-resta,
+  .instruct-suma {
+    font-size: 2.2vh;
+    padding: 1.3rem 0.8rem;
+  }
+
+  .instruct-semanticas,
+  .instruct-stroop_A,
+  .instruct-fluidez,
+  .instruct-juego_cartas,
+  .instruct-refranes,
+  .instruct-torres,
+  .instruct-metamemoria,
+  .instruct-stroop_B {
+    font-size: 2.2vh;
+  }
+
+  .img-senalamiento {
+    margin: 5% auto;
+  }
+
+  .img-semanticas {
+    width: 90%;
+  }
+
+  .img-suma {
+    margin: 5% 1%;
+  }
+
+  .img-cartas {
+    margin: 20% 1%;
+  }
+
+  .img-metamemoria {
+    margin-top: 3vh;
+  }
+
+  .progress span {
+    font-size: 22px;
+    font-weight: bolder;
+  }
+
+  .sujeto-info {
+    font-size: 2vh;
+  }
+
+  .sujeto-info__nombre b:first-child,
+  .sujeto-info__edad b:first-child,
+  .sujeto-info__escolaridad b:first-child {
+    font-size: 2.1vh;
+  }
+
+  .cinta-opciones__mostrar a,
+  .cinta-opciones__abrir a {
+    font-size: 2vh;
+  }
+
+  .cinta-opciones__iniciar button {
+    font-size: 2vh;
+  }
+
+  .cinta-opciones__adicional i {
+    font-size: 2vh;
+    height: 70%;
+  }
+
+  .time__title p,
+  .tiempo-promedio__title p {
+    font-size: 2.2vh;
+  }
+
+  .time__reloj b,
+  .tiempo-promedio__valor b {
+    font-size: 2.2vh;
+  }
+
+  .tips-prueba span {
+    font-size: 32px;
+  }
+
+  .opciones__salir a,
+  .opciones__siguiente a {
+    font-size: 2vh;
+    margin-top: 0.5rem;
+  }
+
+  .opciones__salir i,
+  .opciones__siguiente i {
+    font-size: 2vw;
+  }
+}

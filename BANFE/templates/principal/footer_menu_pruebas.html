@@ -1,0 +1,38 @@
+<div class="container inicio_pruebas">
+  <div class="row">
+    <div class="col inicio_pruebas__volver">
+      <a href="{% url 'pruebas' %}?pid={{id_proceeding|default:-1}}">
+        <i class="fa-solid fa-rotate-left"></i>
+        <span class="row">Volver</span>
+      </a>
+    </div>
+
+    <div class="col inicio_pruebas__select">
+      {% if prueba == "todas" %}
+      <select id="test_to_aply">
+        <option value="">Seleccione la área a evaluar</option>
+        <option selected value="allTests">Todas las cortezas</option>
+        <option value="copfaTests">Orbitofrontal + Prefrontal Anterior</option>
+        <option value="cofdoTests">Orbitofrontal + Dorsolateral</option>
+        <option value="cpfadoTests">Prefrontal Anterior + Dorsolateral</option>
+      </select>
+      {% endif %}
+    </div>
+    <div class="col inicio_pruebas__iniciar">
+      <a
+        id="startEvaluation"
+        onclick="sendTest()"
+        class="btn disabled"
+        href="#"
+      >
+        <i class="fa-solid fa-play"></i>
+        Iniciar evaluación
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  var prueba = "{{prueba}}";
+  alert("PRUEBA: " + prueba);
+</script>

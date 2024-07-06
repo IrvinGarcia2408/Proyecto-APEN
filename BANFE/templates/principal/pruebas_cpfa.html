@@ -1,0 +1,33 @@
+{% extends "principal/base.html" %} {% load static %} {% block content %}
+<h1 class="title_test">Corteza prefrontal anterior (CPFA)</h1>
+
+{% include "principal/barra_menu_pruebas.html" %}
+
+<div class="container pruebas_cpfa__panel">
+  <div class="row">
+    <div class="col pruebas_cpfa__clasif-sem">
+      <span>Clasificaciones semánticas</span>
+      <img
+        src="{% static 'images/clasif_sem-logo.png' %}"
+        alt="logo-clasif_sem"
+      />
+    </div>
+    <div class="col pruebas_cpfa__refranes">
+      <span>Seleccion de refranes</span>
+      <img
+        src="{% static 'images/refranes-logo.png' %}"
+        alt="logo-refranes"
+      />
+    </div>
+    <div class="col pruebas_cpfa__metamemoria">
+      <span>Metamemoria</span> 
+      <img
+        src="{% static 'images/metamemoria-logo.png' %}"
+        alt="logo-metamemoria"
+      />
+    </div>
+  </div>
+</div>
+
+  {% include "principal/footer_menu_pruebas.html" %} {% endblock %}
+</div>

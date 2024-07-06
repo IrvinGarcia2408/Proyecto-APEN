@@ -1,0 +1,325 @@
+{% extends "banfe-2/pruebas.html" %} {% load static %} {% block content %}
+
+<audio class="figure-sound" src="{% static 'audios/click.wav' %}"></audio>
+{% include "banfe-2/modal.html" %}
+<div class="stroop-prueba">
+  <div class="hoja-stroop">
+    {% csrf_token %}
+    <div>
+      <div class="lista-AB">
+        <div class="stroop-verde">
+          <span>ROJO</span>
+        </div>
+        <div class="stroop-rosa">
+          <span>CAFÉ</span>
+        </div>
+        <div class="stroop-rojo stroop-subrayado">
+          <span>VERDE</span>
+        </div>
+        <div class="stroop-cafe">
+          <span>AZUL</span>
+        </div>
+        <div class="stroop-azul">
+          <span>NEGRO</span>
+        </div>
+        <div class="stroop-subrayado">
+          <span>ROSA</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="lista-AB">
+        <div class="stroop-rojo">
+          <span>CAFÉ</span>
+        </div>
+        <div class="stroop-azul stroop-subrayado">
+          <span>VERDE</span>
+        </div>
+        <div class="stroop-cafe">
+          <span>ROSA</span>
+        </div>
+        <div class="stroop-verde stroop-subrayado">
+          <span>NEGRO</span>
+        </div>
+        <div>
+          <span>ROJO</span>
+        </div>
+        <div class="stroop-rosa stroop-subrayado">
+          <span>AZUL</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="lista-AB">
+        <div class="stroop-azul">
+          <span>AZUL</span>
+        </div>
+        <div class="stroop-cafe">
+          <span>CAFÉ</span>
+        </div>
+        <div class="stroop-rojo">
+          <span>ROJO</span>
+        </div>
+        <div class="stroop-verde">
+          <span>VERDE</span>
+        </div>
+        <div class="stroop-rosa">
+          <span>ROSA</span>
+        </div>
+        <div>
+          <span>NEGRO</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="lista-AB">
+        <div class="stroop-cafe stroop-subrayado">
+          <span>VERDE</span>
+        </div>
+        <div>
+          <span>ROJO</span>
+        </div>
+        <div class="stroop-verde stroop-subrayado">
+          <span>AZUL</span>
+        </div>
+        <div class="stroop-rojo">
+          <span>ROSA</span>
+        </div>
+        <div class="stroop-rosa stroop-subrayado">
+          <span>NEGRO</span>
+        </div>
+        <div class="stroop-azul">
+          <span>CAFÉ</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="lista-AB">
+        <div class="stroop-azul">
+          <span>NEGRO</span>
+        </div>
+        <div class="stroop-rosa stroop-subrayado">
+          <span>CAFÉ</span>
+        </div>
+        <div class="stroop-rojo">
+          <span>VERDE</span>
+        </div>
+        <div class="stroop-cafe stroop-subrayado">
+          <span>ROJO</span>
+        </div>
+        <div class="stroop-verde">
+          <span>AZUL</span>
+        </div>
+        <div class="stroop-subrayado">
+          <span>ROSA</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="lista-AB">
+        <div class="stroop-rosa">
+          <span>ROSA</span>
+        </div>
+        <div>
+          <span>NEGRO</span>
+        </div>
+        <div class="stroop-cafe">
+          <span>CAFÉ</span>
+        </div>
+        <div class="stroop-azul">
+          <span>AZUL</span>
+        </div>
+        <div class="stroop-rojo">
+          <span>ROJO</span>
+        </div>
+        <div class="stroop-verde">
+          <span>VERDE</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="lista-AB">
+        <div class="stroop-cafe stroop-subrayado">
+          <span>ROJO</span>
+        </div>
+        <div class="stroop-azul stroop-subrayado">
+          <span>CAFÉ</span>
+        </div>
+        <div class="stroop-rojo">
+          <span>VERDE</span>
+        </div>
+        <div class="stroop-subrayado">
+          <span>NEGRO</span>
+        </div>
+        <div class="stroop-verde">
+          <span>ROSA</span>
+        </div>
+        <div class="stroop-rosa stroop-subrayado">
+          <span>AZUL</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="lista-AB">
+        <div class="stroop-verde stroop-subrayado">
+          <span>AZUL</span>
+        </div>
+        <div class="stroop-rosa">
+          <span>CAFÉ</span>
+        </div>
+        <div class="stroop-azul stroop-subrayado">
+          <span>ROJO</span>
+        </div>
+        <div class="stroop-rojo">
+          <span>VERDE</span>
+        </div>
+        <div>
+          <span>ROSA</span>
+        </div>
+        <div class="stroop-cafe stroop-subrayado">
+          <span>NEGRO</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="lista-AB">
+        <div class="stroop-rojo">
+          <span>CAFÉ</span>
+        </div>
+        <div class="stroop-subrayado">
+          <span>VERDE</span>
+        </div>
+        <div class="stroop-azul">
+          <span>ROSA</span>
+        </div>
+        <div class="stroop-cafe stroop-subrayado">
+          <span>NEGRO</span>
+        </div>
+        <div class="stroop-verde stroop-subrayado">
+          <span>ROJO</span>
+        </div>
+        <div class="stroop-rosa">
+          <span>AZUL</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="lista-AB">
+        <div class="stroop-azul stroop-subrayado">
+          <span>ROJO</span>
+        </div>
+        <div class="stroop-rosa">
+          <span>CAFÉ</span>
+        </div>
+        <div class="stroop-subrayado">
+          <span>VERDE</span>
+        </div>
+        <div class="stroop-verde">
+          <span>AZUL</span>
+        </div>
+        <div class="stroop-rojo stroop-subrayado">
+          <span>NEGRO</span>
+        </div>
+        <div class="stroop-cafe">
+          <span>ROSA</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="lista-AB">
+        <div>
+          <span>NEGRO</span>
+        </div>
+        <div class="stroop-rosa">
+          <span>ROSA</span>
+        </div>
+        <div class="stroop-cafe">
+          <span>CAFÉ</span>
+        </div>
+        <div class="stroop-rojo">
+          <span>ROJO</span>
+        </div>
+        <div class="stroop-azul">
+          <span>AZUL</span>
+        </div>
+        <div class="stroop-verde">
+          <span>VERDE</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="lista-AB">
+        <div class="stroop-verde stroop-subrayado">
+          <span>ROSA</span>
+        </div>
+        <div class="stroop-cafe">
+          <span>NEGRO</span>
+        </div>
+        <div class="stroop-rojo">
+          <span>AZUL</span>
+        </div>
+        <div class="stroop-rosa stroop-subrayado">
+          <span>CAFÉ</span>
+        </div>
+        <div class="stroop-azul">
+          <span>VERDE</span>
+        </div>
+        <div class="stroop-subrayado">
+          <span>ROJO</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="lista-AB">
+        <div class="stroop-azul">
+          <span>AZUL</span>
+        </div>
+        <div class="stroop-cafe">
+          <span>CAFÉ</span>
+        </div>
+        <div class="stroop-rojo">
+          <span>ROJO</span>
+        </div>
+        <div class="stroop-verde">
+          <span>VERDE</span>
+        </div>
+        <div class="stroop-rosa">
+          <span>ROSA</span>
+        </div>
+        <div>
+          <span>NEGRO</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="lista-AB">
+        <div class="stroop-rosa stroop-subrayado">
+          <span>CAFÉ</span>
+        </div>
+        <div>
+          <span>VERDE</span>
+        </div>
+        <div class="stroop-azul stroop-subrayado">
+          <span>ROSA</span>
+        </div>
+        <div>
+          <span>NEGRO</span>
+        </div>
+        <div class="stroop-verde stroop-subrayado">
+          <span>ROJO</span>
+        </div>
+        <div class="stroop-rojo stroop-subrayado">
+          <span>AZUL</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  window.setTimeout(function () {
+    iniciarStroop("A");
+  }, 5000);
+</script>
+
+{% endblock %}

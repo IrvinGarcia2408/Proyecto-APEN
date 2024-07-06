@@ -1,0 +1,203 @@
+{% extends "banfe-2/base.html" %} {% load static %} {% block content %}
+
+<audio
+  class="alarma_sound"
+  src="{% static 'audios/tiempo_acabado.mp3' %}"
+></audio>
+
+<audio class="figure-sound" src="{% static 'audios/click.wav' %}"/></audio>
+
+{% include "banfe-2/modal.html" %}
+
+<div id="torres" class="panel-prueba">
+  <div class="row info-prueba">
+    <div class="col-sm-3 col-md-3 bg-light">
+      <div class="sujeto-info">{% include "banfe-2/info-sujeto.html" %}</div>
+      <div class="tips-prueba" style="height: 118vh;">
+        <span>Tips:</span>
+        {% include "banfe-2/tips.html" %}
+      </div>
+    </div>
+    <div class="col-sm-9 col-md-9 control">
+      <div class="progress">{% include "banfe-2/progress.html" %}</div>
+      <div class="video-torres">{% include "banfe-2/ventana.html" %}</div>
+      <div class="cinta-opciones">
+        <span id="progreso-torres"></span>
+        <div class="cinta-opciones__iniciar btn-iniciar">
+          <button id="inicio_torre" class="btn" onclick="iniciarTorres()">
+            <i class="fa-solid fa-flag-checkered"></i>
+            Iniciar Prueba
+          </button>
+        </div>
+        <div class="cinta-opciones__adicional">
+          <button id="parar_torre" onclick="pararTorres();" class="first_child btn" disabled>
+            <i class="fa-solid fa-stop"></i>
+          </button>
+          <button
+            id="siguiente_torre"
+            class="btn"
+            onclick="siguienteTorre()"
+            disabled
+          >
+            <i class="fa-solid fa-forward"></i>
+          </button>
+          <button
+            id="reiniciar_torre"
+            class="btn"
+            onclick="reiniciarTorres();"
+            disabled
+          >
+            <i class="fa-solid fa-arrow-rotate-left"></i>
+          </button>
+        </div>
+      </div>
+      <div class="row overflow-x">
+        <div id="reloj-torre-1" class="time">
+          <div class="time__title">
+            <p>Tiempo(s)</p>
+          </div>
+          <div class="time__reloj">
+            <b id="segundos_torres-1">0</b>
+          </div>
+        </div>
+        <div id="control-torre-1" class="lista-resultados row">
+          <div>
+            <button id="ac_res-torre-1" onclick="anotarTorre(-1,'movimiento')" disabled>
+              -
+            </button>
+            <button id="ac_sum-torre-1" class="torres_mas" onclick="anotarTorre(1,'movimiento')" disabled>
+              +
+            </button>
+          </div>
+          <div>
+            <button id="err_1_res-torre-1" class="torres_menos" onclick="anotarTorre(-1,'error_1')" disabled>
+              -
+            </button>
+            <button id="err_1_sum-torre-1" class="torres_mas" onclick="anotarTorre(1,'error_1')" disabled>
+              +
+            </button>
+          </div>
+          <div>
+            <button id="err_2_res-torre-1" class="torres_menos" onclick="anotarTorre(-1,'error_2')" disabled>
+              -
+            </button>
+            <button id="err_2_sum-torre-1" class="torres_mas" onclick="anotarTorre(1,'error_2')" disabled>
+              +
+            </button>
+          </div>
+          <div class="invisible">
+            <button>
+              -
+            </button>
+            <button>
+              +
+            </button>
+          </div>
+        </div>
+        <div id="resultados-torre-1" class="row score-4">
+          <div>
+            <span>Movimientos:</span>
+            <div class="score__valor">
+              <p id="mov-torre-1">0</p>
+            </div>
+          </div>
+          <div>
+            <span>Errores tipo 1:</span>
+            <div class="score__valor">
+              <p id="err_1-1">0</p>
+            </div>
+          </div>
+          <div>
+            <span>Errores tipo 2:</span>
+            <div class="score__valor">
+              <p id="err_2-1">0</p>
+            </div>
+          </div>
+          <div>
+            <span>Errores totales:</span>
+            <div class="score__valor">
+              <p id="err_total-1">0</p>
+            </div>
+          </div>
+        </div>
+      </div>
+          <div id="reloj-torre-2" class="time apagado">
+            <div class="time__title">
+              <p>Tiempo(s)</p>
+            </div>
+            <div class="time__reloj">
+              <b id="segundos_torres-2">0</b>
+            </div>
+          </div>
+          <div id="control-torre-2" class="lista-resultados row apagado">
+            <div>
+              <button id="ac_res-torre-2" onclick="anotarTorre(-1,'movimiento')" disabled>
+                -
+              </button>
+              <button id="ac_sum-torre-2" class="torres_mas" onclick="anotarTorre(1,'movimiento')" disabled>
+                +
+              </button>
+            </div>
+            <div>
+              <button id="err_1_res-torre-2" class="torres_menos" onclick="anotarTorre(-1,'error_1')" disabled>
+                -
+              </button>
+              <button id="err_1_sum-torre-2" class="torres_mas" onclick="anotarTorre(1,'error_1')" disabled>
+                +
+              </button>
+            </div>
+            <div>
+              <button id="err_2_res-torre-2" class="torres_menos" onclick="anotarTorre(-1,'error_2')" disabled>
+                -
+              </button>
+              <button id="err_2_sum-torre-2" class="torres_mas" onclick="anotarTorre(1,'error_2')" disabled>
+                +
+              </button>
+            </div>
+            <div class="invisible"></div>
+          </div>
+          <div id="resultados-torre-2" class="row score-4 apagado">
+            <div>
+              <span>Movimientos:</span>
+              <div class="score__valor">
+                <p id="mov-torre-2">0</p>
+              </div>
+            </div>
+            <div>
+              <span>Errores tipo 1:</span>
+              <div class="score__valor">
+                <p id="err_1-2">0</p>
+              </div>
+            </div>
+            <div>
+              <span>Errores tipo 2:</span>
+              <div class="score__valor">
+                <p id="err_2-2">0</p>
+              </div>
+            </div>
+            <div>
+              <span>Errores totales:</span>
+              <div class="score__valor">
+                <p id="err_total-2">0</p>
+              </div>
+            </div>
+          </div>
+          <div class="row footer-menu">
+            {% include "banfe-2/menu-footer.html" %}
+          </div>
+        </div>
+      </div>
+
+      <script>
+        $(document).ready(function () {
+          console.log("Accediendo...");
+          setInterval(function () {
+            mostrarTorres();
+          }, 500);
+        });
+      </script>
+
+      {% endblock %}
+    </div>
+  </div>
+</div>

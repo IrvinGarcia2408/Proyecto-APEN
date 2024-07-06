@@ -1,0 +1,38 @@
+{% extends "principal/base.html" %} {% load static %} {% block content %}
+<h1 class="title_cortex">Determine la corteza que desea evaluar</h1>
+<div class="cortezas">
+  <div class="cof_cpfm">
+    <a
+      href="{% url 'pruebas_cof' %}?prueba=cof&pid={{id_proceeding|default:-1}}"
+    >
+      <img src="{% static 'images/COF.png' %}" alt="img-cof" />
+      Corteza orbitofrontal (COF)
+    </a>
+  </div>
+  <div class="cpfdl">
+    <a
+      href="{% url 'pruebas_cpfdl' %}?prueba=cpfdl&pid={{id_proceeding|default:-1}}"
+    >
+      <img src="{% static 'images/CPFDL.png' %}" alt="img-cpfdl" />
+      Corteza prefrontal dorsolateral (CPFDL)
+    </a>
+  </div>
+  <div class="cpfa">
+    <a
+      href="{% url 'pruebas_cpfa' %}?prueba=cpfa&pid={{id_proceeding|default:-1}}"
+    >
+      <img src="{% static 'images/CPFA.png' %}" alt="img-cpfa" />
+      Corteza prefrontal anterior (CPFA)
+    </a>
+  </div>
+  <div class="todas">
+    <a
+      href="{% url 'pruebas_todas' %}?prueba=todas&pid={{id_proceeding|default:-1}}"
+    >
+      <img src="{% static 'images/cortezas.png' %}" alt="img-cortezas" />
+      Todas las cortezas cerebrales
+    </a>
+  </div>
+</div>
+<span class="msg_bug">No se pueden aplicar pruebas en este dispositivo</span>
+{% endblock %}

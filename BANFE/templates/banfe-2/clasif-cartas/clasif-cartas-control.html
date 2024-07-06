@@ -1,0 +1,103 @@
+{% extends "banfe-2/base.html" %} {% load static %} {% block content %}
+
+<audio
+  class="alarma_sound"
+  src="{% static 'audios/tiempo_acabado.mp3' %}"
+></audio>
+<audio class="figure-sound" src="{% static 'audios/click.wav' %}"></audio>
+
+{% include "banfe-2/modal.html" %}
+<div id="clasif-cartas" class="panel-prueba">
+  <div class="row info-prueba">
+    <div class="col-sm-3 col-md-3 bg-light">
+      <div class="sujeto-info">{% include "banfe-2/info-sujeto.html" %}</div>
+      <div class="tips-prueba">
+        <span>Tips:</span>
+        {% include "banfe-2/tips.html" %}
+      </div>
+    </div>
+    <div class="col-sm-9 col-md-9 control">
+      <div class="progress">{% include "banfe-2/progress.html" %}</div>
+      <div class="video-prueba">{% include "banfe-2/ventana.html" %}</div>
+      <div class="cinta-opciones">
+        <div class="cinta-opciones__mostrar">
+          <a class="btn" href="{% url 'clasif_cartas' %}" target="_Blank">
+            <i class="fa-solid fa-folder-open"></i>
+            Abrir prueba
+          </a>
+        </div>
+        <div class="cinta-opciones__iniciar">
+          <button id="inicio" class="btn" onclick="window.inicio();">
+            <i class="fa-solid fa-flag-checkered"></i>
+            Iniciar Prueba
+          </button>
+        </div>
+        <div class="cinta-opciones__adicional">
+          <button class="first_child btn invisible"></button>
+          <button class="btn invisible"></button>
+          <button id="reinicio" class="btn" onclick="reinicio();" disabled>
+            <i class="fa-solid fa-arrow-rotate-left"></i>
+          </button>
+        </div>
+      </div>
+      <div class="time">
+        <div class="time__title">
+          <p>Tiempo(s)</p>
+        </div>
+        <div class="time__reloj">
+          <b id="segundos">0</b>
+        </div>
+      </div>
+      <div id="score">
+        <div class="score-3">
+          <div>
+            <span class="clasif_cartas__score">Aciertos</span>
+            <div class="score__valor">
+              <p id="aciertos_cards_sorting">{{aciertos}}</p>
+            </div>
+          </div>
+          <div>
+            <span class="clasif_cartas__score">Errores</span>
+            <div class="score__valor">
+              <p id="errores_cards_sorting">{{errores}}</p>
+            </div>
+          </div>
+          <div>
+            <span class="clasif_cartas__score">Perseveraciones</span>
+            <div class="score__valor">
+              <p id="perseveraciones_cards_sorting">{{perseveraciones}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="score-3">
+          <div>
+            <span class="clasif_cartas__score">Errores de mantenimiento</span>
+            <div class="score__valor">
+              <p id="err-mto_cards_sorting">{{error_mantenimiento}}</p>
+            </div>
+          </div>
+          <div class="score__pers-dif">
+            <span class="clasif_cartas__score">Perseveraciones diferidas</span>
+            <div class="score__valor">
+              <p id="pers-dif_cards_sorting">{{persev_diferidas}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row footer-menu">
+        {% include "banfe-2/menu-footer.html" %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+    console.log("Accediendo...");
+    setInterval(function () {
+      $("#score").load(" #score");
+    }, 1000);
+  });
+</script>
+
+{% endblock %}

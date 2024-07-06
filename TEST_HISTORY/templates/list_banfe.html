@@ -1,0 +1,54 @@
+{% extends "principal/base.html" %} {% load static %} {% block content %}
+
+<!--   DATATABLES.JS   -->
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+
+<link
+  rel="stylesheet"
+  href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css"
+/>
+
+<link rel="stylesheet" href="{% static 'styles/test_history.css' %}" />
+
+<div class="container body-page">
+  <h1 class="title-list-expediente">MIS PRUEBAS</h1>
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <div class="table-responsive bg-light p-5">
+        <table id="datatable-tests" class="table table-bordered">
+          <thead class="thead-tests">
+            <tr>
+              <th class="centered">Nombre</th>
+              <th class="centered">Orbitomedial</th>
+              <th class="centered">Prefrontal Anterior</th>
+              <th class="centered">Dorsolateral</th>
+              <th class="centered">Total BANFE</th>
+              <th class="centered">Opciones</th>
+              <th class="centered">
+                <input type="checkbox" id="cbox_all" value="Si" />
+                Exportar
+              </th>
+            </tr>
+          </thead>
+          <tbody id="tableBody_tests"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="box-btn_export-tests">
+      <div class="export-tests btn mt-2">
+        <button
+          id="exportSelectedTests"
+          data-export-url="{% url 'export_selected_csv' %}"
+        >
+          <i class="fa-solid fa-folder-open"></i>
+          EXPORTAR PRUEBAS
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{% static 'js/list_banfe.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,128 @@
+{% extends "banfe-2/base.html" %} {% load static %} {% block content %} 
+
+<audio
+  class="alarma_sound"
+  src="{% static 'audios/tiempo_acabado.mp3' %}"
+></audio>
+<audio class="figure-sound" src="{% static 'audios/click.wav' %}"/></audio>
+
+{% include "banfe-2/modal.html" %}
+<div class="panel-prueba">
+  <div class="row info-prueba">
+    <div class="col-sm-3 col-md-3 bg-light">
+      <div class="sujeto-info">{% include "banfe-2/info-sujeto.html" %}</div>
+      <div class="tips-prueba">
+        <span>Tips:</span>
+        {% include "banfe-2/tips.html" %}
+      </div>
+    </div>
+    <div class="col-sm-9 col-md-9 control">
+      <div class="progress">{% include "banfe-2/progress.html" %}</div>
+      <div class="video-refranes">{% include "banfe-2/ventana.html" %}</div>
+      <div class="cinta-opciones cinta-refranes">
+        <div class="cinta-opciones__mostrar">
+          <a class="btn" href="{% url 'refranes' %}" target="_Blank">
+            <i class="fa-solid fa-folder-open"></i>
+            Abrir prueba
+          </a>
+        </div>
+        <div class="cinta-opciones__iniciar">
+          <button id="inicio_refranes" class="btn" onclick="inicioCronoRef();">
+            <i class="fa-solid fa-flag-checkered"></i>
+            Iniciar Prueba
+          </button>
+        </div>
+        <div class="cinta-opciones__adicional">
+          <button class="first_child btn invisible" disabled>
+            <i class="fa-solid fa-play"></i>
+          </button>
+          <button class="btn invisible"></button>
+          <button
+            id="reiniciar_refranes"
+            class="btn"
+            onclick="reinicioCronoRef();"
+            disabled
+          >
+            <i class="fa-solid fa-arrow-rotate-left"></i>
+          </button>
+        </div>
+      </div>
+      <div class="row overflow-x">
+        <div class="time">
+          <div class="time__title">
+            <p>Tiempo(s)</p>
+          </div>
+          <div class="time__reloj">
+            <b id="segundos_refranes">0</b>
+          </div>
+        </div>
+        <div class="row panel-refranes">
+          <div class="row score-3">
+            <div>
+              <span>Refrán 1:</span>
+              <div class="score__valor">
+                <p id="pregunta-1">{{refran_p1}}</p>
+              </div>
+            </div>
+            <div>
+              <span>Refrán 2:</span>
+              <div class="score__valor">
+                <p id="pregunta-2">{{refran_p2}}</p>
+              </div>
+            </div>
+            <div>
+              <span>Refrán 3:</span>
+              <div class="score__valor">
+                <p id="pregunta-3">{{refran_p3}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="row score-2">
+            <div>
+              <span>Refrán 4:</span>
+              <div class="score__valor">
+                <p id="pregunta-4">{{refran_p4}}</p>
+              </div>
+            </div>
+            <div>
+              <span>Refrán 5:</span>
+              <div class="score__valor">
+                <p id="pregunta-5">{{refran_p5}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="row score-1">
+            <div>
+              <span>Aciertos:</span>
+              <div class="score__valor">
+                <p id="refranes-resultados">{{aciertos_refranes}}</p>
+                <b class="apagado" id="fin_refranes">{{terminar_refran}}</b>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row footer-menu">
+        {% include "banfe-2/menu-footer.html" %}
+      </div>
+
+      <script>
+        $(document).ready(function () {
+          console.log("Accediendo...");
+          setInterval(function () {
+            $("#pregunta-1").load(" #pregunta-1");
+            $("#pregunta-2").load(" #pregunta-2");
+            $("#pregunta-3").load(" #pregunta-3");
+            $("#pregunta-4").load(" #pregunta-4");
+            $("#pregunta-5").load(" #pregunta-5");
+            $("#refranes-resultados").load(" #refranes-resultados");
+            $("#fin_refranes").load(" #fin_refranes");
+          }, 1000);
+        });
+      </script>
+
+      {% endblock %}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,232 @@
+{% extends "banfe-2/pruebas.html" %} {% load static %} {% block content %}
+
+<audio
+  class="alarma_sound"
+  src="{% static 'audios/tiempo_acabado.mp3' %}"
+></audio>
+<audio class="figure-sound" src="{% static 'audios/click.wav' %}"></audio>
+
+{% include "banfe-2/modal.html" %}
+<div class="refranes-prueba">
+  <div class="hoja-refranes">
+    {% csrf_token %}
+
+    <div class="box-refran">
+      <span>1. A caballo regalado no se le ve el colmillo</span>
+      <div class="box-opciones">
+        <div>
+          <input
+            type="checkbox"
+            id="a_1"
+            name="a_1"
+            value="a"
+            onclick="elegirRefran('a_1','b_1','c_1',1)"
+            disabled
+          />
+          <label>a) Cuando las cosas no nos cuestan no las valoramos</label>
+        </div>
+        <div>
+          <input
+            type="checkbox"
+            id="b_1"
+            name="b_1"
+            value="b"
+            onclick="elegirRefran('b_1','a_1','c_1',1)"
+            disabled
+          />
+          <label>b) Los regalos son buenos por sí mismos</label>
+        </div>
+        <div>
+          <input
+            type="checkbox"
+            id="c_1"
+            name="c_1"
+            value="c"
+            onclick="elegirRefran('c_1','b_1','a_1',1)"
+            disabled
+          />
+          <label>c) No todos los regalos son buenos</label>
+        </div>
+      </div>
+    </div>
+    <div class="box-refran">
+      <span>2. Una golondrina no hace verano</span>
+      <div class="box-opciones">
+        <div>
+          <input
+            type="checkbox"
+            id="a_2"
+            name="a_2"
+            value="a"
+            onclick="elegirRefran('a_2','b_2','c_2',2)"
+            disabled
+          />
+          <label
+            >a) No importa el tamaño de los problemas siempre hay que tener
+            cuidado</label
+          >
+        </div>
+        <div>
+          <input
+            type="checkbox"
+            id="b_2"
+            name="b_2"
+            value="b"
+            onclick="elegirRefran('b_2','a_2','c_2',2)"
+            disabled
+          />
+          <label>b) Los problemas más pequeños son los más peligrosos</label>
+        </div>
+        <div>
+          <input
+            type="checkbox"
+            id="c_2"
+            name="c_2"
+            value="c"
+            onclick="elegirRefran('c_2','b_2','a_2',2)"
+            disabled
+          />
+          <label>c) A veces exageremos algo pequeño</label>
+        </div>
+      </div>
+    </div>
+    <div class="box-refran">
+      <span>3. Camarón que se duerme se lo lleva la corriente</span>
+      <div class="box-opciones">
+        <div>
+          <input
+            type="checkbox"
+            id="a_3"
+            name="a_3"
+            value="a"
+            onclick="elegirRefran('a_3','b_3','c_3',3)"
+            disabled
+          />
+          <label>a) Las oportunidades de la vida son evidentes</label>
+        </div>
+        <div>
+          <input
+            type="checkbox"
+            id="b_3"
+            name="b_3"
+            value="b"
+            onclick="elegirRefran('b_3','a_3','c_3',3)"
+            disabled
+          />
+          <label
+            >b) Hay pocas oportunidades en la vida y debemos
+            aprovecharlas</label
+          >
+        </div>
+        <div>
+          <input
+            type="checkbox"
+            id="c_3"
+            name="c_3"
+            value="c"
+            onclick="elegirRefran('c_3','b_3','a_3',3)"
+            disabled
+          />
+          <label
+            >c) Hay que dejar que las oportunidades vengan a nosotros</label
+          >
+        </div>
+      </div>
+    </div>
+    <div class="box-refran">
+      <span>4. Al que madruga Dios le ayuda</span>
+      <div class="box-opciones">
+        <div>
+          <input
+            type="checkbox"
+            id="a_4"
+            name="a_4"
+            value="a"
+            onclick="elegirRefran('a_4','b_4','c_4',4)"
+            disabled
+          />
+          <label>a) Si se pone suficiente empeño las cosas salen bien</label>
+        </div>
+        <div>
+          <input
+            type="checkbox"
+            id="b_4"
+            name="b_4"
+            value="b"
+            onclick="elegirRefran('b_4','a_4','c_4',4)"
+            disabled
+          />
+          <label>b) El que empieza a trabajar temprano le va mejor</label>
+        </div>
+        <div>
+          <input
+            type="checkbox"
+            id="c_4"
+            name="c_4"
+            value="c"
+            onclick="elegirRefran('c_4','b_4','a_4',4)"
+            disabled
+          />
+          <label>c) En la mañana las cosas salen mejor</label>
+        </div>
+      </div>
+    </div>
+    <div class="box-refran">
+      <span>5. En boca cerrada no entran moscas</span>
+      <div class="box-opciones">
+        <div>
+          <input
+            type="checkbox"
+            id="a_5"
+            name="a_5"
+            value="a"
+            onclick="elegirRefran('a_5','b_5','c_5',5)"
+            disabled
+          />
+          <label>a) Las personas discretas son reservadas</label>
+        </div>
+        <div>
+          <input
+            type="checkbox"
+            id="b_5"
+            name="b_5"
+            value="b"
+            onclick="elegirRefran('b_5','a_5','c_5',5)"
+            disabled
+          />
+          <label>b) Las personas prudentes son bien recibidas</label>
+        </div>
+        <div>
+          <input
+            type="checkbox"
+            id="c_5"
+            name="c_5"
+            value="c"
+            onclick="elegirRefran('c_5','b_5','a_5',5)"
+            disabled
+          />
+          <label>c) Siempre hay que decir la verdad</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="btn-terminar">
+    <button
+      class="btn"
+      id="btn-terminar_refranes"
+      onclick="terminarRefranes();"
+      disabled
+    >
+      Listo
+    </button>
+  </div>
+</div>
+
+<script>
+  window.setTimeout(function () {
+    iniciaRefranes();
+  }, 5000);
+</script>
+
+{% endblock %}

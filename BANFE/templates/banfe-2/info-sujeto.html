@@ -1,0 +1,20 @@
+<div class="sujeto-info__nombre">
+  <b>Nombre:</b>
+  <b
+    >{{proceeding.name}} {{proceeding.first_last_name}}
+    {{proceeding.second_last_name}}</b
+  >
+</div>
+<div class="sujeto-info__edad">
+  <b>Edad:</b>
+  <b id="test_age">{{age}}</b>
+</div>
+<div class="sujeto-info__escolaridad">
+  <b>Escolaridad:</b>
+  <b>{{proceeding.scholarship}}</b>
+</div>
+
+<script>
+  var age = {{age}};
+  var school = {{proceeding.years_study}};
+</script>

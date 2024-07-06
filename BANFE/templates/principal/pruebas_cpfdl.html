@@ -1,0 +1,97 @@
+{% extends "principal/base.html" %} {% load static %} {% block content %}
+
+<h1 class="title_test">Corteza prefrontal dorsolateral (CPFDL)</h1>
+
+{% include "principal/barra_menu_pruebas.html" %}
+
+<div
+  id="carouselExampleControls"
+  class="carousel slide vh-80"
+  data-bs-ride="carousel"
+>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <div class="pruebas_cpfdl">
+        <div class="pruebas_cpfdl__laberintos">
+          <span>Laberintos</span>
+          <img
+            src="{% static 'images/laberintos-logo.png' %}"
+            alt="logo-laberintos"
+          />
+        </div>
+        <div class="pruebas_cpfdl__senalamiento">
+          <span>Señalamiento autodirigido</span>
+          <img src="{% static 'images/senalamiento-logo.png' %}" alt="cpfdl" />
+        </div>
+        <div class="pruebas_cpfdl__ordenamiento">
+          <span>Ordenamiento alfabético de palabras</span>
+          <img
+            src="{% static 'images/ordenamiento-logo.png' %}"
+            alt="logo-ordenamiento"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="pruebas_cpfdl">
+        <div class="pruebas_cpfdl__resta">
+          <span>Resta consecutiva</span>
+          <img src="{% static 'images/resta-logo.png' %}" alt="logo-resta" />
+        </div>
+        <div class="pruebas_cpfdl__suma">
+          <span>Suma consecutiva</span>
+          <img src="{% static 'images/suma-logo.png' %}" alt="logo-suma" />
+        </div>
+        <div class="pruebas_cpfdl__clasif-cartas">
+          <span>Clasificación de cartas</span>
+          <img
+            src="{% static 'images/clasif_cartas-logo.png' %}"
+            alt="logo-clasif_cartas"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="pruebas_cpfdl">
+        <div class="pruebas_cpfdl__fluidez">
+          <span>Fluidez verbal</span>
+          <img
+            src="{% static 'images/fluidez-logo.png' %}"
+            alt="logo-fluidez"
+          />
+        </div>
+        <div class="pruebas_cpfdl__torres">
+          <span>Torres de Hanoi</span>
+          <img src="{% static 'images/torres-logo.png' %}" alt="logo-torres" />
+        </div>
+        <div class="pruebas_cpfdl__memoria">
+          <span>Memoria de trabajo visoespacial</span>
+          <img
+            src="{% static 'images/memoria-logo.png' %}"
+            alt="logo-memoria"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <button
+    class="carousel-control-prev"
+    type="button"
+    data-bs-target="#carouselExampleControls"
+    data-bs-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button
+    class="carousel-control-next"
+    type="button"
+    data-bs-target="#carouselExampleControls"
+    data-bs-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+{% include "principal/footer_menu_pruebas.html" %} {% endblock %}

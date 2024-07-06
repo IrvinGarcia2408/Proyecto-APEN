@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css?family=Monserrat|Monserrat+Alternates|Poppins&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#logo{
+    padding-top: 0.5rem;
+    text-decoration: none;
+  }
+  
+  #logo-icono{
+    padding-left: 2rem;
+    text-decoration: none;
+  }
+
+.menu{
+    position: fixed;
+    margin-top: 4.1rem;
+    height: 100%;
+    width: max-content;
+    padding-right: 2rem;
+    
+}
+
+.menu ul li a{   
+    display: inline-block;
+    text-decoration: none;
+    color: rgba(230, 230, 230, 0.9);
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid rgba(100, 100, 100, 0.3);
+}
+
+.icono{
+  height: 2rem; 
+  display: inline-block; 
+}
+ 
+footer{
+    line-height: 80px;
+    color: white;  
+    position: absolute;
+    padding-left: 3.8rem;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+  }

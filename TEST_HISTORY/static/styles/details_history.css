@@ -1,0 +1,90 @@
+.contenido {
+    height: 90%;
+}
+
+.header-title {
+    text-align: center;
+}
+
+.centered {
+    text-align: center;
+}
+
+.bg-results {
+    background: #e4e2af;
+}
+
+.details-table .locked-cell {
+    background-color: grey;
+}
+
+.details-table > th, tr, td {
+    border: 2px solid #000;
+}
+
+.details-info {
+    display: grid;
+    grid-template-columns: .5fr 1fr .5fr;
+    gap: 10px 20px;
+    margin-bottom: 20px;
+  }
+
+  .details-info span {
+    padding: 5px;
+    border-radius: 4px;
+  }
+
+.details-info span {
+    font-size: 2.5vh;
+    font-weight: bolder;
+    color: #006414;
+}
+
+.info-value {
+    font-size: 2.2vh !important;
+    color: #000 !important;
+    font-weight: normal !important;
+}
+
+.export-resume {
+    margin-left: 30%;
+    margin-top: 1vh;
+    margin-bottom: 2vh;
+  }
+
+.btn-export {
+    width: 12vw;
+    background: #009929;
+    color: #fff;
+    border: none;
+    font-size: 2vh;
+    font-weight: bold;
+  }
+  
+.cancel-details {
+    margin-left: 5%;
+    margin-top: 1vh;
+    margin-bottom: 2vh;
+  }
+  
+.btn-cancel {
+    width: 12vw;
+    background: #f12400;
+    color: #fff;
+    border: none;
+    font-size: 2vh;
+    font-weight: bold;
+  }
+  
+.btn-export:hover,
+.btn-export:hover > a {
+    background: #1c9422cc;
+    color: rgb(220, 253, 38);
+  }
+  
+.btn-cancel:hover,
+.btn-cancel:hover > a {
+    background: #c51e00;
+    color: rgb(220, 253, 38);
+}
+  

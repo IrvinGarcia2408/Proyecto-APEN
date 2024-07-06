@@ -1,0 +1,1352 @@
+@import url("https://fonts.googleapis.com/css?family=Monserrat|Monserrat+Alternates|Poppins&display=swap");
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 35vh; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 2vh;
+  border: 1px solid #888;
+  width: 20%;
+  text-align: center;
+  height: fit-content;
+  border-radius: 30px;
+  font-size: 2.2vh;
+  font-weight: 600;
+}
+
+.btnModal {
+  width: 40%;
+  height: 2rem;
+  margin: 0 auto;
+  background: #64c27b;
+  font-size: 2vh;
+  font-weight: bold;
+  color: #006414;
+  border: none;
+  border-radius: 20px;
+}
+
+.btnModal:hover {
+  background: #008259;
+  color: rgb(255, 255, 200);
+}
+
+.cortezas {
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 2;
+  width: 90%;
+  height: 60%;
+  margin: 0 auto;
+}
+
+.msg_bug {
+  display: none;
+}
+
+.cortezas > div {
+  width: 45%;
+  height: 50%;
+  text-align: center;
+  padding: 0;
+  margin: 3vh 1vw;
+}
+
+.cof_cpfm {
+  margin: 0.5rem 1.8rem 0.2rem 4rem;
+}
+
+.cpfdl {
+  margin: 0.5rem 4rem 0.2rem 1.8rem;
+}
+
+.cpfa {
+  margin: 0.2rem 1.8rem 0.5rem 4rem;
+}
+
+.todas {
+  margin: 0.2rem 4rem 0.5rem 1.8rem;
+}
+
+.cortezas a {
+  font-size: 16px;
+  font-weight: bold;
+  color: #006414;
+  text-decoration: none;
+  text-align: center;
+  padding-bottom: 0.6rem;
+}
+
+.cortezas img {
+  display: block;
+  margin: 0.4rem auto;
+  width: 15rem;
+  height: 8rem;
+}
+
+.cortezas a:hover {
+  background: rgb(255, 255, 200);
+}
+
+.title_cortex {
+  text-align: center;
+  font-size: 3.5vh;
+  margin-top: 1rem;
+  font-weight: bolder;
+}
+
+/*  Estilos de barra de búsqueda */
+.tablero {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-grow: 2;
+  width: 90%;
+  height: calc(100%-95%);
+  margin: 0 auto;
+}
+
+.tablero > div {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+}
+
+.bus_ind {
+  width: 30%;
+  height: 95%;
+  margin: 0rem 0.5rem;
+  background: #a9e159;
+  padding: 1.8vh 1.5vw;
+  border-radius: 15px;
+  border: 1px solid #006414;
+}
+
+.bus_ind__input_sujeto {
+  margin-bottom: 0.6rem;
+}
+
+.bus_gen {
+  display: flex;
+  flex-direction: row;
+  width: 30%;
+  height: 90%;
+  margin: 0 0.5rem 0 0;
+  padding: 1vh 1.5vw;
+  background: #a9e159;
+  border-radius: 15px;
+  border: 1px solid #006414;
+}
+
+.bus_gen__input_sujeto {
+  margin-top: 0.6rem;
+}
+
+.tablero span {
+  font-size: 13px;
+  font-weight: bold;
+  color: #006414;
+}
+
+.bus_ind select,
+.bus_ind input {
+  font-size: 12px;
+  width: 80%;
+}
+
+.bus_gen__input_filtro {
+  width: 100%;
+}
+
+.bus_gen select {
+  font-size: 12px;
+  width: 64%;
+}
+
+.bus_gen__input_filtro select {
+  width: 72%;
+}
+
+.btn-search {
+  width: 30%;
+  margin: 2% 0;
+  padding-left: 0.28vw;
+  background: #64c27b;
+  border: 1px solid #006414;
+  border-radius: 9px;
+}
+
+.btn-search button {
+  font-size: 1vh;
+  font-weight: bolder;
+  color: #006414;
+}
+
+.btn-search button > i {
+  color: #006414;
+  font-size: 0.1vh;
+  padding-right: 0.3vw;
+}
+
+.btn-search:hover {
+  background: #008259;
+  color: rgb(255, 255, 200);
+}
+
+.btn-search button:hover > i,
+.btn-search button:hover {
+  color: rgb(255, 255, 200);
+}
+
+.title_test {
+  text-align: center;
+  font-size: 22px;
+  margin-top: 1rem;
+  font-weight: bolder;
+}
+
+.inicio_pruebas__volver {
+  width: 10%;
+}
+
+.inicio_pruebas__volver a {
+  text-decoration: none;
+  color: #006414;
+}
+
+.inicio_pruebas__volver i {
+  font-size: 25px;
+  margin-left: 0.8rem;
+}
+
+.inicio_pruebas__volver a > span {
+  font-size: 15px;
+  color: #006414;
+  font-weight: bolder;
+  margin-left: 0.1rem;
+}
+
+.inicio_pruebas__volver a:hover > span,
+.inicio_pruebas__volver a:hover > i {
+  color: rgb(255, 255, 200);
+}
+
+.inicio_pruebas__select {
+  height: 6.5vh;
+  padding-left: 5%;
+  padding-top: 0.5vh;
+  width: 30%;
+}
+
+.inicio_pruebas__select select {
+  color: #006414;
+  font-weight: bold;
+  text-align: center;
+}
+
+.inicio_pruebas__iniciar {
+  height: 6.5vh;
+  width: 30%;
+  margin-left: 1rem;
+  padding-top: 0.5vh;
+}
+
+.inicio_pruebas__iniciar a,
+.inicio_pruebas__select select {
+  background: #64c27b;
+  font-size: 2vh;
+  width: 100%;
+  height: 95%;
+  font-weight: bolder;
+  color: #006414;
+}
+
+.inicio_pruebas__iniciar a > i {
+  margin-right: 1vw;
+}
+
+.inicio_pruebas__iniciar a:hover {
+  background: #008259;
+  color: rgb(255, 255, 200);
+}
+
+.inicio_pruebas__iniciar a:hover > i {
+  color: rgb(255, 255, 200);
+}
+
+.inicio_pruebas__iniciar a.disabled {
+  display: none;
+}
+
+/* Estilos pruebas generales */
+
+.carousel {
+  margin-top: 0;
+  height: fit-content;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(100%);
+  width: 3rem;
+  height: 3rem;
+}
+
+.pruebas_cpfdl,
+.pruebas_banfe {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-grow: 2;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.pruebas_cof__laberintos,
+.pruebas_cof__stroopA,
+.pruebas_cof__cartas,
+.pruebas_cof__stroopB,
+.pruebas_cpfa__clasif-sem,
+.pruebas_cpfa__refranes,
+.pruebas_cpfa__metamemoria,
+.pruebas_cpfdl > div,
+.pruebas_banfe > div {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+  background: #dbf8dc;
+  border-radius: 30px;
+  border: 1px solid #008259;
+}
+
+.pruebas_cof__laberintos span,
+.pruebas_cof__stroopA span,
+.pruebas_cof__cartas span,
+.pruebas_cof__stroopB span,
+.pruebas_cpfa__clasif-sem span,
+.pruebas_cpfa__refranes span,
+.pruebas_cpfa__metamemoria span,
+.pruebas_cpfdl span,
+.pruebas_banfe span,
+.pruebas_banfe label {
+  font-size: 3vh;
+  font-weight: bold;
+  color: #006414;
+  text-align: center;
+  padding-bottom: 0.6rem;
+}
+
+/* Estilos Pruebas en COF   */
+.pruebas_cof__panel {
+  margin: 2.5rem auto 1.5rem;
+}
+
+.pruebas_cof__laberintos,
+.pruebas_cof__stroopA,
+.pruebas_cof__cartas,
+.pruebas_cof__stroopB {
+  margin: 0 0.5rem;
+  padding: 0.8rem;
+}
+
+.pruebas_cof__laberintos img,
+.pruebas_cof__stroopA img,
+.pruebas_cof__cartas img,
+.pruebas_cof__stroopB img {
+  display: block;
+  margin: 0 auto;
+}
+
+.pruebas_cof__laberintos img {
+  width: 8rem;
+  height: 8rem;
+}
+
+.pruebas_cof__stroopA img {
+  width: 20rem;
+  height: 8rem;
+  margin-top: 0.4rem;
+}
+
+.pruebas_cof__cartas img {
+  width: 22rem;
+  height: 8rem;
+  margin-top: 0.4rem;
+}
+
+.pruebas_cof__clasif-cartas img {
+  width: 20rem;
+  height: 8rem;
+}
+
+.pruebas_cof__stroopB img {
+  width: 12rem;
+  height: 8rem;
+}
+
+/* Estilos Pruebas en CPFDL*/
+.pruebas_cpfdl {
+  margin: 1rem auto;
+}
+
+.pruebas_cpfdl > div {
+  margin: 0 0.5rem;
+  padding: 0.8rem;
+  width: 30%;
+  height: 14rem;
+}
+
+.pruebas_cpfdl > .pruebas_cpfdl__laberintos,
+.pruebas_cpfdl > .pruebas_cpfdl__senalamiento,
+.pruebas_cpfdl > .pruebas_cpfdl__ordenamiento,
+.pruebas_cpfdl > .pruebas_cpfdl__resta {
+  margin: 0 0.5rem;
+  padding: 0.8rem;
+  width: 30%;
+  height: 100%;
+}
+
+.pruebas_cpfdl > div > img {
+  display: block;
+  margin: 0 auto;
+  width: 11rem;
+}
+
+.pruebas_cpfdl__senalamiento > img,
+.pruebas_cpfdl__suma > img,
+.pruebas_cpfdl__resta > img,
+.pruebas_cpfdl__torres > img,
+.pruebas_cpfdl__clasif-cartas > img {
+  height: 100%;
+}
+
+.pruebas_cpfdl > .pruebas_cpfdl__laberintos img {
+  height: 10rem;
+}
+
+.pruebas_cpfdl > .pruebas_cpfdl__resta img {
+  height: 9.8rem;
+}
+.pruebas_cpfdl > .pruebas_cpfdl__senalamiento img {
+  height: 10.2rem;
+}
+
+.pruebas_cpfdl > .pruebas_cpfdl__ordenamiento img {
+  height: 8.5rem;
+}
+
+.pruebas_cpfdl > .pruebas_cpfdl__fluidez img {
+  height: 10rem;
+}
+
+/* Estilos Pruebas en CPFA*/
+.pruebas_cpfa__panel {
+  margin: 3vh auto 4vh;
+}
+
+.pruebas_cpfa__clasif-sem {
+  margin: 1.5rem 1rem 0.5rem 1rem;
+  padding: 2vh 1vw;
+}
+
+.pruebas_cpfa__refranes {
+  margin: 1.5rem 1rem 0.5rem 0;
+  padding: 2vh 1vw;
+}
+
+.pruebas_cpfa__metamemoria {
+  margin: 1.5rem 1rem 0.5rem 0;
+  padding: 2vh 1vw;
+}
+
+.pruebas_cpfa__refranes img,
+.pruebas_cpfa__metamemoria img,
+.pruebas_cpfa__clasif-sem img {
+  display: block;
+  margin: 0.2rem auto;
+  width: 12rem;
+  height: 75%;
+}
+
+.pruebas_cpfa__clasif-sem img {
+  width: 11rem;
+  height: 72%;
+}
+.pruebas_cpfa__refranes img {
+  width: 13rem;
+  height: 50%;
+  margin: 3vh auto;
+}
+.pruebas_cpfa__metamemoria img {
+  width: 11rem;
+  height: 100%;
+}
+
+/* Estilos Pruebas Completas*/
+.pruebas_banfe {
+  margin: 2rem auto 1rem;
+}
+
+.pruebas_banfe > div {
+  width: 20%;
+  margin: 0 1vw;
+  padding: 2vh 1vw;
+}
+
+.pruebas_banfe img {
+  display: block;
+  margin: 0 auto;
+  width: 10rem;
+  height: 9.5rem;
+}
+
+.pruebas_banfe__ordenamiento img {
+  height: 8rem;
+}
+
+.pruebas_banfe__suma img {
+  height: 6.7rem;
+  margin: 4vh auto;
+}
+
+.pruebas_banfe__refranes img {
+  height: 5.3rem;
+  width: 10.5rem;
+  margin: 6vh auto;
+}
+
+.pruebas_banfe__memoria img {
+  height: 8.1rem;
+  width: 10.5rem;
+}
+
+.pruebas_banfe__stroopA img,
+.pruebas_banfe__clasif-sem img,
+.pruebas_banfe__clasif-cartas img {
+  width: 11rem;
+}
+
+@media only screen and (max-width: 1023px) {
+  .msg_bug {
+    display: block;
+    font-size: 30px;
+    margin: 8rem 4.5rem;
+  }
+  .cortezas {
+    display: none;
+  }
+
+  .title_cortex {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .cortezas a {
+    font-size: 2.4vh;
+  }
+
+  .cortezas img {
+    width: 17rem;
+    height: 10rem;
+  }
+
+  .tablero {
+    margin: 1rem auto;
+  }
+
+  .bus_ind {
+    padding: 1.59% 1rem;
+  }
+
+  .bus_ind__input_sujeto {
+    margin-bottom: 0.85rem;
+  }
+
+  .bus_ind select,
+  .bus_ind input {
+    font-size: 13px;
+    width: 85%;
+  }
+
+  .bus_gen {
+    padding: 1rem 0.8rem 0.4rem 0.8rem;
+  }
+
+  .bus_gen select {
+    font-size: 13px;
+    width: 72%;
+  }
+
+  .btn-search {
+    width: 28%;
+    padding-left: 0.6vw;
+  }
+
+  .btn-search button {
+    font-size: 1.8vh;
+  }
+
+  .btn-search button > i {
+    font-size: 0.1vh;
+  }
+
+  .pruebas_cof__laberintos span,
+  .pruebas_cof__stroopA span,
+  .pruebas_cof__cartas span,
+  .pruebas_cof__stroopB span,
+  .pruebas_cpfa__clasif-sem span,
+  .pruebas_cpfa__refranes span,
+  .pruebas_cpfa__metamemoria span,
+  .pruebas_cpfdl span,
+  .pruebas_banfe span,
+  .pruebas_banfe label {
+    font-size: 2.6vh;
+  }
+
+  .pruebas_cof__panel {
+    margin: 4rem auto;
+  }
+
+  .pruebas_cof__laberintos img {
+    width: 9.5rem;
+    height: 80%;
+  }
+
+  .pruebas_cof__stroopA img {
+    width: 10rem;
+    height: 80%;
+  }
+
+  .pruebas_cof__stroopB img {
+    width: 11.2rem;
+  }
+
+  .pruebas_cpfdl {
+    margin: 2rem auto 3rem;
+  }
+
+  .pruebas_cpfdl img {
+    display: block;
+    margin: 0 auto;
+    width: 12rem;
+    height: 80%;
+  }
+
+  .pruebas_cpfdl > .pruebas_cpfdl__laberintos img,
+  .pruebas_cpfdl > .pruebas_cpfdl__resta img {
+    height: 10rem;
+  }
+
+  .pruebas_cpfdl > .pruebas_cpfdl__senalamiento img {
+    height: 10rem;
+  }
+
+  .pruebas_cpfdl > .pruebas_cpfdl__ordenamiento img {
+    height: 8.3rem;
+  }
+
+  .pruebas_cpfa__panel {
+    margin: 5vh auto 6vh;
+  }
+
+  .pruebas_cpfa__clasif-sem img {
+    width: 12rem;
+    height: 10rem;
+  }
+  .pruebas_cpfa__refranes img {
+    width: 13rem;
+    height: 40%;
+    margin: 6vh auto;
+  }
+  .pruebas_cpfa__metamemoria img {
+    width: 11rem;
+    height: 90%;
+  }
+
+  .pruebas_banfe {
+    margin: 2rem auto 2.5rem;
+  }
+
+  .pruebas_banfe img {
+    display: block;
+    margin: 0.5vh auto 2vh;
+    width: 11rem;
+    height: 10rem;
+  }
+
+  .pruebas_banfe__ordenamiento img {
+    height: 8.5rem;
+    margin: 0.5vh auto 1.5vh;
+  }
+
+  .pruebas_banfe__suma img {
+    height: 7.1rem;
+    margin: 4vh auto 5vh;
+  }
+
+  .pruebas_banfe__refranes img {
+    height: 6.3rem;
+    width: 13rem;
+    margin: 5vh auto 6vh;
+  }
+
+  .pruebas_banfe__memoria img {
+    height: 8rem;
+    width: 11.5rem;
+  }
+
+  .pruebas_banfe__stroopA img,
+  .pruebas_banfe__clasif-sem img,
+  .pruebas_banfe__clasif-cartas img {
+    width: 12rem;
+  }
+
+  .pruebas_banfe span {
+    font-size: 2.5vh;
+  }
+
+  .pruebas_banfe label {
+    font-size: 2.4vh;
+  }
+
+  .inicio_pruebas__check button {
+    color: #006414;
+    font-weight: bold;
+  }
+
+  .inicio_pruebas__check button > i {
+    margin-right: 0.3vw;
+  }
+
+  .inicio_pruebas__iniciar {
+    height: 6.5vh;
+    width: 30%;
+    margin-left: 1rem;
+    padding-top: 0.5vh;
+  }
+
+  .inicio_pruebas__iniciar a,
+  .inicio_pruebas__check button {
+    background: #64c27b;
+    font-size: 15px;
+    width: 100%;
+    height: 95%;
+    font-weight: bolder;
+    color: #006414;
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  .bus_ind {
+    padding: 1.45% 1rem;
+  }
+
+  .bus_gen select {
+    font-size: 13px;
+    width: 78%;
+  }
+
+  .bus_gen__input_filtro {
+    width: 82%;
+  }
+
+  .btn-search {
+    width: 25%;
+    margin: 0.5vh 0;
+    padding-left: 0.6vw;
+  }
+
+  .btn-search button {
+    font-size: 1.8vh;
+  }
+
+  .btn-search button > i {
+    font-size: 0.1vh;
+  }
+
+  .cortezas img {
+    width: 20rem;
+    height: 12rem;
+  }
+
+  .carousel {
+    margin-top: 3.5rem;
+  }
+
+  .banfe-carousel {
+    margin-top: 0;
+  }
+
+  .pruebas_cpfa__panel {
+    margin: 5vh auto 9vh;
+  }
+
+  .pruebas_cof__laberintos span,
+  .pruebas_cof__stroopA span,
+  .pruebas_cof__cartas span,
+  .pruebas_cof__stroopB span,
+  .pruebas_cpfa__clasif-sem span,
+  .pruebas_cpfa__refranes span,
+  .pruebas_cpfa__metamemoria span,
+  .pruebas_cpfdl span,
+  .pruebas_cpfa span,
+  .pruebas_banfe span {
+    font-size: 2.2vh;
+  }
+
+  .pruebas_cof__panel {
+    margin: 4.5rem auto 5rem;
+  }
+
+  .pruebas_cof__laberintos img {
+    width: 11rem;
+    height: 11rem;
+  }
+
+  .pruebas_cof__stroopA img {
+    width: 14rem;
+    height: 72%;
+  }
+
+  .pruebas_cof__cartas img {
+    width: 14vw;
+    height: 77%;
+    margin-top: 1.4vh;
+  }
+
+  .pruebas_cof__stroopB img {
+    width: 14rem;
+    height: 80%;
+    margin-top: 1.4vh;
+  }
+
+  .pruebas_banfe label {
+    font-size: 2vh;
+  }
+
+  .pruebas_cpfa_panel {
+    margin: 4vh auto;
+  }
+
+  .pruebas_cpfa__clasif-sem {
+    margin: 1.5rem 1rem 0.5rem 1rem;
+  }
+
+  .pruebas_cpfa__refranes {
+    margin: 1.5rem 1rem 0.5rem 0;
+  }
+
+  .pruebas_cpfa__metamemoria {
+    margin: 1.5rem 1rem 0.5rem 0;
+  }
+
+  .pruebas_cpfa__refranes img,
+  .pruebas_cpfa__metamemoria img,
+  .pruebas_cpfa__clasif-sem img {
+    display: block;
+    margin: 0.4rem auto;
+    width: 12rem;
+    height: 12rem;
+  }
+
+  .pruebas_cpfa__clasif-sem img {
+    width: 15rem;
+    height: 22vh;
+  }
+  .pruebas_cpfa__refranes img {
+    width: 13rem;
+    height: 50%;
+    margin: 4.5vh auto;
+  }
+  .pruebas_cpfa__metamemoria img {
+    width: 14rem;
+    height: 100%;
+  }
+
+  .pruebas_cpfa__clasif-sem {
+    margin: 2.4rem 1rem 0.5rem 1rem;
+  }
+
+  .pruebas_cpfa__refranes {
+    margin: 2.4rem 1rem 0.5rem 0;
+  }
+
+  .pruebas_cpfa__metamemoria {
+    margin: 2.4rem 1rem 0.5rem 0;
+  }
+
+  .pruebas_cpfdl {
+    margin: 2vh auto 5vh;
+  }
+
+  .pruebas_cpfdl > div {
+    height: 16rem;
+  }
+
+  .pruebas_cpfdl img {
+    width: 14rem;
+    height: 12rem;
+  }
+
+  .pruebas_cpfdl > .pruebas_cpfdl__laberintos img,
+  .pruebas_cpfdl > .pruebas_cpfdl__resta img {
+    height: 12rem;
+  }
+
+  .pruebas_cpfdl > .pruebas_cpfdl__senalamiento img {
+    height: 12rem;
+  }
+
+  .pruebas_cpfdl > .pruebas_cpfdl__ordenamiento img {
+    height: 12rem;
+  }
+
+  .pruebas_cpfdl > .pruebas_cpfdl__fluidez img {
+    height: 11rem;
+  }  
+
+  .pruebas_banfe {
+    margin: 4vh auto 5.8vh;
+  }
+
+  .pruebas_banfe img {
+    width: 14rem;
+    height: 13rem;
+  }
+
+  .pruebas_banfe__ordenamiento img {
+    height: 11.5rem;
+  }
+
+  .pruebas_banfe__suma img {
+    height: 9.8rem;
+  }
+
+  .pruebas_banfe__refranes img {
+    height: 8.7rem;
+    width: 14.5rem;
+    margin: 2.75rem auto;
+  }
+
+  .pruebas_banfe__memoria img {
+    height: 13rem;
+  }
+
+  .pruebas_banfe__stroopA img,
+  .pruebas_banfe__clasif-sem img,
+  .pruebas_banfe__clasif-cartas img {
+    width: 15rem;
+  }
+
+  .inicio_pruebas {
+    margin-top: 2vh;
+  }
+
+  .inicio_pruebas__volver i {
+    font-size: 3.4vh;
+    margin-left: 1vw;
+  }
+
+  .inicio_pruebas__check i,
+  .inicio_pruebas__iniciar i {
+    padding-right: 0.5vw;
+  }
+
+  .inicio_pruebas__volver a > span,
+  .inicio_pruebas__check button,
+  .inicio_pruebas__iniciar a {
+    font-size: 2vh;
+  }
+
+  .inicio_pruebas__iniciar a {
+    padding-top: 1.2vh;
+  }
+}
+
+@media only screen and (min-width: 1500px) {
+  .cortezas img {
+    width: 23rem;
+    height: 12.5rem;
+  }
+
+  .bus_ind__input_sujeto {
+    margin-bottom: 1rem;
+  }
+
+  .inicio_pruebas__select {
+    padding-left: 8%;
+  }
+
+  .inicio_pruebas__volver a > span,
+  .inicio_pruebas__check button,
+  .inicio_pruebas__iniciar a {
+    font-size: 2vh;
+  }
+
+  .carousel {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .banfe-carousel {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .pruebas_cpfa__clasif-sem {
+    margin: 2.6rem 1rem 0.5rem 1rem;
+  }
+
+  .pruebas_cpfa__refranes {
+    margin: 2.6rem 1rem 0.5rem 0;
+  }
+
+  .pruebas_cpfa__metamemoria {
+    margin: 2.6rem 1rem 0.5rem 0;
+  }
+
+  .pruebas_cof__laberintos {
+    margin: 2.2rem 1rem 0.5rem 1rem;
+  }
+
+  .pruebas_cof__stroopA {
+    margin: 2.2rem 1rem 0.5rem 0;
+  }
+
+  .pruebas_cof__cartas {
+    margin: 2.2rem 1rem 0.5rem 0;
+  }
+
+  .pruebas_cof__stroopB {
+    margin: 2.2rem 1rem 0.5rem 0;
+  }
+
+  .pruebas_cpfa__refranes img {
+    width: 15rem;
+  }
+
+  .pruebas_cpfdl {
+    margin: 3.5rem auto 3rem;
+  }
+
+  .pruebas_cpfdl > div {
+    height: 17rem;
+  }
+
+  .pruebas_cpfdl > .pruebas_cpfdl__laberintos img,
+  .pruebas_cpfdl > .pruebas_cpfdl__resta img {
+    height: 13rem;
+  }
+
+  .pruebas_cpfdl > .pruebas_cpfdl__senalamiento img {
+    height: 13rem;
+  }
+
+  .pruebas_cpfdl > .pruebas_cpfdl__ordenamiento img {
+    height: 13rem;
+  }
+
+  .pruebas_cpfdl > .pruebas_cpfdl__fluidez img {
+    height: 12rem;
+  }  
+
+  .pruebas_banfe {
+    margin: 2rem auto;
+  }
+
+  .pruebas_banfe__suma img {
+    height: 9.6rem;
+  }
+
+  .pruebas_banfe__refranes img {
+    height: 8.65rem;
+    width: 15rem;
+  }
+
+  .pruebas_banfe__memoria img {
+    height: 13rem;
+  }
+
+  .pruebas_banfe__stroopA img {
+    height: 13rem;
+  }
+}
+
+@media only screen and (min-width: 1700px) {
+  .bus_ind {
+    width: 20%;
+    padding: 0.95% 1rem;
+  }
+
+  .bus_gen {
+    padding-bottom: 0;
+  }
+
+  .bus_ind select,
+  .bus_ind input {
+    font-size: 14px;
+    width: 85%;
+  }
+
+  .bus_gen select {
+    font-size: 14px;
+    width: 80%;
+  }
+
+  .bus_gen__input_filtro {
+    width: 90%;
+  }
+
+  .bus_ind__input_sujeto {
+    margin-bottom: 1.2rem;
+  }
+
+  .btn-search a {
+    font-size: 13px;
+    padding: 3% 8%;
+  }
+
+  .btn-search {
+    width: 20%;
+    margin: 0.7vh 0;
+    padding-left: 0.6vw;
+  }
+
+  .btn-search button {
+    font-size: 1.5vh;
+  }
+
+  .btn-search button > i {
+    font-size: 1.2vh;
+  }
+
+  .tablero span {
+    font-size: 15px;
+  }
+
+  .title_test {
+    font-size: 32px;
+  }
+
+  .cortezas a {
+    font-size: 2.4vh;
+  }
+
+  .cortezas img {
+    width: 26rem;
+    height: 14rem;
+  }
+
+  .carousel {
+    margin-top: 4rem;
+    margin-bottom: 3rem;
+  }
+
+  .banfe-carousel {
+    margin-top: 3.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .pruebas_cof__laberintos span,
+  .pruebas_cof__stroopA span,
+  .pruebas_cof__cartas span,
+  .pruebas_cof__stroopB span,
+  .pruebas_cpfa__clasif-sem span,
+  .pruebas_cpfa__refranes span,
+  .pruebas_cpfa__metamemoria span,
+  .pruebas_cpfdl span,
+  .pruebas_cpfa span,
+  .pruebas_banfe span {
+    font-size: 2.6vh;
+  }
+
+  .pruebas_cpfa__panel {
+    margin: 3vh auto 8vh;
+  }
+
+  .pruebas_cpfa__clasif-sem img {
+    width: 18rem;
+    height: 25vh;
+  }
+  .pruebas_cpfa__refranes img {
+    width: 17rem;
+    height: 50%;
+    margin: 4.5vh auto;
+  }
+  .pruebas_cpfa__metamemoria img {
+    width: 16rem;
+    height: 100%;
+  }
+
+  .pruebas_cpfa__clasif-sem {
+    margin: 3rem 1rem 0 1rem;
+  }
+
+  .pruebas_cpfa__refranes {
+    margin: 3rem 1rem 0 0;
+  }
+
+  .pruebas_cpfa__metamemoria {
+    margin: 3rem 1rem 0 0;
+  }
+
+  .pruebas_cof__panel {
+    margin: 5vh auto 10vh;
+  }
+
+  .pruebas_cof__laberintos img {
+    width: 14rem;
+    height: 80%;
+  }
+
+  .pruebas_cof__stroopA img {
+    width: 14rem;
+    height: 85%;
+  }
+
+  .pruebas_cof__cartas img {
+    width: 14vw;
+    height: 85%;
+  }
+
+  .pruebas_cof__stroopB img {
+    width: 14rem;
+    height: 85%;
+  }
+
+  .pruebas_cof__laberintos {
+    margin: 2.8rem 1rem 0.5rem 1rem;
+  }
+
+  .pruebas_cof__stroopA {
+    margin: 2.8rem 1rem 0.5rem 0;
+  }
+
+  .pruebas_cof__cartas {
+    margin: 2.8rem 1rem 0.5rem 0;
+  }
+
+  .pruebas_cof__stroopB {
+    margin: 2.8rem 1rem 0.5rem 0;
+  }
+
+  .pruebas_cpfdl {
+    margin: 1rem auto 1.5rem;
+  }
+
+  .pruebas_cpfdl div {
+    height: 35vh;
+    padding-top: 1.5rem;
+  }
+
+  .pruebas_cpfdl div > img {
+    width: 17rem;
+    height: 17rem;
+    margin-top: 0.5vh;
+  }
+
+  .pruebas_cpfdl > .pruebas_cpfdl__laberintos,
+  .pruebas_cpfdl > .pruebas_cpfdl__senalamiento,
+  .pruebas_cpfdl > .pruebas_cpfdl__resta,
+  .pruebas_cpfdl > .pruebas_cpfdl__ordenamiento {
+    height: 35vh;
+    padding-top: 2vh;
+  }
+
+  .pruebas_cpfdl > .pruebas_cpfdl__laberintos img,
+  .pruebas_cpfdl > .pruebas_cpfdl__resta img {
+    height: 15rem;
+  }
+
+  .pruebas_cpfdl > .pruebas_cpfdl__senalamiento img {
+    height: 14rem;
+  }
+
+  .pruebas_cpfdl > .pruebas_cpfdl__ordenamiento img {
+    height: 12.8rem;
+  }
+
+  .pruebas_cpfdl > .pruebas_cpfdl__fluidez img {
+    height: 15rem;
+  }
+
+  .pruebas_banfe {
+    margin: 2rem auto 1.5rem;
+  }
+
+  .pruebas_banfe > div {
+    height: 35vh;
+  }
+
+  .pruebas_banfe div > img {
+    height: 15rem;
+    width: 15rem;
+  }
+
+  .pruebas_banfe__refranes img {
+    margin: 2.8rem auto;
+  }
+
+  .pruebas_banfe__suma img {
+    height: 9.2rem;
+  }
+
+  .pruebas_banfe__ordenamiento img {
+    height: 11.4rem;
+  }
+
+  .pruebas_banfe__memoria img {
+    height: 23vh;
+    width: 15rem;
+    margin-top: 0.5vh;
+  }
+
+  .pruebas_banfe__stroopA img {
+    height: 13rem;
+  }
+
+  .inicio_pruebas {
+    margin-top: 0;
+  }
+
+  .inicio_pruebas__select {
+    padding-left: 10%;
+  }
+
+  .inicio_pruebas__volver i {
+    font-size: 40px;
+    margin-left: 0.6vw;
+  }
+
+  .inicio_pruebas__iniciar {
+    width: 30%;
+  }
+
+  .inicio_pruebas__check {
+    width: 40%;
+  }
+
+  .inicio_pruebas__iniciar a {
+    padding-top: 1.2vh;
+  }
+
+  .inicio_pruebas__iniciar a > i {
+    margin-right: 0.4vw;
+  }
+}

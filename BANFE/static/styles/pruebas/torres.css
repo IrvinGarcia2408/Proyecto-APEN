@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css?family=Monserrat|Monserrat+Alternates|Poppins&display=swap");
+
+#control-torre-1 div > button,
+#control-torre-2 div > button {
+  width: 15%;
+  height: 4vh;
+  margin: 1rem 1.2rem 0;
+  font-size: 2.5vh;
+  font-weight: bolder;
+  border: none;
+}
+
+#control-torre-1 div > button:nth-child(2),
+#control-torre-2 div > button:nth-child(2) {
+  background: #77cc64;
+  color: #fff;
+}
+
+#control-torre-1 div > button:first-child,
+#control-torre-2 div > button:first-child {
+  background: #e75959;
+  color: #fff;
+}
+
+#control-torre-1 div > button:first-child:hover,
+#control-torre-2 div > button:first-child:hover {
+  background: #ff0f00;
+  color: rgb(250, 250, 180);
+}
+
+#control-torre-1 div > button:nth-child(2):hover,
+#control-torre-2 div > button:nth-child(2):hover {
+  background: #48af00;
+  color: rgb(250, 250, 180);
+}
+
+.error-torres > div {
+  margin: 0 0.25vw 0 0.9vw;
+}
+
+.error-torres > div {
+  width: 10vw;
+  background: #eee;
+  border-radius: 15px;
+  font-size: 1.6vh;
+  text-align: center;
+}
+
+#progreso-torres {
+  font-size: 2.2vh;
+  font-weight: bold;
+  position: relative;
+  top: 2.5vh;
+  margin-left: 0.8vw;
+}
+
+@media only screen and (min-width: 1500px) {
+  #control-torre-1 div:first-child > button,
+  #control-torre-2 div:first-child > button {
+    margin-left: 1.4rem;
+  }
+
+  #progreso-torres {
+    top: 2vh;
+  }
+}
+
+@media only screen and (min-width: 1700px) {
+  #progreso-torres {
+    top: 1.5vh;
+  }
+}

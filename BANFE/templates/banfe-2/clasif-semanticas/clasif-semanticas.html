@@ -1,0 +1,196 @@
+{% extends "banfe-2/pruebas.html" %} {% load static %} {% block content %}
+
+<audio class="figure-sound" src="{% static 'audios/click.wav' %}"></audio>
+
+{% include "banfe-2/modal.html" %}
+<div class="semanticas-prueba">
+  <div class="hoja-semanticas">
+    {% csrf_token %}
+    <div>
+      <img
+        src="{% static 'images/clasif-semanticas/hormiga.png' %}"
+        alt="hormiga-semanticas"
+      />
+    </div>
+    <div>
+      <img
+        src="{% static 'images/clasif-semanticas/avestruz.png' %}"
+        alt="avestruz-semanticas"
+      />
+    </div>
+    <div>
+      <img
+        src="{% static 'images/clasif-semanticas/perico.png' %}"
+        alt="pajaro-semanticas"
+      />
+    </div>
+    <div>
+      <img
+        src="{% static 'images/clasif-semanticas/lagartija.png' %}"
+        alt="lagartija-semanticas"
+      />
+    </div>
+    <div>
+      <img
+        src="{% static 'images/clasif-semanticas/burro.png' %}"
+        alt="burro-semanticas"
+      />
+    </div>
+    <div>
+      <img
+        src="{% static 'images/clasif-semanticas/caballo.png' %}"
+        alt="caballo-semanticas"
+      />
+    </div>
+    <div>
+      <img
+        src="{% static 'images/clasif-semanticas/cangrejo.png' %}"
+        alt="cangrejo-semanticas"
+      />
+    </div>
+    <div>
+      <img
+        src="{% static 'images/clasif-semanticas/cerdo.png' %}"
+        alt="cerdo-semanticas"
+      />
+    </div>
+    <div>
+      <img
+        src="{% static 'images/clasif-semanticas/pez.png' %}"
+        alt="pez-semanticas"
+      />
+    </div>
+    <div>
+      <img
+        src="{% static 'images/clasif-semanticas/mosca.png' %}"
+        alt="mosca-semanticas"
+      />
+    </div>
+    <div>
+      <img
+        src="{% static 'images/clasif-semanticas/leon.png' %}"
+        alt="leon-semanticas"
+      />
+    </div>
+    <div>
+      <img
+        src="{% static 'images/clasif-semanticas/pajaro.png' %}"
+        alt="pajaro-semanticas"
+      />
+    </div>
+    <div>
+      <img
+        src="{% static 'images/clasif-semanticas/araña.png' %}"
+        alt="araña-semanticas"
+      />
+    </div>
+    <div>
+      <img
+        src="{% static 'images/clasif-semanticas/buho.png' %}"
+        alt="buho-semanticas"
+      />
+    </div>
+    <div>
+      <img
+        src="{% static 'images/clasif-semanticas/tortuga.png' %}"
+        alt="tortuga-semanticas"
+      />
+    </div>
+    <div>
+      <img
+        src="{% static 'images/clasif-semanticas/delfin.png' %}"
+        alt="delfin-semanticas"
+      />
+    </div>
+    <div>
+      <img
+        src="{% static 'images/clasif-semanticas/seahorse.png' %}"
+        alt="seahorse-semanticas"
+      />
+    </div>
+    <div>
+      <img
+        src="{% static 'images/clasif-semanticas/serpiente.png' %}"
+        alt="serpiente-semanticas"
+      />
+    </div>
+    <div>
+      <img
+        src="{% static 'images/clasif-semanticas/pato.png' %}"
+        alt="pato-semanticas"
+      />
+    </div>
+    <div>
+      <img
+        src="{% static 'images/clasif-semanticas/jirafa.png' %}"
+        alt="jirafa-semanticas"
+      />
+    </div>
+    <div>
+      <img
+        src="{% static 'images/clasif-semanticas/cocodrilo.png' %}"
+        alt="cocodrilo-semanticas"
+      />
+    </div>
+    <div>
+      <img
+        src="{% static 'images/clasif-semanticas/gato.png' %}"
+        alt="gato-semanticas"
+      />
+    </div>
+    <div>
+      <img
+        src="{% static 'images/clasif-semanticas/tiburon.png' %}"
+        alt="tiburon-semanticas"
+      />
+    </div>
+    <div>
+      <img
+        src="{% static 'images/clasif-semanticas/rinoceronte.png' %}"
+        alt="rinoceronte-semanticas"
+      />
+    </div>
+    <div>
+      <img
+        src="{% static 'images/clasif-semanticas/venado.png' %}"
+        alt="venado-semanticas"
+      />
+    </div>
+    <div>
+      <img
+        src="{% static 'images/clasif-semanticas/pulpo.png' %}"
+        alt="pulpo-semanticas"
+      />
+    </div>
+    <div>
+      <img
+        src="{% static 'images/clasif-semanticas/aguila.png' %}"
+        alt="aguila-semanticas"
+      />
+    </div>
+    <div>
+      <img
+        src="{% static 'images/clasif-semanticas/escorpion.png' %}"
+        alt="escorpion-semanticas"
+      />
+    </div>
+    <div>
+      <img
+        src="{% static 'images/clasif-semanticas/gallina.png' %}"
+        alt="gallina-semanticas"
+      />
+    </div>
+    <div>
+      <img
+        src="{% static 'images/clasif-semanticas/camaron.png' %}"
+        alt="camaron-semanticas"
+      />
+    </div>
+  </div>
+  <script>
+    window.setTimeout(function () {
+      iniciarSemanticas();
+    }, 5000);
+  </script>
+</div>
+{% endblock %}

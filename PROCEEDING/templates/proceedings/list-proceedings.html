@@ -1,0 +1,48 @@
+{% extends "principal/base.html" %} {% load static %} {% block content %}
+
+<!--   jQuery   -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<!--   DATATABLES.JS   -->
+<script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.0.7/js/dataTables.bootstrap5.js"></script>
+
+<link
+  href="https://cdn.datatables.net/2.0.7/css/dataTables.bootstrap5.css"
+  rel="stylesheet"
+/>
+
+<script src="{% static 'js/list_expedientes.js' %}"></script>
+<link rel="stylesheet" href="{% static 'styles/expediente.css' %}" />
+
+<h1 class="title-list-expediente">MIS EXPEDIENTES</h1>
+<div class="container body-page">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <div class="table-responsive bg-light p-5">
+        <table id="datatable-proceedings" class="table table-bordered">
+          <thead class="thead-proceedings">
+            <tr>
+              <th class="centered">Nombre</th>
+              <th class="centered">Edad</th>
+              <th class="centered">Escolaridad</th>
+              <th class="centered">Género</th>
+              <th class="centered">Motivo de la consulta</th>
+              <th class="centered">Opciones</th>
+              <th class="centered"></th>
+            </tr>
+          </thead>
+          <tbody id="tableBody_proceedings"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="box-btn_proceeding">
+    <div class="new-proceeding btn mt-2">
+      <a href="{% url 'create_proceeding' %}">
+        <i class="fa-solid fa-folder-open"></i>
+        Nuevo Expediente
+      </a>
+    </div>
+  </div>
+  {% endblock %}
+</div>

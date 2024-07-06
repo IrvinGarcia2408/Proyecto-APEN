@@ -1,0 +1,217 @@
+{% extends "banfe-2/base.html" %} {% load static %} {% block content %}
+
+<audio class="figure-sound" src="{% static 'audios/click.wav' %}"></audio>
+
+{% include "banfe-2/modal.html" %}
+<div id="metamemoria" class="panel-prueba">
+  <div class="row info-prueba">
+    <div class="col-sm-3 col-md-3 bg-light">
+      <div class="sujeto-info">{% include "banfe-2/info-sujeto.html" %}</div>
+      <div class="tips-prueba">
+        <span>Tips:</span>
+        {% include "banfe-2/tips.html" %}
+      </div>
+    </div>
+    <div class="col-sm-9 col-md-9 control">
+      <div class="progress">{% include "banfe-2/progress.html" %}</div>
+      <div class="video-metamemoria">{% include "banfe-2/ventana.html" %}</div>
+      <div class="cinta-opciones">
+        <div class="cinta-opciones__iniciar btn-iniciar">
+          <button
+            class="btn invisible"          >
+            <i class="fa-solid fa-flag-checkered"></i>
+            Iniciar Prueba
+          </button>
+        </div>
+        <div class="cinta-opciones__adicional">
+          <button class="first_child btn invisible" disabled>
+            <i class="fa-solid fa-play"></i>
+          </button>
+          <button
+            class="btn invisible"
+          >
+            <i class="fa-solid fa-stop"></i>
+          </button>
+          <button
+            id="reiniciar_metamemoria"
+            class="btn"
+            onclick="limpiarMetamemoria();"
+          >
+            <i class="fa-solid fa-arrow-rotate-left"></i>
+          </button>
+        </div>
+      </div>
+      <div class="row overflow-x">
+        <div class="lista-1">
+          <div class="row">
+            <div class="col-sm-2 col-md-2 lista-columnas">
+              <span class="titulo-columnas">Lista 1</span>
+              <input id="predictor" class="predictor" onkeypress="anotarPredictor(); return onlyNumbers(event)" placeholder="Predicción"></input>
+              <button id="btn-1" class="btn-palabras line-separator-one" onclick="apuntarPalabra(1,'pera')" disabled>Pera</button>
+              <button id="btn-2" class="btn-palabras line-separator" onclick="apuntarPalabra(2,'tubo')" disabled>Tubo</button>
+              <button id="btn-3" class="btn-palabras line-separator" onclick="apuntarPalabra(3,'vaca')" disabled>Vaca</button>
+              <button id="btn-4" class="btn-palabras line-separator" onclick="apuntarPalabra(4,'bote')" disabled>Bote</button>
+              <button id="btn-5" class="btn-palabras line-separator" onclick="apuntarPalabra(5,'goma')" disabled>Goma</button>
+              <button id="btn-6" class="btn-palabras line-separator" onclick="apuntarPalabra(6,'lija')" disabled>Lija</button>
+              <button id="btn-7" class="btn-palabras line-separator" onclick="apuntarPalabra(7,'mano')" disabled>Mano</button>
+              <button id="btn-8" class="btn-palabras line-separator" onclick="apuntarPalabra(8,'arco')" disabled>Arco</button>
+              <button id="btn-9" class="btn-palabras line-separator" onclick="apuntarPalabra(9,'carta')" disabled>Carta</button>
+              <input id="textin-1" class="btn-words btn-intr line-separator-one" onkeypress="apuntarIntrusion()" placeholder="Intrusión" disabled></input>
+            </div>
+            <div class="col-sm-2 col-md-2 lista-columnas">
+              <span class="titulo-columnas">Ensayo 1</span>
+              <span id="predictor_valor-1" class="ensayo-columna"></span>
+              <span id="list-1_ord-1" class="ensayo-columna line-ensayo-one"></span>
+              <span id="list-1_ord-2" class="ensayo-columna line-ensayo"></span>
+              <span id="list-1_ord-3" class="ensayo-columna line-ensayo"></span>
+              <span id="list-1_ord-4" class="ensayo-columna line-ensayo"></span>
+              <span id="list-1_ord-5" class="ensayo-columna line-ensayo"></span>
+              <span id="list-1_ord-6" class="ensayo-columna line-ensayo"></span>
+              <span id="list-1_ord-7" class="ensayo-columna line-ensayo"></span>
+              <span id="list-1_ord-8" class="ensayo-columna line-ensayo"></span>
+              <span id="list-1_ord-9" class="ensayo-columna line-ensayo"></span>
+              <span id="list-in-1_1" class="intrusion-columna"></span>
+            </div>
+            <div class="col-sm-2 col-md-2 lista-columnas">
+              <span class="titulo-columnas">Ensayo 2</span>
+              <span id="predictor_valor-2" class="ensayo-columna"></span>
+              <span id="list-2_ord-1" class="ensayo-columna line-ensayo-one"></span>
+              <span id="list-2_ord-2" class="ensayo-columna line-ensayo"></span>
+              <span id="list-2_ord-3" class="ensayo-columna line-ensayo"></span>
+              <span id="list-2_ord-4" class="ensayo-columna line-ensayo"></span>
+              <span id="list-2_ord-5" class="ensayo-columna line-ensayo"></span>
+              <span id="list-2_ord-6" class="ensayo-columna line-ensayo"></span>
+              <span id="list-2_ord-7" class="ensayo-columna line-ensayo"></span>
+              <span id="list-2_ord-8" class="ensayo-columna line-ensayo"></span>
+              <span id="list-2_ord-9" class="ensayo-columna line-ensayo"></span>
+              <span id="list-in-1_2" class="intrusion-columna"></span>
+            </div>
+            <div class="col-sm-2 col-md-2 lista-columnas">
+              <span class="titulo-columnas">Ensayo 3</span>
+              <span id="predictor_valor-3" class="ensayo-columna"></span>
+              <span id="list-3_ord-1" class="ensayo-columna line-ensayo-one"></span>
+              <span id="list-3_ord-2" class="ensayo-columna line-ensayo"></span>
+              <span id="list-3_ord-3" class="ensayo-columna line-ensayo"></span>
+              <span id="list-3_ord-4" class="ensayo-columna line-ensayo"></span>
+              <span id="list-3_ord-5" class="ensayo-columna line-ensayo"></span>
+              <span id="list-3_ord-6" class="ensayo-columna line-ensayo"></span>
+              <span id="list-3_ord-7" class="ensayo-columna line-ensayo"></span>
+              <span id="list-3_ord-8" class="ensayo-columna line-ensayo"></span>
+              <span id="list-3_ord-9" class="ensayo-columna line-ensayo"></span>
+              <span id="list-in-1_3" class="intrusion-columna"></span>
+            </div>
+            <div class="col-sm-2 col-md-2 lista-columnas">
+              <span class="titulo-columnas">Ensayo 4</span>
+              <span id="predictor_valor-4" class="ensayo-columna"></span>
+              <span id="list-4_ord-1" class="ensayo-columna line-ensayo-one"></span>
+              <span id="list-4_ord-2" class="ensayo-columna line-ensayo"></span>
+              <span id="list-4_ord-3" class="ensayo-columna line-ensayo"></span>
+              <span id="list-4_ord-4" class="ensayo-columna line-ensayo"></span>
+              <span id="list-4_ord-5" class="ensayo-columna line-ensayo"></span>
+              <span id="list-4_ord-6" class="ensayo-columna line-ensayo"></span>
+              <span id="list-4_ord-7" class="ensayo-columna line-ensayo"></span>
+              <span id="list-4_ord-8" class="ensayo-columna line-ensayo"></span>
+              <span id="list-4_ord-9" class="ensayo-columna line-ensayo"></span>
+              <span id="list-in-1_4" class="intrusion-columna"></span>
+            </div>
+            <div class="col-sm-2 col-md-2 lista-columnas">
+              <span class="titulo-columnas">Ensayo 5</span>
+              <span id="predictor_valor-5" class="ensayo-columna"></span>
+              <span id="list-5_ord-1" class="ensayo-columna line-ensayo-one"></span>
+              <span id="list-5_ord-2" class="ensayo-columna line-ensayo"></span>
+              <span id="list-5_ord-3" class="ensayo-columna line-ensayo"></span>
+              <span id="list-5_ord-4" class="ensayo-columna line-ensayo"></span>
+              <span id="list-5_ord-5" class="ensayo-columna line-ensayo"></span>
+              <span id="list-5_ord-6" class="ensayo-columna line-ensayo"></span>
+              <span id="list-5_ord-7" class="ensayo-columna line-ensayo"></span>
+              <span id="list-5_ord-8" class="ensayo-columna line-ensayo"></span>
+              <span id="list-5_ord-9" class="ensayo-columna line-ensayo"></span>
+              <span id="list-in-1_5" class="intrusion-columna"></span>
+            </div>
+          </div>
+          <button id="sigensayo-1" class="btn-words btn-next" onclick="verificarLista()" disabled>
+            Siguiente Ensayo
+            <i class="fa-solid fa-arrow-right ensayo-sig"></i>
+          </button>
+
+          <div class="row">
+            <div class="col-sm-2 col-md-2 lista-columnas">
+              <span class="titulo-resultados">Total</span>
+              <span class="titulo-resultados">Error</span>
+            </div>
+            <div class="col-sm-2 col-md-2 lista-columnas">
+              <span id="total_meta-1" class="ensayo-columna"></span>
+              <span id="error_meta-1" class="ensayo-columna"></span>
+            </div>
+            <div class="col-sm-2 col-md-2 lista-columnas">
+              <span id="total_meta-2" class="ensayo-columna"></span>
+              <span id="error_meta-2" class="ensayo-columna"></span>
+            </div>
+            <div class="col-sm-2 col-md-2 lista-columnas">
+              <span id="total_meta-3" class="ensayo-columna"></span>
+              <span id="error_meta-3" class="ensayo-columna"></span>
+            </div>
+            <div class="col-sm-2 col-md-2 lista-columnas">
+              <span id="total_meta-4" class="ensayo-columna"></span>
+              <span id="error_meta-4" class="ensayo-columna"></span>
+            </div>
+            <div class="col-sm-2 col-md-2 lista-columnas">
+              <span id="total_meta-5" class="ensayo-columna"></span>
+              <span id="error_meta-5" class="ensayo-columna"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="resultados-metamemoria" class="row">
+        <div class="score-2">
+          <div>
+            <span>Intrusiones</span>
+            <div class="score__valor">
+              <p id="intrusion_metamemoria">{{metamemoria_intrusion}}</p>
+            </div>
+          </div>
+          <div>
+            <span>Perseveraciones</span>
+            <div class="score__valor">
+              <p id="perseveracion_metamemoria">{{metamemoria_perseveracion}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="score-3">
+          <div>
+            <span>Errores positivos</span>
+            <div class="score__valor">
+              <p id="err-positivo_metamemoria">{{metamemoria_positivo}}</p>
+            </div>
+          </div>
+          <div>
+            <span>Errores negativos</span>
+            <div class="score__valor">
+              <p id="err-negativo_metamemoria">{{metamemoria_negativo}}</p>
+            </div>
+          </div>
+          <div>
+            <span>Total de errores</span>
+            <div class="score__valor">
+              <p id="err-total_metamemoria">{{metamemoria_total}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row footer-menu">
+        {% include "banfe-2/menu-footer.html" %}
+      </div>
+
+      <script>
+        $(document).ready(function () {
+          console.log("Accediendo...");
+          setInterval(function () {
+            $("#resultados-metamemoria").load(mostrarMetamemoria());
+          }, 1000);
+        });
+      </script>
+
+      {% endblock %}
+    </div>
+  </div>
+</div>

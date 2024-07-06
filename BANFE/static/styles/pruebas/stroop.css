@@ -1,0 +1,134 @@
+.stroop-prueba {
+  margin: 0 auto;
+}
+
+.hoja-stroop {
+  display: grid;
+  height: 92vh;
+  width: 90vw;
+  grid-template-columns: auto auto auto auto auto auto auto;
+  background-color: #fff;
+  margin: 2% auto;
+  opacity: 0.9;
+}
+
+.hoja-stroop > div {
+  background-color: #fff;
+  width: 6rem;
+  height: 4rem;
+  margin: 18% 32%;
+}
+
+.lista-AB {
+  display: flex;
+  flex-direction: column;
+  width: 8vw;
+  height: 35vh;
+  text-align: justify;
+}
+
+.lista-AB div {
+  padding: 1.2vh 0;
+  font-size: 2.5vh;
+  font-weight: bolder;
+}
+
+.lista-AB div > span {
+  cursor: pointer;
+}
+
+.stroop-verde {
+  color: #78d918;
+}
+
+.stroop-rojo {
+  color: #f10f0f;
+}
+
+.stroop-cafe {
+  color: #9f7762;
+}
+
+.stroop-azul {
+  color: #1a93d8;
+}
+
+.stroop-rosa {
+  color: #ec7dd8;
+}
+
+.stroop-subrayado {
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  font-weight: bolder;
+}
+
+.table-stroop {
+  margin: 2% auto;
+}
+
+.table-stroop th {
+  font-size: 2vh;
+  font-weight: bold;
+}
+
+.first-column {
+  width: 2%;
+}
+
+.other-columns {
+  width: 5%;
+  padding: 0vw;
+}
+
+.separador {
+  height: 5vh;
+}
+
+.table-stroop td > button {
+  width: 40%;
+  margin: 0.15rem auto;
+}
+
+.stroop-incorrecto {
+  background: #e75959;
+}
+
+.stroop-incorrecto i,
+.stroop-correcto i {
+  color: rgb(255, 255, 180);
+  font-size: 2.2vh;
+  padding-top: 0.15rem;
+  padding-right: 0rem;
+}
+
+.stroop-correcto {
+  background: #77cc64;
+}
+
+.stroop-correcto:hover {
+  background: #48af00;
+}
+
+.stroop-incorrecto:hover {
+  background: #ff0f00;
+}
+
+.stroop,
+.nostroop {
+  color: #1a93d8;
+  font-weight: bolder;
+  font-size: 2vh;
+}
+
+.stroop {
+  text-decoration: underline 0.3vh;
+}
+
+@media only screen and (min-width: 1500px) {
+  .stroop-incorrecto i,
+  .stroop-correcto i {
+    padding-top: 0;
+    padding-left: 0.2vw;
+  }
+}

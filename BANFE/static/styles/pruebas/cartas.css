@@ -1,0 +1,159 @@
+.juego-cartas {
+  width: 80vw;
+  margin: 0 auto;
+}
+
+.panel-juego-cartas {
+  width: fit-content;
+  margin: 1.2% auto;
+  height: fit-content;
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  gap: 10px;
+}
+
+.panel-juego-cartas > div {
+  width: 12vw;
+  height: 22vh;
+}
+
+.line-separator {
+  margin-top: 4vh;
+}
+
+.cartas-puntos,
+.cartas-castigos {
+  background: #fff;
+  font-size: 6vh;
+  text-align: center;
+  padding-top: 6.5vh;
+}
+
+.pilas:hover {
+  cursor: pointer;
+}
+
+.panel-juego_cartas {
+  margin: 0.8rem auto;
+}
+
+.panel-juego_cartas {
+  width: 100%;
+  padding: 4vh 0;
+  margin-top: -5vh;
+  border-radius: 10vh;
+}
+
+.puntos-cartas {
+  width: fit-content;
+  margin: 1.2% auto;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 20vw;
+}
+
+.puntos-cartas > div {
+  background: #64c27b;
+  border-radius: 20px;
+  padding: 2vh;
+}
+
+.puntos-cartas__titulo {
+  font-size: 2.4vh;
+  font-weight: bolder;
+}
+
+.numero-carta {
+  display: inline-block;
+  font-size: 2vh;
+  font-weight: bold;
+  text-align: center;
+  background: #fff;
+  width: 2vw;
+  margin: 1vh 2.8vw 1vh 3.6vw;
+}
+
+.cant-cartas {
+  display: inline-block;
+  width: 2vw;
+  font-size: 2vh;
+  text-align: center;
+  border-bottom: 2px solid #000;
+  margin-right: 2.5vw;
+}
+
+div > .cant-cartas:nth-child(4) {
+  margin-right: 1vw;
+  margin-left: 2.8vw;
+}
+
+.puntos-cartas > div span:nth-child(3) {
+  font-size: 2vh;
+  font-weight: bold;
+}
+
+.puntuacion-cartas {
+  display: inline-block;
+  font-size: 2vh;
+  font-weight: bold;
+  margin-left: 1vw;
+}
+
+.puntos {
+  margin: 0 0.5vw !important;
+}
+
+.castigos {
+  margin: 0 !important;
+}
+
+.puntos-cartas div > div:nth-child(7) {
+  margin-top: 2vh;
+  margin-left: 0.1vw;
+}
+
+.resultados-cartas {
+  margin-left: 8.5vw;
+  margin-bottom: 4vh;
+}
+
+.preguntas-cartas {
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 5vh;
+}
+
+.preguntas-cartas > div {
+  margin: 2vh 0;
+  font-size: 2.2vh;
+  font-weight: bolder;
+}
+
+.preguntas-cartas span {
+  margin-right: 1vw;
+}
+
+.preguntas-cartas div > input {
+  width: 10vw;
+}
+
+.cartas-apagadas {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+#fin_cartas {
+  display: none;
+}
+
+@media only screen and (min-width: 1400px) {
+  .puntos-cartas div > div:nth-child(7) {
+    margin-left: 0.35vw;
+  }
+}
+
+@media only screen and (min-width: 1700px) {
+  .puntos-cartas div > div:nth-child(7) {
+    margin-left: 1.5vw;
+  }
+}

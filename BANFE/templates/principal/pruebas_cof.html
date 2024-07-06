@@ -1,0 +1,34 @@
+{% extends "principal/base.html" %}
+<!---->
+{% load static %}
+<!---->
+{% block content %}
+<h1 class="title_test">Corteza orbitofrontal (COF)</h1>
+
+{% include "principal/barra_menu_pruebas.html" %}
+
+<div class="container pruebas_cof__panel">
+  <div class="row">
+    <div class="col pruebas_cof__laberintos">
+      <span>Laberintos</span>
+      <img
+        src="{% static 'images/laberintos-logo.png' %}"
+        alt="logo-laberintos"
+      />
+    </div>
+    <div class="col pruebas_cof__stroopA">
+      <span>Efecto Stroop A</span>
+      <img src="{% static 'images/stroopA-logo.png' %}" alt="logo-stroopA" />
+    </div>
+    <div class="col pruebas_cof__cartas">
+      <span>Juego de cartas</span>
+      <img src="{% static 'images/cartas-logo.png' %}" alt="logo-cartas" />
+    </div>
+    <div class="col pruebas_cof__stroopB">
+      <span>Efecto Stroop B</span>
+      <img src="{% static 'images/stroopB-logo.png' %}" alt="logo-stroopB" />
+    </div>
+  </div>
+</div>
+
+{% include "principal/footer_menu_pruebas.html" %} {% endblock %}

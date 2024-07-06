@@ -1,0 +1,161 @@
+{% extends "banfe-2/base.html" %} {% load static %} {% block content %}
+
+<audio
+  class="alarma_sound"
+  src="{% static 'audios/tiempo_acabado.mp3' %}"
+></audio>
+
+<audio class="figure-sound" src="{% static 'audios/click.wav' %}"></audio>
+
+{% include "banfe-2/modal.html" %}
+<div id="suma" class="panel-prueba">
+  <div class="row info-prueba">
+    <div class="col-sm-3 col-md-3 bg-light">
+      <div class="sujeto-info">{% include "banfe-2/info-sujeto.html" %}</div>
+      <div class="tips-prueba">
+        <span>Tips:</span>
+        {% include "banfe-2/tips.html" %}
+      </div>
+    </div>
+    <div class="col-sm-9 col-md-9 control">
+      <div class="progress">{% include "banfe-2/progress.html" %}</div>
+      <div class="video-suma">{% include "banfe-2/ventana.html" %}</div>
+      <div class="cinta-opciones">
+        <div class="cinta-opciones__iniciar btn-iniciar">
+          <button
+            id="inicio_suma"
+            class="btn"
+            onclick="iniciarSuma();"
+          >
+            <i class="fa-solid fa-flag-checkered"></i>
+            Iniciar Prueba
+          </button>
+        </div>
+        <div class="cinta-opciones__adicional">
+          <button class="first_child btn invisible"></button>
+          <button class="btn invisible"></button>
+          <button
+            id="reiniciar_suma"
+            class="btn"
+            onclick="reiniciarSuma();"
+            disabled
+          >
+            <i class="fa-solid fa-arrow-rotate-left"></i>
+          </button>
+        </div>
+      </div>
+      <div class="row overflow-x">
+        <div class="time">
+          <div class="time__title">
+            <p>Tiempo(s)</p>
+          </div>
+          <div class="time__reloj">
+            <b id="segundos_suma">0</b>
+          </div>
+        </div>
+        <div class="suma">
+          <div class="suma-valores">
+            <div>
+              <input id="check-sum-6" type="checkbox" name="cb-suma-6" disabled />
+              <input type="text" id="sum-6" name="sum-6" placeholder="6" onkeypress="presionarTecla('check-sum-6','sum-6','sum-11')" disabled>
+            </div>
+            <div>
+              <input id="check-sum-11" type="checkbox" name="cb-suma-11" disabled/>
+              <input type="text" id="sum-11" name="sum-11" placeholder="11" onkeypress="presionarTecla('check-sum-11','sum-11','sum-16')" disabled>
+            </div>
+            <div>
+              <input id="check-sum-16" type="checkbox" name="cb-suma-16" disabled/>
+              <input type="text" id="sum-16" name="sum-16" placeholder="16" onkeypress="presionarTecla('check-sum-16','sum-16','sum-21')" disabled>
+            </div>
+            <div>
+              <input id="check-sum-21" type="checkbox" name="cb-suma-21" disabled/>
+              <input type="text" id="sum-21" name="sum-21" placeholder="21" onkeypress="presionarTecla('check-sum-21','sum-21','sum-26')" disabled>
+            </div>
+            <div>
+              <input id="check-sum-26" type="checkbox" name="cb-suma-26" disabled/>
+              <input type="text" id="sum-26" name="sum-26" placeholder="26" onkeypress="presionarTecla('check-sum-26','sum-26','sum-31')" disabled>
+            </div>
+            <div>
+              <input id="check-sum-31" type="checkbox" name="cb-suma-31" disabled/>
+              <input type="text" id="sum-31" name="sum-31" placeholder="31" onkeypress="presionarTecla('check-sum-31','sum-31','sum-36')" disabled>
+            </div>
+            <div>
+              <input id="check-sum-36" type="checkbox" name="cb-suma-36" disabled/>
+              <input type="text" id="sum-36" name="sum-36" placeholder="36" onkeypress="presionarTecla('check-sum-36','sum-36','sum-41')" disabled>
+            </div>
+            <div>
+              <input id="check-sum-41" type="checkbox" name="cb-suma-41" disabled/>
+              <input type="text" id="sum-41" name="sum-41" placeholder="41" onkeypress="presionarTecla('check-sum-41','sum-41','sum-46')" disabled>
+            </div>
+            <div>
+              <input id="check-sum-46" type="checkbox" name="cb-suma-46" disabled/>
+              <input type="text" id="sum-46" name="sum-46" placeholder="46" onkeypress="presionarTecla('check-sum-46','sum-46','sum-51')" disabled>
+            </div>
+            <div>
+              <input id="check-sum-51" type="checkbox" name="cb-suma-51" disabled/>
+              <input type="text" id="sum-51" name="sum-51" placeholder="51" onkeypress="presionarTecla('check-sum-51','sum-51','sum-56')" disabled>
+            </div>
+            <div>
+              <input id="check-sum-56" type="checkbox" name="cb-suma-56" disabled/>
+              <input type="text" id="sum-56" name="sum-56" placeholder="56" onkeypress="presionarTecla('check-sum-56','sum-56','sum-61')" disabled>
+            </div>
+            <div>
+              <input id="check-sum-61" type="checkbox" name="cb-suma-61" disabled/>
+              <input type="text" id="sum-61" name="sum-61" placeholder="61" onkeypress="presionarTecla('check-sum-61','sum-61','sum-66')" disabled>
+            </div>
+            <div>
+              <input id="check-sum-66" type="checkbox" name="cb-suma-66" disabled/>
+              <input type="text" id="sum-66" name="sum-66" placeholder="66" onkeypress="presionarTecla('check-sum-66','sum-66','sum-71')" disabled>
+            </div>
+            <div>
+              <input id="check-sum-71" type="checkbox" name="cb-suma-71" disabled/>
+              <input type="text" id="sum-71" name="sum-71" placeholder="71" onkeypress="presionarTecla('check-sum-71','sum-71','sum-76')" disabled>
+            </div>
+            <div>
+              <input id="check-sum-76" type="checkbox" name="cb-suma-76" disabled/>
+              <input type="text" id="sum-76" name="sum-76" placeholder="76" onkeypress="presionarTecla('check-sum-76','sum-76','sum-81')" disabled>
+            </div>
+            <div>
+              <input id="check-sum-81" type="checkbox" name="cb-suma-81" disabled/>
+              <input type="text" id="sum-81" name="sum-81" placeholder="81" onkeypress="presionarTecla('check-sum-81','sum-81','sum-86')" disabled>
+            </div>
+            <div>
+              <input id="check-sum-86" type="checkbox" name="cb-suma-86" disabled/>
+              <input type="text" id="sum-86" name="sum-86" placeholder="86" onkeypress="presionarTecla('check-sum-86','sum-86','sum-91')" disabled>
+            </div>
+            <div>
+              <input id="check-sum-91" type="checkbox" name="cb-suma-91" disabled/>
+              <input type="text" id="sum-91" name="sum-91" placeholder="91" onkeypress="presionarTecla('check-sum-91','sum-91','sum-96')" disabled>
+            </div>
+            <div>
+              <input id="check-sum-96" type="checkbox" name="cb-suma-96" disabled/>
+              <input type="text" id="sum-96" name="sum-96" placeholder="96" onkeypress="presionarTecla('check-sum-96','sum-96','sum-101')" disabled>
+            </div>
+            <div>
+              <input id="check-sum-101" type="checkbox" name="cb-suma-101" disabled/>
+              <input type="text" id="sum-101" name="sum-101" placeholder="101" onkeypress="presionarTecla('check-sum-101','sum-101');" disabled>
+            </div>
+          </div>
+          <div id="resultados-suma" class="row suma-resultados">
+            <div class="score-suma">
+              <span>Aciertos:</span>
+              <div class=-"score-suma__valor">
+                <span id="aciertos-suma">0</span>
+              </div>
+            </div>
+            <div class="score-suma">
+              <span>Errores:</span>
+              <div class=-"score-suma__valor">
+                <span id="errores-suma">0</span>
+              </div>
+            </div>
+          </div> 
+        </div>
+        <div class="row footer-menu">
+          {% include "banfe-2/menu-footer.html" %}
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+</div>

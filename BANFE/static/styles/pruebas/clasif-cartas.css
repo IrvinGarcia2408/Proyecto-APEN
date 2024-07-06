@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css?family=Monserrat|Monserrat+Alternates|Poppins&display=swap");
+
+.clasif_cartas__score {
+  width: 100%;
+  font-size: 2vh;
+}
+
+/*  Vista de Sujeto */
+body {
+  background-image: url("/static/imagenes/mesa_cartas.jpg");
+  display: flex;
+  flex-direction: row;
+  flex-grow: 2;
+}
+
+.panel-torre {
+  width: 20vw;
+  height: 48vh;
+  margin: 13% 2%;
+}
+
+.panel-cartas {
+  width: 75vw;
+  height: 95vh;
+  margin: 1.2% 0;
+}
+
+.panel-torre > div {
+  width: 80%;
+  height: 80%;
+  margin: 14% auto;
+  border: #333 solid 5px;
+}
+
+.panel-cartas__clasif,
+.panel-cartas__vacio {
+  width: 95%;
+  height: 45%;
+  margin: 2% auto;
+  display: flex;
+  flex-direction: row;
+  flex-grow: 2;
+}
+
+.panel-cartas__clasif > div,
+.panel-cartas__vacio > div {
+  width: 23%;
+  height: 90%;
+  margin: 1.5% auto;
+  border: #333 solid 5px;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+}
+
+.panel-torre__cartas {
+  position: relative;
+}
+
+.panel-torre__cartas img {
+  position: absolute;
+  margin-left: -1.25%;
+}

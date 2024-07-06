@@ -1,0 +1,79 @@
+{% extends "banfe-2/base.html" %} {% load static %} {% block content %}
+
+<audio
+  class="alarma_sound"
+  src="{% static 'audios/tiempo_acabado.mp3' %}"
+></audio>
+<audio class="figure-sound" src="{% static 'audios/click.wav' %}"/></audio>
+
+{% include "banfe-2/modal.html" %}
+<div id="memoria-visoespacial" class="panel-prueba">
+  <div class="row info-prueba">
+    <div class="col-sm-3 col-md-3 bg-light">
+      <div class="sujeto-info">{% include "banfe-2/info-sujeto.html" %}</div>
+      <div class="tips-prueba">
+        <span>Tips:</span>
+        {% include "banfe-2/tips.html" %}
+      </div>
+    </div>
+    <div class="col-sm-9 col-md-9 control">
+      <div class="progress">{% include "banfe-2/progress.html" %}</div>
+      <div class="video-prueba">{% include "banfe-2/ventana.html" %}</div>
+      <div class="cinta-opciones">
+        <div class="cinta-opciones__abrir btn-iniciar">
+          <a class="btn" href="{% url 'memoria' %}" target="_Blank">
+            <i class="fa-solid fa-folder-open"></i>
+            Abrir prueba
+          </a>
+        </div>
+        <div class="cinta-opciones__adicional">
+          <button class="btn first_child invisible"></button>
+          <button class="btn invisible"></button>
+          <button class="btn invisible"></button>
+        </div>
+      </div>
+      <div id="score" class="score-4">
+        <div>
+          <span>Secuencia máxima</span>
+          <div class="score__valor">
+            <p id="sec-max">{{secuencia}}</p>
+          </div>
+        </div>
+        <div>
+          <span>Errores de orden</span>
+          <div class="score__valor">
+            <p id="err-ord">{{err_ord}}</p>
+          </div>
+        </div>
+        <div>
+          <span>Errores de sustitución</span>
+          <div class="score__valor">
+            <p id="err-sust">{{err_sust}}</p>
+          </div>
+        </div>
+        <div>
+          <span>Perseveraciones</span>
+          <div class="score__valor">
+            <p id="persev">{{perseveraciones}}</p>
+          </div>
+        </div>
+        <b hidden id="memoria_fin">{{memoria_fin}}</b>
+      </div>
+      <div class="row footer-menu">
+        {% include "banfe-2/menu-footer.html" %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+    console.log("Accediendo...");
+    setInterval(function () {
+      apagarMemoria();
+      $("#score").load(" #score");
+    }, 100);
+  });
+</script>
+
+{% endblock %}

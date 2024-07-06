@@ -1,0 +1,78 @@
+{% extends "banfe-2/base.html" %} {% load static %} {% block content %}
+
+<audio
+  class="alarma_sound"
+  src="{% static 'audios/tiempo_acabado.mp3' %}"
+></audio>
+<audio class="figure-sound" src="{% static 'audios/click.wav' %}"></audio>
+{% include "banfe-2/modal.html" %}
+<div id="senalamiento" class="panel-prueba">
+  <div class="row info-prueba">
+    <div class="col-sm-3 col-md-3 bg-light">
+      <div class="sujeto-info">{% include "banfe-2/info-sujeto.html" %}</div>
+      <div class="tips-prueba">
+        <span>Tips:</span>
+        {% include "banfe-2/tips.html" %}
+      </div>
+    </div>
+    <div class="col-sm-9 col-md-9 control">
+      <div class="progress">{% include "banfe-2/progress.html" %}</div>
+      <div class="video-prueba">{% include "banfe-2/ventana.html" %}</div>
+      <div class="cinta-opciones">
+        <div class="cinta-opciones__mostrar">
+          <a class="btn" href="{% url 'senalamiento' %}" target="_Blank">
+            <i class="fa-solid fa-folder-open"></i>
+            Abrir prueba
+          </a>
+        </div>
+        <div class="cinta-opciones__iniciar">
+          <button id="inicio" class="btn" onclick="inicioCronoSen()">
+            <i class="fa-solid fa-flag-checkered"></i>
+            Iniciar Prueba
+          </button>
+        </div>
+        <div class="cinta-opciones__adicional">
+          <button class="first_child btn invisible">
+            <i class="fa-solid fa-play"></i>
+          </button>
+          <button class="btn invisible">
+            <i class="fa-solid fa-pause"></i>
+          </button>
+          <button
+            id="reinicio"
+            class="btn"
+            onclick="reinicioCronoSen()"
+            disabled
+          >
+            <i class="fa-solid fa-arrow-rotate-left"></i>
+          </button>
+        </div>
+      </div>
+      <div class="time">
+        <div class="time__title">
+          <p>Tiempo(s)</p>
+        </div>
+        <div class="time__reloj">
+          <b id="secondSignaling">0</b>
+        </div>
+      </div>
+      <div id="score" class="score-3">
+        {% include "banfe-2/senalamiento-autodirigido/score.html" %}
+      </div>
+      <div class="row footer-menu">
+        {% include "banfe-2/menu-footer.html" %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+    console.log("Accediendo...");
+    setInterval(function () {
+      $("#score").load(" #score");
+    }, 1000);
+  });
+</script>
+
+{% endblock %}

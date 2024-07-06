@@ -1,0 +1,332 @@
+{% load static %}
+<script defer src="{% static 'scripts/pruebas/suma-resta.js' %}"></script>
+{% if num_prueba == 1 %}
+<div class="prueba-nombre">
+  <span>Laberintos</span>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <div class="instruct-laberintos">
+      Lo que tiene que hacer es resolver los laberintos lo más rápido posible
+      empezando en el asterisco "*"
+      <span>(señalar el asterisco)</span> y finalizando en la "S"
+      <span>(señalar la S)</span>, sin tocar ni atravesar las paredes; trate de
+      no levantar el lápiz. No puede borrar en ningún momento. ¿Listo? Comience.
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="img-laberintos">
+      <img src="{% static 'images/laberintos-logo.png' %}" alt="laberintos" />
+    </div>
+  </div>
+</div>
+{% elif num_prueba == 2 %}
+<div class="prueba-nombre">
+  <span>Señalamiento autodirigido</span>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <div class="instruct-senalamiento">
+      Ahora, en esta lámina señale con su dedo una figura distinta cada vez. Las
+      figuras que señale no deben estar juntas, debe señalarlas de forma
+      salteada <span>(separada)</span>; por ejemplo, si señala esta figura
+      <span>(se señala la ardilla)</span>, no puede señalar la que está a su
+      derecha <span>(se indica el avión)</span>, ni la que está abajo
+      <span>(se señala el calcetín)</span> o la que está en diagonal
+      <span>(se indica la casa)</span>. Debe señalar todas las figuras, pero
+      trate de no repetir ninguna. Avíseme cuando haya terminado.
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="img-senalamiento">
+      <img
+        src="{% static 'images/senalamiento-logo.png' %}"
+        alt="senalamiento_autoridigido"
+      />
+    </div>
+  </div>
+</div>
+{% elif num_prueba == 3 %}
+<div class="prueba-nombre">
+  <span>Ordenamiento alfabético de palabras</span>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <div class="instruct-ordenamiento">
+      Le voy a decir una serie de palabras, cada una de ellas empieza con una
+      vocal <span>(o consonante)</span>; después de que escuche las palabras,
+      usted tiene que reproducirlas <span>(decirlas)</span> en orden alfabético.
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="img-ordenamiento">
+      <img
+        src="{% static 'images/ordenamiento-logo.png' %}"
+        alt="ordenamiento"
+      />
+    </div>
+  </div>
+</div>
+{% elif num_prueba == 4 %}
+<div class="prueba-nombre">
+  <span>Resta consecutiva</span>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <div id="resta-instruct-1" class="instruct-resta">
+      Vamos a hacer una resta. A partir del 40 tiene que restar de forma
+      consecutiva de tres en tres, hasta que yo le diga. Comience.
+    </div>
+    <div id="resta-instruct-2" class="instruct-resta apagado">
+      Vamos a hacer una resta. A partir del 100 tiene que restar de forma
+      consecutiva de siete en siete, hasta que yo le diga. Comience.
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="img-resta">
+      <img src="{% static 'images/resta-logo.png' %}" alt="resta" />
+    </div>
+  </div>
+</div>
+{% elif num_prueba == 5 %}
+<div class="prueba-nombre">
+  <span>Suma consecutiva</span>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <div class="instruct-suma">
+      Vamos a hacer una suma. Comenzando desde el uno, tiene que sumar de cinco
+      en cinco; yo le diré cuando parar. Comience
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="img-suma">
+      <img src="{% static 'images/suma-logo.png' %}" alt="suma" />
+    </div>
+  </div>
+</div>
+{% elif num_prueba == 6 %}
+<div class="prueba-nombre">
+  <span>Clasificación de cartas</span>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <div class="instruct-cartas">
+      En esta tarea lo que tiene que hacer es tomar cada una de las cartas
+      <span>(señalar el grupo de 64 cartas)</span> empezando por la de arriba, y
+      debe colocarlas frente a alguna de éstas
+      <span>(señalar las cartas base de la lámina 2)</span>, según como crea que
+      se relacionan o deban clasificarse. Los criterios de clasificación irán
+      cambiando conforme avance la prueba. Si la carta que colocó es correcta,
+      no diré nada, pero si es incorrecta, yo le diré “incorrecto”, entonces
+      deja ahí la carta, toma la siguiente y trata de colocarla en el lugar
+      adecuado. ¿Listo? Comience
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="img-clasif-cartas">
+      <img
+        src="{% static 'images/clasif_cartas-logo.png' %}"
+        alt="clasif_cartas"
+      />
+    </div>
+  </div>
+</div>
+{% elif num_prueba == 7 %}
+<div class="prueba-nombre">
+  <span>Clasificaciones semánticas</span>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <div class="instruct-semanticas">
+      La siguiente tarea consiste en que clasifique
+      <span>(o agrupe)</span> las figuras que ve en esta lámina; usted me dirá
+      el criterio por el que las está clasificando y cuáles figuras pertenecen
+      al grupo elegido. Puede volver a mencionar diversas figuras en
+      clasificaciones diferentes. Haga la mayor cantidad posible de
+      agrupaciones. Yo le diré cuando termine su tiempo. Comience.
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="img-semanticas">
+      <img src="{% static 'images/clasif_sem-logo.png' %}" alt="semanticas" />
+    </div>
+  </div>
+</div>
+{% elif num_prueba == 8 %}
+<div class="prueba-nombre">
+  <span>Efecto Stroop Forma A</span>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <div class="instruct-stroop_A">
+      Ahora, lo que tiene que hacer es leer en voz alta cada palabra, columna
+      por columna, iniciando en la parte superior y continuando con las de abajo
+      <span>(señalar ambas filas)</span>. Cuando vea una palabra subrayada,
+      tiene que mencionar el color con el que esa palabra está pintada y no lo
+      que está escrito. ¿Está preparado? Comience.
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="img-stroop_A">
+      <img src="{% static 'images/stroopA-logo.png' %}" alt="stroop_A" />
+    </div>
+  </div>
+</div>
+{% elif num_prueba == 9 %}
+<div class="prueba-nombre">
+  <span>Fluidez verbal</span>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <div class="instruct-fluidez">
+      Ahora, lo que tiene que hará es mencionar la mayor cantidad de verbos
+      <span>(o acciones)</span> que pueda en un minuto; los debe decir en
+      infinitivo <span>(se pueden dar ejemplos como jugar o correr)</span>.
+      Comience.
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="img-fluidez">
+      <img src="{% static 'images/fluidez-logo.png' %}" alt="fluidez_verbal" />
+    </div>
+  </div>
+</div>
+{% elif num_prueba == 10 %}
+<div class="prueba-nombre">
+  <span>Juego de cartas</span>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <div iv class="instruct-juego_cartas">
+      El objetivo de esta tarea es lograr la mayor cantidad posible de puntos.
+      Para esto, puede escoger cartas con valor desde uno hasta cinco puntos
+      <span>(señalar las cartas de "puntos")</span>, en el orden que usted
+      quiera y las veces que quiera. Cada vez que tome una carta de cualquier
+      grupo, yo tomaré la carta que le corresponde del grupo de enfrente
+      <span>(señalar las cartas de "castigo")</span>, las cuales pueden o no
+      contener castigos. Si la carta de castigo contiene el número "0",
+      conservará los puntos obtenidos; si por ejemplo la carta tiene -2, usted
+      perderá esos puntos. Comience.
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="img-cartas">
+      <img src="{% static 'images/cartas-logo.png' %}" alt="fluidez_verbal" />
+    </div>
+  </div>
+</div>
+{% elif num_prueba == 11 %}
+<div class="prueba-nombre">
+  <span>Selección de refranes</span>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <div iv class="instruct-refranes">
+      Ahora, lo que tiene que hacer es leer cada uno de los refranes en voz alta
+      y seleccionar cuál de las tres opciones de respuesta es la que mejor
+      describe el significado de cada refrán. Comience.
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="img-refranes">
+      <img src="{% static 'images/refranes-logo.png' %}" alt="refranes" />
+    </div>
+  </div>
+</div>
+{% elif num_prueba == 12 %}
+<div class="prueba-nombre">
+  <span>Torres de Hanoi</span>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <div iv class="instruct-torres">
+      Observe cómo están colocados estos discos
+      <span>(señalar la torre de tres o cuatro discos)</span>. Ahora su tarea
+      consiste en pasar los discos de este poste
+      <span>(indicar el poste de las fichas)</span> hasta este último poste
+      <span>(señalar el poste del extremo opuesto)</span>; deben quedar en este
+      mismo orden. Puede mover los discos a cualquiera de los postes, incluso
+      regresarlos, pero sólo puede mover un disco a la vez. Hay algunas
+      restricciones <span>(reglas)</span>: no puede tomar más de un disco a la
+      vez, un disco chico no puede estar en ningún momento debajo de un disco
+      más grande y no puede tener un disco en la mano y pasar otro. ¿Listo?
+      Comience.
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="img-torres">
+      <img src="{% static 'images/torres-logo.png' %}" alt="torres_hanoi" />
+    </div>
+  </div>
+</div>
+{% elif num_prueba == 13 %}
+<div class="prueba-nombre">
+  <span>Metamemoria</span>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <div iv class="instruct-metamemoria">
+      La siguiente tarea consiste en que le voy a leer una lista de nueve
+      palabras; ¿Cuántas palabras cree que pueda aprenderse?
+      <span
+        >(Se anota en la línea de predicción el número de palabras que dijo la
+        persona. Cuando la persona termine de decir las palabras que logró
+        aprender, se le menciona el total de palabras que logró memorizar) y se
+        le dice:
+      </span>
+      Ahora, voy a leer las mismas palabras en el mismo orden, ¿Cuántas palabras
+      cree que se pueda aprender?.
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="img-metamemoria">
+      <img src="{% static 'images/metamemoria-logo.png' %}" alt="metamemoria" />
+    </div>
+  </div>
+</div>
+{% elif num_prueba == 14 %}
+<div class="prueba-nombre">
+  <span>Memoria de trabajo visoespacial</span>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <div class="instruct-memoria">
+      Ahora, se van a señalar algunas figuras en un orden preciso. Cuando
+      termine, usted deberá señalar las figuras en el mismo orden en que fueron
+      señaladas; no debe hablar en ningún momento. ¿Listo? Comience.
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="img-memoria">
+      <img
+        src="{% static 'images/memoria-logo.png' %}"
+        alt="memoria_visoespacial"
+      />
+    </div>
+  </div>
+</div>
+{% elif num_prueba == 15 %}
+<div class="prueba-nombre">
+  <span>Efecto Stroop Forma B</span>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <div class="instruct-stroop_B">
+      A continuación, leerá en voz alta cada palabra, columna por columna.
+      Iniciará con las columnas de la parte superior
+      <span>(señalar la fila de arriba)</span> y luego con las de abajo
+      <span>(señalar la parte inferior)</span>. Cuando yo señale una columna con
+      mi dedo y diga 'leer', usted deberá leer cada palabra de la columna, pero
+      cuando le diga 'color', debe mencionar en toda esa columnna el color con
+      el que están escritas las palabras, y así iremos alternando cada columna
+      hasta terminar la prueba. ¿Preparado? Comience.
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="img-stroop_B">
+      <img src="{% static 'images/stroopB-logo.png' %}" alt="stroop_B" />
+    </div>
+  </div>
+</div>
+{% endif %}

@@ -1,0 +1,506 @@
+{% extends "principal/base.html" %} {% load static %} {% block content %}
+
+<script src="{% static 'js/list_tests.js' %}"></script>
+<link rel="stylesheet" href="{% static 'styles/details_history.css' %}" />
+
+<div class="container body-page">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <div class="table-responsive bg-light p-5">
+        <div class="details-info">
+          <span>No. Expediente: <span class="info-value">{{test}}</span></span>
+
+          <span>Sujeto: <span class="info-value">{{proceeding_name}}</span></span>
+
+          <span>Edad: <span class="info-value">{{proceeding_age}} años</span></span>
+          
+        </div>
+        <table class="details-table table table-bordered">
+          <thead class="thead-tests">
+            <tr>
+              <th class="centered" rowspan="2">ÁREA</th>
+              <th class="centered" rowspan="2">SUBPRUEBA</th>
+              <th class="centered" colspan="2">PUNTUACIÓN</th>
+            </tr>
+            <tr>
+              <th class="centered">NATURAL</th>
+              <th class="centered">CODIFICADA</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th class="centered" rowspan="10">ORBITOMEDIAL</th>
+              <td>
+                <b>Laberintos. </b> Atravesar (codificado).
+              </td>
+              {% if scores.diagnosis_orbitomedial != 'NO APLICADA' %}
+                <td class="centered">{{data_banfe.natural_labyrinths.cross}}</td>
+                <td class="centered">{{data_banfe.encoded_labyrinths.cross}}</td>
+              {% else %}
+                <td class="centered"></td>
+                <td class="centered"></td>  
+              {% endif %}                           
+            </tr>
+            <tr>
+              <td>
+                <b>Juego de cartas. </b> Porcentaje de cartas de riesgo
+                (codificado).
+              </td>
+              <td class="centered">{{data_banfe.natural_game.percentage_risk_cards}}</td>
+              <td class="centered">{{data_banfe.encoded_game.percentage_risk_cards}}</td>
+            </tr>
+            <tr>
+              <td>
+                <b>Juego de cartas. </b> Puntuación total (codificado).
+                <td class="centered">{{data_banfe.natural_game.total_score}}</td>
+                <td class="centered">{{data_banfe.encoded_game.total_score}}</td>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <b>Stroop forma "A". </b> Errores tipo Stroop (codificado).
+              </td>
+              <td class="centered">{{data_banfe.natural_stroopA.stroop_errors}}</td>
+              <td class="centered">{{data_banfe.encoded_stroopA.stroop_errors}}</td>
+            </tr>
+            <tr>
+              <td>
+                <b>Stroop forma "A". </b> Tiempo (codificado)
+              </td>
+              <td class="centered">{{data_banfe.natural_stroopA.time}}</td>
+              <td class="centered">{{data_banfe.encoded_stroopA.time}}</td>
+            </tr>
+            <tr>
+              <td><b>Stroop forma "A". </b> Aciertos</td>
+              <td class="centered">{{data_banfe.natural_stroopA.successes}}</td>
+              <td class="locked-cell"></td>
+            </tr>
+            <tr>
+              <td>
+                <b>Stroop forma "B". </b> Errores tipo Stroop (codificado)
+              </td>
+              <td class="centered">{{data_banfe.natural_stroopB.stroop_errors}}</td>
+              <td class="centered">{{data_banfe.encoded_stroopB.stroop_errors}}</td>
+            </tr>
+            <tr>
+              <td>
+                <b>Stroop forma "B". </b> Tiempo (codificado)
+              </td>
+              <td class="centered">{{data_banfe.natural_stroopB.time}}</td>
+              <td class="centered">{{data_banfe.encoded_stroopB.time}}</td>
+            </tr>
+            <tr>
+              <td><b>Stroop forma "B". </b> Aciertos</td>
+              <td class="centered">{{data_banfe.natural_stroopB.successes}}</td>
+              <td class="locked-cell"></td>
+            </tr>
+            <tr>
+              <td>
+                <b>Clasificación de cartas. </b> Errores de mantenimiento
+                (codificado)
+              </td>
+              {% if scores.diagnosis_orbitomedial != 'NO APLICADA' %}
+                <td class="centered">{{data_banfe.natural_cards.maintenance_error}}</td>
+                <td class="centered">{{data_banfe.encoded_cards.maintenance_error}}</td>
+              {% else %}
+                <td class="centered"></td>
+                <td class="centered"></td>
+              {% endif %}                      
+            </tr>
+            <tr class="bg-results">
+              <td></td>
+              <td class="fw-bold">SUBTOTAL</td>
+              <td></td>
+              <td id="subtotal_cof" class="centered">{{scores.natural_orbitomedial}}</td>
+            </tr>
+            <tr>
+              <th class="centered" rowspan="5">PREFRONTAL ANTERIOR</th>
+              <td>
+                <b>Clasificación semántica. </b> Número de categorías abstractas
+                (codificado).
+              </td>
+              {% if scores.diagnosis_prefrontal != 'NO APLICADA' %}
+                <td class="centered">{{data_banfe.natural_semantic.abstract_categories}}</td>
+                <td class="centered">{{data_banfe.encoded_semantic.abstract_categories}}</td>
+              {% else %}
+                <td class="centered"></td>
+                <td class="centered"></td>
+              {% endif %}
+            </tr>
+            <tr>
+              <td>
+                <b>Selección de refranes. </b> Tiempo (codificado).
+              </td>
+              <td class="centered">{{data_banfe.natural_sayings.time}}</td>
+              <td class="centered">{{data_banfe.encoded_sayings.time}}</td>
+            </tr>
+            <tr>
+              <td>
+                <b>Selección de refranes. </b> Aciertos.
+              </td>
+              <td class="centered">{{data_banfe.natural_sayings.successes}}</td>
+              <td class="locked-cell"></td>
+            </tr>
+            <tr>
+              <td>
+                <b>Metamemoria. </b> Errores negativos (codificado).
+              </td>
+              <td class="centered">{{data_banfe.natural_metamemory.negative_errors}}</td>
+              <td class="centered">{{data_banfe.encoded_metamemory.negative_errors}}</td>
+            </tr>
+            <tr>
+              <td>
+                <b>Metamemoria. </b> Errores positivos (codificado).
+              </td>
+              <td class="centered">{{data_banfe.natural_metamemory.positive_errors}}</td>
+              <td class="centered">{{data_banfe.encoded_metamemory.positive_errors}}</td>
+            </tr>
+            <tr class="bg-results">
+              <td></td>
+              <td class="fw-bold">SUBTOTAL</td>
+              <td></td>
+              <td id="subtotal_cpfa" class="centered">{{scores.natural_prefrontal}}</td>
+            </tr>
+            <tr>
+              <th class="centered" rowspan="15">DORSOLATERAL: MEMORIA DE TRABAJO</th>
+              <td>
+                <b>Señalamiento autodirigido. </b> Perseveraciones (codificado).
+              </td>
+              <td class="centered">{{data_banfe.natural_signaling.perseverations}}</td>
+              <td class="centered">{{data_banfe.encoded_signaling.perseverations}}</td>
+            </tr>
+            <tr>
+              <td>
+                <b>Señalamiento autodirigido. </b> Tiempo (codificado).
+              </td>
+              <td class="centered">{{data_banfe.natural_signaling.time}}</td>
+              <td class="centered">{{data_banfe.encoded_signaling.time}}</td>
+            </tr>     
+            <tr>
+              <td>
+                <b>Señalamiento autodirigido. </b> Aciertos.
+              </td>
+              <td class="centered">{{data_banfe.natural_signaling.successes}}</td>
+              <td class="locked-cell"></td>
+            </tr>      
+            <tr>
+              <td>
+                <b>Resta consecutiva "A". </b> [40-3]. Tiempo (codificado).
+              </td>
+              <td class="centered">{{data_banfe.natural_substraction.time_a}}</td>
+              <td class="centered">{{data_banfe.encoded_substraction.time_a}}</td>
+            </tr>     
+            <tr>
+              <td>
+                <b>Resta consecutiva "A". </b> [40-3]. Aciertos.
+              </td>
+              <td class="centered">{{data_banfe.natural_substraction.successes_a}}</td>
+              <td class="locked-cell"></td>
+            </tr>      
+            <tr>
+              <td>
+                <b>Resta consecutiva "B". </b> [100-7]. Tiempo (codificado).
+              </td>
+              <td class="centered">{{data_banfe.natural_substraction.time_b}}</td>
+              <td class="centered">{{data_banfe.encoded_substraction.time_b}}</td>
+            </tr>     
+            <tr>
+              <td>
+                <b>Resta consecutiva "B". </b> [100-7]. Aciertos.
+              </td>
+              <td class="centered">{{data_banfe.natural_substraction.successes_b}}</td>
+              <td class="locked-cell"></td>
+            </tr>     
+            <tr>
+              <td>
+                <b>Suma consecutiva. </b> Tiempo (codificado).
+              </td>
+              <td class="centered">{{data_banfe.natural_addition.time}}</td>
+              <td class="centered">{{data_banfe.encoded_addition.time}}</td>
+            </tr>     
+            <tr>
+              <td>
+                <b>Suma consecutiva. </b> Aciertos.
+              </td>
+              <td class="centered">{{data_banfe.natural_addition.successes}}</td>
+              <td class="locked-cell"></td>
+            </tr>   
+            <tr>
+              <td>
+                <b>Ordenamiento alfabético. </b> Ensayo #1 (codificado).
+              </td>
+              <td class="centered">{{data_banfe.natural_ordering.essays_first_list}}</td>
+              <td class="centered">{{data_banfe.encoded_ordering.essays_first_list}}</td>
+            </tr>    
+            <tr>
+              <td>
+                <b>Ordenamiento alfabético. </b> Ensayo #2 (codificado).
+              </td>
+              <td class="centered">{{data_banfe.natural_ordering.essays_second_list}}</td>
+              <td class="centered">{{data_banfe.encoded_ordering.essays_second_list}}</td>
+            </tr>    
+            <tr>
+              <td>
+                <b>Ordenamiento alfabético. </b> Ensayo #3 (codificado).
+              </td>
+              <td class="centered">{{data_banfe.natural_ordering.essays_third_list}}</td>
+              <td class="centered">{{data_banfe.encoded_ordering.essays_third_list}}</td>
+            </tr>      
+            <tr>
+              <td>
+                <b>Memoria de trabajo visoespacial. </b> Secuencia máxima.
+              </td>
+              <td class="centered">{{data_banfe.natural_memory.maximum_sequence}}</td>
+              <td class="locked-cell"></td>
+            </tr>     
+            <tr>
+              <td>
+                <b>Memoria de trabajo visoespacial. </b> Perseveraciones (codificado).
+              </td>
+              <td class="centered">{{data_banfe.natural_memory.perseverations}}</td>
+              <td class="centered">{{data_banfe.encoded_memory.perseverations}}</td>
+            </tr>     
+            <tr>
+              <td>
+                <b>Memoria de trabajo visoespacial. </b> Errores de orden (codificado).
+              </td>
+              <td class="centered">{{data_banfe.natural_memory.order_errors}}</td>
+              <td class="centered">{{data_banfe.encoded_memory.order_errors}}</td>
+            </tr> 
+            <tr class="bg-results">
+              <td></td>
+              <td class="fw-bold">SUBTOTAL</td>
+              <td></td>
+              <td id="subtotal_cpfdl1" class="centered">{{scores.work_memory}}</td>
+            </tr>  
+
+            {% if scores.diagnosis_dorsolateral != 'NO APLICADA' %}
+              <tr>
+                <th class="centered" rowspan="15">DORSOLATERAL: FUNCIONES EJECUTIVAS</th>
+                <td>
+                  <b>Laberintos. </b> Planeación (sin salida) (codificado).
+                </td>
+                <td class="centered">{{data_banfe.natural_labyrinths.caught}}</td>
+                <td class="centered">{{data_banfe.encoded_labyrinths.caught}}</td>
+              </tr>
+              <tr>
+                <td>
+                  <b>Laberintos. </b> Tiempo (codificado).
+                </td>
+                <td class="centered">{{data_banfe.natural_labyrinths.time}}</td>
+                <td class="centered">{{data_banfe.encoded_labyrinths.time}}</td>
+              </tr>     
+              <tr>
+                <td>
+                  <b>Clasificación de cartas. </b> Aciertos.
+                </td>
+                <td class="centered">{{data_banfe.natural_cards.successes}}</td>
+                <td class="locked-cell"></td>
+              </tr>      
+              <tr>
+                <td>
+                  <b>Clasificación de cartas. </b> Perseveraciones (codificado).
+                </td>
+                <td class="centered">{{data_banfe.natural_cards.perseverations}}</td>
+                <td class="centered">{{data_banfe.encoded_cards.perseverations}}</td>
+              </tr>     
+              <tr>
+                <td>
+                  <b>Clasificación de cartas. </b> Perseveraciones diferidas (codificado).
+                </td>
+                <td class="centered">{{data_banfe.natural_cards.deferred_perseverations}}</td>
+                <td class="centered">{{data_banfe.encoded_cards.deferred_perseverations}}</td>
+              </tr>      
+              <tr>
+                <td>
+                  <b>Clasificación de cartas. </b> Tiempo (codificado).
+                </td>
+                <td class="centered">{{data_banfe.natural_cards.time}}</td>
+                <td class="centered">{{data_banfe.encoded_cards.time}}</td>
+              </tr>     
+              <tr>
+                <td>
+                  <b>Clasificación semántica. </b> Total de categorías (codificado).
+                </td>
+                <td class="centered">{{data_banfe.natural_semantic.total_categories}}</td>
+                <td class="centered">{{data_banfe.encoded_semantic.total_categories}}</td>
+              </tr>     
+              <tr>
+                <td>
+                  <b>Clasificación semántica. </b> Promedio total animales (codificado).
+                </td>
+                <td class="centered">{{data_banfe.natural_semantic.total_average}}</td>
+                <td class="centered">{{data_banfe.encoded_semantic.total_average}}</td>
+              </tr>     
+              <tr>
+                <td>
+                  <b>Clasificación semántica. </b> Puntaje total (codificado).
+                </td>
+                <td class="centered">{{data_banfe.natural_semantic.total_score}}</td>
+                <td class="centered">{{data_banfe.encoded_semantic.total_score}}</td>
+              </tr>   
+            {% else %}
+              <tr>
+                <th class="centered" rowspan="15">DORSOLATERAL: FUNCIONES EJECUTIVAS</th>
+                <td>
+                  <b>Laberintos. </b> Planeación (sin salida) (codificado).
+                </td>
+                <td class="centered"></td>
+                <td class="centered"></td>
+              </tr>
+              <tr>
+                <td>
+                  <b>Laberintos. </b> Tiempo (codificado).
+                </td>
+                <td class="centered"></td>
+                <td class="centered"></td>
+              </tr>     
+              <tr>
+                <td>
+                  <b>Clasificación de cartas. </b> Aciertos.
+                </td>
+                <td class="centered"></td>
+                <td class="locked-cell"></td>
+              </tr>      
+              <tr>
+                <td>
+                  <b>Clasificación de cartas. </b> Perseveraciones (codificado).
+                </td>
+                <td class="centered"></td>
+                <td class="centered"></td>
+              </tr>     
+              <tr>
+                <td>
+                  <b>Clasificación de cartas. </b> Perseveraciones diferidas (codificado).
+                </td>
+                <td class="centered"></td>
+                <td class="centered"></td>
+              </tr>      
+              <tr>
+                <td>
+                  <b>Clasificación de cartas. </b> Tiempo (codificado).
+                </td>
+                <td class="centered"></td>
+                <td class="centered"></td>
+              </tr>     
+              <tr>
+                <td>
+                  <b>Clasificación semántica. </b> Total de categorías (codificado).
+                </td>
+                <td class="centered"></td>
+                <td class="centered"></td>
+              </tr>     
+              <tr>
+                <td>
+                  <b>Clasificación semántica. </b> Promedio total animales (codificado).
+                </td>
+                <td class="centered"></td>
+                <td class="centered"></td>
+              </tr>     
+              <tr>
+                <td>
+                  <b>Clasificación semántica. </b> Puntaje total (codificado).
+                </td>
+                <td class="centered"></td>
+                <td class="centered"></td>
+              </tr>   
+            {% endif %}
+            <tr>
+              <td>
+                <b>Fluidez verbal. </b> Aciertos (codificado).
+              </td>
+              <td class="centered">{{data_banfe.natural_fluency.successes}}</td>
+              <td class="centered">{{data_banfe.encoded_fluency.successes}}</td>
+            </tr>    
+            <tr>
+              <td>
+                <b>Fluidez verbal. </b> Perseveraciones (codificado).
+              </td>
+              <td class="centered">{{data_banfe.natural_fluency.perseverations}}</td>
+              <td class="centered">{{data_banfe.encoded_fluency.perseverations}}</td>
+            </tr>    
+            <tr>
+              <td>
+                <b>Torres de Hanoi 3 discos. </b> Movimientos (codificado).
+              </td>
+              <td class="centered">{{data_banfe.natural_towers.movements_first}}</td>
+              <td class="centered">{{data_banfe.encoded_towers.movements_first}}</td>
+            </tr>      
+            <tr>
+              <td>
+                <b>Torres de Hanoi 3 discos. </b> Tiempo (codificado).
+              </td>
+              <td class="centered">{{data_banfe.natural_towers.time_first}}</td>
+              <td class="centered">{{data_banfe.encoded_towers.time_first}}</td>
+            </tr>     
+            <tr>
+              <td>
+                <b>Torres de Hanoi 4 discos. </b> Movimientos (codificado).
+              </td>
+              <td class="centered">{{data_banfe.natural_towers.movements_second}}</td>
+              <td class="centered">{{data_banfe.encoded_towers.movements_second}}</td>
+            </tr>     
+            <tr>
+              <td>
+                <b>Torres de Hanoi 4 discos. </b> Tiempo (codificado).              
+              </td>
+              <td class="centered">{{data_banfe.natural_towers.time_second}}</td>
+              <td class="centered">{{data_banfe.encoded_towers.time_second}}</td>
+            </tr> 
+            <tr class="bg-results">
+              <td></td>
+              <td class="fw-bold">SUBTOTAL</td>
+              <td></td>
+              <td id="subtotal_cpfdl2" class="centered">{{scores.executive_functions}}</td>
+            </tr>                                                                                                     
+          </tbody>
+        </table>
+        <table class="table table-bordered">
+          <thead class="thead-tests">
+            <tr>
+              <th class="centered" rowspan="2">PUNTUACIONES TOTALES</th>
+              <th class="centered" rowspan="2">PUNTUACIÓN NATURAL</th>
+              <th class="centered" rowspan="2">PUNTUACIÓN NORMALIZADA</th>
+              <th class="centered" rowspan="2">DIAGNÓSTICO</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="centered">Subtotal orbitomedial</td>
+              <td class="centered">{{scores.natural_orbitomedial}}</td>
+              <td class="centered">{{scores.encoded_orbitomedial}}</td>
+              <td class="centered">{{scores.diagnosis_orbitomedial}}</td>
+            </tr>
+            <tr>
+              <td class="centered">Subtotal prefrontal anterior</td>
+              <td class="centered">{{scores.natural_prefrontal}}</td>
+              <td class="centered">{{scores.encoded_prefrontal}}</td>
+              <td class="centered">{{scores.diagnosis_prefrontal}}</td>
+            </tr>
+            <tr>
+              <td class="centered">Subtotal dorsolateral (MT + FE)</td>
+              <td class="centered">{{scores.natural_dorsolateral}}</td>
+              <td class="centered">{{scores.encoded_dorsolateral}}</td>
+              <td class="centered">{{scores.diagnosis_dorsolateral}}</td>
+            </tr>
+            <tr>
+              <td class="centered">Total Batería de Funciones Ejecutivas</td>
+              <td class="centered">{{scores.natural_total}}</td>
+              <td class="centered">{{scores.encoded_total}}</td>
+              <td class="centered">{{scores.diagnosis_total}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="d-flex flex-row">
+        <div class="export-resume">
+          <a href="{% url 'export_table_pdf' %}" class="btn btn-export" target="_blank">Exportar PDF</a>
+        </div>
+        <div class="cancel-details">
+          <a href="{% url 'show_tests' %}" class="btn btn-cancel">Volver</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
