@@ -210,7 +210,7 @@ function mostrarSemanticas() {
   let dividendo = addElements[0] + addElements[1] + addElements[2];
   let divisor = categories[0] + categories[1] + categories[2];
   let totalAverage = truncar(dividendo/divisor,0);
-
+1
   console.log("dividendo: "+dividendo)
   console.log("divisor: "+divisor)
   console.log("resultado: "+truncar(totalAverage,0))

@@ -25,48 +25,39 @@ function cleanList(list) {
 }
 
 async function nextTest() {
-  alert("Función iniciada");
-  alert("ID: " + banfe);
-
-  let url = lista[test - 1];
-  alert("URL obtenida: " + url);
-
-  let results = getResults(url);
-  alert("Resultados obtenidos: " + results);
-  const data = {
-    pid: pid,
-    banfe: banfe,
-    result: results,
-  };
-
-  alert("Datos creados: " + JSON.stringify(data));
-
-  // Enviar la solicitud POST
   try {
-    alert("hola antes del POST");
+    alert("Función iniciada");
+    alert("ID: " + banfe);
+
+    let url = lista[test - 1];
+    alert("URL obtenida: " + url);
+
+    let results = getResults(url);
+    alert("Resultados obtenidos: " + results);
+
+    const data = {
+      pid: pid,
+      banfe: banfe,
+      result: results,
+    };
+
+    alert("Datos creados: " + JSON.stringify(data));
+
+    alert("Antes de enviar POST");
     const response = await sendPOST(url, data);
-    alert("hola: " + response);
+    alert("Respuesta recibida");
 
-    // Aquí puedes manejar la respuesta del servidor
-    alert("Respuesta del servidor: ", response);
+    console.log("Respuesta del servidor: ", response);
 
-    // Por ejemplo, podrías redirigir a otra página solo si la respuesta indica éxito
     if (response.status === "Subtest Created Successfully") {
       banfe_id = response.banfe_id;
 
-      // Verificar si la lista está vacía
-      alert("LISTA: "+lista)
       if (lista.length !== 0) {
-        // Obtiene el índice del último elemento de la lista
         let lastIndex = lista.length - 1;
-        // Convertir test a entero
         test = parseInt(test);
         alert("No vacia: " + lista);
 
-        // Verificar si test es mayor que el último índice de la lista
-        alert(test + " es mayor a: " + lastIndex);
         if (test > lastIndex) {
-          // Establecer el enlace al inicio si test es mayor que el último índice de la lista
           if (lista[test - 1] === "ordenamiento") {
             alert(lista[test - 1]);
             window.location.href = "../";
@@ -75,12 +66,7 @@ async function nextTest() {
             window.location.href = "./";
           }
         } else {
-          alert(test + " es menor a: " + lastIndex);
-          alert("No vacia: " + lista);
-
-          // Codificar lista en un componente URI
           listaEncoded = encodeURIComponent(JSON.stringify(lista));
-          // Construir el enlace con la próxima prueba
           if (lista[test - 1] === "ordenamiento") {
             if (lista[test] === "resta") {
               alert(lista[test - 1]);
@@ -149,18 +135,15 @@ async function nextTest() {
             }
           }
         }
-        alert(window.location.href);
+        console.log("Redirigiendo a: " + window.location.href);
       }
     } else {
-      console.error("La respuesta del servidor indica un error");
-      alert("Hubo un error: " + response);
-      // Aquí podrías mostrar un mensaje de error al usuario o tomar otras acciones
+      console.error("La respuesta del servidor indica un error: ", response);
+      alert("Hubo un error: " + JSON.stringify(response));
     }
   } catch (error) {
-    // Manejar errores que ocurran durante la solicitud POST
     console.error("Error en la solicitud:", error);
-    alert("Hubo un error: " + response);
-    // Aquí puedes mostrar un mensaje de error al usuario o tomar otras acciones
+    alert("Hubo un error durante la solicitud: " + error.message);
   }
 }
 
@@ -389,11 +372,7 @@ async function sendPOST(url, data) {
       body: JSON.stringify(data),
     });
     alert("TOKEN: "+csrfToken);
-    if (!response.ok) {
-      alert("Error en la solicitud: " + response.statusText);
-      // Si la respuesta del servidor indica un error, lanzar un error
-      throw new Error("Error en la solicitud: " + response.statusText);
-    } else {
+    if (response.ok) {
       alert("estamos dentro");
       alert("Respuesta correcta: " + response.statusText);
     }

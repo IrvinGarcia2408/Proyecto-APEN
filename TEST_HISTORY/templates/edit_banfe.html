@@ -1,0 +1,335 @@
+{% extends "principal/base.html" %} {% load static %} {% block content %}
+
+<script src="{% static 'js/edit_banfe.js' %}"></script>
+<link rel="stylesheet" href="{% static 'styles/edit_banfe.css' %}" />
+
+<form action="{% url 'edit_tests_banfe' %}" id="update-banfe" method="post">
+  {% csrf_token %}
+  <input type="hidden" name="banfe" value="{{ banfe }}" />
+  {{error}}
+  <div class="container mt-5 p-5 bg-light">
+    {% if labyrinths %}
+    <div class="row">
+      <h3 class="title_section-test">Prueba 1: Laberintos</h3>
+      <table class="table-labyrinths">
+        <tr>
+          <th>Toca</th>
+          <th>Atraviesa</th>
+          <th>Sin salida</th>
+        </tr>
+        <tr>
+          <td>
+            <button type="button" id="res-touch" onclick="substract(1,'touch')">
+              -
+            </button>
+            <b id="total-touch">{{labyrinths.touch}}</b>
+            <button type="button" id="sum-touch" onclick="add(1,'touch')">
+              +
+            </button>
+            <input type="hidden" name="touch" value="{{labyrinths.touch}}" />
+          </td>
+          <td>
+            <button type="button" id="res-cross" onclick="substract(1,'cross')">
+              -
+            </button>
+            <b id="total-cross">{{labyrinths.cross}}</b>
+            <button type="button" id="sum-cross" onclick="add(1,'cross')">
+              +
+            </button>
+            <input type="hidden" name="cross" value="{{labyrinths.cross}}" />
+          </td>
+          <td>
+            <button
+              type="button"
+              id="res-caught"
+              onclick="substract(1,'caught')"
+            >
+              -
+            </button>
+            <b id="total-caught">{{labyrinths.caught}}</b>
+            <button type="button" id="sum-caught" onclick="add(1,'caught')">
+              +
+            </button>
+            <input type="hidden" name="caught" value="{{labyrinths.caught}}" />
+          </td>
+        </tr>
+      </table>
+    </div>
+    {% endif %} {% if semantics %}
+    <div class="row">
+      <h3 class="title_section-test">Prueba 7: Clasificaciones semánticas</h3>
+      <table class="table-semantics">
+        <tr>
+          <th>Categorías concretas</th>
+          <th>Total concretas</th>
+          <th>Categorías funcionales</th>
+          <th>Total funcionales</th>
+          <th>Categorías abstractas</th>
+          <th>Total abstractas</th>
+          <th>Promedio total de animales</th>
+          <th>Puntuación total</th>
+        </tr>
+        <tr>
+          <td>
+            <button
+              type="button"
+              id="res-specific_categories"
+              onclick="substract(1,'specific_categories')"
+              disabled
+            >
+              -
+            </button>
+            <b id="total-specific_categories"
+              >{{semantics.specific_categories}}</b
+            >
+            <button
+              type="button"
+              id="sum-specific_categories"
+              onclick="add(1,'specific_categories')"
+            >
+              +
+            </button>
+            <input
+              type="hidden"
+              name="specific_categories"
+              value="{{semantics.specific_categories}}"
+            />
+          </td>
+          <td>
+            <button
+              type="button"
+              id="res-specific_animals"
+              onclick="substract(1,'specific_animals')"
+              disabled
+            >
+              -
+            </button>
+            <b id="total-specific_animals">{{total_specific_animals}}</b>
+            <button
+              type="button"
+              id="sum-specific_animals"
+              onclick="add(1,'specific_animals')"
+            >
+              +
+            </button>
+            <input
+              type="hidden"
+              id="specific_average"
+              name="specific_average"
+              value="{{ semantics.specific_average }}"
+            />
+          </td>
+          <td>
+            <button
+              type="button"
+              id="res-functional_categories"
+              onclick="substract(1,'functional_categories')"
+              disabled
+            >
+              -
+            </button>
+            <b id="total-functional_categories"
+              >{{semantics.functional_categories}}</b
+            >
+            <button
+              type="button"
+              id="sum-functional_categories"
+              onclick="add(1,'functional_categories')"
+            >
+              +
+            </button>
+            <input
+              type="hidden"
+              name="functional_categories"
+              value="{{semantics.functional_categories}}"
+            />
+          </td>
+          <td>
+            <button
+              type="button"
+              id="res-functional_animals"
+              onclick="substract(1,'functional_animals')"
+              disabled
+            >
+              -
+            </button>
+            <b id="total-functional_animals">{{total_functional_animals}}</b>
+            <button
+              type="button"
+              id="sum-functional_animals"
+              onclick="add(1,'functional_animals')"
+            >
+              +
+            </button>
+            <input
+              type="hidden"
+              id="functional_average"
+              name="functional_average"
+              value="{{ semantics.functional_average }}"
+            />
+          </td>
+          <td>
+            <button
+              type="button"
+              id="res-abstract_categories"
+              onclick="substract(1,'abstract_categories')"
+              disabled
+            >
+              -
+            </button>
+            <b id="total-abstract_categories"
+              >{{semantics.abstract_categories}}</b
+            >
+            <button
+              type="button"
+              id="sum-abstract_categories"
+              onclick="add(1,'abstract_categories')"
+            >
+              +
+            </button>
+            <input
+              type="hidden"
+              name="abstract_categories"
+              value="{{semantics.abstract_categories}}"
+            />
+          </td>
+          <td>
+            <button
+              type="button"
+              id="res-abstract_animals"
+              onclick="substract(1,'abstract_animals')"
+              disabled
+            >
+              -
+            </button>
+            <b id="total-abstract_animals">{{total_abstract_animals}}</b>
+            <button
+              type="button"
+              id="sum-abstract_animals"
+              onclick="add(1,'abstract_animals')"
+            >
+              +
+            </button>
+            <input
+              type="hidden"
+              name="abstract_average"
+              value="{{ semantics.abstract_average }}"
+            />
+            <input
+              type="hidden"
+              name="total_categories"
+              value="{{ semantics.total_categories }}"
+            />
+          </td>
+          <td>
+            <b id="total-average">{{semantics.total_average}}</b>
+            <input
+              type="hidden"
+              name="total_average"
+              value="{{ semantics.total_average }}"
+            />
+          </td>
+          <td>
+            <b id="total-score">{{semantics.total_score}}</b>
+            <input
+              type="hidden"
+              name="total_score"
+              value="{{ semantics.total_score }}"
+            />
+          </td>
+        </tr>
+      </table>
+    </div>
+    {% endif %} {% if fluency %}
+    <div class="row">
+      <h3 class="title_section-test">Prueba 9: Fluidez verbal</h3>
+      <table class="table-verbal_fluency">
+        <tr>
+          <th>Aciertos</th>
+          <th>Intrusiones</th>
+          <th>Perseveraciones</th>
+        </tr>
+        <tr>
+          <td>
+            <button
+              type="button"
+              id="res-success"
+              onclick="substract(1,'successes')"
+            >
+              -
+            </button>
+            <b id="total-successes">{{fluency.successes}}</b>
+            <button
+              type="button"
+              id="sum-successes"
+              onclick="add(1,'successes')"
+            >
+              +
+            </button>
+            <input
+              type="hidden"
+              name="successes"
+              value="{{ fluency.successes }}"
+            />
+          </td>
+          <td>
+            <button
+              type="button"
+              id="res-intrusions"
+              onclick="substract(1,'intrusions')"
+            >
+              -
+            </button>
+            <b id="total-intrusions">{{fluency.intrusions}}</b>
+            <button
+              type="button"
+              id="sum-intrusions"
+              onclick="add(1,'intrusions')"
+            >
+              +
+            </button>
+            <input
+              type="hidden"
+              name="intrusions"
+              value="{{ fluency.intrusions }}"
+            />
+          </td>
+          <td>
+            <button
+              type="button"
+              id="res-perseverations"
+              onclick="substract(1,'perseverations')"
+            >
+              -
+            </button>
+            <b id="total-perseverations">{{fluency.perseverations}}</b>
+            <button
+              type="button"
+              id="sum-perseverations"
+              onclick="add(1,'perseverations')"
+            >
+              +
+            </button>
+            <input
+              type="hidden"
+              name="perseverations"
+              value="{{ fluency.perseverations }}"
+            />
+          </td>
+        </tr>
+      </table>
+    </div>
+    {% endif %}
+    <div class="d-flex flex-row">
+      <div class="update-banfe">
+        <input type="submit" class="btn btn-update_banfe" value="Actualizar" />
+      </div>
+      <div class="cancel-banfe">
+        <a href="{% url 'show_tests' %}" class="btn btn-cancel_banfe"
+          >Cancelar</a
+        >
+      </div>
+    </div>
+  </div>
+</form>
+{% endblock %}
