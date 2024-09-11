@@ -451,7 +451,6 @@ const validateCheck = (check, element, name, field) => {
     document.getElementById(name).disabled = false;
     document.getElementById(name).required = true;
   } else {
-    alert (fields[name])
     fields[field] = true;
     updateFields[field] = true;
 

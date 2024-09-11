@@ -1,7 +1,7 @@
 import csv
 from decimal import Decimal
 from datetime import date
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
 from django.http import Http404, HttpResponse, JsonResponse, HttpResponseNotAllowed
 from django.db.models import Count
 from django.template.loader import get_template
@@ -78,8 +78,13 @@ def list_tests(request):
 
     # Iterar sobre cada Proceeding
     for proceeding in proceedings:
+        # Obtener los resultados de los BANFE asociados
         banfe_results = get_banfe_results(proceeding)
+
+        # Crear los datos para este Proceeding
         tests_data = create_tests_data(proceeding, banfe_results)
+
+        # Agregar los datos a la lista final
         data.append(tests_data)
 
     return JsonResponse(data, safe=False)
@@ -99,6 +104,8 @@ def get_banfe_results(proceeding):
 
     for banfe in banfes:
         result = Result(banfe.id, calculate_age(proceeding.dateNac), proceeding.years_study)
+
+        # Almacena los resultados en la lista
         banfe_results.append(result.show_scores())
 
     return banfe_results
@@ -119,6 +126,83 @@ def create_tests_data(proceeding, banfe_results):
         'proceeding_name': get_proceeding_name(proceeding),
         'banfe_results': banfe_results
     }
+
+def edit_tests_banfe(request):
+    print("HOLIS TONTOO")
+    # Obtiene el ID de BANFE del parámetro GET o POST
+    banfe_id = request.GET.get('banfe') or request.POST.get('banfe')
+    print("BANFE ID desde GET: ", request.GET.get('banfe'))
+    print("BANFE ID desde POST: ", request.POST.get('banfe'))
+    
+    if not banfe_id:
+        # Manejar el caso en que el parámetro no esté presente
+        return render(request, 'error.html', {'error': 'No se proporcionó el ID de BANFE.'})
+
+    print("BANFE: " + banfe_id)
+
+    # Recupera el objeto BANFE
+    banfe_test = get_object_or_404(BANFE, id=banfe_id)
+    labyrinths = Labyrinths.objects.filter(banfe_test=banfe_test).first()
+    semantics = Semantic_Classification.objects.filter(banfe_test=banfe_test).first()
+    fluency = Verbal_Fluency.objects.filter(banfe_test=banfe_test).first()
+
+    if request.method == 'POST':
+        print("POST Data:", request.POST)
+        try:
+            # Actualiza los modelos con los datos del formulario
+            if labyrinths:
+                labyrinths.touch = float(request.POST.get('touch', 0) or 0)
+                labyrinths.cross = float(request.POST.get('cross', 0) or 0)
+                labyrinths.caught = float(request.POST.get('caught', 0) or 0)
+                labyrinths.save()
+
+            if semantics:
+                semantics.specific_categories = int(request.POST.get('specific_categories', 0))
+                semantics.specific_average = float(request.POST.get('specific_average', 0))
+                semantics.functional_categories = int(request.POST.get('functional_categories', 0))
+                semantics.functional_average = float(request.POST.get('functional_average', 0))
+                semantics.abstract_categories = int(request.POST.get('abstract_categories', 0))
+                semantics.abstract_average = float(request.POST.get('abstract_average', 0))
+                semantics.total_categories = int(request.POST.get('total_categories', 0))
+                semantics.total_average = float(request.POST.get('total_average', 0))
+                semantics.total_score = int(request.POST.get('total_score', 0))
+                semantics.save()
+
+            if fluency:
+                fluency.successes = float(request.POST.get('successes', 0) or 0)
+                fluency.intrusions = float(request.POST.get('intrusions', 0) or 0)
+                fluency.perseverations = float(request.POST.get('perseverations', 0) or 0)
+                fluency.save()
+
+            # Redirige a la vista de listar BANFE después de la actualización
+            return redirect('show_tests')
+
+        except Exception as e:
+            print(f"Error al guardar los datos: {e}")
+            return render(request, 'error.html', {'error': 'Error al guardar los datos.'})
+    else:
+        # Para el método GET
+        total_specific_animals = total_functional_animals = total_abstract_animals = None
+
+        if semantics:
+            try:
+                total_specific_animals = int(semantics.specific_categories * semantics.specific_average)
+                total_functional_animals = int(semantics.functional_categories * semantics.functional_average)
+                total_abstract_animals = int(semantics.abstract_categories * semantics.abstract_average)
+            except (TypeError, ValueError):
+                total_specific_animals = 0
+                total_functional_animals = 0
+                total_abstract_animals = 0
+
+        return render(request, 'edit_banfe.html', {
+            'banfe': banfe_id,
+            'labyrinths': labyrinths,
+            'semantics': semantics,
+            'fluency': fluency,
+            'total_specific_animals': total_specific_animals,
+            'total_functional_animals': total_functional_animals,
+            'total_abstract_animals': total_abstract_animals
+        })
 
 def details_banfe(request):
     """
@@ -195,6 +279,7 @@ def export_selected_tests_csv(request):
         print("Solicitud POST recibida")
         
         test_ids = request.POST.getlist('test_ids[]')
+        print(test_ids)
         if not test_ids:
             print("No se proporcionaron IDs de pruebas")
             return HttpResponse(status=400)

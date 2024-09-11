@@ -3,10 +3,10 @@ let dataTableIsInitialized = false;
 
 const dataTableOptions = {
   columnDefs: [
-    { className: "centered", targets: [0, 1, 2, 3, 4, 5] },
+    { className: "centered", targets: "_all" },
     { orderable: false, targets: [3, 4, 5] },
     { searchable: false, targets: [5] },
-    { width: "14%", targets: 5 }, // Define el ancho de la segunda columna al 30%
+    { width: "25%", targets: 0 }, // Define el ancho de la segunda columna al 30%
   ],
   pageLength: 6,
   destroy: true,
@@ -27,7 +27,12 @@ const initDataTable = async () => {
         info: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
         infoEmpty: "Mostrando registros del 0 al 0 de un total de 0 registros",
         infoFiltered: "(filtrado de un total de _MAX_ registros)",
-        lengthMenu: "Mostrar _MENU_ registros",
+        lengthMenu: "",
+        exportOptions: {
+                modifier: {
+                    page: 'all' // Esto asegura que se exporten todas las filas, no solo las visibles
+                }
+            },
         paginate: {
           first: "Primero",
           previous: "Anterior",
@@ -47,92 +52,77 @@ const listTests = async () => {
     let content = ``;
 
     data.forEach((tests_data) => {
-      let testURL = `edit_banfe?banfe=${tests_data.banfe_results[0].banfe_id}`;
-      let resultURL = `details_banfe?banfe=${tests_data.banfe_results[0].banfe_id}`;
+      tests_data.banfe_results.forEach((banfe) => { // Itera sobre cada BANFE
+        let testURL = `edit_banfe?banfe=${banfe.banfe_id}`;
+        let resultURL = `details_banfe?banfe=${banfe.banfe_id}`;
 
-      content += `
-                <tr>
-                    <td>${tests_data["proceeding_name"]}</td>
-                    <td class="${
-                      tests_data.banfe_results[0].diagnosis_orbitomedial ===
-                      "ALTERACIÓN MODERADA"
-                        ? "orange-text"
-                        : tests_data.banfe_results[0].diagnosis_orbitomedial ===
-                          "NORMAL ALTO"
-                        ? "green-text"
-                        : tests_data.banfe_results[0].diagnosis_orbitomedial ===
-                          "NORMAL"
-                        ? "blue-text"
-                        : tests_data.banfe_results[0].diagnosis_orbitomedial ===
-                          "ALTERACIÓN SEVERA"
-                        ? "red-text"
-                        : ""
-                    }">
-                        ${tests_data.banfe_results[0].diagnosis_orbitomedial}
-                    </td>                
-                    <td class="${
-                      tests_data.banfe_results[0].diagnosis_prefrontal ===
-                      "ALTERACIÓN MODERADA"
-                        ? "orange-text"
-                        : tests_data.banfe_results[0].diagnosis_prefrontal ===
-                          "NORMAL ALTO"
-                        ? "green-text"
-                        : tests_data.banfe_results[0].diagnosis_prefrontal ===
-                          "NORMAL"
-                        ? "blue-text"
-                        : tests_data.banfe_results[0].diagnosis_prefrontal ===
-                          "ALTERACIÓN SEVERA"
-                        ? "red-text"
-                        : ""
-                    }">
-                        ${tests_data.banfe_results[0].diagnosis_prefrontal}
-                    </td>                
-                    <td class="${
-                      tests_data.banfe_results[0].diagnosis_dorsolateral ===
-                      "ALTERACIÓN MODERADA"
-                        ? "orange-text"
-                        : tests_data.banfe_results[0].diagnosis_dorsolateral ===
-                          "NORMAL ALTO"
-                        ? "green-text"
-                        : tests_data.banfe_results[0].diagnosis_dorsolateral ===
-                          "NORMAL"
-                        ? "blue-text"
-                        : tests_data.banfe_results[0].diagnosis_dorsolateral ===
-                          "ALTERACIÓN SEVERA"
-                        ? "red-text"
-                        : ""
-                    }">
-                        ${tests_data.banfe_results[0].diagnosis_dorsolateral}
-                    </td>   
-                    <td class="${
-                      tests_data.banfe_results[0].diagnosis_total ===
-                      "ALTERACIÓN MODERADA"
-                        ? "orange-text"
-                        : tests_data.banfe_results[0].diagnosis_total ===
-                          "NORMAL ALTO"
-                        ? "green-text"
-                        : tests_data.banfe_results[0].diagnosis_total ===
-                          "NORMAL"
-                        ? "blue-text"
-                        : tests_data.banfe_results[0].diagnosis_total ===
-                          "ALTERACIÓN SEVERA"
-                        ? "red-text"
-                        : ""
-                    }">
-                        ${tests_data.banfe_results[0].diagnosis_total}
-                    </td>   
-                    <td class="options-btn">
-                        <a href="${testURL}" class='btn btn-sm btn-warning'><i class='dt-icons fa-solid fa-pencil'></i></a>
-                        <a href="${resultURL}" class='btn btn-sm btn-info'><i class="dt-icons fa-solid fa-eye"></i></a>
-                    </td>
-                    <td class="options-btn">
-                        <input type="checkbox" class="individualCheckbox" id="cbox_${
-                          tests_data.banfe_results[0].banfe_id
-                        }" value="Si" />                        
-                    </td>
-                </tr>
-            `;
+        content += `
+          <tr>
+            <td>${tests_data["proceeding_name"]}</td>
+            <td class="${
+              banfe.diagnosis_orbitomedial === "ALTERACIÓN MODERADA"
+                ? "orange-text"
+                : banfe.diagnosis_orbitomedial === "NORMAL ALTO"
+                ? "green-text"
+                : banfe.diagnosis_orbitomedial === "NORMAL"
+                ? "blue-text"
+                : banfe.diagnosis_orbitomedial === "ALTERACIÓN SEVERA"
+                ? "red-text"
+                : ""
+            }">
+              ${banfe.diagnosis_orbitomedial}
+            </td>
+            <td class="${
+              banfe.diagnosis_prefrontal === "ALTERACIÓN MODERADA"
+                ? "orange-text"
+                : banfe.diagnosis_prefrontal === "NORMAL ALTO"
+                ? "green-text"
+                : banfe.diagnosis_prefrontal === "NORMAL"
+                ? "blue-text"
+                : banfe.diagnosis_prefrontal === "ALTERACIÓN SEVERA"
+                ? "red-text"
+                : ""
+            }">
+              ${banfe.diagnosis_prefrontal}
+            </td>
+            <td class="${
+              banfe.diagnosis_dorsolateral === "ALTERACIÓN MODERADA"
+                ? "orange-text"
+                : banfe.diagnosis_dorsolateral === "NORMAL ALTO"
+                ? "green-text"
+                : banfe.diagnosis_dorsolateral === "NORMAL"
+                ? "blue-text"
+                : banfe.diagnosis_dorsolateral === "ALTERACIÓN SEVERA"
+                ? "red-text"
+                : ""
+            }">
+              ${banfe.diagnosis_dorsolateral}
+            </td>
+            <td class="${
+              banfe.diagnosis_total === "ALTERACIÓN MODERADA"
+                ? "orange-text"
+                : banfe.diagnosis_total === "NORMAL ALTO"
+                ? "green-text"
+                : banfe.diagnosis_total === "NORMAL"
+                ? "blue-text"
+                : banfe.diagnosis_total === "ALTERACIÓN SEVERA"
+                ? "red-text"
+                : ""
+            }">
+              ${banfe.diagnosis_total}
+            </td>
+            <td class="options-btn">
+              <a href="${testURL}" class='btn btn-sm btn-warning'><i class='dt-icons fa-solid fa-pencil'></i></a>
+              <a href="${resultURL}" class='btn btn-sm btn-info'><i class="dt-icons fa-solid fa-eye"></i></a>
+            </td>
+            <td class="options-btn">
+              <input type="checkbox" class="individualCheckbox" id="cbox_${banfe.banfe_id}" value="Si" />                        
+            </td>
+          </tr>
+        `;
+      });
     });
+
     tableBody_tests.innerHTML = content;
     addCheckboxEventListeners();
   } catch (e) {
@@ -173,9 +163,13 @@ document
   .addEventListener("click", async () => {
     console.log("Botón de exportación de pruebas seleccionadas clickeado");
 
-    const checkboxes = document.querySelectorAll(
-      '#datatable-tests tbody input[type="checkbox"]:checked'
-    );
+    const checkboxes = $('#datatable-tests')
+    .DataTable()
+    .rows({ search: 'applied' }) // Filtra según la búsqueda actual
+    .nodes() // Obtiene todas las filas visibles y no visibles
+    .to$() // Convierte a jQuery para manipulación
+    .find('input[type="checkbox"]:checked'); // Encuentra todos los checkboxes seleccionados
+  
     console.log("Número de checkboxes seleccionados:", checkboxes.length);
 
     const selectedIds = Array.from(checkboxes).map(

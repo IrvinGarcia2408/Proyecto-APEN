@@ -5,6 +5,11 @@ body {
     padding: 0;
 }
 
+.sheet-edit_banfe {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
 .title_section-test{
     font-weight: bold;    
     color: #006414;
