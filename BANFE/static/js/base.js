@@ -26,14 +26,14 @@ function cleanList(list) {
 
 async function nextTest() {
   try {
-    alert("Función iniciada");
-    alert("ID: " + banfe);
+    console.log("Función iniciada");
+    console.log("ID: " + banfe);
 
     let url = lista[test - 1];
-    alert("URL obtenida: " + url);
+    console.log("URL obtenida: " + url);
 
     let results = getResults(url);
-    alert("Resultados obtenidos: " + results);
+    console.log("Resultados obtenidos: " + results);
 
     const data = {
       pid: pid,
@@ -41,11 +41,11 @@ async function nextTest() {
       result: results,
     };
 
-    alert("Datos creados: " + JSON.stringify(data));
+    console.log("Datos creados: " + JSON.stringify(data));
 
-    alert("Antes de enviar POST");
+    console.log("Antes de enviar POST");
     const response = await sendPOST(url, data);
-    alert("Respuesta recibida");
+    console.log("Respuesta recibida");
 
     console.log("Respuesta del servidor: ", response);
 
@@ -55,22 +55,22 @@ async function nextTest() {
       if (lista.length !== 0) {
         let lastIndex = lista.length - 1;
         test = parseInt(test);
-        alert("No vacia: " + lista);
+        console.log("No vacia: " + lista);
 
         if (test > lastIndex) {
           if (lista[test - 1] === "ordenamiento") {
-            alert(lista[test - 1]);
+            console.log(lista[test - 1]);
             window.location.href = "../";
           } else {
-            alert(lista[test - 1]);
+            console.log(lista[test - 1]);
             window.location.href = "./";
           }
         } else {
           listaEncoded = encodeURIComponent(JSON.stringify(lista));
           if (lista[test - 1] === "ordenamiento") {
             if (lista[test] === "resta") {
-              alert(lista[test - 1]);
-              alert(lista[test]);
+              console.log(lista[test - 1]);
+              console.log(lista[test]);
               window.location.href =
                 lista[test] +
                 "?lista=" +
@@ -84,8 +84,8 @@ async function nextTest() {
                 "&banfe=" +
                 banfe_id;
             } else {
-              alert(lista[test - 1]);
-              alert(lista[test]);
+              console.log(lista[test - 1]);
+              console.log(lista[test]);
               window.location.href =
                 "../" +
                 lista[test] +
@@ -102,8 +102,8 @@ async function nextTest() {
             }
           } else {
             if (lista[test - 1] === "ordenamiento") {
-              alert(lista[test - 1]);
-              alert(lista[test]);
+              console.log(lista[test - 1]);
+              console.log(lista[test]);
               window.location.href =
                 "banfe/" +
                 lista[test] +
@@ -118,8 +118,8 @@ async function nextTest() {
                 "&banfe=" +
                 banfe_id;
             } else {
-              alert(lista[test - 1]);
-              alert(lista[test]);
+              console.log(lista[test - 1]);
+              console.log(lista[test]);
               window.location.href =
                 lista[test] +
                 "?lista=" +
@@ -139,27 +139,27 @@ async function nextTest() {
       }
     } else {
       console.error("La respuesta del servidor indica un error: ", response);
-      alert("Hubo un error: " + JSON.stringify(response));
+      console.log("Hubo un error: " + JSON.stringify(response));
     }
   } catch (error) {
     console.error("Error en la solicitud:", error);
-    alert("Hubo un error durante la solicitud: " + error.message);
+    console.log("Hubo un error durante la solicitud: " + error.message);
   }
 }
 
 function getResults(test) {
   let result = [];
-  alert("TEST: " + test);
+  console.log("TEST: " + test);
   switch (test) {
     case "laberintos":
-      alert("TEST 1: " + test);
+      console.log("TEST 1: " + test);
       result = [
         document.getElementById("total-toca").textContent,
         document.getElementById("total-atraviesa").textContent,
         document.getElementById("total-atrapado").textContent,
         document.getElementById("segundosP1").textContent,
       ];
-      alert("RESULT: " + result);
+      console.log("RESULT: " + result);
       break;
     case "senalamiento_autodirigido-control":
       result = [
@@ -168,7 +168,7 @@ function getResults(test) {
         document.getElementById("omissionSignaling").textContent,
         document.getElementById("secondSignaling").textContent,
       ];
-      alert(result);
+      console.log(result);
       break;
     case "ordenamiento":
       if (
@@ -227,7 +227,7 @@ function getResults(test) {
           document.getElementById("segundos_resta_1").textContent,
         ];
       }
-      alert(result);
+      console.log(result);
       break;
     case "suma":
       result = [
@@ -247,7 +247,7 @@ function getResults(test) {
       ];
       break;
     case "semanticas-control":
-      alert("estoy en semanticas");
+      console.log("estoy en semanticas");
       result = [
         document.getElementById("total-concretas").textContent,
         document.getElementById("total-funcionales").textContent,
@@ -256,7 +256,7 @@ function getResults(test) {
         document.getElementById("total-prom").textContent,
         document.getElementById("puntos-finales").textContent,
       ];
-      alert("guardado");
+      console.log("guardado");
       break;
     case "stroopA-control":
       result = [
@@ -274,8 +274,8 @@ function getResults(test) {
       ];
       break;
     case "cartas-control":
-      alert("TEST 1: " + test);
-      alert(
+      console.log("TEST 1: " + test);
+      console.log(
         "TEST X: " + document.getElementById("percentege_risk").textContent
       );
       result = [
@@ -286,7 +286,7 @@ function getResults(test) {
         document.getElementById("question_three").value,
         document.getElementById("question_four").value,
       ];
-      alert("RESULT: " + result);
+      console.log("RESULT: " + result);
       break;
     case "refranes-control":
       result = [
@@ -344,7 +344,7 @@ function getResults(test) {
       ];
       break;
   }
-  alert("RETORNAMOS: " + result);
+  console.log("RETORNAMOS: " + result);
   return result;
 }
 
@@ -371,16 +371,16 @@ async function sendPOST(url, data) {
       },
       body: JSON.stringify(data),
     });
-    alert("TOKEN: "+csrfToken);
+    console.log("TOKEN: "+csrfToken);
     if (response.ok) {
-      alert("estamos dentro");
-      alert("Respuesta correcta: " + response.statusText);
+      console.log("estamos dentro");
+      console.log("Respuesta correcta: " + response.statusText);
     }
     return await response.json();
   } catch (error) {
     // Manejar el error aquí
     console.error("Error:", error);
-    alert("Error en la solicitud: " + error.message); // Muestra el mensaje de error
+    console.log("Error en la solicitud: " + error.message); // Muestra el mensaje de error
     // Puedes lanzar el error nuevamente para que sea manejado en la llamada a esta función
     throw error;
   }

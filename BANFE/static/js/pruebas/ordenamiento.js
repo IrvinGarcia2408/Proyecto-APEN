@@ -66,7 +66,7 @@ function correctEssay(lista) {
   $("#state-" + lista + "-" + ensayo).load(" #state-" + lista + "-" + ensayo);
   ensayo = 1;
   posicion = 1;
-  alert(lista)
+  console.log(lista)
   if (lista < 3) {
     if(lista === 2 && (parseInt(age) < 10 || ((parseInt(age) > 30 && parseInt(age) < 56) && (school > 3 && school < 10)))){
       showModal("Prueba finalizada");

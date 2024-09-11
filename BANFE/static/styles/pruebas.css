@@ -295,253 +295,7 @@
 
 /* Estilos pruebas generales */
 
-.carousel {
-  margin-top: 0;
-  height: fit-content;
-}
-
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  filter: invert(100%);
-  width: 3rem;
-  height: 3rem;
-}
-
-.pruebas_cpfdl,
-.pruebas_banfe {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  flex-grow: 2;
-  width: 100%;
-  margin: 0 auto;
-}
-
-.pruebas_cof__laberintos,
-.pruebas_cof__stroopA,
-.pruebas_cof__cartas,
-.pruebas_cof__stroopB,
-.pruebas_cpfa__clasif-sem,
-.pruebas_cpfa__refranes,
-.pruebas_cpfa__metamemoria,
-.pruebas_cpfdl > div,
-.pruebas_banfe > div {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 2;
-  background: #dbf8dc;
-  border-radius: 30px;
-  border: 1px solid #008259;
-}
-
-.pruebas_cof__laberintos span,
-.pruebas_cof__stroopA span,
-.pruebas_cof__cartas span,
-.pruebas_cof__stroopB span,
-.pruebas_cpfa__clasif-sem span,
-.pruebas_cpfa__refranes span,
-.pruebas_cpfa__metamemoria span,
-.pruebas_cpfdl span,
-.pruebas_banfe span,
-.pruebas_banfe label {
-  font-size: 3vh;
-  font-weight: bold;
-  color: #006414;
-  text-align: center;
-  padding-bottom: 0.6rem;
-}
-
-/* Estilos Pruebas en COF   */
-.pruebas_cof__panel {
-  margin: 2.5rem auto 1.5rem;
-}
-
-.pruebas_cof__laberintos,
-.pruebas_cof__stroopA,
-.pruebas_cof__cartas,
-.pruebas_cof__stroopB {
-  margin: 0 0.5rem;
-  padding: 0.8rem;
-}
-
-.pruebas_cof__laberintos img,
-.pruebas_cof__stroopA img,
-.pruebas_cof__cartas img,
-.pruebas_cof__stroopB img {
-  display: block;
-  margin: 0 auto;
-}
-
-.pruebas_cof__laberintos img {
-  width: 8rem;
-  height: 8rem;
-}
-
-.pruebas_cof__stroopA img {
-  width: 20rem;
-  height: 8rem;
-  margin-top: 0.4rem;
-}
-
-.pruebas_cof__cartas img {
-  width: 22rem;
-  height: 8rem;
-  margin-top: 0.4rem;
-}
-
-.pruebas_cof__clasif-cartas img {
-  width: 20rem;
-  height: 8rem;
-}
-
-.pruebas_cof__stroopB img {
-  width: 12rem;
-  height: 8rem;
-}
-
-/* Estilos Pruebas en CPFDL*/
-.pruebas_cpfdl {
-  margin: 1rem auto;
-}
-
-.pruebas_cpfdl > div {
-  margin: 0 0.5rem;
-  padding: 0.8rem;
-  width: 30%;
-  height: 14rem;
-}
-
-.pruebas_cpfdl > .pruebas_cpfdl__laberintos,
-.pruebas_cpfdl > .pruebas_cpfdl__senalamiento,
-.pruebas_cpfdl > .pruebas_cpfdl__ordenamiento,
-.pruebas_cpfdl > .pruebas_cpfdl__resta {
-  margin: 0 0.5rem;
-  padding: 0.8rem;
-  width: 30%;
-  height: 100%;
-}
-
-.pruebas_cpfdl > div > img {
-  display: block;
-  margin: 0 auto;
-  width: 11rem;
-}
-
-.pruebas_cpfdl__senalamiento > img,
-.pruebas_cpfdl__suma > img,
-.pruebas_cpfdl__resta > img,
-.pruebas_cpfdl__torres > img,
-.pruebas_cpfdl__clasif-cartas > img {
-  height: 100%;
-}
-
-.pruebas_cpfdl > .pruebas_cpfdl__laberintos img {
-  height: 10rem;
-}
-
-.pruebas_cpfdl > .pruebas_cpfdl__resta img {
-  height: 9.8rem;
-}
-.pruebas_cpfdl > .pruebas_cpfdl__senalamiento img {
-  height: 10.2rem;
-}
-
-.pruebas_cpfdl > .pruebas_cpfdl__ordenamiento img {
-  height: 8.5rem;
-}
-
-.pruebas_cpfdl > .pruebas_cpfdl__fluidez img {
-  height: 10rem;
-}
-
-/* Estilos Pruebas en CPFA*/
-.pruebas_cpfa__panel {
-  margin: 3vh auto 4vh;
-}
-
-.pruebas_cpfa__clasif-sem {
-  margin: 1.5rem 1rem 0.5rem 1rem;
-  padding: 2vh 1vw;
-}
-
-.pruebas_cpfa__refranes {
-  margin: 1.5rem 1rem 0.5rem 0;
-  padding: 2vh 1vw;
-}
-
-.pruebas_cpfa__metamemoria {
-  margin: 1.5rem 1rem 0.5rem 0;
-  padding: 2vh 1vw;
-}
-
-.pruebas_cpfa__refranes img,
-.pruebas_cpfa__metamemoria img,
-.pruebas_cpfa__clasif-sem img {
-  display: block;
-  margin: 0.2rem auto;
-  width: 12rem;
-  height: 75%;
-}
-
-.pruebas_cpfa__clasif-sem img {
-  width: 11rem;
-  height: 72%;
-}
-.pruebas_cpfa__refranes img {
-  width: 13rem;
-  height: 50%;
-  margin: 3vh auto;
-}
-.pruebas_cpfa__metamemoria img {
-  width: 11rem;
-  height: 100%;
-}
-
-/* Estilos Pruebas Completas*/
-.pruebas_banfe {
-  margin: 2rem auto 1rem;
-}
-
-.pruebas_banfe > div {
-  width: 20%;
-  margin: 0 1vw;
-  padding: 2vh 1vw;
-}
-
-.pruebas_banfe img {
-  display: block;
-  margin: 0 auto;
-  width: 10rem;
-  height: 9.5rem;
-}
-
-.pruebas_banfe__ordenamiento img {
-  height: 8rem;
-}
-
-.pruebas_banfe__suma img {
-  height: 6.7rem;
-  margin: 4vh auto;
-}
-
-.pruebas_banfe__refranes img {
-  height: 5.3rem;
-  width: 10.5rem;
-  margin: 6vh auto;
-}
-
-.pruebas_banfe__memoria img {
-  height: 8.1rem;
-  width: 10.5rem;
-}
-
-.pruebas_banfe__stroopA img,
-.pruebas_banfe__clasif-sem img,
-.pruebas_banfe__clasif-cartas img {
-  width: 11rem;
-}
-
-@media only screen and (max-width: 1023px) {
+@media only screen and (max-width: 1399px) {
   .msg_bug {
     display: block;
     font-size: 30px;
@@ -556,7 +310,7 @@
   }
 }
 
-@media only screen and (min-width: 1200px) {
+/*@media only screen and (min-width: 1200px) {
   .cortezas a {
     font-size: 2.4vh;
   }
@@ -607,6 +361,7 @@
   }
 
   .pruebas_cof__laberintos span,
+  .pruebas_cof__clasif-cartas span,
   .pruebas_cof__stroopA span,
   .pruebas_cof__cartas span,
   .pruebas_cof__stroopB span,
@@ -751,6 +506,7 @@
     color: #006414;
   }
 }
+*/
 
 @media only screen and (min-width: 1400px) {
   .bus_ind {
@@ -785,173 +541,102 @@
     height: 12rem;
   }
 
-  .carousel {
-    margin-top: 3.5rem;
+  .container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 20px;
   }
 
-  .banfe-carousel {
-    margin-top: 0;
+  .pruebas_cof__panel,
+  .pruebas_cpfa__panel,
+  .pruebas_cpfdl,
+  .pruebas_banfe  {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 3rem;
   }
 
-  .pruebas_cpfa__panel {
-    margin: 5vh auto 9vh;
+  .pruebas_cof__panel .col,
+  .pruebas_cpfa__panel .col,
+  .pruebas_cpfdl > div,
+  .pruebas_banfe > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #346b37;
+    border-radius: 8px;
+    padding: 15px;
+    background-color: #e6f7d5;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: .2rem;
+    height: 15rem;
   }
 
-  .pruebas_cof__laberintos span,
-  .pruebas_cof__stroopA span,
-  .pruebas_cof__cartas span,
-  .pruebas_cof__stroopB span,
-  .pruebas_cpfa__clasif-sem span,
-  .pruebas_cpfa__refranes span,
-  .pruebas_cpfa__metamemoria span,
-  .pruebas_cpfdl span,
-  .pruebas_cpfa span,
-  .pruebas_banfe span {
-    font-size: 2.2vh;
+  .pruebas_cpfa__panel .col {
+    height: 18rem;
   }
 
-  .pruebas_cof__panel {
-    margin: 4.5rem auto 5rem;
+  .pruebas_banfe > div {
+    height: 18rem;
   }
 
-  .pruebas_cof__laberintos img {
-    width: 11rem;
-    height: 11rem;
+  .pruebas_cpfdl  {
+    margin: 5rem 2rem 0 2rem;
   }
 
-  .pruebas_cof__stroopA img {
-    width: 14rem;
-    height: 72%;
+  .pruebas_banfe  {
+    margin: 3rem 2rem 0 2rem;
   }
 
-  .pruebas_cof__cartas img {
-    width: 14vw;
-    height: 77%;
-    margin-top: 1.4vh;
+  .pruebas_cof__panel img,
+  .pruebas_cpfa__panel img,
+  .pruebas_cpfdl img, 
+  .pruebas_banfe img  {
+    width: 100%;
+    height: 10rem;
   }
 
-  .pruebas_cof__stroopB img {
-    width: 14rem;
-    height: 80%;
-    margin-top: 1.4vh;
+  .pruebas_cpfdl img  {
+    height: 9rem;
   }
 
-  .pruebas_banfe label {
-    font-size: 2vh;
-  }
-
-  .pruebas_cpfa_panel {
-    margin: 4vh auto;
-  }
-
-  .pruebas_cpfa__clasif-sem {
-    margin: 1.5rem 1rem 0.5rem 1rem;
-  }
-
-  .pruebas_cpfa__refranes {
-    margin: 1.5rem 1rem 0.5rem 0;
-  }
-
-  .pruebas_cpfa__metamemoria {
-    margin: 1.5rem 1rem 0.5rem 0;
-  }
-
-  .pruebas_cpfa__refranes img,
-  .pruebas_cpfa__metamemoria img,
-  .pruebas_cpfa__clasif-sem img {
-    display: block;
-    margin: 0.4rem auto;
-    width: 12rem;
-    height: 12rem;
-  }
-
-  .pruebas_cpfa__clasif-sem img {
-    width: 15rem;
-    height: 22vh;
-  }
-  .pruebas_cpfa__refranes img {
-    width: 13rem;
-    height: 50%;
-    margin: 4.5vh auto;
-  }
-  .pruebas_cpfa__metamemoria img {
-    width: 14rem;
-    height: 100%;
-  }
-
-  .pruebas_cpfa__clasif-sem {
-    margin: 2.4rem 1rem 0.5rem 1rem;
-  }
-
-  .pruebas_cpfa__refranes {
-    margin: 2.4rem 1rem 0.5rem 0;
-  }
-
-  .pruebas_cpfa__metamemoria {
-    margin: 2.4rem 1rem 0.5rem 0;
-  }
-
-  .pruebas_cpfdl {
-    margin: 2vh auto 5vh;
-  }
-
-  .pruebas_cpfdl > div {
-    height: 16rem;
-  }
-
-  .pruebas_cpfdl img {
-    width: 14rem;
-    height: 12rem;
-  }
-
-  .pruebas_cpfdl > .pruebas_cpfdl__laberintos img,
-  .pruebas_cpfdl > .pruebas_cpfdl__resta img {
-    height: 12rem;
-  }
-
-  .pruebas_cpfdl > .pruebas_cpfdl__senalamiento img {
-    height: 12rem;
-  }
-
-  .pruebas_cpfdl > .pruebas_cpfdl__ordenamiento img {
-    height: 12rem;
-  }
-
-  .pruebas_cpfdl > .pruebas_cpfdl__fluidez img {
+  .pruebas_banfe img  {
     height: 11rem;
   }  
 
-  .pruebas_banfe {
-    margin: 4vh auto 5.8vh;
+  .pruebas_cof__panel div span,
+  .pruebas_cpfa__panel div span,
+  .pruebas_cpfdl div span, 
+  .pruebas_banfe div span {
+    display: block;
+    margin: 0 auto;
+    font-size: 1.2rem;
+    color: #006414;
+    font-weight: bolder;
   }
 
-  .pruebas_banfe img {
-    width: 14rem;
-    height: 13rem;
+  .pruebas_cof__panel div span {
+    margin-top: -.5rem;
+    margin-bottom: .8rem;
   }
 
-  .pruebas_banfe__ordenamiento img {
-    height: 11.5rem;
+  .pruebas_cpfa__panel div span {
+    margin-top: -1.5rem;
+    margin-bottom: 2rem;
   }
 
-  .pruebas_banfe__suma img {
-    height: 9.8rem;
+  .pruebas_cpfdl div span {
+    margin-top: -.4rem;
+    margin-bottom: 1rem;
   }
 
-  .pruebas_banfe__refranes img {
-    height: 8.7rem;
-    width: 14.5rem;
-    margin: 2.75rem auto;
-  }
-
-  .pruebas_banfe__memoria img {
-    height: 13rem;
-  }
-
-  .pruebas_banfe__stroopA img,
-  .pruebas_banfe__clasif-sem img,
-  .pruebas_banfe__clasif-cartas img {
-    width: 15rem;
+  .pruebas_banfe div span {
+    font-size: 1.4rem;
+    margin-top: -1.5rem;
+    margin-bottom: 1rem;
   }
 
   .inicio_pruebas {
@@ -1007,84 +692,6 @@
   .banfe-carousel {
     margin-top: 2rem;
     margin-bottom: 2rem;
-  }
-
-  .pruebas_cpfa__clasif-sem {
-    margin: 2.6rem 1rem 0.5rem 1rem;
-  }
-
-  .pruebas_cpfa__refranes {
-    margin: 2.6rem 1rem 0.5rem 0;
-  }
-
-  .pruebas_cpfa__metamemoria {
-    margin: 2.6rem 1rem 0.5rem 0;
-  }
-
-  .pruebas_cof__laberintos {
-    margin: 2.2rem 1rem 0.5rem 1rem;
-  }
-
-  .pruebas_cof__stroopA {
-    margin: 2.2rem 1rem 0.5rem 0;
-  }
-
-  .pruebas_cof__cartas {
-    margin: 2.2rem 1rem 0.5rem 0;
-  }
-
-  .pruebas_cof__stroopB {
-    margin: 2.2rem 1rem 0.5rem 0;
-  }
-
-  .pruebas_cpfa__refranes img {
-    width: 15rem;
-  }
-
-  .pruebas_cpfdl {
-    margin: 3.5rem auto 3rem;
-  }
-
-  .pruebas_cpfdl > div {
-    height: 17rem;
-  }
-
-  .pruebas_cpfdl > .pruebas_cpfdl__laberintos img,
-  .pruebas_cpfdl > .pruebas_cpfdl__resta img {
-    height: 13rem;
-  }
-
-  .pruebas_cpfdl > .pruebas_cpfdl__senalamiento img {
-    height: 13rem;
-  }
-
-  .pruebas_cpfdl > .pruebas_cpfdl__ordenamiento img {
-    height: 13rem;
-  }
-
-  .pruebas_cpfdl > .pruebas_cpfdl__fluidez img {
-    height: 12rem;
-  }  
-
-  .pruebas_banfe {
-    margin: 2rem auto;
-  }
-
-  .pruebas_banfe__suma img {
-    height: 9.6rem;
-  }
-
-  .pruebas_banfe__refranes img {
-    height: 8.65rem;
-    width: 15rem;
-  }
-
-  .pruebas_banfe__memoria img {
-    height: 13rem;
-  }
-
-  .pruebas_banfe__stroopA img {
-    height: 13rem;
   }
 }
 
@@ -1153,171 +760,50 @@
     height: 14rem;
   }
 
-  .carousel {
-    margin-top: 4rem;
-    margin-bottom: 3rem;
+  .pruebas_cof__panel,
+  .pruebas_cpfa__panel  {
+    margin-top: 5rem;
+    margin-bottom: 2rem;
   }
 
-  .banfe-carousel {
-    margin-top: 3.5rem;
-    margin-bottom: 3rem;
+  .pruebas_cpfdl  {
+    margin: 4rem 2rem 0 2rem;
   }
 
-  .pruebas_cof__laberintos span,
-  .pruebas_cof__stroopA span,
-  .pruebas_cof__cartas span,
-  .pruebas_cof__stroopB span,
-  .pruebas_cpfa__clasif-sem span,
-  .pruebas_cpfa__refranes span,
-  .pruebas_cpfa__metamemoria span,
-  .pruebas_cpfdl span,
-  .pruebas_cpfa span,
-  .pruebas_banfe span {
-    font-size: 2.6vh;
+  .pruebas_banfe  {
+    margin: 2.5rem 4rem 0 4rem;
   }
-
-  .pruebas_cpfa__panel {
-    margin: 3vh auto 8vh;
-  }
-
-  .pruebas_cpfa__clasif-sem img {
-    width: 18rem;
-    height: 25vh;
-  }
-  .pruebas_cpfa__refranes img {
-    width: 17rem;
-    height: 50%;
-    margin: 4.5vh auto;
-  }
-  .pruebas_cpfa__metamemoria img {
-    width: 16rem;
-    height: 100%;
-  }
-
-  .pruebas_cpfa__clasif-sem {
-    margin: 3rem 1rem 0 1rem;
-  }
-
-  .pruebas_cpfa__refranes {
-    margin: 3rem 1rem 0 0;
-  }
-
-  .pruebas_cpfa__metamemoria {
-    margin: 3rem 1rem 0 0;
-  }
-
-  .pruebas_cof__panel {
-    margin: 5vh auto 10vh;
-  }
-
-  .pruebas_cof__laberintos img {
-    width: 14rem;
-    height: 80%;
-  }
-
-  .pruebas_cof__stroopA img {
-    width: 14rem;
-    height: 85%;
-  }
-
-  .pruebas_cof__cartas img {
-    width: 14vw;
-    height: 85%;
-  }
-
-  .pruebas_cof__stroopB img {
-    width: 14rem;
-    height: 85%;
-  }
-
-  .pruebas_cof__laberintos {
-    margin: 2.8rem 1rem 0.5rem 1rem;
-  }
-
-  .pruebas_cof__stroopA {
-    margin: 2.8rem 1rem 0.5rem 0;
-  }
-
-  .pruebas_cof__cartas {
-    margin: 2.8rem 1rem 0.5rem 0;
-  }
-
-  .pruebas_cof__stroopB {
-    margin: 2.8rem 1rem 0.5rem 0;
-  }
-
-  .pruebas_cpfdl {
-    margin: 1rem auto 1.5rem;
-  }
-
-  .pruebas_cpfdl div {
-    height: 35vh;
-    padding-top: 1.5rem;
-  }
-
-  .pruebas_cpfdl div > img {
-    width: 17rem;
-    height: 17rem;
-    margin-top: 0.5vh;
-  }
-
-  .pruebas_cpfdl > .pruebas_cpfdl__laberintos,
-  .pruebas_cpfdl > .pruebas_cpfdl__senalamiento,
-  .pruebas_cpfdl > .pruebas_cpfdl__resta,
-  .pruebas_cpfdl > .pruebas_cpfdl__ordenamiento {
-    height: 35vh;
-    padding-top: 2vh;
-  }
-
-  .pruebas_cpfdl > .pruebas_cpfdl__laberintos img,
-  .pruebas_cpfdl > .pruebas_cpfdl__resta img {
-    height: 15rem;
-  }
-
-  .pruebas_cpfdl > .pruebas_cpfdl__senalamiento img {
-    height: 14rem;
-  }
-
-  .pruebas_cpfdl > .pruebas_cpfdl__ordenamiento img {
-    height: 12.8rem;
-  }
-
-  .pruebas_cpfdl > .pruebas_cpfdl__fluidez img {
-    height: 15rem;
-  }
-
-  .pruebas_banfe {
-    margin: 2rem auto 1.5rem;
+ 
+  .pruebas_cpfdl > div {
+    height: 18rem;
   }
 
   .pruebas_banfe > div {
-    height: 35vh;
+    height: 20rem;
   }
 
-  .pruebas_banfe div > img {
-    height: 15rem;
-    width: 15rem;
+  .pruebas_cof__panel div span,
+  .pruebas_cpfa__panel div span,
+  .pruebas_cpfdl div span {
+    font-size: 1.4rem;
   }
 
-  .pruebas_banfe__refranes img {
-    margin: 2.8rem auto;
+  .pruebas_cpfdl div span {
+    margin-top: -.2rem;
+    margin-bottom: 2rem;
   }
 
-  .pruebas_banfe__suma img {
-    height: 9.2rem;
+  .pruebas_banfe div span {
+    font-size: 1.6rem;
+    margin-top: .4rem;
+    margin-bottom: 1rem;
   }
 
-  .pruebas_banfe__ordenamiento img {
-    height: 11.4rem;
+  .pruebas_cpfdl img  {
+    height: 10rem;
   }
 
-  .pruebas_banfe__memoria img {
-    height: 23vh;
-    width: 15rem;
-    margin-top: 0.5vh;
-  }
-
-  .pruebas_banfe__stroopA img {
+  .pruebas_banfe img  {
     height: 13rem;
   }
 

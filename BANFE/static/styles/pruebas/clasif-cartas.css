@@ -7,7 +7,7 @@
 
 /*  Vista de Sujeto */
 body {
-  background-image: url("/static/imagenes/mesa_cartas.jpg");
+  background-image: url("/static/images/mesa_cartas.jpg");
   display: flex;
   flex-direction: row;
   flex-grow: 2;

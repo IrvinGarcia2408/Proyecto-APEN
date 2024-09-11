@@ -534,6 +534,10 @@
   color: #333;
 }
 
+.labyrinths-play {
+  background: #006414;
+}
+
 .opciones {
   display: flex;
   flex-direction: row;
@@ -638,6 +642,10 @@
 
 .invisible {
   visibility: hidden;
+}
+
+.valores:focus {
+  outline: none;
 }
 
 @media only screen and (min-width: 1400px) {

@@ -180,11 +180,11 @@ async function putCard(opcion) {
     document.getElementById("espacio4").style.cssText =
       "border: #333 solid 3px;";
     document.getElementById("torre").src =
-      "/static/imagenes/clasif-cartas/" + (carta += 1) + ".jpeg";     
+      "/static/images/clasif-cartas/" + (carta += 1) + ".jpeg";     
     switch (opcion) {
       case "A":
         document.getElementById("espacioA").src =
-          "/static/imagenes/clasif-cartas/" + (carta - 1) + ".jpeg";
+          "/static/images/clasif-cartas/" + (carta - 1) + ".jpeg";
         document.getElementById("espacioA").style.display = 'block';          
         DjangoPOST("./A", "A");
         setTimeout(() => {
@@ -193,7 +193,7 @@ async function putCard(opcion) {
         break;
       case "B":
         document.getElementById("espacioB").src =
-          "/static/imagenes/clasif-cartas/" + (carta - 1) + ".jpeg";
+          "/static/images/clasif-cartas/" + (carta - 1) + ".jpeg";
         document.getElementById("espacioB").style.display = 'block';           
         DjangoPOST("./B", "B");
         setTimeout(() => {
@@ -202,7 +202,7 @@ async function putCard(opcion) {
         break;
       case "C":
         document.getElementById("espacioC").src =
-          "/static/imagenes/clasif-cartas/" + (carta - 1) + ".jpeg";
+          "/static/images/clasif-cartas/" + (carta - 1) + ".jpeg";
         document.getElementById("espacioC").style.display = 'block';           
         DjangoPOST("./C", "C");
         setTimeout(() => {
@@ -211,7 +211,7 @@ async function putCard(opcion) {
         break;
       case "D":
         document.getElementById("espacioD").src =
-          "/static/imagenes/clasif-cartas/" + (carta - 1) + ".jpeg";
+          "/static/images/clasif-cartas/" + (carta - 1) + ".jpeg";
         document.getElementById("espacioD").style.display = 'block';          
         DjangoPOST("./D", "D");
         setTimeout(() => {
@@ -246,7 +246,7 @@ async function sonarError() {
 function reloj() {
   if (carta > 64 || second_cards == 600) {
     document.getElementById("torre").src =
-      "/static/imagenes/clasif-cartas/" + (carta += 1) + ".jpeg";
+      "/static/images/clasif-cartas/" + (carta += 1) + ".jpeg";
     document.getElementById("torre").style.display = 'none';        
     
     clearInterval(temporizador);

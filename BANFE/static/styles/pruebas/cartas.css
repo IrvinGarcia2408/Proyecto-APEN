@@ -27,6 +27,7 @@
   font-size: 6vh;
   text-align: center;
   padding-top: 6.5vh;
+  border: #000 solid 1%;
 }
 
 .pilas:hover {

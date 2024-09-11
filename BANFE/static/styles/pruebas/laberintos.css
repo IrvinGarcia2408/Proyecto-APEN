@@ -60,6 +60,11 @@ td > button:hover {
   margin-bottom: 1rem;
 }
 
+.labyrinths-options i {
+  color: #235a31;
+}
+
+
 @media only screen and (min-width: 1400px) {
   .table-laberintos td > button {
     font-size: 2vh;
@@ -87,6 +92,16 @@ td > button:hover {
   .table-laberintos td button > .fa-play {
     padding-right: 5rem;
   }
+
+  .labyrinths-options button  i {
+    margin-left: .48rem;
+    margin-top: 0.1rem;
+    color: #277c3c;
+  }
+
+  .labyrinths-options button:nth-child(2) >  i {
+    margin-right: 0.6rem;
+  }
 }
 
 @media only screen and (min-width: 1700px) {
@@ -96,5 +111,13 @@ td > button:hover {
 
   .table-laberintos td button > i {
     padding-top: 0.02vh;
+  }
+
+  .labyrinths-options button  i {
+    margin-left: .38rem;
+  }
+
+  .labyrinths-options button:nth-child(2) >  i {
+    margin-left: 0.3rem;
   }
 }

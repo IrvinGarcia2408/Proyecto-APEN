@@ -188,7 +188,6 @@ async function sendTest() {
     t = document.getElementById("name_subject").value, // ID del sujeto
     n = document.getElementById("age_subject").value, // Edad del sujeto
     lista = []; // Lista de pruebas seleccionadas
-    alert(prueba)
 
   // Definir los datos a enviar en la solicitud POST
   const data = {
@@ -207,17 +206,14 @@ async function sendTest() {
   } else if (prueba === "cpfa") {
     url = "pruebasCPFA";
     data.prueba = "Prefrontal Anterior";
-    alert("YA ESTA: "+data.prueba)
-    alert(data.pid+ " | "+ data.prueba)
   } else {
     url = "pruebastotales";
     data.prueba = document.getElementById("test_to_aply").value;
   }
 
-
+  console.log(data.prueba);
   // Enviar la solicitud POST
   try {
-    alert("hola");
     const response = await sendPOST(url, data);
 
     // Aquí puedes manejar la respuesta del servidor
@@ -228,16 +224,13 @@ async function sendTest() {
       console.log(response.status);
       console.log(response.banfe_id);
       banfe_id = response.banfe_id;
-      alert("banfe_id: " + banfe_id);
     } else {
       console.error('La respuesta del servidor indica un error');
       // Aquí podrías mostrar un mensaje de error al usuario o tomar otras acciones      
     }
-    alert("banfe_id_2: " + banfe_id);
 
     // Verificar qué tipo de prueba se está realizando
     if ("cof" === prueba || "cpfdl" === prueba) {
-      alert("Prueba: "+prueba);
       // Lista de pruebas para cof o cpfdl
       if (parseInt(n) > 7) {
         lista = "cof" === prueba ? ["laberintos", "stroopA-control", "cartas-control", "clasif_cartas-control", "stroopB-control"] : ["laberintos", "senalamiento_autodirigido-control", "ordenamiento", "resta", "suma", "clasif_cartas-control", "semanticas-control", "fluidez-verbal", "torres-hanoi", "memoria_visoespacial-control"];
@@ -276,7 +269,7 @@ async function sendTest() {
 
   } catch (error) {
     // Manejar errores que ocurran durante la solicitud POST
-    console.error('Error en la solicitud:', error);
+    alert('Error en la solicitud:', error);
     // Aquí puedes mostrar un mensaje de error al usuario o tomar otras acciones
   }
 

@@ -61,6 +61,18 @@ function onlyNumbers(evt) {
   }
 }
 
+// Procedimiento para mostrar modales sin detener el cronómetro
+function mostrarModalSinDetenerCronometro(mensaje, ancho) {
+  document.getElementById("text-modal-sem").textContent = mensaje;
+  document.getElementById("box-modal-sem").style.width = ancho;
+  document.getElementById("modal-sem").style.display = "block";
+
+  document.getElementById("btnModal-sem").onclick = function () {
+    click_semanticas.play();
+    document.getElementById("modal-sem").style.display = "none";
+  };
+}
+
 // Procedimiento que recibe la cantidad de figuras por categoria
 function checkCategorySelection(category, textbox) {
   cant = document.getElementById(textbox).value;
@@ -68,37 +80,18 @@ function checkCategorySelection(category, textbox) {
   if (event.key == "Enter") {
     if (cant == "") {
       deleteAmount(category)
-      document.getElementById("text-modal-sem").textContent = "Campo vacío";
-      document.getElementById("box-modal-sem").style.width = "20%";
-      document.getElementById("modal-sem").style.display = "block";
-
-      document.getElementById("btnModal-sem").onclick = function () {
-        click_semanticas.play();
-        document.getElementById("modal-sem").style.display = "none";
-      };
+      mostrarModalSinDetenerCronometro("Campo vacío", "20%");
     } else {
       if (!isRadioButtonsSelected(category)) {
-        document.getElementById("text-modal-sem").textContent =
-          "Debes seleccionar una categoría antes de ingresar la cantidad";
-        document.getElementById("box-modal-sem").style.width = "30%";
-        document.getElementById("modal-sem").style.display = "block";
-
-        document.getElementById("btnModal-sem").onclick = function () {
-          click_semanticas.play();
-          document.getElementById("modal-sem").style.display = "none";
-        };
+        mostrarModalSinDetenerCronometro(
+          "Debes seleccionar una categoría antes de ingresar la cantidad",
+          "30%"
+        );
+        document.getElementById(textbox).value = "";
       } else {
         deleteAmount(category)
         addAmount(category, parseInt(cant))
-        document.getElementById("text-modal-sem").textContent =
-          "Categoría actualizada";
-        document.getElementById("box-modal-sem").style.width = "20%";
-        document.getElementById("modal-sem").style.display = "block";
-
-        document.getElementById("btnModal-sem").onclick = function () {
-          click_semanticas.play();
-          document.getElementById("modal-sem").style.display = "none";
-        };
+        mostrarModalSinDetenerCronometro("Categoría actualizada", "20%");
       }
     }
   }
@@ -143,11 +136,11 @@ function deleteAmount(category) {
     previousAmount[category-1] = null;
     elementAverage[0] = addElements[0]/categories[0];
   } else if (previousClasify[category-1] === 'F'){
-    alert(category+" | "+addElements[1])
+    console.log(category+" | "+addElements[1])
     addElements[1] -= previousAmount[category-1];
     previousAmount[category-1] = null;
     elementAverage[1] = addElements[1]/categories[1];
-    alert(category+" | "+addElements[1])
+    console.log(category+" | "+addElements[1])
   } else if (previousClasify[category-1] === 'A') {
     addElements[2] -= previousAmount[category-1];
     previousAmount[category-1] = null;
@@ -178,6 +171,8 @@ function deleteCategory(category) {
 
 // Función para manejar el cambio en la selección de los radios
 function handleRadioChange(category, clasify, radioButton) {
+  console.log("Radio button seleccionado:", radioButton);
+
   // Verificar si ya se había seleccionado una clasificación para esta categoría
   if (previousClasify[category-1] !== null) {
     // Deshacer la selección anterior (deseleccionar el radio previamente seleccionado)
@@ -194,14 +189,17 @@ function handleRadioChange(category, clasify, radioButton) {
       addCategory(category)
     }
     document.getElementById("total_"+category).value = "";
-    alert("deseleccionamos y volvemos a seleccionar");
+    console.log("Deseleccionamos y volvemos a seleccionar");
   } else {
     // Almacenar la clasificación seleccionada
     previousClasify[category-1] = clasify;
     addCategory(category);
 
-    alert("seleccionamos");
+    console.log("Seleccionamos");
   }
+
+  // Asegurarse de que no haya enfoque no deseado
+  console.log("Finalizando handleRadioChange");
 }
 
 
@@ -229,6 +227,11 @@ function mostrarSemanticas() {
   }
 }
 
+// Procedimiento que reinicia los valores de la prueba
+function resetSemantics(){
+
+}
+
 // Función que trunca un número al número específico de decimales proporcionado
 function truncar(numero, decimales) {
   // Calcula el factor de escala para truncar el número
@@ -239,25 +242,24 @@ function truncar(numero, decimales) {
 }
 
 
-// Procedimiento que inicia el cronometro del lado del sujeto
 function relojSemanticas() {
+  // Verifica si han transcurrido 300 segundos (5 minutos)
   if (sec_semantics == 300) {
-    clearInterval(control);
+    clearInterval(control); // Detiene el cronómetro
     document.getElementById("text-modal-sem").textContent = "Prueba finalizada";
     document.getElementById("box-modal-sem").style.width = "20%";
-    document.getElementById("modal-sem").style.display = "block";
-  }
-  console.log(
-    "Segundos: " + sec_semantics + " | Centesimas: " + cen_semantics
-  );
-  if (cen_semantics < 99) {
-    cen_semantics++;
+    document.getElementById("modal-sem").style.display = "block"; // Muestra el modal
+  } else {
+    if (cen_semantics < 99) {
+      cen_semantics++;
+    } else {
+      cen_semantics = 0;
+      sec_semantics++;
+    }
   }
 
-  if (cen_semantics == 99) {
-    cen_semantics = -1;
-  }
-  if (cen_semantics == 0) {
-    sec_semantics++;
-  }
+  // Actualiza el cronómetro en la consola o en la interfaz si es necesario
+  console.log(
+    "Segundos: " + sec_semantics + " | Centésimas: " + cen_semantics
+  );
 }

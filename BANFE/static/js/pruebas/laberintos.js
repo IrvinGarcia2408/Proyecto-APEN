@@ -1,224 +1,180 @@
-var alarma = document.querySelector(".alarma_sound"),
-  click_laberinto = document.querySelector(".figure-sound"),
-  iniciar_laberinto = !1,
-  pausar_laberinto = !1,
-  laberintos = 0,
-  tiempo_inicio = 0;
+// Definición de variables
+var alarm = document.querySelector(".alarm_sound"),
+  clickMaze = document.querySelector(".click-sound"),
+  startMaze = false,
+  pauseMaze = false,
+  mazes = 0,
+  startTime = 0,
+  timerControl,
+  totalMazes = 5;  // Número total de laberintos
 
 // Función para iniciar cada uno de los laberintos
-function iniciarLaberintos() {
-  // Reproduce el sonido de clic
-  click_laberinto.play(),
+function startMazes() {
+  clickMaze.play(); // Reproduce el sonido de clic
 
-    // Verifica si la prueba ya ha sido iniciada
-    iniciar_laberinto
-      ? pausar_laberinto && (
-        // Si se pausó la prueba, continúa el tiempo y habilita los laberintos siguientes
-        (control = setInterval(cronometroLaberintos, 10)),
-        (tiempo_inicio = segundos),
-        (pausar_laberinto = !1),
-        habilitarLaberintos(laberintos + 1))
-      : (
-        // Si es la primera vez que se inicia la prueba, configura el tiempo y habilita el primer laberinto
-        (control = setInterval(cronometroLaberintos, 10)),
-        (tiempo_inicio = segundos),
-        (document.getElementById("reiniciar_laberintos").disabled = !1),
-        (iniciar_laberinto = !0),
-        habilitarLaberintos(1),
-        (document.getElementById("final-1").disabled = !1));
-}
-
-// Procedimiento que detiene el tiempo de cada laberinto
-function pararLaberintos() {
-  click_laberinto.play();
-  pausar_laberinto = true;
-  clearInterval(control);
-  laberintos += 1;
-  
-  // Calcula y actualiza el promedio del tiempo de los laberintos completados
-  document.getElementById("promedio").textContent = Math.round(parseInt(document.getElementById("segundosP1").textContent) / laberintos);
-  
-  // Muestra el tiempo transcurrido en el laberinto actual
-  document.getElementById("tiempo-" + laberintos).textContent = parseInt(document.getElementById("segundosP1").textContent) - tiempo_inicio;
-
-  // Habilita los botones de inicio y finalización del próximo laberinto si quedan laberintos por completar
-  if (laberintos < 5) {
-    document.getElementById("inicio_" + (laberintos + 1)).disabled = false;
-    document.getElementById("final-" + (laberintos + 1)).disabled = false;
+  if (startMaze) {
+    // Si la prueba fue pausada, continúa
+    if (pauseMaze) {
+      timerControl = setInterval(mazeTimer, 10);
+      startTime = seconds;
+      pauseMaze = false;
+      enableMazeButtons(mazes + 1);
+    }
   } else {
-    // Deshabilita el botón de reinicio si ya se han completado los 5 laberintos
-    document.getElementById("reiniciar_laberintos").disabled = true;
-  }
-
-  // Deshabilita los botones de control del laberinto actual
-  inhabilitarLaberintos(laberintos);
-}
-
-// Procedimiento que reinicia la prueba completa
-function reiniciarLaberintos() {
-  // Reproduce el sonido de clic
-  click_laberinto.play();
-  
-  // Detiene el cronómetro y reinicia las variables de tiempo
-  clearInterval(control);
-  centesimas = segundos = 0;
-  
-  // Restaura el estado inicial de la prueba y deshabilita los botones correspondientes
-  iniciar_laberinto = false;
-  inhabilitarLaberintos(laberintos);
-  document.getElementById("segundosP1").innerHTML = "0";
-  document.getElementById("promedio").innerHTML = "0";
-  document.getElementById("reiniciar_laberintos").disabled = true;
-  document.getElementById("final-1").disabled = true;
-  
-  // Reinicia el contador de laberintos completados
-  laberintos = 0;
-}
-
-
-// Procedimiento que funciona como cronometro de la prueba
-function cronometroLaberintos() {
-  let ageTime = 0;
-
-  if(parseInt(age) < 8){
-    ageTime = 300;
-  }else{
-    ageTime = 240;
-  }
-
-  if (segundos === ageTime) {  // Comprueba si han pasado 300 segundos
-    document.getElementById("reiniciar_laberintos").disabled = true;  // Deshabilita el botón de reinicio
-    alarma.play();  // Reproduce la alarma
-    pararLaberintos();  // Detiene el cronómetro
-    document.getElementById("text-modal-laberintos").textContent = "Prueba finalizada";  // Muestra un mensaje
-    document.getElementById("box-modal-laberintos").style.width = "20%";  // Ajusta el ancho del modal
-    document.getElementById("modal-laberintos").style.display = "block";  // Muestra el modal
-    document.getElementById("btnModal-laberintos").onclick = function () {  // Configura el evento de clic en el botón del modal
-      click_laberinto.play();  // Reproduce un sonido
-      document.getElementById("modal-laberintos").style.display = "none";  // Oculta el modal
-    };
-  }
-  
-  if (centesimas < 99) { centesimas++; }  // Incrementa las centésimas
-  
-  if (centesimas == 99) { centesimas = -1; }  // Restablece las centésimas
-  
-  if (centesimas == 0) {  // Si las centésimas llegan a cero
-    segundos++;  // Incrementa los segundos
-    document.getElementById("segundosP1").innerHTML = "" + segundos;  // Actualiza el elemento HTML con los segundos
-    
-    if (laberintos > 0) {  // Calcula y muestra el promedio si hay laberintos completados
-      document.getElementById("promedio").textContent = Math.round(parseInt(document.getElementById("segundosP1").textContent) / laberintos);
-    } else {
-      document.getElementById("promedio").textContent = "0";
-    }
-  }
-}
-
-// Procedimiento que va incrementando los errores de cada laberinto
-function sumar(laberinto, error) {
-  click_laberinto.play();  // Reproduce un sonido
-  // Incrementa el contador de errores del laberinto específico
-  document.getElementById(error + "-" + laberinto).textContent =
-    parseInt(document.getElementById(error + "-" + laberinto).textContent, 10) + 1;
-  
-  // Incrementa el contador total de errores según el tipo de error
-  switch (error) {
-    case "toca":
-      document.getElementById("total-toca").textContent =
-        parseInt(document.getElementById("total-toca").textContent, 10) + 1;
-      break;
-    case "atraviesa":
-      document.getElementById("total-atraviesa").textContent =
-        parseInt(document.getElementById("total-atraviesa").textContent, 10) +
-        1;
-      break;
-    case "atrapado":
-      document.getElementById("total-atrapado").textContent =
-        parseInt(document.getElementById("total-atrapado").textContent, 10) + 1;
-      break;
-  }
-}
-
-// Procedimiento que va decrementando los errores de cada laberinto
-function restar(laberinto, error) {
-  click_laberinto.play();  // Reproduce un sonido
-  // Verifica si el contador de errores del laberinto específico es mayor que cero antes de restarlo
-  if (document.getElementById(error + "-" + laberinto).textContent != 0) {
-    // Decrementa el contador de errores del laberinto específico
-    document.getElementById(error + "-" + laberinto).textContent =
-      parseInt(
-        document.getElementById(error + "-" + laberinto).textContent,
-        10
-      ) - 1;
-    
-    // Decrementa el contador total de errores según el tipo de error
-    switch (error) {
-      case "toca":
-        document.getElementById("total-toca").textContent =
-          parseInt(document.getElementById("total-toca").textContent, 10) - 1;
-        break;
-      case "atraviesa":
-        document.getElementById("total-atraviesa").textContent =
-          parseInt(document.getElementById("total-atraviesa").textContent, 10) -
-          1;
-        break;
-      case "atrapado":
-        document.getElementById("total-atrapado").textContent =
-          parseInt(document.getElementById("total-atrapado").textContent, 10) -
-          1;
-        break;
-    }
+    // Si es la primera vez que se inicia la prueba
+    timerControl = setInterval(mazeTimer, 10);
+    startTime = seconds;
+    document.getElementById("reset_mazes").disabled = false;
+    startMaze = true;
+    enableMazeButtons(1);
+    document.getElementById("finish-1").disabled = false;
   }
 }
 
 
-// Procedimiento que habilita los botones del laberinto correspondiente
-function habilitarLaberintos(laberinto) {
-  // Itera sobre cada laberinto y habilita los botones correspondientes
-  for (let i = 1; i <= laberinto; i++) {
-    document.getElementById("res-toc-" + i).disabled = false;  // Habilita el botón de restar para "toca"
-    document.getElementById("sum-toc-" + i).disabled = false;  // Habilita el botón de sumar para "toca"
-    document.getElementById("res-atr-" + i).disabled = false;  // Habilita el botón de restar para "atraviesa"
-    document.getElementById("sum-atr-" + i).disabled = false;  // Habilita el botón de sumar para "atraviesa"
-    document.getElementById("res-enc-" + i).disabled = false;  // Habilita el botón de restar para "atrapado"
-    document.getElementById("sum-enc-" + i).disabled = false;  // Habilita el botón de sumar para "atrapado"
+// Función que detiene el tiempo de cada laberinto
+function stopMazes() {
+  clickMaze.play();
+  pauseMaze = true;
+  clearInterval(timerControl);
+  mazes++;
+
+  // Actualiza el promedio y el tiempo del laberinto actual
+  updateAverage();
+  updateMazeTime();
+
+  // Deshabilita botones del laberinto actual y habilita el siguiente si queda
+  disableMazeButtons(mazes);
+  if (mazes < totalMazes) {
+    enableMazeButtons(mazes + 1);
+  } else {
+    document.getElementById("reset_mazes").disabled = true;
+  }
+}
+
+// Función para reiniciar toda la prueba
+function resetMazes() {
+  clickMaze.play();
+  clearInterval(timerControl);
+  centiseconds = seconds = 0;
+  startMaze = false;
+  mazes = 0;
+
+  // Reinicia la UI
+  resetUI();
+  disableMazeButtons(mazes);
+  document.getElementById("reset_mazes").disabled = true;
+  document.getElementById("finish-1").disabled = true;
+}
+
+// Función que actúa como cronómetro
+function mazeTimer() {
+  let ageTime = (parseInt(age) < 8) ? 300 : 240;
+
+  if (seconds === ageTime) {  // Si se llega al tiempo máximo permitido
+    alarm.play();
+    stopMazes();
+    showCompletionModal();
+  }
+
+  centiseconds = (centiseconds + 1) % 100;
+  if (centiseconds === 0) seconds++;
+
+  document.getElementById("secondsP1").textContent = seconds;
+
+  if (mazes > 0) {
+    updateAverage();
   }
 }
 
 
-// Procedimiento que inhabilita los botones del laberinto correspondiente
-function inhabilitarLaberintos(laberinto) {
-  // Inhabilita los botones para cada laberinto
-  for (let i = 1; i <= 5; i++) {
-    document.getElementById("res-toc-" + i).disabled = true;
-    document.getElementById("sum-toc-" + i).disabled = true;
-    document.getElementById("res-atr-" + i).disabled = true;
-    document.getElementById("sum-atr-" + i).disabled = true;
-    document.getElementById("res-enc-" + i).disabled = true;
-    document.getElementById("sum-enc-" + i).disabled = true;
+// Función para sumar errores en un laberinto
+function incrementError(maze, error) {
+  clickMaze.play();
+  updateErrors(maze, error, 1);
+}
+
+
+// Función para restar errores en un laberinto
+function decrementError(maze, error) {
+  if (document.getElementById(`${error}-${maze}`).textContent != 0) {
+    clickMaze.play();
+    updateErrors(maze, error, -1);
+  }
+}
+
+// Función para actualizar errores totales y por laberinto
+function updateErrors(maze, error, delta) {
+  document.getElementById(`${error}-${maze}`).textContent =
+    parseInt(document.getElementById(`${error}-${maze}`).textContent, 10) + delta;
+
+  let totalError = `total-${error}`;
+  document.getElementById(totalError).textContent =
+    parseInt(document.getElementById(totalError).textContent, 10) + delta;
+}
+
+// Función que habilita los botones del laberinto correspondiente
+function enableMazeButtons(maze) {
+  disableMazeButtons(); // Inhabilita todos los botones primero
+
+  // Habilita los botones del laberinto actual
+  document.getElementById(`start_${maze}`).disabled = false;
+  document.getElementById(`finish-${maze}`).disabled = false;
+
+  ["touch", "cross", "trap"].forEach(error => {
+    document.getElementById(`dec-${error}-${maze}`).disabled = false;
+    document.getElementById(`inc-${error}-${maze}`).disabled = false;
+  });
+}
+
+// Función que inhabilita todos los botones de los laberintos
+function disableMazeButtons() {
+  for (let i = 1; i <= totalMazes; i++) {
+    document.getElementById(`start_${i}`).disabled = true;
+    document.getElementById(`finish-${i}`).disabled = true;
+
+    ["touch", "cross", "trap"].forEach(error => {
+      document.getElementById(`dec-${error}-${i}`).disabled = true;
+      document.getElementById(`inc-${error}-${i}`).disabled = true;
+    });
+  }
+}
+
+// Función que actualiza el promedio del tiempo de los laberintos
+function updateAverage() {
+  if (mazes > 0) {
+    document.getElementById("average").textContent =
+      Math.round(parseInt(document.getElementById("secondsP1").textContent) / mazes);
+  } else {
+    document.getElementById("average").textContent = "0";
+  }
+}
+
+// Función que muestra el modal de finalización
+function showCompletionModal() {
+  document.getElementById("modal-text-mazes").textContent = "Test completed";
+  document.getElementById("modal-box-mazes").style.width = "20%";
+  document.getElementById("modal-mazes").style.display = "block";
+
+  document.getElementById("modal-btn-mazes").onclick = function () {
+    clickMaze.play();
+    document.getElementById("modal-mazes").style.display = "none";
+  };
+}
+
+// Función para resetear la interfaz de usuario
+function resetUI() {
+  document.getElementById("secondsP1").textContent = "0";
+  document.getElementById("average").textContent = "0";
+
+  for (let i = 1; i <= totalMazes; i++) {
+    ["touch", "cross", "trap"].forEach(error => {
+      document.getElementById(`${error}-${i}`).textContent = "0";
+    });
+    document.getElementById(`time-${i}`).textContent = "0";
   }
 
-  // Inhabilita botones de inicio y final según el laberinto
-  if (laberinto >= 1) {
-    if (laberinto > 1) {
-      document.getElementById("inicio_" + laberinto).disabled = true;
-      document.getElementById("final-" + laberinto).disabled = true;
-    } else {
-      document.getElementById("final-" + laberinto).disabled = true;
-    }
-  }
-
-  // Limpia la tabla cuando es reiniciada
-  if (!iniciar_laberinto) {
-    for (let i = 1; i <= 5; i++) {
-      document.getElementById("toca-" + i).innerHTML = "0";
-      document.getElementById("atraviesa-" + i).innerHTML = "0";
-      document.getElementById("atrapado-" + i).innerHTML = "0";
-      document.getElementById("tiempo-" + i).innerHTML = "0";
-    }
-    document.getElementById("total-toca").innerHTML = "0";
-    document.getElementById("total-atraviesa").innerHTML = "0";
-    document.getElementById("total-atrapado").innerHTML = "0";
-  }
+  ["total-touch", "total-cross", "total-trap"].forEach(total => {
+    document.getElementById(total).textContent = "0";
+  });
 }

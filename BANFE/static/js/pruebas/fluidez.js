@@ -20,7 +20,7 @@ function contarFluidez(tipo, posicion) {
     valores_fluidez[posicion - 1] = tipo;
   } else {
     document.getElementById("text-modal-fluidez").textContent =
-      "Debes llenar el campo del verbo" + posicion;
+      "Debes llenar el campo del verbo " + posicion;
     document.getElementById("box-modal-fluidez").style.width = "30%";
     document.getElementById("modal-fluidez").style.display = "block";
 
@@ -47,4 +47,23 @@ function mostrarFluidez() {
   document.getElementById("aciertos_fluidez").textContent = aciertos;
   document.getElementById("intrusiones_fluidez").textContent = intrusiones;
   document.getElementById("perseveraciones_fluidez").textContent = perseveraciones;
+}
+
+// Procedimiento que limpie lo campos al reiniciar la prueba
+function cleanFluency(){
+  const start = 1; // Número inicial
+  const end = 40;  // Número final
+  
+  for (let i = start; i <= end; i++) {
+      const textbox = document.getElementById(`verbo_${i}`);
+      if (textbox) {
+          textbox.value = "";
+      }
+  }
+
+  valores_fluidez.length = 0;
+  aciertos = 0;
+  intrusiones = 0;
+  perseveraciones = 0;
+  mostrarFluidez();
 }
