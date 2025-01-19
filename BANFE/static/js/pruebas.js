@@ -220,7 +220,7 @@ async function sendTest() {
     console.log('Respuesta del servidor: ', response);
 
     // Por ejemplo, podrías redirigir a otra página solo si la respuesta indica éxito
-    if (response.status === 'Test Created Successfully') {
+    if (response.status === 'BANFE-2 Created Successfully') {
       console.log(response.status);
       console.log(response.banfe_id);
       banfe_id = response.banfe_id;
@@ -233,9 +233,9 @@ async function sendTest() {
     if ("cof" === prueba || "cpfdl" === prueba) {
       // Lista de pruebas para cof o cpfdl
       if (parseInt(n) > 7) {
-        lista = "cof" === prueba ? ["laberintos", "stroopA-control", "cartas-control", "clasif_cartas-control", "stroopB-control"] : ["laberintos", "senalamiento_autodirigido-control", "ordenamiento", "resta", "suma", "clasif_cartas-control", "semanticas-control", "fluidez-verbal", "torres-hanoi", "memoria_visoespacial-control"];
+        lista = "cof" === prueba ? ["laberintos", "clasif_cartas-control", "stroopA-control", "cartas-control", "stroopB-control"] : ["laberintos", "senalamiento_autodirigido-control", "ordenamiento", "resta", "suma", "clasif_cartas-control", "semanticas-control", "fluidez-verbal", "torres-hanoi", "memoria_visoespacial-control"];
       } else {
-        lista = "cof" === prueba ? ["laberintos", "cartas-control", "clasif_cartas-control"] : ["laberintos", "senalamiento_autodirigido-control", "clasif_cartas-control", "semanticas-control", "fluidez-verbal", "torres-hanoi"];
+        lista = "cof" === prueba ? ["laberintos", "clasif_cartas-control", "cartas-control"] : ["laberintos", "senalamiento_autodirigido-control", "clasif_cartas-control", "semanticas-control", "fluidez-verbal", "torres-hanoi"];
       }
       var r = encodeURIComponent(JSON.stringify(lista)); // Convertir la lista en una cadena codificada
       // Asignar el enlace con los parámetros correspondientes

@@ -24,6 +24,7 @@ urlpatterns = [
     path('banfe/', include('BANFE.urls')),
     path('expedientes/', include('PROCEEDING.urls')),
     path('pruebas/', include('TEST_HISTORY.urls')),
+    path('documentacion/', include('DOCUMENTATION.urls')),
     path('reset_password/', auth_views.PasswordResetView.as_view(template_name='recover_password/password_reset_form.html', email_template_name='recover_password/password_reset_email.html'),name='password_reset'),
     path('reset_password_send/', auth_views.PasswordResetDoneView.as_view(template_name='recover_password/password_reset_done.html'), name='password_reset_done'),
     path('reset/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(template_name='recover_password/password_reset_confirm.html'), name='password_reset_confirm'),

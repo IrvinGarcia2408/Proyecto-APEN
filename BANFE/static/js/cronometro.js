@@ -1,6 +1,9 @@
 let click_cronometro = document.querySelector(".figure-sound");
+let alarmChronometer = document.querySelector(".alarm_chronometer");
 let centesimas = 0;
 let segundos = 0;
+
+window.completeSemantics = false;
 
 // Variables para almacenar los identificadores de los elementos DOM
 let time, init, stopped, reset, watch;
@@ -50,7 +53,7 @@ function chronometer() {
   // Si los segundos alcanzan el límite establecido
   if (segundos == time) {
     // Reproducir alarma
-    alarma.play();
+    alarmChronometer.play();
     clearInterval(control);
     // Mostrar mensaje de finalización de la prueba
     document.getElementById(stopped).disabled = true;

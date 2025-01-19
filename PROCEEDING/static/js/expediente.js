@@ -37,7 +37,6 @@ const fields = {
   name: false,
   flastName: false,
   slastName: false,
-  dateEval: false,
   dateNac: false,
   country: false,
   state: false,
@@ -56,10 +55,7 @@ const fields = {
   time_hobbies: false,
   civil_status: false,
   religion: false,
-  mother_scholarship: false,
-  father_scholarship: false,
   referred_by: false,
-  phone_number: false,
   reason_consultation: false,
   alert_status: false,
   medicine: false,
@@ -80,7 +76,6 @@ const updateFields = {
   name: true,
   flastName: true,
   slastName: true,
-  dateEval: true,
   dateNac: true,
   country: true,
   state: true,
@@ -99,10 +94,7 @@ const updateFields = {
   time_hobbies: true,
   civil_status: true,
   religion: true,
-  mother_scholarship: true,
-  father_scholarship: true,
   referred_by: true,
-  phone_number: true,
   reason_consultation: true,
   alert_status: true,
   medicine: true,
@@ -119,6 +111,16 @@ const updateFields = {
   others_diseases: true,
 };
 
+document.addEventListener('DOMContentLoaded', function() {
+  // Obtener la fecha actual
+  const today = new Date();
+
+  // Formatear la fecha en formato YYYY-MM-DD
+  const dateToday = today.toISOString().split('T')[0];
+
+  // Asignar la fecha actual al input de tipo date
+  document.getElementById('dateEval').value = dateToday;
+});
 
 // Validación de los campos del formulario
 const validateForm = (e) => {
@@ -140,9 +142,6 @@ const validateForm = (e) => {
       document.getElementById("second_last_name").value = capitalizeFirstLetter(
         e.target.value
       );
-      break;
-    case "dateEval":
-      putRange(e.target), validateDate(e.target, "dateEval");
       break;
     case "dateNac":
       putRange(e.target), validateDate(e.target, "dateNac");
@@ -179,26 +178,11 @@ const validateForm = (e) => {
         e.target.value
       );
       break;
-    case "mother_scholarship":
-      validateField(expressions.word, e.target, "mother_scholarship");
-      document.getElementById("mother_scholarship").value = capitalizeFirstWord(
-        e.target.value
-      );
-      break;
-    case "father_scholarship":
-      validateField(expressions.word, e.target, "father_scholarship");
-      document.getElementById("father_scholarship").value = capitalizeFirstWord(
-        e.target.value
-      );
-      break;
     case "referred_by":
       validateField(expressions.texts, e.target, "referred_by");
       document.getElementById("referred_by").value = capitalizeFirstLetter(
         e.target.value
       );
-      break;
-    case "phone_number":
-      validateField(expressions.phone, e.target, "phone_number");
       break;
     case "reason_consultation":
       validateField(expressions.texts, e.target, "reason_consultation");
@@ -275,13 +259,11 @@ const validateField = (expression, input, field) => {
 // Asignación de eventos a los input=text
 inputs.forEach((input) => {
   input.addEventListener("keyup", validateForm);
-  input.addEventListener("blur", validateForm);
 });
 
 // Asignación de eventos a los input=text
 updateInputs.forEach((input) => {
   input.addEventListener("keyup", validateForm);
-  input.addEventListener("blur", validateForm);
 });
 
 // Validación de los select del formulario
@@ -891,6 +873,7 @@ if(updateForm){
   updateForm.addEventListener("submit", function (event) {
     event.preventDefault(); // Evita que el formulario se envíe automáticamente
     if (validateFields(updateFields)) {
+      document.getElementById("dateEval").disabled = false;
       document.getElementById("update-proceeding").submit(); // Envía el formulario si el usuario confirma
     }
   });                                                                        

@@ -65,6 +65,7 @@
 
 .table-stroop {
   margin: 2% auto;
+  width: 95%;
 }
 
 .table-stroop th {
@@ -83,6 +84,7 @@
 
 .separador {
   height: 5vh;
+  background: #64c27b;
 }
 
 .table-stroop td > button {
@@ -97,9 +99,10 @@
 .stroop-incorrecto i,
 .stroop-correcto i {
   color: rgb(255, 255, 180);
-  font-size: 2.2vh;
+  font-size: 2vh;
   padding-top: 0.15rem;
-  padding-right: 0rem;
+  padding-right: 0.1rem;
+  padding-left: 0.2rem;
 }
 
 .stroop-correcto {
@@ -125,10 +128,11 @@
   text-decoration: underline 0.3vh;
 }
 
-@media only screen and (min-width: 1500px) {
+@media only screen and (max-width: 1600px) {
   .stroop-incorrecto i,
   .stroop-correcto i {
-    padding-top: 0;
-    padding-left: 0.2vw;
+    font-size: 1.8vh;
+    padding-bottom: 0.1rem;
+    padding-left: 0.15vw;
   }
 }

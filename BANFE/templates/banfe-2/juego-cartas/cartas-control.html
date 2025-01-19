@@ -1,8 +1,8 @@
 {% extends "banfe-2/base.html" %} {% load static %} {% block content %}
 
 <audio
-  class="alarma_sound"
-  src="{% static 'audios/tiempo_acabado.mp3' %}"
+  class="alarm_chronometer"
+  src="{% static 'audios/time_out.mp3' %}"
 ></audio>
 <audio class="figure-sound" src="{% static 'audios/click.wav' %}"/></audio>
 
@@ -38,7 +38,7 @@
         </div>
         <div class="cinta-opciones__adicional">
           <button class="first_child btn invisible"></button>
-          <button id="parar_cartas" onclick="stoped()" class="btn invisible" disabled></button>
+          <button id="parar_cartas" onclick="stoped();" class="btn invisible" disabled></button>
           <button
             id="reiniciar_cartas"
             class="btn"
@@ -195,14 +195,8 @@
             $("#castigos-carta").load(" #castigos-carta");
             $("#resultados-cartas").load(" #resultados-cartas");
             if (document.getElementById("fin_cartas").textContent == "1") {
-              if (!mensaje) {
-                if(!parada){
-                  stoped();
-                  parada = true;
-                }
-                document.getElementById("reiniciar_cartas").disabled = true;
-                imprimirMensaje();
-              }
+              stoped();
+              window.completeCardGame = true;
             }
           }, 1000);
         });

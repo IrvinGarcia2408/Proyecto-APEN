@@ -77,11 +77,7 @@
     <link rel="stylesheet" href="{% static 'styles/pruebas/memoria.css' %}" />
 
     <!-- Scripts -->
-    <script defer src="{% static 'js/base.js' %}"></script>
-
-    <script defer src="{% static 'js/cronometro.js' %}"></script>
-
-    <script defer src="{% static 'js/pruebas/laberintos.js' %}"></script>
+    <script defer src="{% static 'js/pruebas/labyrinths.js' %}"></script>
     <script defer src="{% static 'js/pruebas/senalamiento.js' %}"></script>
     <script defer src="{% static 'js/pruebas/ordenamiento.js' %}"></script>
     <script defer src="{% static 'js/pruebas/suma-resta.js' %}"></script>
@@ -95,6 +91,10 @@
     <script defer src="{% static 'js/pruebas/metamemoria.js' %}"></script>
     <script defer src="{% static 'js/pruebas/memoria.js' %}"></script>
 
+    <script defer src="{% static 'js/cronometro.js' %}"></script>
+
+    <script defer src="{% static 'js/base.js' %}"></script>
+
     <!-- Icons -->
     <script
       src="https://kit.fontawesome.com/f53c5a122d.js"
@@ -103,6 +103,16 @@
   </head>
 
   <body>
+    <!-- Modal -->
+    <div id="modalIncompleteTest" class="modal">
+      <div class="modal-content">
+        <p>
+          La prueba no ha sido concluida. Por favor, complétala antes de
+          continuar.
+        </p>
+        <button id="modalCloseButton" class="btnModal">Cerrar</button>
+      </div>
+    </div>
     <div class="contenedor">
       <header class="header">
         <nav class="navbar">

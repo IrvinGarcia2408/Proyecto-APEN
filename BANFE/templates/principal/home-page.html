@@ -1,0 +1,18 @@
+{% extends "principal/base.html" %} {% load static %} {% block content %}
+
+<div class="container mt-5 p-5">
+  <div class="container">
+    <!-- Texto de bienvenida -->
+    <p class="mt-5 title-home fw-bold text-center font-monospace">
+      Bienvenido a APEN
+    </p>
+    <!-- Imagen del logo -->
+    <img
+      src="{% static 'images/logo.png' %}"
+      alt="logo-apen"
+      class="mx-auto d-block logo-home"
+    />
+  </div>
+</div>
+
+{% endblock %}

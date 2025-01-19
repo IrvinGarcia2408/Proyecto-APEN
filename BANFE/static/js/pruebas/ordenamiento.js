@@ -2,6 +2,8 @@ let click_ordenamiento = document.querySelector(".figure-sound");
 var ensayo = 1;
 let posicion = 1;
 
+window.completeSorting = false;
+
 // Procedimiento que anota la palabra seleccionada dentro de la página
 function writeWord(lista, fila, palabra) {
   click_ordenamiento.play(); // Reproducir sonido de ordenamiento
@@ -69,13 +71,14 @@ function correctEssay(lista) {
   console.log(lista)
   if (lista < 3) {
     if(lista === 2 && (parseInt(age) < 10 || ((parseInt(age) > 30 && parseInt(age) < 56) && (school > 3 && school < 10)))){
-      showModal("Prueba finalizada");
+      showModalSorting("Prueba finalizada");
       turnOffButtons(lista+1);
     }else{
-      showModal("Siguiente lista");
+      showModalSorting("Siguiente lista");
     }
   } else {
-    showModal("Prueba finalizada");
+    showModalSorting("Prueba finalizada");
+    window.completeSorting = true;
   }
   turnOffButtons(lista);
 }
@@ -87,28 +90,29 @@ function incorrectEssay(lista) {
   if (ensayo === 5) {
     if (lista < 3) {
       if(lista === 2 && (parseInt(age) < 10 || ((parseInt(age) > 30 && parseInt(age) < 56) && (school > 3 && school < 10)))){
-        showModal("Prueba finalizada");
+        showModalSorting("Prueba finalizada");
         turnOffButtons(lista+1);
       }else{
         ensayo = 1;
         posicion = 1;
-        showModal("Siguiente lista");
+        showModalSorting("Siguiente lista");
       }
     } else {
-      showModal("Prueba finalizada");
+      showModalSorting("Prueba finalizada");
+      window.completeSorting = true;
     }
     turnOffButtons(lista);
   } else {
     posicion = 1;
     ensayo++;
-    showModal("Siguiente ensayo");
+    showModalSorting("Siguiente ensayo");
   }
 
 }
 
 
 // Procedimiento para mostrar un modal con un mensaje dado
-function showModal(mensaje) {
+function showModalSorting(mensaje) {
   document.getElementById("text-modal-ord").textContent = mensaje;
   document.getElementById("box-modal-ord").style.width = "20%";
   document.getElementById("modal-ord").style.display = "block";
@@ -160,6 +164,7 @@ function turnOffButtons(lista) {
 function restartSorting() {
   DjangoPOST("./ordenamiento/reiniciar/" + 1, 1);
   setTimeout(location.reload(), 2000);
+  window.completeSorting = false;
 }
 
 /*  Funciones generales  */

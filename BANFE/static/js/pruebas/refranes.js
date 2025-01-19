@@ -1,6 +1,10 @@
 let click_refranes = document.querySelector(".figure-sound");
+let alarmSayings = document.querySelector(".alarm_sayings");
+
 
 let init_refran = false;
+
+window.completeSayings = false;
 
 // Procedimiento que habilita la opción elegida por el sujeto para el refran
 function elegirRefran(a, b, c, refran) {
@@ -137,6 +141,8 @@ function reinicioCronoRef() {
   document.getElementById("segundos_refranes").innerHTML = "0";
   document.getElementById("inicio_refranes").disabled = false;
   document.getElementById("reiniciar_refranes").disabled = true;
+
+  window.completeSayings = false;
 }
 
 // Procedimiento que funciona como cronometro para el aplicador
@@ -145,7 +151,7 @@ function cronometroRefranes() {
     segundos == 300 ||
     document.getElementById("fin_refranes").textContent == 1
   ) {
-    alarma.play();
+    alarmSayings.play();
     document.getElementById("reiniciar_refranes").disabled = true;
     clearInterval(control);
     document.getElementById("text-modal-refranes").textContent =
@@ -157,6 +163,8 @@ function cronometroRefranes() {
       click_refranes.play();
       document.getElementById("modal-refranes").style.display = "none";
     };
+
+    window.completeSayings = true;
   }
   console.log("Segundos: " + segundos + " | Centesimas: " + centesimas);
   if (centesimas < 99) {

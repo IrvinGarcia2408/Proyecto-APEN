@@ -1,9 +1,6 @@
 {% extends "banfe-2/base.html" %} {% load static %} {% block content %}
 
-<audio
-  class="alarma_sound"
-  src="{% static 'audios/tiempo_acabado.mp3' %}"
-></audio>
+<audio class="alarma_sound" src="{% static 'audios/time_out.mp3' %}"></audio>
 <audio class="figure-sound" src="{% static 'audios/click.wav' %}"></audio>
 {% include "banfe-2/modal.html" %}
 <div id="stroop-A" class="panel-prueba">
@@ -29,7 +26,7 @@
           <button
             id="inicio_stroop"
             class="btn"
-            onclick="start(300,'segundos_stroop','inicio_stroop','parar_stroop','reiniciar_stroop'); habilitarTabla('A',false);"
+            onclick="start(300,'segundos_stroop','inicio_stroop','parar_stroop','reiniciar_stroop'); enableTable('A',false);"
           >
             <i class="fa-solid fa-flag-checkered"></i>
             Iniciar Prueba
@@ -42,7 +39,7 @@
           <button
             id="parar_stroop"
             class="btn"
-            onclick="stoped(); habilitarTabla('A',true);"
+            onclick="stoped(); enableTable('A',true);"
             disabled
           >
             <i class="fa-solid fa-stop"></i>
@@ -50,7 +47,7 @@
           <button
             id="reiniciar_stroop"
             class="btn"
-            onclick="restart(); limpiarStroop();"
+            onclick="restart(); resetStroopTest();"
             disabled
           >
             <i class="fa-solid fa-arrow-rotate-left"></i>
@@ -88,7 +85,7 @@
             <td>
               <button
                 id="btn-acierto-1"
-                onclick="contarAciertos(1)"
+                onclick="countCorrect(1)"
                 class="stroop-correcto"
                 disabled
               >
@@ -96,7 +93,7 @@
               </button>
               <button
                 id="btn-nostroop-1"
-                onclick="contarErrores('nostroop', 1)"
+                onclick="countErrors('nostroop', 1)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -107,7 +104,7 @@
             <td>
               <button
                 id="btn-acierto-7"
-                onclick="contarAciertos(7)"
+                onclick="countCorrect(7)"
                 class="stroop-correcto"
                 disabled
               >
@@ -115,7 +112,7 @@
               </button>
               <button
                 id="btn-nostroop-7"
-                onclick="contarErrores('nostroop', 7)"
+                onclick="countErrors('nostroop', 7)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -126,7 +123,7 @@
             <td>
               <button
                 id="btn-acierto-13"
-                onclick="contarAciertos(13)"
+                onclick="countCorrect(13)"
                 class="stroop-correcto"
                 disabled
               >
@@ -134,7 +131,7 @@
               </button>
               <button
                 id="btn-nostroop-13"
-                onclick="contarErrores('nostroop', 13)"
+                onclick="countErrors('nostroop', 13)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -147,7 +144,7 @@
             <td>
               <button
                 id="btn-acierto-19"
-                onclick="contarAciertos(19)"
+                onclick="countCorrect(19)"
                 class="stroop-correcto"
                 disabled
               >
@@ -155,7 +152,7 @@
               </button>
               <button
                 id="btn-stroop-19"
-                onclick="contarErrores('stroop', 19)"
+                onclick="countErrors('stroop', 19)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -166,7 +163,7 @@
             <td>
               <button
                 id="btn-acierto-25"
-                onclick="contarAciertos(25)"
+                onclick="countCorrect(25)"
                 class="stroop-correcto"
                 disabled
               >
@@ -174,7 +171,7 @@
               </button>
               <button
                 id="btn-nostroop-25"
-                onclick="contarErrores('nostroop', 25)"
+                onclick="countErrors('nostroop', 25)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -185,7 +182,7 @@
             <td>
               <button
                 id="btn-acierto-31"
-                onclick="contarAciertos(31)"
+                onclick="countCorrect(31)"
                 class="stroop-correcto"
                 disabled
               >
@@ -193,7 +190,7 @@
               </button>
               <button
                 id="btn-nostroop-31"
-                onclick="contarErrores('nostroop', 31)"
+                onclick="countErrors('nostroop', 31)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -206,7 +203,7 @@
             <td>
               <button
                 id="btn-acierto-37"
-                onclick="contarAciertos(37)"
+                onclick="countCorrect(37)"
                 class="stroop-correcto"
                 disabled
               >
@@ -214,7 +211,7 @@
               </button>
               <button
                 id="btn-stroop-37"
-                onclick="contarErrores('stroop', 37)"
+                onclick="countErrors('stroop', 37)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -228,7 +225,7 @@
             <td>
               <button
                 id="btn-acierto-2"
-                onclick="contarAciertos(2)"
+                onclick="countCorrect(2)"
                 class="stroop-correcto"
                 disabled
               >
@@ -236,7 +233,7 @@
               </button>
               <button
                 id="btn-nostroop-2"
-                onclick="contarErrores('nostroop', 2)"
+                onclick="countErrors('nostroop', 2)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -249,7 +246,7 @@
             <td>
               <button
                 id="btn-acierto-8"
-                onclick="contarAciertos(8)"
+                onclick="countCorrect(8)"
                 class="stroop-correcto"
                 disabled
               >
@@ -257,7 +254,7 @@
               </button>
               <button
                 id="btn-stroop-8"
-                onclick="contarErrores('stroop', 8)"
+                onclick="countErrors('stroop', 8)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -268,7 +265,7 @@
             <td>
               <button
                 id="btn-acierto-14"
-                onclick="contarAciertos(14)"
+                onclick="countCorrect(14)"
                 class="stroop-correcto"
                 disabled
               >
@@ -276,7 +273,7 @@
               </button>
               <button
                 id="btn-nostroop-14"
-                onclick="contarErrores('nostroop', 14)"
+                onclick="countErrors('nostroop', 14)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -287,7 +284,7 @@
             <td>
               <button
                 id="btn-acierto-20"
-                onclick="contarAciertos(20)"
+                onclick="countCorrect(20)"
                 class="stroop-correcto"
                 disabled
               >
@@ -295,7 +292,7 @@
               </button>
               <button
                 id="btn-nostroop-20"
-                onclick="contarErrores('nostroop', 20)"
+                onclick="countErrors('nostroop', 20)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -308,7 +305,7 @@
             <td>
               <button
                 id="btn-acierto-26"
-                onclick="contarAciertos(26)"
+                onclick="countCorrect(26)"
                 class="stroop-correcto"
                 disabled
               >
@@ -316,7 +313,7 @@
               </button>
               <button
                 id="btn-stroop-26"
-                onclick="contarErrores('stroop', 26)"
+                onclick="countErrors('stroop', 26)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -327,7 +324,7 @@
             <td>
               <button
                 id="btn-acierto-32"
-                onclick="contarAciertos(32)"
+                onclick="countCorrect(32)"
                 class="stroop-correcto"
                 disabled
               >
@@ -335,7 +332,7 @@
               </button>
               <button
                 id="btn-nostroop-32"
-                onclick="contarErrores('nostroop', 32)"
+                onclick="countErrors('nostroop', 32)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -348,7 +345,7 @@
             <td>
               <button
                 id="btn-acierto-38"
-                onclick="contarAciertos(38)"
+                onclick="countCorrect(38)"
                 class="stroop-correcto"
                 disabled
               >
@@ -356,7 +353,7 @@
               </button>
               <button
                 id="btn-stroop-38"
-                onclick="contarErrores('stroop', 38)"
+                onclick="countErrors('stroop', 38)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -372,7 +369,7 @@
             <td>
               <button
                 id="btn-acierto-3"
-                onclick="contarAciertos(3)"
+                onclick="countCorrect(3)"
                 class="stroop-correcto"
                 disabled
               >
@@ -380,7 +377,7 @@
               </button>
               <button
                 id="btn-stroop-3"
-                onclick="contarErrores('stroop', 3)"
+                onclick="countErrors('stroop', 3)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -391,7 +388,7 @@
             <td>
               <button
                 id="btn-acierto-9"
-                onclick="contarAciertos(9)"
+                onclick="countCorrect(9)"
                 class="stroop-correcto"
                 disabled
               >
@@ -399,7 +396,7 @@
               </button>
               <button
                 id="btn-nostroop-9"
-                onclick="contarErrores('nostroop', 9)"
+                onclick="countErrors('nostroop', 9)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -410,7 +407,7 @@
             <td>
               <button
                 id="btn-acierto-15"
-                onclick="contarAciertos(15)"
+                onclick="countCorrect(15)"
                 class="stroop-correcto"
                 disabled
               >
@@ -418,7 +415,7 @@
               </button>
               <button
                 id="btn-nostroop-15"
-                onclick="contarErrores('nostroop', 15)"
+                onclick="countErrors('nostroop', 15)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -431,7 +428,7 @@
             <td>
               <button
                 id="btn-acierto-21"
-                onclick="contarAciertos(21)"
+                onclick="countCorrect(21)"
                 class="stroop-correcto"
                 disabled
               >
@@ -439,7 +436,7 @@
               </button>
               <button
                 id="btn-stroop-21"
-                onclick="contarErrores('stroop', 21)"
+                onclick="countErrors('stroop', 21)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -450,7 +447,7 @@
             <td>
               <button
                 id="btn-acierto-27"
-                onclick="contarAciertos(27)"
+                onclick="countCorrect(27)"
                 class="stroop-correcto"
                 disabled
               >
@@ -458,7 +455,7 @@
               </button>
               <button
                 id="btn-nostroop-27"
-                onclick="contarErrores('nostroop', 27)"
+                onclick="countErrors('nostroop', 27)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -469,7 +466,7 @@
             <td>
               <button
                 id="btn-acierto-33"
-                onclick="contarAciertos(33)"
+                onclick="countCorrect(33)"
                 class="stroop-correcto"
                 disabled
               >
@@ -477,7 +474,7 @@
               </button>
               <button
                 id="btn-nostroop-33"
-                onclick="contarErrores('stroop', 33)"
+                onclick="countErrors('stroop', 33)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -488,7 +485,7 @@
             <td>
               <button
                 id="btn-acierto-39"
-                onclick="contarAciertos(39)"
+                onclick="countCorrect(39)"
                 class="stroop-correcto"
                 disabled
               >
@@ -496,7 +493,7 @@
               </button>
               <button
                 id="btn-nostroop-39"
-                onclick="contarErrores('nostroop', 39)"
+                onclick="countErrors('nostroop', 39)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -510,7 +507,7 @@
             <td>
               <button
                 id="btn-acierto-4"
-                onclick="contarAciertos(4)"
+                onclick="countCorrect(4)"
                 class="stroop-correcto"
                 disabled
               >
@@ -518,7 +515,7 @@
               </button>
               <button
                 id="btn-nostroop-4"
-                onclick="contarErrores('nostroop', 4)"
+                onclick="countErrors('nostroop', 4)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -531,7 +528,7 @@
             <td>
               <button
                 id="btn-acierto-10"
-                onclick="contarAciertos(10)"
+                onclick="countCorrect(10)"
                 class="stroop-correcto"
                 disabled
               >
@@ -539,7 +536,7 @@
               </button>
               <button
                 id="btn-stroop-10"
-                onclick="contarErrores('stroop', 10)"
+                onclick="countErrors('stroop', 10)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -550,7 +547,7 @@
             <td>
               <button
                 id="btn-acierto-16"
-                onclick="contarAciertos(16)"
+                onclick="countCorrect(16)"
                 class="stroop-correcto"
                 disabled
               >
@@ -558,7 +555,7 @@
               </button>
               <button
                 id="btn-nostroop-16"
-                onclick="contarErrores('nostroop', 16)"
+                onclick="countErrors('nostroop', 16)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -569,7 +566,7 @@
             <td>
               <button
                 id="btn-acierto-22"
-                onclick="contarAciertos(22)"
+                onclick="countCorrect(22)"
                 class="stroop-correcto"
                 disabled
               >
@@ -577,7 +574,7 @@
               </button>
               <button
                 id="btn-nostroop-22"
-                onclick="contarErrores('nostroop', 22)"
+                onclick="countErrors('nostroop', 22)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -590,7 +587,7 @@
             <td>
               <button
                 id="btn-acierto-28"
-                onclick="contarAciertos(28)"
+                onclick="countCorrect(28)"
                 class="stroop-correcto"
                 disabled
               >
@@ -598,7 +595,7 @@
               </button>
               <button
                 id="btn-stroop-28"
-                onclick="contarErrores('stroop', 28)"
+                onclick="countErrors('stroop', 28)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -609,7 +606,7 @@
             <td>
               <button
                 id="btn-acierto-34"
-                onclick="contarAciertos(34)"
+                onclick="countCorrect(34)"
                 class="stroop-correcto"
                 disabled
               >
@@ -617,7 +614,7 @@
               </button>
               <button
                 id="btn-nostroop-34"
-                onclick="contarErrores('nostroop', 34)"
+                onclick="countErrors('nostroop', 34)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -630,7 +627,7 @@
             <td>
               <button
                 id="btn-acierto-40"
-                onclick="contarAciertos(40)"
+                onclick="countCorrect(40)"
                 class="stroop-correcto"
                 disabled
               >
@@ -638,7 +635,7 @@
               </button>
               <button
                 id="btn-stroop-40"
-                onclick="contarErrores('stroop', 40)"
+                onclick="countErrors('stroop', 40)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -652,7 +649,7 @@
             <td>
               <button
                 id="btn-acierto-5"
-                onclick="contarAciertos(5)"
+                onclick="countCorrect(5)"
                 class="stroop-correcto"
                 disabled
               >
@@ -660,7 +657,7 @@
               </button>
               <button
                 id="btn-nostroop-5"
-                onclick="contarErrores('nostroop', 5)"
+                onclick="countErrors('nostroop', 5)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -671,7 +668,7 @@
             <td>
               <button
                 id="btn-acierto-11"
-                onclick="contarAciertos(11)"
+                onclick="countCorrect(11)"
                 class="stroop-correcto"
                 disabled
               >
@@ -679,7 +676,7 @@
               </button>
               <button
                 id="btn-nostroop-11"
-                onclick="contarErrores('nostroop', 11)"
+                onclick="countErrors('nostroop', 11)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -690,7 +687,7 @@
             <td>
               <button
                 id="btn-acierto-17"
-                onclick="contarAciertos(17)"
+                onclick="countCorrect(17)"
                 class="stroop-correcto"
                 disabled
               >
@@ -698,7 +695,7 @@
               </button>
               <button
                 id="btn-nostroop-17"
-                onclick="contarErrores('nostroop', 17)"
+                onclick="countErrors('nostroop', 17)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -711,7 +708,7 @@
             <td>
               <button
                 id="btn-acierto-23"
-                onclick="contarAciertos(23)"
+                onclick="countCorrect(23)"
                 class="stroop-correcto"
                 disabled
               >
@@ -719,7 +716,7 @@
               </button>
               <button
                 id="btn-stroop-23"
-                onclick="contarErrores('stroop', 23)"
+                onclick="countErrors('stroop', 23)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -730,7 +727,7 @@
             <td>
               <button
                 id="btn-acierto-29"
-                onclick="contarAciertos(29)"
+                onclick="countCorrect(29)"
                 class="stroop-correcto"
                 disabled
               >
@@ -738,7 +735,7 @@
               </button>
               <button
                 id="btn-nostroop-29"
-                onclick="contarErrores('nostroop', 29)"
+                onclick="countErrors('nostroop', 29)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -749,7 +746,7 @@
             <td>
               <button
                 id="btn-acierto-35"
-                onclick="contarAciertos(35)"
+                onclick="countCorrect(35)"
                 class="stroop-correcto"
                 disabled
               >
@@ -757,7 +754,7 @@
               </button>
               <button
                 id="btn-nostroop-35"
-                onclick="contarErrores('nostroop', 35)"
+                onclick="countErrors('nostroop', 35)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -768,7 +765,7 @@
             <td>
               <button
                 id="btn-acierto-41"
-                onclick="contarAciertos(41)"
+                onclick="countCorrect(41)"
                 class="stroop-correcto"
                 disabled
               >
@@ -776,7 +773,7 @@
               </button>
               <button
                 id="btn-nostroop-41"
-                onclick="contarErrores('nostroop', 41)"
+                onclick="countErrors('nostroop', 41)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -792,7 +789,7 @@
             <td>
               <button
                 id="btn-acierto-6"
-                onclick="contarAciertos(6)"
+                onclick="countCorrect(6)"
                 class="stroop-correcto"
                 disabled
               >
@@ -800,7 +797,7 @@
               </button>
               <button
                 id="btn-stroop-6"
-                onclick="contarErrores('stroop', 6)"
+                onclick="countErrors('stroop', 6)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -813,7 +810,7 @@
             <td>
               <button
                 id="btn-acierto-12"
-                onclick="contarAciertos(12)"
+                onclick="countCorrect(12)"
                 class="stroop-correcto"
                 disabled
               >
@@ -821,7 +818,7 @@
               </button>
               <button
                 id="btn-stroop-12"
-                onclick="contarErrores('stroop', 12)"
+                onclick="countErrors('stroop', 12)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -832,7 +829,7 @@
             <td>
               <button
                 id="btn-acierto-18"
-                onclick="contarAciertos(18)"
+                onclick="countCorrect(18)"
                 class="stroop-correcto"
                 disabled
               >
@@ -840,7 +837,7 @@
               </button>
               <button
                 id="btn-nostroop-18"
-                onclick="contarErrores('nostroop', 18)"
+                onclick="countErrors('nostroop', 18)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -851,7 +848,7 @@
             <td>
               <button
                 id="btn-acierto-24"
-                onclick="contarAciertos(18)"
+                onclick="countCorrect(24)"
                 class="stroop-correcto"
                 disabled
               >
@@ -859,7 +856,7 @@
               </button>
               <button
                 id="btn-nostroop-24"
-                onclick="contarErrores('nostroop', 24)"
+                onclick="countErrors('nostroop', 24)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -872,7 +869,7 @@
             <td>
               <button
                 id="btn-acierto-30"
-                onclick="contarAciertos(30)"
+                onclick="countCorrect(30)"
                 class="stroop-correcto"
                 disabled
               >
@@ -880,7 +877,7 @@
               </button>
               <button
                 id="btn-stroop-30"
-                onclick="contarErrores('stroop', 30)"
+                onclick="countErrors('stroop', 30)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -891,7 +888,7 @@
             <td>
               <button
                 id="btn-acierto-36"
-                onclick="contarAciertos(36)"
+                onclick="countCorrect(36)"
                 class="stroop-correcto"
                 disabled
               >
@@ -899,7 +896,7 @@
               </button>
               <button
                 id="btn-nostroop-36"
-                onclick="contarErrores('nostroop', 36)"
+                onclick="countErrors('nostroop', 36)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -912,7 +909,7 @@
             <td>
               <button
                 id="btn-acierto-42"
-                onclick="contarAciertos(42)"
+                onclick="countCorrect(42)"
                 class="stroop-correcto"
                 disabled
               >
@@ -920,7 +917,7 @@
               </button>
               <button
                 id="btn-stroop-42"
-                onclick="contarErrores('stroop', 42)"
+                onclick="countErrors('stroop', 42)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -939,7 +936,7 @@
             <td>
               <button
                 id="btn-acierto-43"
-                onclick="contarAciertos(43)"
+                onclick="countCorrect(43)"
                 class="stroop-correcto"
                 disabled
               >
@@ -947,7 +944,7 @@
               </button>
               <button
                 id="btn-stroop-43"
-                onclick="contarErrores('stroop', 43)"
+                onclick="countErrors('stroop', 43)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -958,7 +955,7 @@
             <td>
               <button
                 id="btn-acierto-49"
-                onclick="contarAciertos(49)"
+                onclick="countCorrect(49)"
                 class="stroop-correcto"
                 disabled
               >
@@ -966,7 +963,7 @@
               </button>
               <button
                 id="btn-nostroop-49"
-                onclick="contarErrores('nostroop', 49)"
+                onclick="countErrors('nostroop', 49)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -979,7 +976,7 @@
             <td>
               <button
                 id="btn-acierto-55"
-                onclick="contarAciertos(55)"
+                onclick="countCorrect(55)"
                 class="stroop-correcto"
                 disabled
               >
@@ -987,7 +984,7 @@
               </button>
               <button
                 id="btn-stroop-55"
-                onclick="contarErrores('stroop', 55)"
+                onclick="countErrors('stroop', 55)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -998,7 +995,7 @@
             <td>
               <button
                 id="btn-acierto-61"
-                onclick="contarAciertos(61)"
+                onclick="countCorrect(61)"
                 class="stroop-correcto"
                 disabled
               >
@@ -1006,7 +1003,7 @@
               </button>
               <button
                 id="btn-nostroop-61"
-                onclick="contarErrores('nostroop', 61)"
+                onclick="countErrors('nostroop', 61)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -1019,7 +1016,7 @@
             <td>
               <button
                 id="btn-acierto-67"
-                onclick="contarAciertos(67)"
+                onclick="countCorrect(67)"
                 class="stroop-correcto"
                 disabled
               >
@@ -1027,7 +1024,7 @@
               </button>
               <button
                 id="btn-stroop-67"
-                onclick="contarErrores('stroop', 67)"
+                onclick="countErrors('stroop', 67)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -1038,7 +1035,7 @@
             <td>
               <button
                 id="btn-acierto-73"
-                onclick="contarAciertos(73)"
+                onclick="countCorrect(73)"
                 class="stroop-correcto"
                 disabled
               >
@@ -1046,7 +1043,7 @@
               </button>
               <button
                 id="btn-nostroop-73"
-                onclick="contarErrores('nostroop', 73)"
+                onclick="countErrors('nostroop', 73)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -1059,7 +1056,7 @@
             <td>
               <button
                 id="btn-acierto-79"
-                onclick="contarAciertos(79)"
+                onclick="countCorrect(79)"
                 class="stroop-correcto"
                 disabled
               >
@@ -1067,7 +1064,7 @@
               </button>
               <button
                 id="btn-stroop-79"
-                onclick="contarErrores('stroop', 79)"
+                onclick="countErrors('stroop', 79)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -1081,7 +1078,7 @@
             <td>
               <button
                 id="btn-acierto-44"
-                onclick="contarAciertos(44)"
+                onclick="countCorrect(44)"
                 class="stroop-correcto"
                 disabled
               >
@@ -1089,7 +1086,7 @@
               </button>
               <button
                 id="btn-nostroop-44"
-                onclick="contarErrores('nostroop', 44)"
+                onclick="countErrors('nostroop', 44)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -1102,7 +1099,7 @@
             <td>
               <button
                 id="btn-acierto-50"
-                onclick="contarAciertos(50)"
+                onclick="countCorrect(50)"
                 class="stroop-correcto"
                 disabled
               >
@@ -1110,7 +1107,7 @@
               </button>
               <button
                 id="btn-stroop-50"
-                onclick="contarErrores('stroop', 50)"
+                onclick="countErrors('stroop', 50)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -1121,7 +1118,7 @@
             <td>
               <button
                 id="btn-acierto-56"
-                onclick="contarAciertos(56)"
+                onclick="countCorrect(56)"
                 class="stroop-correcto"
                 disabled
               >
@@ -1129,7 +1126,7 @@
               </button>
               <button
                 id="btn-nostroop-56"
-                onclick="contarErrores('nostroop', 56)"
+                onclick="countErrors('nostroop', 56)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -1140,7 +1137,7 @@
             <td>
               <button
                 id="btn-acierto-62"
-                onclick="contarAciertos(62)"
+                onclick="countCorrect(62)"
                 class="stroop-correcto"
                 disabled
               >
@@ -1148,7 +1145,7 @@
               </button>
               <button
                 id="btn-nostroop-62"
-                onclick="contarErrores('nostroop', 62)"
+                onclick="countErrors('nostroop', 62)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -1159,7 +1156,7 @@
             <td>
               <button
                 id="btn-acierto-68"
-                onclick="contarAciertos(68)"
+                onclick="countCorrect(68)"
                 class="stroop-correcto"
                 disabled
               >
@@ -1167,7 +1164,7 @@
               </button>
               <button
                 id="btn-nostroop-68"
-                onclick="contarErrores('nostroop', 68)"
+                onclick="countErrors('nostroop', 68)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -1178,7 +1175,7 @@
             <td>
               <button
                 id="btn-acierto-74"
-                onclick="contarAciertos(74)"
+                onclick="countCorrect(74)"
                 class="stroop-correcto"
                 disabled
               >
@@ -1186,7 +1183,7 @@
               </button>
               <button
                 id="btn-nostroop-74"
-                onclick="contarErrores('nostroop', 74)"
+                onclick="countErrors('nostroop', 74)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -1197,7 +1194,7 @@
             <td>
               <button
                 id="btn-acierto-80"
-                onclick="contarAciertos(80)"
+                onclick="countCorrect(80)"
                 class="stroop-correcto"
                 disabled
               >
@@ -1205,7 +1202,7 @@
               </button>
               <button
                 id="btn-nostroop-80"
-                onclick="contarErrores('nostroop', 80)"
+                onclick="countErrors('nostroop', 80)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -1221,7 +1218,7 @@
             <td>
               <button
                 id="btn-acierto-45"
-                onclick="contarAciertos(45)"
+                onclick="countCorrect(45)"
                 class="stroop-correcto"
                 disabled
               >
@@ -1229,7 +1226,7 @@
               </button>
               <button
                 id="btn-stroop-45"
-                onclick="contarErrores('stroop', 45)"
+                onclick="countErrors('stroop', 45)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -1240,7 +1237,7 @@
             <td>
               <button
                 id="btn-acierto-51"
-                onclick="contarAciertos(51)"
+                onclick="countCorrect(51)"
                 class="stroop-correcto"
                 disabled
               >
@@ -1248,7 +1245,7 @@
               </button>
               <button
                 id="btn-nostroop-51"
-                onclick="contarErrores('nostroop', 51)"
+                onclick="countErrors('nostroop', 51)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -1261,7 +1258,7 @@
             <td>
               <button
                 id="btn-acierto-57"
-                onclick="contarAciertos(57)"
+                onclick="countCorrect(57)"
                 class="stroop-correcto"
                 disabled
               >
@@ -1269,7 +1266,7 @@
               </button>
               <button
                 id="btn-stroop-57"
-                onclick="contarErrores('stroop', 57)"
+                onclick="countErrors('stroop', 57)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -1280,7 +1277,7 @@
             <td>
               <button
                 id="btn-acierto-63"
-                onclick="contarAciertos(63)"
+                onclick="countCorrect(63)"
                 class="stroop-correcto"
                 disabled
               >
@@ -1288,7 +1285,7 @@
               </button>
               <button
                 id="btn-nostroop-63"
-                onclick="contarErrores('nostroop', 63)"
+                onclick="countErrors('nostroop', 63)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -1299,7 +1296,7 @@
             <td>
               <button
                 id="btn-acierto-69"
-                onclick="contarAciertos(69)"
+                onclick="countCorrect(69)"
                 class="stroop-correcto"
                 disabled
               >
@@ -1307,7 +1304,7 @@
               </button>
               <button
                 id="btn-nostroop-69"
-                onclick="contarErrores('nostroop', 69)"
+                onclick="countErrors('nostroop', 69)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -1318,7 +1315,7 @@
             <td>
               <button
                 id="btn-acierto-75"
-                onclick="contarAciertos(75)"
+                onclick="countCorrect(75)"
                 class="stroop-correcto"
                 disabled
               >
@@ -1326,7 +1323,7 @@
               </button>
               <button
                 id="btn-nostroop-75"
-                onclick="contarErrores('nostroop', 75)"
+                onclick="countErrors('nostroop', 75)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -1339,7 +1336,7 @@
             <td>
               <button
                 id="btn-acierto-81"
-                onclick="contarAciertos(81)"
+                onclick="countCorrect(81)"
                 class="stroop-correcto"
                 disabled
               >
@@ -1347,7 +1344,7 @@
               </button>
               <button
                 id="btn-stroop-81"
-                onclick="contarErrores('stroop', 81)"
+                onclick="countErrors('stroop', 81)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -1361,7 +1358,7 @@
             <td>
               <button
                 id="btn-acierto-46"
-                onclick="contarAciertos(46)"
+                onclick="countCorrect(46)"
                 class="stroop-correcto"
                 disabled
               >
@@ -1369,7 +1366,7 @@
               </button>
               <button
                 id="btn-nostroop-46"
-                onclick="contarErrores('nostroop', 46)"
+                onclick="countErrors('nostroop', 46)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -1382,7 +1379,7 @@
             <td>
               <button
                 id="btn-acierto-52"
-                onclick="contarAciertos(52)"
+                onclick="countCorrect(52)"
                 class="stroop-correcto"
                 disabled
               >
@@ -1390,7 +1387,7 @@
               </button>
               <button
                 id="btn-stroop-52"
-                onclick="contarErrores('stroop', 52)"
+                onclick="countErrors('stroop', 52)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -1401,7 +1398,7 @@
             <td>
               <button
                 id="btn-acierto-58"
-                onclick="contarAciertos(58)"
+                onclick="countCorrect(58)"
                 class="stroop-correcto"
                 disabled
               >
@@ -1409,7 +1406,7 @@
               </button>
               <button
                 id="btn-nostroop-58"
-                onclick="contarErrores('nostroop', 58)"
+                onclick="countErrors('nostroop', 58)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -1420,7 +1417,7 @@
             <td>
               <button
                 id="btn-acierto-64"
-                onclick="contarAciertos(64)"
+                onclick="countCorrect(64)"
                 class="stroop-correcto"
                 disabled
               >
@@ -1428,7 +1425,7 @@
               </button>
               <button
                 id="btn-nostroop-64"
-                onclick="contarErrores('nostroop', 64)"
+                onclick="countErrors('nostroop', 64)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -1441,7 +1438,7 @@
             <td>
               <button
                 id="btn-acierto-70"
-                onclick="contarAciertos(70)"
+                onclick="countCorrect(70)"
                 class="stroop-correcto"
                 disabled
               >
@@ -1449,7 +1446,7 @@
               </button>
               <button
                 id="btn-stroop-70"
-                onclick="contarErrores('stroop', 70)"
+                onclick="countErrors('stroop', 70)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -1460,7 +1457,7 @@
             <td>
               <button
                 id="btn-acierto-76"
-                onclick="contarAciertos(76)"
+                onclick="countCorrect(76)"
                 class="stroop-correcto"
                 disabled
               >
@@ -1468,7 +1465,7 @@
               </button>
               <button
                 id="btn-nostroop-76"
-                onclick="contarErrores('nostroop', 76)"
+                onclick="countErrors('nostroop', 76)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -1479,7 +1476,7 @@
             <td>
               <button
                 id="btn-acierto-82"
-                onclick="contarAciertos(82)"
+                onclick="countCorrect(82)"
                 class="stroop-correcto"
                 disabled
               >
@@ -1487,7 +1484,7 @@
               </button>
               <button
                 id="btn-nostroop-82"
-                onclick="contarErrores('nostroop', 82)"
+                onclick="countErrors('nostroop', 82)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -1501,7 +1498,7 @@
             <td>
               <button
                 id="btn-acierto-47"
-                onclick="contarAciertos(47)"
+                onclick="countCorrect(47)"
                 class="stroop-correcto"
                 disabled
               >
@@ -1509,7 +1506,7 @@
               </button>
               <button
                 id="btn-nostroop-47"
-                onclick="contarErrores('nostroop', 47)"
+                onclick="countErrors('nostroop', 47)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -1522,7 +1519,7 @@
             <td>
               <button
                 id="btn-acierto-53"
-                onclick="contarAciertos(53)"
+                onclick="countCorrect(53)"
                 class="stroop-correcto"
                 disabled
               >
@@ -1530,7 +1527,7 @@
               </button>
               <button
                 id="btn-stroop-53"
-                onclick="contarErrores('stroop', 53)"
+                onclick="countErrors('stroop', 53)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -1543,7 +1540,7 @@
             <td>
               <button
                 id="btn-acierto-59"
-                onclick="contarAciertos(59)"
+                onclick="countCorrect(59)"
                 class="stroop-correcto"
                 disabled
               >
@@ -1551,7 +1548,7 @@
               </button>
               <button
                 id="btn-stroop-59"
-                onclick="contarErrores('stroop', 59)"
+                onclick="countErrors('stroop', 59)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -1562,7 +1559,7 @@
             <td>
               <button
                 id="btn-acierto-65"
-                onclick="contarAciertos(65)"
+                onclick="countCorrect(65)"
                 class="stroop-correcto"
                 disabled
               >
@@ -1570,7 +1567,7 @@
               </button>
               <button
                 id="btn-nostroop-65"
-                onclick="contarErrores('nostroop', 65)"
+                onclick="countErrors('nostroop', 65)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -1581,7 +1578,7 @@
             <td>
               <button
                 id="btn-acierto-71"
-                onclick="contarAciertos(71)"
+                onclick="countCorrect(71)"
                 class="stroop-correcto"
                 disabled
               >
@@ -1589,7 +1586,7 @@
               </button>
               <button
                 id="btn-nostroop-71"
-                onclick="contarErrores('nostroop', 71)"
+                onclick="countErrors('nostroop', 71)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -1600,7 +1597,7 @@
             <td>
               <button
                 id="btn-acierto-77"
-                onclick="contarAciertos(77)"
+                onclick="countCorrect(77)"
                 class="stroop-correcto"
                 disabled
               >
@@ -1608,7 +1605,7 @@
               </button>
               <button
                 id="btn-nostroop-77"
-                onclick="contarErrores('nostroop', 77)"
+                onclick="countErrors('nostroop', 77)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -1621,7 +1618,7 @@
             <td>
               <button
                 id="btn-acierto-83"
-                onclick="contarAciertos(83)"
+                onclick="countCorrect(83)"
                 class="stroop-correcto"
                 disabled
               >
@@ -1629,7 +1626,7 @@
               </button>
               <button
                 id="btn-stroop-83"
-                onclick="contarErrores('stroop', 83)"
+                onclick="countErrors('stroop', 83)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -1645,7 +1642,7 @@
             <td>
               <button
                 id="btn-acierto-48"
-                onclick="contarAciertos(48)"
+                onclick="countCorrect(48)"
                 class="stroop-correcto"
                 disabled
               >
@@ -1653,7 +1650,7 @@
               </button>
               <button
                 id="btn-stroop-48"
-                onclick="contarErrores('stroop', 48)"
+                onclick="countErrors('stroop', 48)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -1664,7 +1661,7 @@
             <td>
               <button
                 id="btn-acierto-54"
-                onclick="contarAciertos(54)"
+                onclick="countCorrect(54)"
                 class="stroop-correcto"
                 disabled
               >
@@ -1672,7 +1669,7 @@
               </button>
               <button
                 id="btn-nostroop-54"
-                onclick="contarErrores('nostroop', 54)"
+                onclick="countErrors('nostroop', 54)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -1683,7 +1680,7 @@
             <td>
               <button
                 id="btn-acierto-60"
-                onclick="contarAciertos(60)"
+                onclick="countCorrect(60)"
                 class="stroop-correcto"
                 disabled
               >
@@ -1691,7 +1688,7 @@
               </button>
               <button
                 id="btn-nostroop-60"
-                onclick="contarErrores('nostroop', 60)"
+                onclick="countErrors('nostroop', 60)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -1702,7 +1699,7 @@
             <td>
               <button
                 id="btn-acierto-66"
-                onclick="contarAciertos(66)"
+                onclick="countCorrect(66)"
                 class="stroop-correcto"
                 disabled
               >
@@ -1710,7 +1707,7 @@
               </button>
               <button
                 id="btn-nostroop-66"
-                onclick="contarErrores('nostroop', 66)"
+                onclick="countErrors('nostroop', 66)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -1723,7 +1720,7 @@
             <td>
               <button
                 id="btn-acierto-72"
-                onclick="contarAciertos(72)"
+                onclick="countCorrect(72)"
                 class="stroop-correcto"
                 disabled
               >
@@ -1731,7 +1728,7 @@
               </button>
               <button
                 id="btn-stroop-72"
-                onclick="contarErrores('stroop', 72)"
+                onclick="countErrors('stroop', 72)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -1742,7 +1739,7 @@
             <td>
               <button
                 id="btn-acierto-78"
-                onclick="contarAciertos(78)"
+                onclick="countCorrect(78)"
                 class="stroop-correcto"
                 disabled
               >
@@ -1750,7 +1747,7 @@
               </button>
               <button
                 id="btn-nostroop-78"
-                onclick="contarErrores('nostroop', 78)"
+                onclick="countErrors('nostroop', 78)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -1763,7 +1760,7 @@
             <td>
               <button
                 id="btn-acierto-84"
-                onclick="contarAciertos(84)"
+                onclick="countCorrect(84)"
                 class="stroop-correcto"
                 disabled
               >
@@ -1771,7 +1768,7 @@
               </button>
               <button
                 id="btn-stroop-84"
-                onclick="contarErrores('stroop', 84)"
+                onclick="countErrors('stroop', 84)"
                 class="stroop-incorrecto"
                 disabled
               >
@@ -1810,7 +1807,7 @@
         $(document).ready(function () {
           console.log("Accediendo...");
           setInterval(function () {
-            mostrarStroop("A");
+            displayStroopResults("A");
           }, 1000);
         });
       </script>

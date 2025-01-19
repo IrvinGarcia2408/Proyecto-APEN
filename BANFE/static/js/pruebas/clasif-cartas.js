@@ -1,7 +1,11 @@
 
+const alarmCardSorting = document.querySelector(".alarmCardSorting");
+
 let click_clcartas = document.querySelector(".figure-sound");
 let segundos_clasif = 0;
 let centesimas_clasif = 0;
+
+window.completeCardSorting = false;
 
 // Procedimiento que inicia el reloj para el aplicador
 function inicio() {  
@@ -25,6 +29,7 @@ function reinicio() {
   document.getElementById("segundos").innerHTML = "0";
   document.getElementById("inicio").disabled = false;
   document.getElementById("reinicio").disabled = true;
+  window.completeCardSorting = false;
 }
 
 // Procedimiento que funciona como cronometro del lado del aplicador
@@ -36,7 +41,7 @@ function cronometro() {
     parseInt(document.getElementById("err-mto_cards_sorting").textContent, 10) +
     parseInt(document.getElementById("pers-dif_cards_sorting").textContent, 10);
   if (cartas == 64 || segundos_clasif == 600) {
-    alarma.play();
+    alarmCardSorting.play();
     parar();
     document.getElementById("text-modal-clas").textContent =
       "Prueba finalizada";
@@ -47,6 +52,7 @@ function cronometro() {
       click_clcartas.play();
       document.getElementById("modal-clas").style.display = "none";
     };
+    window.completeCardSorting = true;
   }
   console.log("Segundos: " + segundos_clasif + " | Centesimas: " + centesimas_clasif);
   if (centesimas_clasif < 99) {
@@ -110,7 +116,7 @@ let carta = 1;
 let mano = false;
 let activo = false;
 let audio = document.querySelector(".carta_sound");
-let incorrecto = document.querySelector(".incorrecto_sound");
+let wrong = document.querySelector(".incorrecto_sound");
 let second_cards = 0;
 let hundredths_cards = 0;
 
@@ -238,7 +244,7 @@ async function putCard(opcion) {
 async function sonarError() {
   sonido = await DjangoGET("./todas/" + 1);
   if (sonido.error == 1) {
-    incorrecto.play();
+    wrong.play();
   }
 }
 

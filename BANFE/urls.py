@@ -3,6 +3,9 @@ from BANFE import views
 
 urlpatterns = [
     path('', views.pruebas, name="pruebas"),
+    path('acercade/', views.about, name="about"),    
+    path('contacto/', views.contact, name="contact"),  
+    path('desarrollo/', views.under_construction, name="under_construction"),  
     path('filtrar_datos/', views.filter_proceedings, name='filter_proceedings'),
     path('pruebasCOF_CPFM', views.pruebas_cof, name="pruebas_cof"),
     path('pruebasCPFDL', views.pruebas_cpfdl, name="pruebas_cpfdl"),

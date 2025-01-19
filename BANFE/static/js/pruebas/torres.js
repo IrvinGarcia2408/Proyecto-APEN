@@ -1,11 +1,17 @@
 // Variables
-let click_torres = document.querySelector(".figure-sound"),
+let click_torres = document.querySelector(".figure-sound");
+let alarmTowers = document.querySelector(".alarm_towers");
+
+let segundos_1 = 0,
+    centesimas_1 = 0,
     segundos_2 = 0,
     centesimas_2 = 0,
     torres_flag = 1,
     mov = 0,
     err_1 = 0,
     err_2 = 0;
+  
+window.completeTowers = false;
 
 // Procedimiento para iniciar las torres
 function iniciarTorres() {
@@ -63,6 +69,7 @@ function pararTorres() {
     document.getElementById("reiniciar_torre").disabled = true;
     torres_flag = 0;
     mostrarModal("Prueba finalizada");
+    window.completeTowers = true;
   }
 
   // Configurar evento de clic en el botón del modal
@@ -119,6 +126,8 @@ function reiniciarTorres() {
   document.getElementById("parar_torre").disabled = true;
   document.getElementById("siguiente_torre").disabled = true;
   document.getElementById("reiniciar_torre").disabled = true;
+
+  window.completeTowers = false;
 }
 
 // Inicializar variable para controlar el tiempo de la prueba de la torre A
@@ -134,9 +143,9 @@ function cronometroTorres_1() {
   }
 
   // Comprobar si se alcanzó el tiempo máximo de la prueba
-  if (segundos === ageTime) {
+  if (segundos_1 === ageTime) {
     // Reproducir alarma y detener la prueba
-    alarma.play();
+    alarmTowers.play();
     torres_flag = 0;
     pararTorres();
     // Mostrar mensaje de finalización de la prueba en un modal
@@ -144,17 +153,17 @@ function cronometroTorres_1() {
   }
 
   // Actualizar centésimas de segundo
-  if (centesimas < 99) {
-    centesimas++;
+  if (centesimas_1 < 99) {
+    centesimas_1++;
   }
-  if (centesimas == 99) {
-    centesimas = -1;
+  if (centesimas_1 == 99) {
+    centesimas_1 = -1;
   }
 
   // Actualizar segundos y mostrarlos en el elemento HTML
-  if (centesimas == 0) {
-    segundos++;
-    document.getElementById("segundos_torres-1").innerHTML = "" + segundos;
+  if (centesimas_1 == 0) {
+    segundos_1++;
+    document.getElementById("segundos_torres-1").innerHTML = "" + segundos_1;
   }
 }
 
@@ -163,7 +172,7 @@ function cronometroTorres_2() {
   // Comprobar si se alcanzó el tiempo máximo de la prueba
   if (segundos_2 == ageTime - segundos) {
     // Reproducir alarma y detener la prueba
-    alarma.play();
+    alarmTowers.play();
     pararTorres();
     torres_flag = 0;
     // Mostrar mensaje de finalización de la prueba en un modal

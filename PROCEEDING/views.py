@@ -4,6 +4,10 @@ from django.http import JsonResponse
 from .models import Country, State, Municipality, Proceeding
 
 
+import traceback  # Esto te ayudará a capturar el traceback completo.
+from datetime import datetime
+
+
 # Create your views here.
 
 # Vista para mostrar la lista de procedimientos
@@ -29,6 +33,9 @@ def list_proceedings(request):
 def create_proceeding(request):
     # Verificar si la solicitud es de tipo GET
     if request.method == 'GET':
+        # Obtener la fecha de hoy
+        today_date = datetime.today().strftime('%Y-%m-%d')
+        
         # Obtener la lista de países para mostrar en el formulario
         countries = [{'id': country.id, 'nombre': country.name} for country in Country.objects.all()]
         # Renderizar el formulario de creación de procedimiento con la lista de países
@@ -42,7 +49,7 @@ def create_proceeding(request):
             proceeding.name = request.POST.get('name')
             proceeding.first_last_name = request.POST.get('first_last_name')
             proceeding.second_last_name = request.POST.get('second_last_name')
-            proceeding.dateEval = request.POST.get('dateEval')
+            proceeding.dateEval = request.POST.get('dateEval', datetime.today().strftime('%Y-%m-%d'))
             proceeding.dateNac = request.POST.get('dateNac')
             proceeding.country =  Country.objects.get(id=request.POST.get('country'))
             
@@ -94,10 +101,30 @@ def create_proceeding(request):
 
             proceeding.civil_status = request.POST.get('civil_status')
             proceeding.religion = request.POST.get('religion')
-            proceeding.mother_scholarship = request.POST.get('mother_scholarship')
-            proceeding.father_scholarship = request.POST.get('father_scholarship')
+
+            if request.POST.get('mother_scholarship'):
+                proceeding.mother_scholarship = request.POST.get('mother_scholarship')
+            else: 
+                proceeding.mother_scholarship = None
+
+            print(proceeding.mother_scholarship)         
+
+            if request.POST.get('father_scholarship'):
+                proceeding.father_scholarship = request.POST.get('father_scholarship')
+            else: 
+                proceeding.father_scholarship = None
+
+            print(proceeding.father_scholarship)         
+
             proceeding.referred_by = request.POST.get('referred_by')
-            proceeding.phone_number =  request.POST.get('phone_number')
+
+            if request.POST.get('phone_number'):
+                proceeding.phone_number = request.POST.get('phone_number')
+            else: 
+                proceeding.phone_number = None
+
+            print(proceeding.phone_number)         
+
             proceeding.reason_consultation =  request.POST.get('reason_consultation')
             proceeding.alert_status =  request.POST.get('alert_status')
             proceeding.medicine = request.POST.get('medicine')
@@ -187,7 +214,8 @@ def create_proceeding(request):
                 proceeding.details_others_diseases = request.POST.get('details_others_diseases')
             else:
                 proceeding.others_diseases = False
-                proceeding.details_others_diseases = None             
+                proceeding.details_others_diseases = None    
+
 
             # Asignar el usuario actual al procedimiento
             proceeding.user = request.user
@@ -197,7 +225,12 @@ def create_proceeding(request):
 
             # Redirigir a la vista de mostrar procedimientos
             return redirect('show_proceedings')
-        except:
+        except Exception as e:
+            # Imprimir el error y el traceback completo en la consola
+            print(f"Error: {e}")
+            traceback.print_exc()  # Esto imprimirá el error exacto y la línea donde ocurre
+            
+
             # En caso de error, recuperar la lista de países y renderizar nuevamente el formulario con un mensaje de error
             countries= [{'id': country.id, 'nombre': country.name} for country in Country.objects.all()]
             return render(request, "proceedings/create-proceeding.html", {'countries': countries, 'error': 'Los datos ingresados son inválidos' })  
@@ -288,10 +321,10 @@ def update_proceeding(request, proceeding_id):
             proceeding.time_hobbies = request.POST.get('time_hobbies') if request.POST.get('time_hobbies') else None
             proceeding.civil_status = request.POST.get('civil_status')
             proceeding.religion = request.POST.get('religion')
-            proceeding.mother_scholarship = request.POST.get('mother_scholarship')
-            proceeding.father_scholarship = request.POST.get('father_scholarship')
+            proceeding.mother_scholarship = request.POST.get('mother_scholarship') if request.POST.get('mother_scholarship') else None
+            proceeding.father_scholarship = request.POST.get('father_scholarship') if request.POST.get('father_scholarship') else None
             proceeding.referred_by = request.POST.get('referred_by')
-            proceeding.phone_number = request.POST.get('phone_number')
+            proceeding.phone_number = request.POST.get('phone_number') if request.POST.get('phone_number') else None
             proceeding.reason_consultation = request.POST.get('reason_consultation')
             proceeding.alert_status = request.POST.get('alert_status')
             proceeding.medicine = request.POST.get('medicine')
@@ -333,8 +366,15 @@ def update_proceeding(request, proceeding_id):
         
             # Guarda los cambios en el procedimiento y redirige a la vista de visualización de procedimientos
             proceeding.save()
+
+            # Redirigir a la vista de mostrar procedimientos
             return redirect('show_proceedings')
-        except:
+
+        except Exception as e:
+            # Imprimir el error y el traceback completo en la consola
+            print(f"Error: {e}")
+            traceback.print_exc()  # Esto imprimirá el error exacto y la línea donde ocurre
+            
             # Si ocurre algún error, vuelve a renderizar el formulario de actualización con los datos del procedimiento y la lista de países
             countries = [{'id': country.id, 'name': country.name} for country in Country.objects.all()]
             return render(request, "proceedings/update-proceeding.html", {'proceeding': proceeding, 'countries': countries})

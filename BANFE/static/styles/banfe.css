@@ -44,6 +44,20 @@
   color: rgb(255, 255, 200);
 }
 
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .panel-prueba {
   width: 99vw;
   height: 102vh;
@@ -429,6 +443,7 @@
   width: 30%;
   margin-left: 4rem;
   padding-top: 0;
+  margin-bottom: .7rem;
 }
 
 .cinta-opciones__adicional button {
@@ -455,7 +470,7 @@
   height: 85%;
 }
 
-.cinta-opciones__adicional #reiniciar_laberintos,
+.cinta-opciones__adicional #resetMazes,
 .cinta-opciones__adicional #reinicio,
 .cinta-opciones__adicional #siguiente_resta,
 .cinta-opciones__adicional #reiniciar_resta,
@@ -757,8 +772,9 @@
   }
 
   .cinta-opciones__adicional button {
+    margin-bottom: .7rem;
     font-size: 20px;
-    height: 65%;
+    height: 75%;
   }
 }
 

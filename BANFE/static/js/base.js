@@ -2,6 +2,12 @@
 var navSesion = document.querySelector(".navbar__sesion");
 var navMenu = document.querySelector(".navbar__menu");
 
+var modal = document.getElementById("modalIncompleteTest");
+// Asignar referencia al botón de cerrar dentro del modal
+var modalCloseButton = document.getElementById("modalCloseButton");
+
+
+
 // Agrega un event listener para alternar una clase al hacer clic en navSesion
 navSesion.addEventListener("click", () => {
   navMenu.classList.toggle("navbar_observe");
@@ -24,344 +30,464 @@ function cleanList(list) {
   return lista; // Devolver la lista limpia
 }
 
-async function nextTest() {
-  try {
-    console.log("Función iniciada");
-    console.log("ID: " + banfe);
+document.addEventListener("DOMContentLoaded", function () {
+  // Obtener la URL actual de la página
+  const currentPath = window.location.pathname;
 
-    let url = lista[test - 1];
-    console.log("URL obtenida: " + url);
+  // Buscar todos los enlaces en el menú
+  const menuLinks = document.querySelectorAll('.menu a');
 
-    let results = getResults(url);
-    console.log("Resultados obtenidos: " + results);
-
-    const data = {
-      pid: pid,
-      banfe: banfe,
-      result: results,
-    };
-
-    console.log("Datos creados: " + JSON.stringify(data));
-
-    console.log("Antes de enviar POST");
-    const response = await sendPOST(url, data);
-    console.log("Respuesta recibida");
-
-    console.log("Respuesta del servidor: ", response);
-
-    if (response.status === "Subtest Created Successfully") {
-      banfe_id = response.banfe_id;
-
-      if (lista.length !== 0) {
-        let lastIndex = lista.length - 1;
-        test = parseInt(test);
-        console.log("No vacia: " + lista);
-
-        if (test > lastIndex) {
-          if (lista[test - 1] === "ordenamiento") {
-            console.log(lista[test - 1]);
-            window.location.href = "../";
-          } else {
-            console.log(lista[test - 1]);
-            window.location.href = "./";
-          }
-        } else {
-          listaEncoded = encodeURIComponent(JSON.stringify(lista));
-          if (lista[test - 1] === "ordenamiento") {
-            if (lista[test] === "resta") {
-              console.log(lista[test - 1]);
-              console.log(lista[test]);
-              window.location.href =
-                lista[test] +
-                "?lista=" +
-                listaEncoded +
-                "&num_prueba=" +
-                (test + 1) +
-                "&pid=" +
-                pid +
-                "&edad=" +
-                age +
-                "&banfe=" +
-                banfe_id;
-            } else {
-              console.log(lista[test - 1]);
-              console.log(lista[test]);
-              window.location.href =
-                "../" +
-                lista[test] +
-                "?lista=" +
-                listaEncoded +
-                "&num_prueba=" +
-                (test + 1) +
-                "&pid=" +
-                pid +
-                "&edad=" +
-                age +
-                "&banfe=" +
-                banfe_id;
-            }
-          } else {
-            if (lista[test - 1] === "ordenamiento") {
-              console.log(lista[test - 1]);
-              console.log(lista[test]);
-              window.location.href =
-                "banfe/" +
-                lista[test] +
-                "?lista=" +
-                listaEncoded +
-                "&num_prueba=" +
-                (test + 1) +
-                "&pid=" +
-                pid +
-                "&edad=" +
-                age +
-                "&banfe=" +
-                banfe_id;
-            } else {
-              console.log(lista[test - 1]);
-              console.log(lista[test]);
-              window.location.href =
-                lista[test] +
-                "?lista=" +
-                listaEncoded +
-                "&num_prueba=" +
-                (test + 1) +
-                "&pid=" +
-                pid +
-                "&edad=" +
-                age +
-                "&banfe=" +
-                banfe_id;
-            }
-          }
-        }
-        console.log("Redirigiendo a: " + window.location.href);
-      }
-    } else {
-      console.error("La respuesta del servidor indica un error: ", response);
-      console.log("Hubo un error: " + JSON.stringify(response));
+  // Recorrer cada enlace
+  menuLinks.forEach(link => {
+    // Comparar el href del enlace con la URL actual
+    if (link.getAttribute('href') === currentPath) {
+      // Si coincide, agregar la clase 'active' al div padre
+      link.parentElement.classList.add('active');
     }
-  } catch (error) {
-    console.error("Error en la solicitud:", error);
-    console.log("Hubo un error durante la solicitud: " + error.message);
-  }
-}
+  });
+});
+
 
 function getResults(test) {
   let result = [];
-  console.log("TEST: " + test);
+
+  console.log("TEST: "+test);
+
   switch (test) {
-    case "laberintos":
-      console.log("TEST 1: " + test);
-      result = [
-        document.getElementById("total-toca").textContent,
-        document.getElementById("total-atraviesa").textContent,
-        document.getElementById("total-atrapado").textContent,
-        document.getElementById("segundosP1").textContent,
-      ];
-      console.log("RESULT: " + result);
+    case 'laberintos':
+      result = getLabyrinthResults();
       break;
     case "senalamiento_autodirigido-control":
-      result = [
-        document.getElementById("successeSignaling").textContent,
-        document.getElementById("perseverationSignaling").textContent,
-        document.getElementById("omissionSignaling").textContent,
-        document.getElementById("secondSignaling").textContent,
-      ];
-      console.log(result);
+      result = getSignalingResults();
       break;
     case "ordenamiento":
-      if (
-        parseInt(age) < 9 ||
-        (parseInt(age) > 30 &&
-          parseInt(age) < 56 &&
-          parseInt(school) > 3 &&
-          parseInt(school) < 10)
-      ) {
-        result = [
-          document.getElementById("num_ensayo_list1").textContent,
-          document.getElementById("error_orden_list1").textContent,
-          document.getElementById("perseveraciones_list1").textContent,
-          document.getElementById("instrusiones_list1").textContent,
-
-          document.getElementById("num_ensayo_list2").textContent,
-          document.getElementById("error_orden_list2").textContent,
-          document.getElementById("perseveraciones_list2").textContent,
-          document.getElementById("instrusiones_list2").textContent,
-        ];
-      } else {
-        result = [
-          document.getElementById("num_ensayo_list1").textContent,
-          document.getElementById("error_orden_list1").textContent,
-          document.getElementById("perseveraciones_list1").textContent,
-          document.getElementById("instrusiones_list1").textContent,
-
-          document.getElementById("num_ensayo_list2").textContent,
-          document.getElementById("error_orden_list2").textContent,
-          document.getElementById("perseveraciones_list2").textContent,
-          document.getElementById("instrusiones_list2").textContent,
-
-          document.getElementById("num_ensayo_list3").textContent,
-          document.getElementById("error_orden_list3").textContent,
-          document.getElementById("perseveraciones_list3").textContent,
-          document.getElementById("instrusiones_list3").textContent,
-        ];
-      }
-
+      result = getSortingResults();
       break;
     case "resta":
-      if (parseInt(age) > 9) {
-        result = [
-          document.getElementById("aciertos-resta-1").textContent,
-          document.getElementById("errores-resta-1").textContent,
-          document.getElementById("segundos_resta_1").textContent,
-
-          document.getElementById("aciertos-resta-2").textContent,
-          document.getElementById("errores-resta-2").textContent,
-          document.getElementById("segundos_resta_2").textContent,
-        ];
-      } else {
-        result = [
-          document.getElementById("aciertos-resta-1").textContent,
-          document.getElementById("errores-resta-1").textContent,
-          document.getElementById("segundos_resta_1").textContent,
-        ];
-      }
-      console.log(result);
+      result = getSubstractionResults();
       break;
     case "suma":
-      result = [
-        document.getElementById("aciertos-suma").textContent,
-        document.getElementById("errores-suma").textContent,
-        document.getElementById("segundos_suma").textContent,
-      ];
+      result = getAdditionResults();
       break;
     case "clasif_cartas-control":
-      result = [
-        document.getElementById("aciertos_cards_sorting").textContent,
-        document.getElementById("errores_cards_sorting").textContent,
-        document.getElementById("perseveraciones_cards_sorting").textContent,
-        document.getElementById("err-mto_cards_sorting").textContent,
-        document.getElementById("pers-dif_cards_sorting").textContent,
-        document.getElementById("segundos").textContent,
-      ];
+      result = getCardSortingResults();
       break;
     case "semanticas-control":
-      console.log("estoy en semanticas");
-      result = [
-        document.getElementById("total-concretas").textContent,
-        document.getElementById("total-funcionales").textContent,
-        document.getElementById("total-abstractas").textContent,
-        document.getElementById("total-cat").textContent,
-        document.getElementById("total-prom").textContent,
-        document.getElementById("puntos-finales").textContent,
-      ];
-      console.log("guardado");
+      result = getSemanticResults();
       break;
     case "stroopA-control":
-      result = [
-        document.getElementById("aciertos_stroop").textContent,
-        document.getElementById("err_stroop").textContent,
-        document.getElementById("errno_stroop").textContent,
-        document.getElementById("segundos_stroop").textContent,
-      ];
+      result = getStroopAResults();
       break;
     case "fluidez-verbal":
-      result = [
-        document.getElementById("aciertos_fluidez").textContent,
-        document.getElementById("perseveraciones_fluidez").textContent,
-        document.getElementById("intrusiones_fluidez").textContent,
-      ];
+      result = getVerbalFluencyResults();
       break;
     case "cartas-control":
-      console.log("TEST 1: " + test);
-      console.log(
-        "TEST X: " + document.getElementById("percentege_risk").textContent
-      );
-      result = [
-        document.getElementById("total_score_cards").textContent,
-        document.getElementById("percentege_risk").textContent,
-        document.getElementById("question_one").value,
-        document.getElementById("question_two").value,
-        document.getElementById("question_three").value,
-        document.getElementById("question_four").value,
-      ];
-      console.log("RESULT: " + result);
+      result = getCardGameResults();
       break;
     case "refranes-control":
-      result = [
-        document.getElementById("refranes-resultados").textContent,
-        document.getElementById("segundos_refranes").textContent,
-      ];
+      result = getSayingResults();
       break;
     case "torres-hanoi":
-      if (parseInt(age) > 9) {
-        result = [
-          document.getElementById("mov-torre-1").textContent,
-          document.getElementById("segundos_torres-1").textContent,
-          document.getElementById("err_1-1").textContent,
-          document.getElementById("err_2-1").textContent,
-          document.getElementById("err_total-1").textContent,
-          document.getElementById("mov-torre-2").textContent,
-          document.getElementById("segundos_torres-2").textContent,
-          document.getElementById("err_1-2").textContent,
-          document.getElementById("err_2-2").textContent,
-          document.getElementById("err_total-2").textContent,
-        ];
-      } else {
-        result = [
-          document.getElementById("mov-torre-1").textContent,
-          document.getElementById("segundos_torres-1").textContent,
-          document.getElementById("err_1-1").textContent,
-          document.getElementById("err_2-1").textContent,
-          document.getElementById("err_total-1").textContent,
-        ];
-      }
+      result = getTowersHanoiResults();
       break;
     case "metamemoria":
-      result = [
-        document.getElementById("intrusion_metamemoria").textContent,
-        document.getElementById("perseveracion_metamemoria").textContent,
-        document.getElementById("err-positivo_metamemoria").textContent,
-        document.getElementById("err-negativo_metamemoria").textContent,
-        document.getElementById("err-total_metamemoria").textContent,
-      ];
+      result = getMetamemoryResults();
       break;
     case "memoria_visoespacial-control":
-      result = [
-        document.getElementById("err-ord").textContent,
-        document.getElementById("err-sust").textContent,
-        document.getElementById("persev").textContent,
-        document.getElementById("sec-max").textContent,
-      ];
+      result = getVisuospatialMemoryResults();
       break;
     case "stroopB-control":
-      result = [
-        document.getElementById("aciertos_stroop-B").textContent,
-        document.getElementById("err_stroop-B").textContent,
-        document.getElementById("errno_stroop-B").textContent,
-        document.getElementById("segundos_stroop-b").textContent,
-      ];
+      result = getStroopBResults();
       break;
   }
-  console.log("RETORNAMOS: " + result);
+
   return result;
 }
 
-async function sendPOST(url, data) {
-  // Función para obtener el token CSRF de la cookie
-  function getCSRFToken() {
-    const cookieValue = document.cookie
-      .split("; ")
-      .find((row) => row.startsWith("csrftoken="))
-      ?.split("=")[1];
-    return cookieValue;
-  }
+function getLabyrinthResults() {
+  return [
+    document.getElementById("total-touch").textContent,
+    document.getElementById("total-cross").textContent,
+    document.getElementById("total-caught").textContent,
+    document.getElementById("seconds_labyrinths").textContent,
+  ];  
+}
 
-  // Obtener el token CSRF
+function getSignalingResults() {
+  return [
+    document.getElementById("successeSignaling").textContent,
+    document.getElementById("perseverationSignaling").textContent,
+    document.getElementById("omissionSignaling").textContent,
+    document.getElementById("secondSignaling").textContent,
+  ];
+}
+
+function getSortingResults() {
+  if (
+    parseInt(age) < 9 ||
+    (parseInt(age) > 30 &&
+      parseInt(age) < 56 &&
+      parseInt(school) > 3 &&
+      parseInt(school) < 10)
+  ) {
+    return [
+      document.getElementById("num_ensayo_list1").textContent,
+      document.getElementById("error_orden_list1").textContent,
+      document.getElementById("perseveraciones_list1").textContent,
+      document.getElementById("instrusiones_list1").textContent,
+
+      document.getElementById("num_ensayo_list2").textContent,
+      document.getElementById("error_orden_list2").textContent,
+      document.getElementById("perseveraciones_list2").textContent,
+      document.getElementById("instrusiones_list2").textContent,
+    ];
+  } else {
+    return [
+      document.getElementById("num_ensayo_list1").textContent,
+      document.getElementById("error_orden_list1").textContent,
+      document.getElementById("perseveraciones_list1").textContent,
+      document.getElementById("instrusiones_list1").textContent,
+
+      document.getElementById("num_ensayo_list2").textContent,
+      document.getElementById("error_orden_list2").textContent,
+      document.getElementById("perseveraciones_list2").textContent,
+      document.getElementById("instrusiones_list2").textContent,
+
+      document.getElementById("num_ensayo_list3").textContent,
+      document.getElementById("error_orden_list3").textContent,
+      document.getElementById("perseveraciones_list3").textContent,
+      document.getElementById("instrusiones_list3").textContent,
+    ];
+  }
+}
+
+function getSubstractionResults() {
+  if (parseInt(age) > 9) {
+    return [
+      document.getElementById("aciertos-resta-1").textContent,
+      document.getElementById("errores-resta-1").textContent,
+      document.getElementById("segundos_resta_1").textContent,
+
+      document.getElementById("aciertos-resta-2").textContent,
+      document.getElementById("errores-resta-2").textContent,
+      document.getElementById("segundos_resta_2").textContent,
+    ];
+  } else {
+    return [
+      document.getElementById("aciertos-resta-1").textContent,
+      document.getElementById("errores-resta-1").textContent,
+      document.getElementById("segundos_resta_1").textContent,
+    ];
+  }  
+}
+
+function getAdditionResults() {
+  return [
+    document.getElementById("aciertos-suma").textContent,
+    document.getElementById("errores-suma").textContent,
+    document.getElementById("segundos_suma").textContent,
+  ];
+}
+
+function getCardSortingResults() {
+  return [
+    document.getElementById("aciertos_cards_sorting").textContent,
+    document.getElementById("errores_cards_sorting").textContent,
+    document.getElementById("perseveraciones_cards_sorting").textContent,
+    document.getElementById("err-mto_cards_sorting").textContent,
+    document.getElementById("pers-dif_cards_sorting").textContent,
+    document.getElementById("segundos").textContent,
+  ];
+}
+
+function getSemanticResults() {
+  return [
+    document.getElementById("total-concretas").textContent,
+    document.getElementById("total-funcionales").textContent,
+    document.getElementById("total-abstractas").textContent,
+    document.getElementById("total-cat").textContent,
+    document.getElementById("total-prom").textContent,
+    document.getElementById("puntos-finales").textContent,
+  ];
+}
+
+function getStroopAResults() {
+  return [
+    document.getElementById("aciertos_stroop").textContent,
+    document.getElementById("err_stroop").textContent,
+    document.getElementById("errno_stroop").textContent,
+    document.getElementById("segundos_stroop").textContent,
+  ];
+}
+
+function getVerbalFluencyResults() {
+  return [
+    document.getElementById("aciertos_fluidez").textContent,
+    document.getElementById("perseveraciones_fluidez").textContent,
+    document.getElementById("intrusiones_fluidez").textContent,
+  ];
+}
+
+function getCardGameResults() {
+  return [
+    document.getElementById("total_score_cards").textContent,
+    document.getElementById("percentege_risk").textContent,
+    document.getElementById("question_one").value,
+    document.getElementById("question_two").value,
+    document.getElementById("question_three").value,
+    document.getElementById("question_four").value,
+  ];
+}
+
+function getSayingResults() {
+  return [
+    document.getElementById("refranes-resultados").textContent,
+    document.getElementById("segundos_refranes").textContent,
+  ];
+}
+
+function getTowersHanoiResults() {
+  if (parseInt(age) > 9) {
+    return [
+      document.getElementById("mov-torre-1").textContent,
+      document.getElementById("segundos_torres-1").textContent,
+      document.getElementById("err_1-1").textContent,
+      document.getElementById("err_2-1").textContent,
+      document.getElementById("err_total-1").textContent,
+      document.getElementById("mov-torre-2").textContent,
+      document.getElementById("segundos_torres-2").textContent,
+      document.getElementById("err_1-2").textContent,
+      document.getElementById("err_2-2").textContent,
+      document.getElementById("err_total-2").textContent,
+    ];
+  } else {
+    return [
+      document.getElementById("mov-torre-1").textContent,
+      document.getElementById("segundos_torres-1").textContent,
+      document.getElementById("err_1-1").textContent,
+      document.getElementById("err_2-1").textContent,
+      document.getElementById("err_total-1").textContent,
+    ];
+  }
+}
+
+function getMetamemoryResults() {
+  return [
+    document.getElementById("intrusion_metamemoria").textContent,
+    document.getElementById("perseveracion_metamemoria").textContent,
+    document.getElementById("err-positivo_metamemoria").textContent,
+    document.getElementById("err-negativo_metamemoria").textContent,
+    document.getElementById("err-total_metamemoria").textContent,
+  ];
+}
+
+function getVisuospatialMemoryResults() {
+  return [
+    document.getElementById("err-ord").textContent,
+    document.getElementById("err-sust").textContent,
+    document.getElementById("persev").textContent,
+    document.getElementById("sec-max").textContent,
+  ];
+}
+
+function getStroopBResults() {
+  return [
+    document.getElementById("aciertos_stroop-B").textContent,
+    document.getElementById("err_stroop-B").textContent,
+    document.getElementById("errno_stroop-B").textContent,
+    document.getElementById("segundos_stroop-b").textContent,
+  ];
+}
+
+// Función que verifica si la prueba ha sido completada
+function isTestComplete(test) {
+  let isComplete = false;
+  console.log("Z: "+test)
+
+  switch (test) {
+    case "laberintos":
+      isComplete = window.completeMazes;
+      break;
+    case "senalamiento_autodirigido-control":
+      isComplete = window.completeSignaling;
+      break;      
+    case "ordenamiento":
+      isComplete = window.completeSorting;
+      break;
+    case "resta":
+      isComplete = window.completeSubstraction;
+      break;      
+    case "suma":
+      isComplete = window.completeAddition;
+      break;            
+    case "clasif_cartas-control":
+      isComplete = window.completeCardSorting;
+      break;
+    case "semanticas-control":
+      isComplete = true;
+      break;      
+    case "stroopA-control":
+      isComplete = window.completeStroop;
+      break;
+    case "fluidez-verbal":
+      isComplete = true;
+      break;
+    case "cartas-control":
+      isComplete = window.completeCardGame;
+      break;
+    case "refranes-control":
+      isComplete = window.completeSayings;
+      break;
+    case "torres-hanoi":
+      isComplete = window.completeTowers;
+      break;  
+    case "metamemoria":
+      isComplete = window.completeMetamemory;
+      break;  
+    case "memoria_visoespacial-control":
+      isComplete = true;
+      break;        
+    case "stroopB-control":
+      isComplete = window.completeStroop;
+      break;
+      
+      // Checar mejor que en vez del test, consigamos el nombre y ya comparamos el nombre de la prueba
+  }
+  console.log("Completado: "+isComplete);
+
+  return isComplete;
+}
+
+async function nextTest() {
+  try {
+    
+    console.log("Función iniciada");
+    let url = lista[test -1];
+
+    //  Verificar si la prueba fue completada usando el número de prueba
+    if (!isTestComplete(lista[test - 1])) {
+      //  Si la prueba no fue completada, mostrar el modal
+      modal.style.display = "block";
+      return; //  Salir de la función, no pasar a la siguiente prueba
+    }
+
+    console.log("Avanzamos");
+
+    // Si la prueba fue completada, continuar con la lógica normal
+    let results = getResults(url);
+
+    const data = createData(pid, banfe, results);
+    const response = await sendPOST(url, data)
+
+    handleResponse(response);
+  } catch (error) {
+    console.error("Error en la solicitud: ", error);
+  }
+}
+
+// Función que se ejecuta cuando el usuario cierra el modal
+modalCloseButton.addEventListener('click', function() {
+  modal.style.display = "none";  // Cerrar el modal
+});
+
+function createData(pid, banfe, results) {
+  return {
+    pid: pid,
+    banfe: banfe,
+    result: results
+  };
+}
+
+function handleResponse(response) {
+  if (response.status === "Test Created Successfully") {
+    banfe_id = response.banfe_id;
+
+    if (lista.length !== 0) {
+      let lastIndex = lista.length - 1;
+      test = parseInt(test);
+      console.log("Lista no vacía: "+lista);
+
+      if (test > lastIndex) {
+        redirectHome();
+      } else {
+        redirectToNextTest();
+      }
+    }
+  } else {
+    console.error("La respuesta del servidor indica un error: ", response);
+    console.log("Hubo un error: "+JSON.stringify(response));
+  }
+}
+
+function redirectHome(){
+  if (lista[test - 1] === "ordenamiento") {
+    window.location.href = "../";
+  } else {
+    window.location.href = "./";
+  }
+}
+
+function redirectToNextTest() {
+  let listEncoded = encodeURIComponent(JSON.stringify(lista));
+
+  if (lista[test - 1] === "ordenamiento") {
+    if (lista[test] === "resta") {
+      redirectToSpecificTest(lista[test], listEncoded, true);
+    } else {
+      redirectToSpecificTest(lista[test], listEncoded, false);
+    }
+  } else {
+    if (lista[test - 1] === "ordenamiento") {
+      redirectToBanfeTest(lista[test], listEncoded);
+    } else {
+      redirectToSpecificTest(lista[test], listEncoded, true);
+    }
+  }
+}
+
+function redirectToSpecificTest(testName, listEncoded, isSameLevel) {
+  let basePath = isSameLevel ? "" : "../";
+  console.log(lista[test - 1]);
+  console.log(testName);
+
+  window.location.href =
+    basePath +
+    testName +
+    "?lista=" +
+    listEncoded +
+    "&num_prueba=" +
+    (test + 1) +
+    "&pid=" +
+    pid +
+    "&edad=" +
+    age +
+    "&banfe=" +
+    banfe_id;
+}
+
+function redirectToBanfeTest(testName, listaEncoded) {
+  console.log(lista[test - 1]);
+  console.log(testName);
+
+  window.location.href =
+    "banfe/" +
+    testName +
+    "?lista=" +
+    listaEncoded +
+    "&num_prueba=" +
+    (test + 1) +
+    "&pid=" +
+    pid +
+    "&edad=" +
+    age +
+    "&banfe=" +
+    banfe_id;
+}
+
+
+async function sendPOST(url, data) {
   const csrfToken = getCSRFToken();
 
-  // Hacer la solicitud POST incluyendo el token CSRF
   try {
     const response = await fetch(url, {
       method: "POST",
@@ -371,17 +497,22 @@ async function sendPOST(url, data) {
       },
       body: JSON.stringify(data),
     });
-    console.log("TOKEN: "+csrfToken);
+
     if (response.ok) {
-      console.log("estamos dentro");
-      console.log("Respuesta correcta: " + response.statusText);
+      return await response.json();
+    } else {
+      throw new Error("Error en la solicitud POST: " + response.statusText);
     }
-    return await response.json();
   } catch (error) {
-    // Manejar el error aquí
     console.error("Error:", error);
-    console.log("Error en la solicitud: " + error.message); // Muestra el mensaje de error
-    // Puedes lanzar el error nuevamente para que sea manejado en la llamada a esta función
     throw error;
   }
+}
+
+function getCSRFToken() {
+  const cookieValue = document.cookie
+    .split("; ")
+    .find((row) => row.startsWith("csrftoken="))
+    ?.split("=")[1];
+  return cookieValue;
 }

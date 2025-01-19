@@ -10,7 +10,7 @@ class Prueba_3:
     tupla_2 = ('beso','casa','dedo','faro','goma','joya')
     tupla_3 = ('ajo','bata','carro','dado','edad','feo','gota')
 
-    palabras = ['','','','','','','','','','']
+    palabras = ['','','','','','','','','','','','','','','']
 
     lista1_pers = [0,0,0,0,0]
     lista2_pers = [0,0,0,0,0,0]
@@ -22,6 +22,8 @@ class Prueba_3:
     palabra_anterior = "";
 
     reiniciar = 0
+
+    errores = False # Variable para identificar si hubo errores en un ensayo
 
     # Método principal que invoca Views
     def comparar_palabra(self, palabra,orden,lista):
@@ -49,6 +51,7 @@ class Prueba_3:
                 self.palabras.append(palabra.lower())
                 self.palabra_anterior = palabra.lower()
                 print("Intrusion")
+                errores = True
     
     # Mëtodo que comprueba si la palabra recibida existe
     def existe_palabra(self, l,p):
@@ -85,6 +88,7 @@ class Prueba_3:
         if self.buscar_perseveraciones(p,l):
             self.perseveraciones[l-1] += 1
             print("Perseveración")
+            errores = True
         else:
             if o <= lim_ac:
                 if tupla[o-1] == p:
@@ -139,45 +143,52 @@ class Prueba_3:
     def comprobar_ensayo(self,l):
         self.num_ensayo[l-1] += 1
         self.palabra_anterior = ""
-        
+
         if l == 1:
-            if self.aciertos[l-1] == 5:
+            if self.aciertos[l-1] == 5 and not self.errores:
                 self.estado = 0
                 self.lista1_pers = [0,0,0,0,0]
+                self.errores = False
                 return 0
             else:
                 self.estado = 1
                 self.aciertos[l-1] = 0
                 self.lista1_pers = [0,0,0,0,0]     
                 if self.num_ensayo[0] == 5:
-                    self.num_ensayo[0] = 0           
+                    self.num_ensayo[0] = 0    
+                self.errores = False       
                 return 1
         elif l == 2:
-            if self.aciertos[l-1] == 6:
+            if self.aciertos[l-1] == 6 and not self.errores:
                 self.estado = 0
                 self.aciertos[l-1] = 0
-                self.lista2_pers = [0,0,0,0,0,0]      
+                self.lista2_pers = [0,0,0,0,0,0]   
+                self.errores = False   
                 return 0
             else:
                 self.estado = 1
                 self.aciertos[l-1] = 0
                 self.lista2_pers = [0,0,0,0,0,0]   
                 if self.num_ensayo[1] == 5:
-                    self.num_ensayo[1] = 0                       
+                    self.num_ensayo[1] = 0  
+                self.errores = False                     
                 return 1
         else:
-            if self.aciertos[l-1] == 7:
+            if self.aciertos[l-1] == 7 and not self.errores:
                 self.estado = 0
                 self.aciertos[l-1] = 0
-                self.lista3_pers = [0,0,0,0,0,0,0]                     
+                self.lista3_pers = [0,0,0,0,0,0,0]
+                self.errores = False                     
                 return 0
             else:
                 self.estado = 1
                 self.aciertos[l-1] = 0
                 self.lista3_pers = [0,0,0,0,0,0,0]   
                 if self.num_ensayo[2] == 5:
-                    self.num_ensayo[2] = 0                                      
+                    self.num_ensayo[2] = 0       
+                self.errores = False                               
                 return 1
+
 
     # Método que limpia las variables usadas
     def limpiar_ordenamiento(self):

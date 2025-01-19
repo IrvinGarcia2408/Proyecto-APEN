@@ -25,7 +25,16 @@ prueba_memoria = Prueba_14()
 terminar = 0
     
 def inicio(request):
-    return render(request, "principal/base.html")  
+    return render(request, "principal/home-image.html")  
+
+def about(request):
+    return render(request, "principal/footer_links/about.html")  
+
+def contact(request):
+    return render(request, "principal/footer_links/contact.html")  
+
+def under_construction(request):
+    return render(request, 'principal/under_construction.html')
 
 def pruebas(request):
     id_proceeding = request.GET.get('pid')
@@ -109,7 +118,7 @@ def pruebas_cof(request):
         banfe_instance = create_banfe_instance(data.get('pid'), data.get('prueba'))
         
         # Devolver una respuesta JSON indicando que la prueba se creó exitosamente
-        return JsonResponse({'status': 'Test Created Successfully', 'banfe_id': banfe_instance.id})
+        return JsonResponse({'status': 'BANFE-2 Created Successfully', 'banfe_id': banfe_instance.id})
     else:
         # Si la solicitud no es POST, obtener el parámetro 'prueba' de la solicitud GET
         prueba = request.GET.get('prueba')
@@ -125,7 +134,7 @@ def pruebas_cpfdl(request):
         data = json.loads(request.body)
         banfe_instance = create_banfe_instance(data.get('pid'), data.get('prueba'))
         # Devolver una respuesta JSON indicando que la prueba se creó exitosamente
-        return JsonResponse({'status': 'Test Created Successfully', 'banfe_id': banfe_instance.id})
+        return JsonResponse({'status': 'BANFE-2 Created Successfully', 'banfe_id': banfe_instance.id})
     else:
         prueba = request.GET.get('prueba')
         return render_prueba_template(request, "principal/pruebas_cpfdl.html", prueba)
@@ -139,7 +148,7 @@ def pruebas_cpfa(request):
         banfe_instance = create_banfe_instance(data.get('pid'), data.get('prueba'))
 
         # Devolver una respuesta JSON indicando que la prueba se creó exitosamente
-        return JsonResponse({'status': 'Test Created Successfully', 'banfe_id': banfe_instance.id})
+        return JsonResponse({'status': 'BANFE-2 Created Successfully', 'banfe_id': banfe_instance.id})
     else:
         prueba = request.GET.get('prueba')
         return render_prueba_template(request, "principal/pruebas_cpfa.html", prueba)
@@ -173,7 +182,7 @@ def pruebas_todas(request):
             banfe_instance.area.add(cortex_instance)
 
         # Devolver una respuesta JSON indicando que la prueba se creó exitosamente
-        return JsonResponse({'status': 'Test Created Successfully', 'banfe_id': banfe_instance.id})
+        return JsonResponse({'status': 'BANFE-2 Created Successfully', 'banfe_id': banfe_instance.id})
 
     else:    
         prueba = request.GET.get('prueba')
@@ -202,7 +211,7 @@ def laberintos_control(request):
 
         print(labyrinth)
 
-        return JsonResponse({'status': 'Subtest Created Successfully', 'banfe_id': data.get('banfe')})        
+        return JsonResponse({'status': 'Test Created Successfully', 'banfe_id': data.get('banfe')})        
         
     else:
         pid = request.GET.get('pid')
@@ -251,7 +260,7 @@ def senalamiento_control(request):
 
         prueba_senalamiento.limpiar_variables()
 
-        return JsonResponse({'status': 'Subtest Created Successfully', 'banfe_id': data.get('banfe')})        
+        return JsonResponse({'status': 'Test Created Successfully', 'banfe_id': data.get('banfe')})        
         
     else:
         pid = request.GET.get('pid')
@@ -357,7 +366,7 @@ def ordenamiento_control(request):
         ordering.save()
 
         print(ordering)
-        return JsonResponse({'status': 'Subtest Created Successfully', 'banfe_id': data.get('banfe')})        
+        return JsonResponse({'status': 'Test Created Successfully', 'banfe_id': data.get('banfe')})        
         
     else:
         pid = request.GET.get('pid')
@@ -471,7 +480,7 @@ def resta_control(request):
 
         print(substraction)
 
-        return JsonResponse({'status': 'Subtest Created Successfully', 'banfe_id': data.get('banfe')})        
+        return JsonResponse({'status': 'Test Created Successfully', 'banfe_id': data.get('banfe')})        
         
     else:
         pid = request.GET.get('pid')
@@ -515,7 +524,7 @@ def suma_control(request):
 
         print(addition)
 
-        return JsonResponse({'status': 'Subtest Created Successfully', 'banfe_id': data.get('banfe')})        
+        return JsonResponse({'status': 'Test Created Successfully', 'banfe_id': data.get('banfe')})        
         
     else:
         pid = request.GET.get('pid')
@@ -564,7 +573,7 @@ def clasif_cartas_control(request):
 
         prueba_clasif_cartas.limpiar_prueba()
 
-        return JsonResponse({'status': 'Subtest Created Successfully', 'banfe_id': data.get('banfe')})        
+        return JsonResponse({'status': 'Test Created Successfully', 'banfe_id': data.get('banfe')})        
         
     else:
         pid = request.GET.get('pid')
@@ -653,7 +662,7 @@ def semanticas_control(request):
         semantic_classification.save()
 
         print(semantic_classification)        
-        return JsonResponse({'status': 'Subtest Created Successfully', 'banfe_id': data.get('banfe')})        
+        return JsonResponse({'status': 'Test Created Successfully', 'banfe_id': data.get('banfe')})        
         
     else:
         pid = request.GET.get('pid')
@@ -703,7 +712,7 @@ def stroopA_control(request):
 
         print(stroop_a)  
 
-        return JsonResponse({'status': 'Subtest Created Successfully', 'banfe_id': data.get('banfe')})        
+        return JsonResponse({'status': 'Test Created Successfully', 'banfe_id': data.get('banfe')})        
         
     else:
         pid = request.GET.get('pid')
@@ -751,7 +760,7 @@ def fluidez_control(request):
 
         print(verbal_fluency)  
 
-        return JsonResponse({'status': 'Subtest Created Successfully', 'banfe_id': data.get('banfe')})        
+        return JsonResponse({'status': 'Test Created Successfully', 'banfe_id': data.get('banfe')})        
         
     else:
         pid = request.GET.get('pid')
@@ -801,7 +810,7 @@ def cartas_control(request):
 
         prueba_cartas.limpiar_cartas()
 
-        return JsonResponse({'status': 'Subtest Created Successfully', 'banfe_id': data.get('banfe')})        
+        return JsonResponse({'status': 'Test Created Successfully', 'banfe_id': data.get('banfe')})        
         
     else:
         pid = request.GET.get('pid')
@@ -907,7 +916,7 @@ def refranes_control(request):
 
         prueba_refranes.limpiar_refranes()
 
-        return JsonResponse({'status': 'Subtest Created Successfully', 'banfe_id': data.get('banfe')})        
+        return JsonResponse({'status': 'Test Created Successfully', 'banfe_id': data.get('banfe')})        
         
     else:
         pid = request.GET.get('pid')
@@ -1018,7 +1027,7 @@ def torres_control(request):
 
         print(towers_hanoi)  
 
-        return JsonResponse({'status': 'Subtest Created Successfully', 'banfe_id': data.get('banfe')})        
+        return JsonResponse({'status': 'Test Created Successfully', 'banfe_id': data.get('banfe')})        
         
     else:
         pid = request.GET.get('pid')
@@ -1065,7 +1074,7 @@ def metamemoria_control(request):
 
         print(metamemory)  
 
-        return JsonResponse({'status': 'Subtest Created Successfully', 'banfe_id': data.get('banfe')})        
+        return JsonResponse({'status': 'Test Created Successfully', 'banfe_id': data.get('banfe')})        
         
     else:
         pid = request.GET.get('pid')
@@ -1118,7 +1127,7 @@ def memoria_control(request):
 
         prueba_memoria.limpiar_variables()
 
-        return JsonResponse({'status': 'Subtest Created Successfully', 'banfe_id': data.get('banfe')})        
+        return JsonResponse({'status': 'Test Created Successfully', 'banfe_id': data.get('banfe')})        
         
     else:
         pid = request.GET.get('pid')
@@ -1220,7 +1229,7 @@ def stroopB_control(request):
 
         print(stroop_b)  
 
-        return JsonResponse({'status': 'Subtest Created Successfully', 'banfe_id': data.get('banfe')})        
+        return JsonResponse({'status': 'Test Created Successfully', 'banfe_id': data.get('banfe')})        
         
     else:
         pid = request.GET.get('pid')

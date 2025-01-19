@@ -59,7 +59,7 @@
       <header class="header">
         <nav class="navbar">
           <div class="navbar__logo">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{% url 'inicio' %}">
               <img src="{% static 'images/logo.png' %}" alt="logo-apen" />
               <span>APEN</span>
             </a>
@@ -95,38 +95,46 @@
       </header>
       <div class="main">
         <div class="menu">
-          <div class="menu__proyectos btn">
-            <a href="#">
+          <div class="menu__proyectos btn offProjects">
+            <a href="" disabled>
               <i class="fa-solid fa-diagram-project"></i>
               Mis proyectos
             </a>
           </div>
-          <div class="menu__expedientes btn">
+          <div
+            class="menu__expedientes btn {% if 'expedientes' in request.path %}active{% endif %}"
+          >
             <a href="{% url 'show_proceedings' %}">
               <i class="fa-solid fa-notes-medical"></i>
               Expedientes clínicos
             </a>
           </div>
-          <div class="menu__historial btn">
+          <div
+            class="menu__historial btn {% if 'pruebas/' in request.path %}active{% endif %}"
+          >
             <a href="{% url 'show_tests' %}">
               <i class="fa-solid fa-clock-rotate-left"></i>
               Historial de pruebas
             </a>
           </div>
-          <div class="menu__pruebas btn">
+          <div
+            class="menu__pruebas btn {% if 'banfe/' in request.path %}active{% endif %}"
+          >
             <a href="{% url 'pruebas' %}?pid=-1">
               <i class="fa-solid fa-magnifying-glass-chart"></i>
               Pruebas BANFE-2
             </a>
           </div>
-          <div class="menu__otras btn">
-            <a href="#">
+          <div class="menu__otras btn offOtherTests">
+            <a href="" disabled>
               <i class="fa-solid fa-file-lines"></i>
               Otras pruebas
             </a>
           </div>
-          <div class="menu__documentacion btn">
-            <a href="#">
+          <div
+            class="menu__documentacion btn {% if 'documentation' in request.path %}active{% endif %}"
+          >
+            <a href="{% url 'documentation' %}">
               <i class="fa-solid fa-book"></i>
               Documentación
             </a>
@@ -136,26 +144,26 @@
       </div>
       <footer class="footer fixed-bottom">
         <div class="footer__apen">
-          <a href="#">
+          <a href="{% url 'inicio' %}">
             <i class="fa-solid fa-brain"></i>
             APEN
           </a>
         </div>
         <div class="footer__us">
-          <a href="#">
+          <a href="{% url 'about' %}">
             <i class="fa-solid fa-circle-info"></i>
             ACERCA DE
           </a>
         </div>
         <div class="footer__contact">
-          <a href="#">
+          <a href="{% url 'contact' %}">
             <i class="fa-solid fa-phone"></i>
             CONTACTO
           </a>
         </div>
         <div class="footer__help">
-          <a href="#">
-            <i class="fa-regular fa-circle-question"></i>
+          <a class="text-dark" href="#">
+            <i class="text-dark fa-regular fa-circle-question"></i>
             AYUDA
           </a>
         </div>

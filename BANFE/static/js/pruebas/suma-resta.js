@@ -1,3 +1,5 @@
+const alarmSubstraction = document.querySelector(".alarmSubstraction");
+const alarmAddition = document.querySelector(".alarmAddition");
 
 var suma = 1;
 var result_ant = "ninguno";
@@ -11,6 +13,10 @@ var ac_resta = [0,0];
 var err_resta = [0,0];
 var res_flag = 1;
 var x = 0;
+
+window.completeSubstraction = false;
+window.completeAddition = false;
+
 
 var click_resum = document.querySelector(".figure-sound");
 
@@ -29,6 +35,7 @@ function pararSuma() {
   clearInterval(control);
   document.getElementById("reiniciar_suma").disabled = true;
   apagarSuma(true);
+  window.completeAddition = true;
 }
 
 // Procedimiento que reinicia la suma
@@ -41,12 +48,13 @@ function reiniciarSuma() {
   document.getElementById("reiniciar_suma").disabled = true;
   limpiarSuma();
   apagarSuma(true);
+  window.completeAddition = false;
 }
 
 // Procedimiento que funciona como cronometro de la prueba
 function cronometroSuma() {
   if (segundos == 300) {
-    alarma.play();
+    alarmAddition.play();
     pararSuma();
     document.getElementById("text-modal-sum").textContent = "Prueba finalizada"
     document.getElementById("box-modal-sum").style.width = "20%";
@@ -55,6 +63,7 @@ function cronometroSuma() {
       click_resum.play();
       document.getElementById("modal-sum").style.display = "none";
     }
+    window.completeAddition = true;
   }
   if (centesimas < 99) {
     centesimas++;
@@ -232,7 +241,8 @@ function limpiarSuma(){
 // Procedimiento que inicia la resta
 function iniciarResta() {
   click_resum.play();
-  console.log("hola bebe")
+  
+  window.completeSubstraction = false;
   if(res_flag == 1){
     apagarPanel(1,false);
     num_ant = 40;
@@ -260,10 +270,13 @@ function pararResta() {
     apagarPanel(1, true);
     if(parseInt(age) > 9){
       document.getElementById("siguiente_resta").disabled = false;
+    } else {
+      window.completeSubstraction = true;
     }
     document.getElementById("reiniciar_resta").disabled = true;
   }else{
     apagarPanel(2, true);
+    window.completeSubstraction = true;
     document.getElementById("reiniciar_resta").disabled = true;
   }
   clearInterval(control);
@@ -300,12 +313,14 @@ function reiniciarResta() {
   }
   document.getElementById("inicio_resta").disabled = false;
   document.getElementById("reiniciar_resta").disabled = true;
+
+  window.completeSubstraction = false;
 }
 
 // Procedimiento que funciona como cronometro de la resta A
 function cronometroResta_1() {
   if (segundos == 300) {
-    alarma.play();
+    alarmSubstraction.play();
     pararResta();
     document.getElementById("text-modal-res").textContent = "Tarea A finalizada";
     document.getElementById("box-modal-res").style.width = "20%";
@@ -332,7 +347,7 @@ function cronometroResta_1() {
 // Procedimiento que funciona como cronometro de la resta B
 function cronometroResta_2() {
   if (segundos_2 == 300) {
-    alarma.play();
+    alarmSubstraction.play();
     pararResta();
     document.getElementById("text-modal-res").textContent = "Tarea B finalizada";
     document.getElementById("box-modal-res").style.width = "20%";

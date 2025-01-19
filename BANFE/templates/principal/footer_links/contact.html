@@ -1,0 +1,54 @@
+{% extends "principal/base.html" %} {% load static %} {% block content %}
+
+<div
+  class="container bg-light p-5 rounded border border-dark border-3"
+  style="margin-top: 12%"
+>
+  <h2 class="fs-3 text-center fw-bold font-monospace">
+    Información de Contacto
+  </h2>
+  <p class="fs-5">
+    Si tienes alguna pregunta, comentario o necesitas soporte, no dudes en
+    contactarnos:
+  </p>
+  <ul>
+    <li class="fs-5">
+      <strong>Correo Electrónico:</strong>
+      <a href="mailto:soporte@apen.com">soporte@apen.com</a>
+    </li>
+    <li class="fs-5"><strong>Teléfono:</strong> +52 55 1234 5678</li>
+  </ul>
+
+  <h3 class="fs-3 text-center fw-bold font-monospace">
+    Síguenos en Redes Sociales
+  </h3>
+  <p class="fs-5">
+    Conéctate con nosotros en nuestras redes sociales para mantenerte al tanto
+    de las últimas novedades y actualizaciones:
+  </p>
+
+  <div class="social-media d-flex justify-content-center px-4 gap-3">
+    <a
+      class="text-primary"
+      href="https://www.facebook.com/apen"
+      target="_blank"
+    >
+      <i class="fa-brands fa-facebook"> APEN</i>
+    </a>
+    <a
+      class="text-info-emphasis"
+      href="https://www.twitter.com/apen"
+      target="_blank"
+    >
+      <i class="fa-brands fa-twitter"> APEN</i>
+    </a>
+    <a href="https://www.linkedin.com/company/apen" target="_blank">
+      <i class="fa-brands fa-linkedin text-primary-emphasis"> APEN</i>
+    </a>
+    <a href="https://www.instagram.com/apen" target="_blank">
+      <i class="fa-brands fa-instagram text-danger-emphasis"> APEN</i>
+    </a>
+  </div>
+</div>
+
+{% endblock %}

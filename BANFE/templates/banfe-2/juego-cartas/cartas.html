@@ -1,75 +1,70 @@
 {% extends "banfe-2/pruebas.html" %} {% load static %} {% block content %}
 
 <audio
-  class="alarma_sound"
-  src="{% static 'audios/tiempo_acabado.mp3' %}"
+  class="alarm_sound-subject"
+  src="{% static 'audios/time_out.mp3' %}"
 ></audio>
 <audio class="figure-sound" src="{% static 'audios/click.wav' %}"></audio>
-<audio class="carta_sound" src="{% static 'audios/sonido_carta.mp3' %}"></audio>
-<audio class="castigo-0_sound" src="{% static 'audios/puntos_0.ogg' %}"></audio>
-<audio class="castigo-2_sound" src="{% static 'audios/puntos_2.ogg' %}"></audio>
-<audio class="castigo-3_sound" src="{% static 'audios/puntos_3.ogg' %}"></audio>
-<audio class="castigo-5_sound" src="{% static 'audios/puntos_5.ogg' %}"></audio>
-<audio class="castigo-8_sound" src="{% static 'audios/puntos_8.ogg' %}"></audio>
+<audio class="card_sound" src="{% static 'audios/card_sound.mp3' %}"></audio>
+<audio class="penalty-0_sound" src="{% static 'audios/lose_points-0.ogg' %}"></audio>
+<audio class="penalty-2_sound" src="{% static 'audios/lose_points-2.ogg' %}"></audio>
+<audio class="penalty-3_sound" src="{% static 'audios/lose_points-3.ogg' %}"></audio>
+<audio class="penalty-5_sound" src="{% static 'audios/lose_points-5.ogg' %}"></audio>
+<audio class="penalty-8_sound" src="{% static 'audios/lose_points-8.ogg' %}"></audio>
 <audio
-  class="castigo-12_sound"
-  src="{% static 'audios/puntos_12.ogg' %}"
+  class="penalty-12_sound"
+  src="{% static 'audios/lose_points-12.ogg' %}"
 ></audio>
-<audio
-  class="incorrecto_sound"
-  src="{% static 'audios/sonido_incorrecto.mp3' %}"
-></audio>
-
 {% include "banfe-2/modal.html" %}
 </div>
 <div class="juego-cartas">
   <div>
     <div class="panel-juego-cartas">
-      <div id="castigos-1"></div>
-      <div id="castigos-2"></div>
-      <div id="castigos-3"></div>
-      <div id="castigos-4"></div>
-      <div id="castigos-5"></div>
+      <div id="penalties-1"></div>
+      <div id="penalties-2"></div>
+      <div id="penalties-3"></div>
+      <div id="penalties-4"></div>
+      <div id="penalties-5"></div>
     </div>
     <div class="panel-juego-cartas">
-      <div class="cartas-castigos" id="menos-1"></div>
-      <div class="cartas-castigos" id="menos-2"></div>
-      <div class="cartas-castigos" id="menos-3"></div>
-      <div class="cartas-castigos" id="menos-4"></div>
-      <div class="cartas-castigos" id="menos-5"></div>
+      <div class="cartas-castigos" id="penalty-1"></div>
+      <div class="cartas-castigos" id="penalty-2"></div>
+      <div class="cartas-castigos" id="penalty-3"></div>
+      <div class="cartas-castigos" id="penalty-4"></div>
+      <div class="cartas-castigos" id="penalty-5"></div>
     </div>
   </div>
   <div class="line-separator">
     <div class="panel-juego-cartas">
-      <div class="cartas-puntos pilas" id="pila-1" onclick="tomarCarta(1)">
+      <div class="cartas-puntos pilas" id="pile-1" onclick="drawCard(1)">
         1
       </div>
-      <div class="cartas-puntos pilas" id="pila-2" onclick="tomarCarta(2)">
+      <div class="cartas-puntos pilas" id="pile-2" onclick="drawCard(2)">
         2
       </div>
-      <div class="cartas-puntos pilas" id="pila-3" onclick="tomarCarta(3)">
+      <div class="cartas-puntos pilas" id="pile-3" onclick="drawCard(3)">
         3
       </div>
-      <div class="cartas-puntos pilas" id="pila-4" onclick="tomarCarta(4)">
+      <div class="cartas-puntos pilas" id="pile-4" onclick="drawCard(4)">
         4
       </div>
-      <div class="cartas-puntos pilas" id="pila-5" onclick="tomarCarta(5)">
+      <div class="cartas-puntos pilas" id="pile-5" onclick="drawCard(5)">
         5
       </div>
     </div>
     <div class="panel-juego-cartas">
-      <div id="puntos-1"></div>
-      <div id="puntos-2"></div>
-      <div id="puntos-3"></div>
-      <div id="puntos-4"></div>
-      <div id="puntos-5"></div>
+      <div id="points-1"></div>
+      <div id="points-2"></div>
+      <div id="points-3"></div>
+      <div id="points-4"></div>
+      <div id="points-5"></div>
     </div>
   </div>
 </div>
 
 <script>
   window.setTimeout(function () {
-    iniciarCartas();
+    startCardTest();
   }, 5000);
 </script>
 

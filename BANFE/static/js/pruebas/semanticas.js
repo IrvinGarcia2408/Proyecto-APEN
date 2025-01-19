@@ -6,6 +6,7 @@ let elementAverage = [0, 0, 0];
 let sec_semantics = 0;
 let cen_semantics = 0;
 
+
 // Variables para almacenar el estado anterior de los radios
 let previousClasify = createEmptyArray(20);
 let previousAmount = createEmptyArray(20);
@@ -208,10 +209,6 @@ function mostrarSemanticas() {
   let dividendo = addElements[0] + addElements[1] + addElements[2];
   let divisor = categories[0] + categories[1] + categories[2];
   let totalAverage = truncar(dividendo/divisor,0);
-1
-  console.log("dividendo: "+dividendo)
-  console.log("divisor: "+divisor)
-  console.log("resultado: "+truncar(totalAverage,0))
 
   document.getElementById("total-cat").textContent =
     categories[0] + categories[1] + categories[2];
@@ -225,11 +222,16 @@ function mostrarSemanticas() {
   } else {
     document.getElementById("total-prom").textContent = 0;
   }
+
+
+  if(document.getElementById("segundos_semanticas") === "300") {
+    console.log("A:", window.completeSemantics)
+  }
 }
 
 // Procedimiento que reinicia los valores de la prueba
 function resetSemantics(){
-
+  window.completeSemantics = false;
 }
 
 // Función que trunca un número al número específico de decimales proporcionado
@@ -249,6 +251,7 @@ function relojSemanticas() {
     document.getElementById("text-modal-sem").textContent = "Prueba finalizada";
     document.getElementById("box-modal-sem").style.width = "20%";
     document.getElementById("modal-sem").style.display = "block"; // Muestra el modal
+
   } else {
     if (cen_semantics < 99) {
       cen_semantics++;
@@ -257,9 +260,4 @@ function relojSemanticas() {
       sec_semantics++;
     }
   }
-
-  // Actualiza el cronómetro en la consola o en la interfaz si es necesario
-  console.log(
-    "Segundos: " + sec_semantics + " | Centésimas: " + cen_semantics
-  );
 }

@@ -2,6 +2,8 @@ let click_metamemoria = document.querySelector(".figure-sound");
 
 let total_palabras = 0;
 
+window.completeMetamemory = false;
+
 // Variables utilizadas por BANFE
 let meta_intru = 0;
 let meta_persev = 0;
@@ -119,6 +121,7 @@ function verificarLista() {
       document.getElementById("text-modal-ord").textContent = "Prueba finalizada";
       document.getElementById("box-modal-ord").style.width = "20%";
       document.getElementById("modal-ord").style.display = "block";
+      window.completeMetamemory = true;
     } else {
       iniciarPanel(true);
     }
@@ -178,4 +181,5 @@ function limpiarMetamemoria() {
   location.reload();
   iniciarPanel(true);
   click_metamemoria.play();
+  window.completeMetamemory = false;
 }

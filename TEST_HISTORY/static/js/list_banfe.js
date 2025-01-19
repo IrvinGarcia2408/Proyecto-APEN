@@ -6,9 +6,10 @@ const dataTableOptions = {
     { className: "centered", targets: "_all" },
     { orderable: false, targets: [3, 4, 5] },
     { searchable: false, targets: [5] },
-    { width: "25%", targets: 0 }, // Define el ancho de la segunda columna al 30%
+    { width: "20%", targets: 0 }, // Define el ancho de la primera columna al 20%
+    { width: "15%", targets: [1,2,3] }, // Define el ancho de la primeras columnas al 15%
   ],
-  pageLength: 6,
+  pageLength: 5,
   destroy: true,
 };
 

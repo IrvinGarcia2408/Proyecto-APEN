@@ -103,6 +103,8 @@
             </div>
           </div>
         </div>
+
+        <!--        
         <div class="input-group mt-3" id="group__username">
           <div class="input-group-text">
             <i class="fa-solid fa-user"></i>
@@ -138,6 +140,9 @@
           <i class="form__validation-state fas fa-times-circle"></i>
           <p class="form__input-error">El correo electrónico es inválido</p>
         </div>
+
+        -->
+
         <div class="input-group mt-3" id="group__password1">
           <div class="input-group-text">
             <i class="fa-solid fa-lock"></i>
@@ -181,6 +186,12 @@
         </div>
         <div class="row">
           <div class="col-sm-1"></div>
+          <div class="col inicio_pruebas__volver">
+            <a href="{% url 'inicio' %}">
+              <i class="fa-solid fa-rotate-left"></i>
+              <span class="row">Volver</span>
+            </a>
+          </div>
           <div class="col-sm-4">
             <button
               class="btn btn-dark text-white w-100 mt-4 fw-bolder"
@@ -189,15 +200,7 @@
               Aceptar
             </button>
           </div>
-          <div class="col-sm-2"></div>
-          <div class="col-sm-4">
-            <a
-              class="btn btn-dark text-white w-100 mt-4 fw-bolder"
-              href="{% url 'inicio' %}"
-              >Cancelar</a
-            >
-          </div>
-          <div class="col-sm-1"></div>
+          <div class="col-sm-4"></div>
         </div>
       </form>
     </div>

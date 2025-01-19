@@ -1,204 +1,214 @@
 // Selección de elementos de audio para los efectos de sonido
-var click_cartas = document.querySelector(".figure-sound");
-var castigo_0 = document.querySelector(".castigo-0_sound");
-var castigo_2 = document.querySelector(".castigo-2_sound");
-var castigo_3 = document.querySelector(".castigo-3_sound");
-var castigo_5 = document.querySelector(".castigo-5_sound");
-var castigo_8 = document.querySelector(".castigo-8_sound");
-var castigo_12 = document.querySelector(".castigo-12_sound");
+const clickCardsSound = document.querySelector(".figure-sound");
+const cardSound = document.querySelector(".card_sound");
+const alarmSubject = document.querySelector(".alarm_sound-subject");
+const alarmControl = document.querySelector(".alarm_sound-subject");
+
+const penalty0Sound = document.querySelector(".penalty-0_sound");
+const penalty2Sound = document.querySelector(".penalty-2_sound");
+const penalty3Sound = document.querySelector(".penalty-3_sound");
+const penalty5Sound = document.querySelector(".penalty-5_sound");
+const penalty8Sound = document.querySelector(".penalty-8_sound");
+const penalty12Sound = document.querySelector(".penalty-12_sound");
 
 // Definición de variables para las cartas y los castigos
-var cartas = [1, 1, 1, 1, 1];
+const cards = [1, 1, 1, 1, 1];
 
-var castigos = [
+const penalties = [
   [0, 0, 0, 0, -2, 0, 0, 0, 0, 0, 0, 0, 0, -2, 0, 0, 0, 0],
   [0, 0, 0, -3, 0, 0, 0, -3, 0, 0, 0, -3, 0, 0, 0, -3, 0, 0],
   [0, 0, -5, 0, 0, -5, 0, 0, -5, 0, 0, -5, 0, 0, -5, 0, 0, -5],
   [0, -8, 0, -8, 0, -8, 0, -8, 0, -8, 0, -8, 0, -8, 0, -8, 0, -8],
-  [0, -12, 0, -12, -12, 0, -12, 0, -12, -12, 0, -12, 0, -12, -12, 0, -12, 0],
+  [0, -12, 0, -12, -12, 0, -12, 0, -12, -12, 0, -12, 0, -12, -12, 0, -12, 0]
 ];
 
 // Variable que indica si la carta está activa o no
-let card_active = false;
+let isCardActive = false;
+
 
 // Variables de control adicionales
-var mensaje = false;
-var parada = false;
+let isMessageShown = false;
+let isPaused = false;
+
+let total = 0; // Variable para almacenar el tiempo total
+let cards_seconds = 0;
+let cards_centiseconds = 0;
+let timer;
+
+window.completeCardGame = false;
+
 
 // Función que inicia la prueba de cartas para el sujeto
-function iniciarCartas() {
-  // Mostrar mensaje inicial con instrucciones
-  document.getElementById("text-modal-cartas").textContent =
-    "El objetivo de esta tarea es lograr la mayor cantidad posible de puntos. Para esto, puede escoger cartas con valor desde uno hasta cinco puntos, en el orden que usted quiera. Cada vez que tome una carta de cualquier grupo, yo tomaré la carta que le corresponde del grupo de enfrente, las cuales pueden o no contener castigos. Si la carta de castigo contiene el número '0', conservará los puntos obtenidos; si por ejemplo la carta tiene '-2', usted perderá esos puntos.";
-  document.getElementById("box-modal-cartas").style.width = "40%";
-  document.getElementById("modal-cartas").style.display = "block";
+function startCardTest() {
+  showModal("El objetivo de esta tarea es lograr la mayor cantidad posible de puntos. Para esto, puede escoger cartas con valor desde uno hasta cinco puntos, en el orden que usted quiera. Cada vez que tome una carta de cualquier grupo, yo tomaré la carta que le corresponde del grupo de enfrente, las cuales pueden o no contener castigos. Si la carta de castigo contiene el número '0', conservará los puntos obtenidos; si por ejemplo la carta tiene '-2', usted perderá esos puntos.", "35%");
 
   // Manejador de evento para el botón modal
   document.getElementById("btnModal-cartas").onclick = function () {
-    // Reproducir sonido de clic
-    click_cartas.play();
-    // Ocultar el modal
-    document.getElementById("modal-cartas").style.display = "none";
+    clickCardsSound.play();
+    hideModal();
+
     // Iniciar temporizador si no está activo
-    if (!card_active) {
-      temporizador_cartas = setInterval(relojCartas, 10);
-      card_active = true;
+    if (!isCardActive) {
+      timer = setInterval(runCardTimer, 10);
+      isCardActive = true;
+      window.completeCardGame = false;
     }
-  };
+  } 
 }
 
+
 // Procedimiento que procesa la toma de una carta
-function tomarCarta(torre) {
+function drawCard(tower) {
   // Verificar si la carta está disponible y la prueba está activa
-  if (cartas[torre - 1] <= 18 && card_active) {
+  if (cards[tower - 1] <= 18 && isCardActive){
     // Bloquear las cartas temporalmente
-    bloquearCartas(true);
-    // Reproducir sonido de clic
-    click_cartas.play();
+    lockCards(true);
+    cardSound.play();
+
     // Resaltar el borde de la carta seleccionada
-    document.getElementById("puntos-" + torre).style.border = "5px solid #9e2";
+    highlightCard(tower);
 
     // Verificar si es el último valor de la carta
-    if (cartas[torre - 1] == 18) {
-      // Si es el último valor, limpiar la carta y mostrar el castigo
-      document.getElementById("pila-" + torre).textContent = "";
-      document.getElementById("pila-" + torre).classList.remove("cartas-puntos");
-      setTimeout(() => {
-        document.getElementById("castigos-" + torre).textContent = castigos[torre - 1][cartas[torre - 1] - 2];
-        restarPuntos(castigos[torre - 1][cartas[torre - 1] - 2]);
-        document.getElementById("menos-" + torre).classList.remove("cartas-castigos");
-        document.getElementById("pila-" + torre).textContent = "";
-        document.getElementById("castigos-" + torre).style.border = "5px solid #d12";
-      }, "1200");
+    if (cards[tower - 1] === 18) {
+      processLastCard(tower);
     } else {
-      // Si no es el último valor, mostrar el valor de la carta y el castigo
-      document.getElementById("puntos-" + torre).className = "cartas-puntos";
-      document.getElementById("puntos-" + torre).textContent = torre;
-      setTimeout(() => {
-        restarPuntos(castigos[torre - 1][cartas[torre - 1] - 2]);
-        document.getElementById("castigos-" + torre).className = "cartas-castigos";
-        document.getElementById("castigos-" + torre).textContent = castigos[torre - 1][cartas[torre - 1] - 2];
-        document.getElementById("castigos-" + torre).style.border = "5px solid #d12";
-      }, "1200");
+      processRegularCard(tower);
     }
 
     // Restablecer el borde de la carta después de un tiempo
-    setTimeout(() => {
-      document.getElementById("puntos-" + torre).style.border = "none";
-    }, "1000");
-
-    // Restablecer el borde del castigo después de un tiempo y desbloquear las cartas
-    setTimeout(() => {
-      document.getElementById("castigos-" + torre).style.border = "none";
-      bloquearCartas(false);
-    }, "2000");
+    resetCardHighlight(tower, 1000);
+    resetPenaltyHighlight(tower, 2000);
 
     // Incrementar el contador de cartas y enviar los datos al servidor
-    cartas[torre - 1]++;
-    DjangoPOST("./" + torre, [torre, castigos[torre - 1][cartas[torre - 1] - 2]]);
+    cards[tower - 1]++;
+    DjangoPOST("./" + tower, [tower, penalties[tower - 1][cards[tower - 1] - 2]]);
+
   }
 }
+
+// Procedimiento que procesa la última carta en una torre
+function processLastCard(tower) {
+  document.getElementById("pile-" + tower).textContent = "";
+  document.getElementById("pile-" + tower).classList.remove("cartas-puntos");
+  setTimeout(() => {
+      document.getElementById("penalties-" + tower).textContent = penalties[tower - 1][cards[tower - 1] - 2];
+      applyPenalty(penalties[tower - 1][cards[tower - 1] - 2]);
+      document.getElementById("penalty-" + tower).classList.remove("cartas-castigos");
+      document.getElementById("pile-" + tower).textContent = "";
+      document.getElementById("penalties-" + tower).style.border = "5px solid #d12";
+  }, 1200);
+}
+
+// Procedimiento que procesa una carta regular en una torre
+function processRegularCard(tower) {
+  document.getElementById("points-" + tower).className = "cartas-puntos";
+  document.getElementById("points-" + tower).textContent = tower;
+  setTimeout(() => {
+      applyPenalty(penalties[tower - 1][cards[tower - 1] - 2]);
+      document.getElementById("penalties-" + tower).className = "cartas-castigos";
+      document.getElementById("penalties-" + tower).textContent = penalties[tower - 1][cards[tower - 1] - 2];
+      document.getElementById("penalties-" + tower).style.border = "5px solid #d12";
+  }, 1200);
+}
+
 
 // Procedimiento que reproduce el sonido de castigos correspondiente
-function restarPuntos(puntos) {
+function applyPenalty(points) {
   // Reproducir el sonido según el valor de los puntos
-  switch (puntos) {
+  switch (points) {
     case 0:
-      castigo_0.play(); // Reproducir sonido de castigo 0
+      penalty0Sound.play(); // Reproducir sonido de castigo 0
       break;
     case -2:
-      castigo_2.play(); // Reproducir sonido de castigo -2
+      penalty2Sound.play(); // Reproducir sonido de castigo -2
       break;
     case -3:
-      castigo_3.play(); // Reproducir sonido de castigo -3
+      penalty3Sound.play(); // Reproducir sonido de castigo -3
       break;
     case -5:
-      castigo_5.play(); // Reproducir sonido de castigo -5
+      penalty5Sound.play(); // Reproducir sonido de castigo -5
       break;
     case -8:
-      castigo_8.play(); // Reproducir sonido de castigo -8
+      penalty8Sound.play(); // Reproducir sonido de castigo -8
       break;
     case -12:
-      castigo_12.play(); // Reproducir sonido de castigo -12
+      penalty12Sound.play(); // Reproducir sonido de castigo -12
       break;
   }
 }
 
-// Procedimiento que bloquea las cartas
-function bloquearCartas(estado) {
-  // Verificar el estado y agregar o quitar la clase "cartas-apagadas" según corresponda
-  if (estado) {
-    // Bloquear las cartas
-    document.getElementById("pila-1").classList.add("cartas-apagadas");
-    document.getElementById("pila-2").classList.add("cartas-apagadas");
-    document.getElementById("pila-3").classList.add("cartas-apagadas");
-    document.getElementById("pila-4").classList.add("cartas-apagadas");
-    document.getElementById("pila-5").classList.add("cartas-apagadas");
-  } else {
-    // Desbloquear las cartas
-    document.getElementById("pila-1").classList.remove("cartas-apagadas");
-    document.getElementById("pila-2").classList.remove("cartas-apagadas");
-    document.getElementById("pila-3").classList.remove("cartas-apagadas");
-    document.getElementById("pila-4").classList.remove("cartas-apagadas");
-    document.getElementById("pila-5").classList.remove("cartas-apagadas");
+// Procedimiento que bloquea y desbloquea las cartas
+function lockCards(state) {
+  const action = state ? 'add' : 'remove';
+
+  for (let i = 1; i <= 5; i++) {
+    document.getElementById("pile-" + i).classList[action]("cartas-apagadas");
   }
 }
 
-let total = 0; // Variable para almacenar el tiempo total
-let segundos_cartas = 0;
-let centesimas_cartas = 0;
+// Procedimiento para resaltar la tarjeta seleccionada
+function highlightCard(tower) {
+  document.getElementById("points-" + tower).style.border = "5px solid #9e2";
+}
 
+// Función para restablecer el resaltado de la tarjeta después de un retraso
+function resetCardHighlight(tower, delay) {
+  setTimeout(() => {
+      document.getElementById("points-" + tower).style.border = "none";
+  }, delay);
+}
+
+// Función para restablecer el resaltado de penalización después de un retraso
+function resetPenaltyHighlight(tower, delay) {
+  setTimeout(() => {
+      document.getElementById("penalties-" + tower).style.border = "none";
+      lockCards(false);
+  }, delay);
+}
 
 // Procedimiento que funciona como cronómetro para el sujeto
-function relojCartas() {
-  // Comprobar si el tiempo total alcanza un valor específico
-  if (total == 90 || segundos_cartas == 298) {
-    // Si se alcanza el tiempo límite, detener el temporizador y realizar acciones finales
-    setTimeout(() => {
-      clearInterval(temporizador_cartas);
-      DjangoPOST("./finalizado/" + 1, 1); // Enviar señal de finalización al servidor
-      // Mostrar mensaje de prueba finalizada en un modal
-      document.getElementById("text-modal-cartas").textContent = "Prueba finalizada";
-      document.getElementById("box-modal-cartas").style.width = "20%";
-      document.getElementById("modal-cartas").style.display = "block";
-    }, 2000);
+function runCardTimer() {
+  if (total === 90 || cards_seconds === 298) {
+    stopCardTimer();
+    lockCards(true);
   }
 
-  // Incrementar las centésimas de segundo y actualizar los segundos si es necesario
-  if (centesimas_cartas < 99) {
-    centesimas_cartas++;
-  }
-  if (centesimas_cartas == 99) {
-    centesimas_cartas = -1;
-  }
-  if (centesimas_cartas == 0) {
-    segundos_cartas++;
-    console.log(segundos_cartas);
-    // Calcular el tiempo total sumando los valores de las cartas seleccionadas
-    total =
-      (cartas[0] - 1) +
-      (cartas[1] - 1) +
-      (cartas[2] - 1) +
-      (cartas[3] - 1) +
-      (cartas[4] - 1);
+  if (cards_centiseconds < 99) {
+    cards_centiseconds++;
+  } else {
+    cards_centiseconds = 0;
+    cards_seconds++;
+    total = cards.reduce((acc, card) => acc + (card - 1), 0);
   }
 }
-// Procedimiento que muestra el mensaje de finalizado
-function imprimirMensaje() {
-  // Mostrar el mensaje de prueba finalizada en un modal
-  document.getElementById("text-modal-cartas").textContent = "Prueba finalizada";
-  document.getElementById("box-modal-cartas").style.width = "20%";
+
+// Función para detener el temporizador de la tarjeta y finalizar la prueba
+function stopCardTimer() {
+  alarmSubject.play();
+  window.completeCardGame = true;
+  setTimeout(() => {
+    clearInterval(timer);
+    DjangoPOST("./finalizado/1", 1);
+    showModal("Prueba finalizada", "20%");
+    // Manejador de evento para el botón modal
+    document.getElementById("btnModal-cartas").onclick = function () {
+      clickCardsSound.play();
+      hideModal();
+      isMessageShown = true;
+    } 
+  }, 2000);
+}
+
+// Funciones de utilidad para la gestión modal
+function showModal(message, width) {
+  document.getElementById("text-modal-cartas").textContent = message;
+  document.getElementById("box-modal-cartas").style.width = width;
   document.getElementById("modal-cartas").style.display = "block";
-
-  // Configurar el evento click para el botón de cerrar modal
-  document.getElementById("btnModal-cartas").onclick = function () {
-    click_cartas.play(); // Reproducir sonido de clic
-    document.getElementById("modal-cartas").style.display = "none"; // Ocultar el modal
-    mensaje = true; // Establecer mensaje como mostrado
-  };
 }
 
-/* Funciones generales */
+function hideModal() {
+  document.getElementById("modal-cartas").style.display = "none";
+}
 
 // Función para realizar una solicitud POST a través de Django
 function DjangoPOST(url, datos) {

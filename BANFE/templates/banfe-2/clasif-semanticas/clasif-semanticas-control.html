@@ -1,8 +1,8 @@
 {% extends "banfe-2/base.html" %} {% load static %} {% block content %}
 
 <audio
-  class="alarma_sound"
-  src="{% static 'audios/tiempo_acabado.mp3' %}"
+  class="alarm_chronometer"
+  src="{% static 'audios/time_out.mp3' %}"
 ></audio>
 <audio class="figure-sound" src="{% static 'audios/click.wav' %}"></audio>
 {% include "banfe-2/modal.html" %}
@@ -37,7 +37,7 @@
           </button>
           <button id="parar_semanticas" class="invisible">
           </button>
-          <button id="reiniciar_semanticas" class="btn" onclick="restart();" disabled>
+          <button id="reiniciar_semanticas" class="btn" onclick="restart(); resetSemantics();" disabled>
             <i class="fa-solid fa-arrow-rotate-left"></i>
           </button>
         </div>

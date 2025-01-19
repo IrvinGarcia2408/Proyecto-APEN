@@ -1,3 +1,7 @@
+const alarmSignaling = document.querySelector(".alarmSignaling");
+
+window.completeSignaling = false;
+
 // Procedimiento que inicia el cronometro del lado del aplicador
 function inicioCronoSen() {
   click_senalamiento.play();
@@ -13,12 +17,13 @@ function reinicioCronoSen() {
   document.getElementById("secondSignaling").innerHTML = "0";
   document.getElementById("inicio").disabled = false;
   document.getElementById("reinicio").disabled = true;
+  window.completeSignaling = false;
 }
 
 // Procedimiento que funciona como cronometro para el aplicador
 function cronometroSenalamiento() {
   if (segundos == 300 || document.getElementById("fin").textContent == 1) {
-    alarma.play();
+    alarmSignaling.play();
     clearInterval(control);
     document.getElementById("text-modal-sen").textContent = "Prueba finalizada";
     document.getElementById("box-modal-sen").style.width = "20%";
@@ -29,6 +34,7 @@ function cronometroSenalamiento() {
       click_senalamiento.play();
       document.getElementById("modal-sen").style.display = "none";
     }
+    window.completeSignaling = true;
   }
   if (centesimas < 99) {
     centesimas++;

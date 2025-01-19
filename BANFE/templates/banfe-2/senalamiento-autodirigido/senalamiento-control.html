@@ -1,9 +1,6 @@
 {% extends "banfe-2/base.html" %} {% load static %} {% block content %}
 
-<audio
-  class="alarma_sound"
-  src="{% static 'audios/tiempo_acabado.mp3' %}"
-></audio>
+<audio class="alarmSignaling" src="{% static 'audios/time_out.mp3' %}"></audio>
 <audio class="figure-sound" src="{% static 'audios/click.wav' %}"></audio>
 {% include "banfe-2/modal.html" %}
 <div id="senalamiento" class="panel-prueba">

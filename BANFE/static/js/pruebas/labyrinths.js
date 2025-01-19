@@ -8,6 +8,10 @@ var alarm = document.querySelector(".alarm_sound"),
   timerControl,
   totalMazes = 5;  // Número total de laberintos
 
+var seconds = 0, centiseconds = 0;
+
+window.completeMazes = false;
+
 // Función para iniciar cada uno de los laberintos
 function startMazes() {
   clickMaze.play(); // Reproduce el sonido de clic
@@ -24,7 +28,7 @@ function startMazes() {
     // Si es la primera vez que se inicia la prueba
     timerControl = setInterval(mazeTimer, 10);
     startTime = seconds;
-    document.getElementById("reset_mazes").disabled = false;
+    document.getElementById("resetMazes").disabled = false;
     startMaze = true;
     enableMazeButtons(1);
     document.getElementById("finish-1").disabled = false;
@@ -44,11 +48,11 @@ function stopMazes() {
   updateMazeTime();
 
   // Deshabilita botones del laberinto actual y habilita el siguiente si queda
-  disableMazeButtons(mazes);
   if (mazes < totalMazes) {
     enableMazeButtons(mazes + 1);
   } else {
-    document.getElementById("reset_mazes").disabled = true;
+    document.getElementById("resetMazes").disabled = true;
+    window.completeMazes = true;
   }
 }
 
@@ -59,12 +63,11 @@ function resetMazes() {
   centiseconds = seconds = 0;
   startMaze = false;
   mazes = 0;
+  window.completeMazes = false;
 
   // Reinicia la UI
-  resetUI();
   disableMazeButtons(mazes);
-  document.getElementById("reset_mazes").disabled = true;
-  document.getElementById("finish-1").disabled = true;
+  resetUI();
 }
 
 // Función que actúa como cronómetro
@@ -79,8 +82,7 @@ function mazeTimer() {
 
   centiseconds = (centiseconds + 1) % 100;
   if (centiseconds === 0) seconds++;
-
-  document.getElementById("secondsP1").textContent = seconds;
+  document.getElementById("seconds_labyrinths").textContent = seconds;
 
   if (mazes > 0) {
     updateAverage();
@@ -115,13 +117,11 @@ function updateErrors(maze, error, delta) {
 
 // Función que habilita los botones del laberinto correspondiente
 function enableMazeButtons(maze) {
-  disableMazeButtons(); // Inhabilita todos los botones primero
-
   // Habilita los botones del laberinto actual
   document.getElementById(`start_${maze}`).disabled = false;
   document.getElementById(`finish-${maze}`).disabled = false;
 
-  ["touch", "cross", "trap"].forEach(error => {
+  ["touch", "cross", "caught"].forEach(error => {
     document.getElementById(`dec-${error}-${maze}`).disabled = false;
     document.getElementById(`inc-${error}-${maze}`).disabled = false;
   });
@@ -133,7 +133,7 @@ function disableMazeButtons() {
     document.getElementById(`start_${i}`).disabled = true;
     document.getElementById(`finish-${i}`).disabled = true;
 
-    ["touch", "cross", "trap"].forEach(error => {
+    ["touch", "cross", "caught"].forEach(error => {
       document.getElementById(`dec-${error}-${i}`).disabled = true;
       document.getElementById(`inc-${error}-${i}`).disabled = true;
     });
@@ -144,11 +144,18 @@ function disableMazeButtons() {
 function updateAverage() {
   if (mazes > 0) {
     document.getElementById("average").textContent =
-      Math.round(parseInt(document.getElementById("secondsP1").textContent) / mazes);
+      Math.round(parseInt(document.getElementById("seconds_labyrinths").textContent) / mazes);
   } else {
     document.getElementById("average").textContent = "0";
   }
 }
+
+// Función que actualiza el tiempo del laberinto actual
+function updateMazeTime() {
+  document.getElementById(`time-${mazes}`).textContent =
+    parseInt(document.getElementById("seconds_labyrinths").textContent) - startTime;
+}
+
 
 // Función que muestra el modal de finalización
 function showCompletionModal() {
@@ -164,17 +171,20 @@ function showCompletionModal() {
 
 // Función para resetear la interfaz de usuario
 function resetUI() {
-  document.getElementById("secondsP1").textContent = "0";
+  document.getElementById("seconds_labyrinths").textContent = "0";
   document.getElementById("average").textContent = "0";
 
   for (let i = 1; i <= totalMazes; i++) {
-    ["touch", "cross", "trap"].forEach(error => {
+    ["touch", "cross", "caught"].forEach(error => {
       document.getElementById(`${error}-${i}`).textContent = "0";
     });
     document.getElementById(`time-${i}`).textContent = "0";
   }
 
-  ["total-touch", "total-cross", "total-trap"].forEach(total => {
+  ["total-touch", "total-cross", "total-caught"].forEach(total => {
     document.getElementById(total).textContent = "0";
   });
+
+  document.getElementById(`start_1`).disabled = false;
+  document.getElementById("resetMazes").disabled = true;
 }

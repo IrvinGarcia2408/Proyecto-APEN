@@ -55,6 +55,7 @@ var cont_clicks = 0;
 
 var terminado = false;
 
+
 // Procedimiento que inicia la prueba del lado del sujeto
 function iniciarMemoria() {
   if (!iniciar_memoria) {

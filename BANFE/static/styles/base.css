@@ -1,5 +1,13 @@
 @import url("https://fonts.googleapis.com/css?family=Monserrat|Monserrat+Alternates|Poppins&display=swap");
 
+.title-home {
+  font-size: 4rem;
+}
+
+.logo-home {
+  width: 20vw;
+}
+
 .main {
   min-height: 90vh;
   overflow: hidden;
@@ -25,6 +33,7 @@
 .navbar {
   width: 100%;
 }
+
 .navbar__logo {
   display: flex;
   margin: 0 2vw;
@@ -131,7 +140,7 @@
   text-decoration: none;
 }
 
-.navbar__menu-perfil a > i {
+.navbar__menu-perfil a>i {
   font-size: 1.8vh;
   color: #2a8c4a;
   margin: 0 0.5vw 0 1vw;
@@ -158,7 +167,7 @@
   text-decoration: none;
 }
 
-.navbar__menu-cerrar a > i {
+.navbar__menu-cerrar a>i {
   font-size: 1.8vh;
   color: #2a8c4a;
   margin: 0 0.5vw 0 1vw;
@@ -230,7 +239,7 @@
 }
 
 .menu a:hover,
-.menu a:hover > i {
+.menu a:hover>i {
   color: rgb(255, 255, 200);
 }
 
@@ -263,7 +272,7 @@
 }
 
 .footer a:hover,
-.footer a:hover > i {
+.footer a:hover>i {
   /*Pintar iconos y enlaces al mismo tiempo*/
   color: rgb(255, 255, 200);
 }
@@ -274,6 +283,31 @@
   font-size: 2.2vh;
   width: 25px;
   height: 25px;
+}
+
+.menu div.active {
+  background: #008259;
+}
+
+.menu div.active a,
+.menu div.active i {
+  color: rgb(255, 255, 200);
+}
+
+.offOtherTests,
+.offProjects {
+  pointer-events: none;
+  /* Deshabilita clics y eventos */
+  opacity: 0.6;
+  /* Cambia la opacidad para dar efecto visual de deshabilitado */
+}
+
+.offOtherTests a,
+.offProjects a {
+  color: gray;
+  /* Cambia el color del enlace deshabilitado */
+  text-decoration: none;
+  /* Remueve el subrayado */
 }
 
 @media only screen and (max-width: 779px) {

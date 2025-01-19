@@ -12,7 +12,7 @@ def index(request):
     return render(request, "index.html")
 
 def inicio(request):
-    return render(request, "principal/base.html", {"user":request.user})  
+    return render(request, "principal/home-page.html", {"user":request.user})  
 
 def login(request):
     if request.method == 'POST':
